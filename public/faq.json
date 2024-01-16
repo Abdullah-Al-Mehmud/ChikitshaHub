@@ -1,0 +1,21 @@
+{
+    "faqs": [
+      {
+        "question": "How can I find a doctor on your website?",
+        "answer": "You can easily find a doctor by using our search feature. Enter the specialty, location, or the doctor's name to get a list of matching results."
+      },
+      {
+        "question": "How do I schedule an appointment with a doctor?",
+        "answer": "To schedule an appointment, visit the doctor's profile, check their availability, and choose a suitable time slot. Follow the prompts to complete the appointment booking process."
+      },
+      {
+        "question": "Can I cancel or reschedule my appointment?",
+        "answer": "Yes, you can cancel or reschedule your appointment through your account on our website. Please do so within the specified time frame to avoid any cancellation fees."
+      },
+      {
+        "question": "Is my personal information secure on your website?",
+        "answer": "Yes, we take the privacy and security of your information seriously. Our website employs encryption and follows industry best practices to protect your data."
+      }
+    ]
+  }
+  
