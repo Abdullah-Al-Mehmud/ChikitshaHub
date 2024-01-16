@@ -58,7 +58,7 @@ const Specialties = () => {
 
             </Swiper>
 
-            <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] p-4 rounded-lg group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-lg">
+            <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] p-4 rounded-full group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                 <FaArrowRightLong/>
                 </span></button>
         </div>
