@@ -1,0 +1,54 @@
+{
+    "reviews": [
+      {
+        "id" : 1,
+        "type": "user",
+        "name": "Sarah Johnson",
+        "email": "sarah.johnson@email.com",
+        "rating": 5,
+        "details": "I had a great experience with the live doctor service. Quick response, helpful advice, and a caring attitude. Dr. Smith was fantastic!",
+        "img": "[Link to Image]"
+      },
+      {
+        "type": "user",
+        "name": "Alex Rodriguez",
+        "email": "alex.rodriguez@email.com",
+        "rating": 4,
+        "details": "The live chat feature is convenient, and the doctor provided clear explanations for my health concerns. Would recommend!",
+        "img": "[Link to Image]"
+      },
+      {
+        "type": "user",
+        "name": "Emily White",
+        "email": "emily.white@email.com",
+        "rating": 6,
+        "details": "Excellent service! Dr. Patel went above and beyond to address my questions. Very professional and reassuring.",
+        "img": "[Link to Image]"
+      },
+      {
+        "type": "doctor",
+        "name": "Dr. Michael Smith",
+        "email": "dr.smith@email.com",
+        "rating": 5,
+        "details": "I appreciate the platform's user-friendly interface. It allows me to provide efficient and timely consultations. Patients' well-being is our priority!",
+        "img": "[Link to Image]"
+      },
+      {
+        "type": "doctor",
+        "name": "Dr. Lisa Patel",
+        "email": "dr.lisa@email.com",
+        "rating": 6,
+        "details": "I enjoy using this platform to connect with patients. The technology is reliable, and the support team is responsive. Proud to be part of this service.",
+        "img": "[Link to Image]"
+      },
+      {
+        "type": "doctor",
+        "name": "Dr. James Miller",
+        "email": "dr.james@email.com",
+        "rating": 4,
+        "details": "The platform is a great addition to my practice. It allows me to reach a broader audience and provide valuable medical advice. Looking forward to more interactions!",
+        "img": "[Link to Image]"
+      }
+    ]
+  }
+  
