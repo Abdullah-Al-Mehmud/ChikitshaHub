@@ -1,0 +1,28 @@
+{
+    "partners": [
+      {
+        "id": "1",
+        "image_link": "https://i.ibb.co/7X4bPsQ/Untitled-1.png"
+      },
+      {
+        "id": "2",
+        "image_link": "https://i.ibb.co/YTzFWzC/Untitled-2.png"
+      },
+      {
+        "id": "3",
+        "image_link": "https://i.ibb.co/JmQYKYN/Untitled-3.png"
+      },
+      {
+        "id": "4",
+        "image_link": "https://i.ibb.co/020Rk74/Untitled-4.png"
+      },
+      {
+        "id": "5",
+        "image_link": "https://i.ibb.co/zbdrz8v/Untitled-5.png"
+      },
+      {
+        "id": "6",
+        "image_link": "https://i.ibb.co/BZMzWfP/Untitled-6.png"
+      }
+    ]
+  }
