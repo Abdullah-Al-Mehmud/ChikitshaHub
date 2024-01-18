@@ -1,7 +1,6 @@
 import Specialties from './../../Components/Specialties/Specialties';
 import BestDoctor from './../../Components/BestDoctor/BestDoctor';
 import Partners from '../../Components/partners/Partners';
-import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import Banner from '../../Components/Banner/Banner';
 import Faq from '../../Components/Faq/Faq';
@@ -17,7 +16,6 @@ const Home = () => {
       <Faq/>
       <Testimonials/>
       <Partners />
-      <Footer />
     </>
   );
 };

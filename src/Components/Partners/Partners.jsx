@@ -19,7 +19,7 @@ const Partners = () => {
   const partnersData = data.partners;
   return (
     <div className="max-w-6xl mx-auto my-24">
-      <h1 className="text-center font-bold text-3xl">Partners</h1>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6">Partners</h1>
       <Splide
         options={{
           type: "loop",

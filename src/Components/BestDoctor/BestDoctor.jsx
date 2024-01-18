@@ -57,7 +57,7 @@ const BestDoctor = () => {
                                     <h5 className='text-xl font-medium'>{doctor.name}</h5>
                                     <p className="text-sm text-gray-500 mt-1">{doctor.category}</p>
                                 </div>
-                                <div className="p-2 bg-amber-400 rounded-xl text-white flex gap-2 items-center">
+                                <div className="p-2 bg-orange-400 rounded-xl text-white font-medium flex gap-2 items-center">
                                     <FaRegStar className=""/>
                                     {doctor.rating}
                                 </div>

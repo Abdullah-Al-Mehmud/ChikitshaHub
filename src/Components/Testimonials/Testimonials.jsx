@@ -21,7 +21,7 @@ const Testimonials = () => {
 
     return (
         <div className='max-w-6xl mx-auto my-24'>
-            <h2 className="text-5xl font-bold text-center mb-5">Testimonials</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6">Testimonials</h2>
             <Swiper
                 breakpoints={{
                     425: {

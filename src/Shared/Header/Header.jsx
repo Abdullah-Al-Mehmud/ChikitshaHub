@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { LuLogIn } from "react-icons/lu";
 
 const Header = () => {
@@ -86,10 +86,12 @@ const Header = () => {
           )}
         </div>
 
-        <div className="flex items-center gap-4">
-        <img className="w-12" src='https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png' alt="" />
-        <h2 className="text-3xl font-semibold">Chikitsha<span className="text-[#409bd4]">Hub</span></h2>
+        <Link to="/">
+        <div className="flex items-center md:gap-4 gap-2">
+        <img className="md:w-12 w-10" src='https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png' alt="" />
+        <h2 className="md:text-3xl text-xl font-semibold">Chikitsha<span className="text-[#409bd4]">Hub</span></h2>
         </div>
+        </Link>
       </div>
 
       <div className="navbar-end">
