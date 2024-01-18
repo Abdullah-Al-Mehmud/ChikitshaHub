@@ -20,8 +20,8 @@ const Testimonials = () => {
     // console.log(reviewData)
 
     return (
-        <div className='max-w-6xl mx-auto my-14'>
-            <h2 className="text-5xl font-bold text-center mb-5">Testimonials</h2>
+        <div className='max-w-6xl mx-auto my-24'>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6">Testimonials</h2>
             <Swiper
                 breakpoints={{
                     425: {
@@ -47,7 +47,7 @@ const Testimonials = () => {
             >
                 {
                     reviewData?.map(review => <SwiperSlide className="px-6 py-10" key={review.name}>
-                        <div className="border-2 p-4 rounded-xl hover:border-black flex">
+                        <div className="border-2 p-4 rounded-xl hover:border-[#409bd4] flex">
                             <div className="px-4 py-8 bg-base-200 rounded-xl text-start">
                                 <Rating
                                     initialRating={review.rating}
@@ -58,9 +58,9 @@ const Testimonials = () => {
                                     {review.details}
                                 </p>
                                 <div className="flex flex-col-reverse md:flex-row items-center justify-between">
-                                    <div className="flex flex-col md:flex-row items-center gap-3">
+                                    <div className="flex flex-col md:flex-row items-center gap-4">
                                         <div className="w-14 h-14">
-                                            <img src={review.img} alt="" className="rounded-full " />
+                                            <img src={review.img} alt="" className="rounded-full w-14 h-14" />
                                         </div>
                                         <div className="text-start text-[#222e48]">
                                             <h4 className="text-xl font-semibold mb-2">{review.name}</h4>

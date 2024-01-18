@@ -1,23 +1,59 @@
-import { useState } from "react";
-import logo from "../../assets/images/chikitshaHub-logo.png";
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { LuLogIn } from "react-icons/lu";
 
 const Header = () => {
   const [show, setShow] = useState(false);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const links = (
     <>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>About Us</a>
-      </li>
-      <li>
-        <a>Contact Us</a>
-      </li>
+      <NavLink
+            to="/"
+            className={({ isActive }) =>
+             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
+            }
+        >
+            Home
+        </NavLink>
+      <NavLink
+            to="/about"
+            className={({ isActive }) =>
+             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
+            }
+        >
+            About Us
+        </NavLink>
+      <NavLink
+            to="/Contact"
+            className={({ isActive }) =>
+             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
+            }
+        >
+            Contact Us
+        </NavLink>
     </>
   );
+  
+
   return (
-    <div className="navbar py-3 bg-black bg-opacity-55 text-white fixed z-10 md:px-28 px-5 ">
+    <div className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
+      isScrolled ? 'bg-gray-200 text-black' : 'bg-none text-white'
+    }`}>
+      <div className="max-w-6xl mx-auto navbar py-3 px-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -42,7 +78,7 @@ const Header = () => {
           {show ? (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-500 font-bold rounded-box w-52">
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52">
               {links}
             </ul>
           ) : (
@@ -50,7 +86,12 @@ const Header = () => {
           )}
         </div>
 
-        <img className="w-12" src={logo} alt="" />
+        <Link to="/">
+        <div className="flex items-center md:gap-4 gap-2">
+        <img className="md:w-12 w-10" src='https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png' alt="" />
+        <h2 className="md:text-3xl text-xl font-semibold">Chikitsha<span className="text-[#409bd4]">Hub</span></h2>
+        </div>
+        </Link>
       </div>
 
       <div className="navbar-end">
@@ -58,30 +99,12 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        <button className="flex items-center relative w-32 border-2 border-[#409bd4] text-[#409bd4] p-2 rounded-full group">
-          <span>Get Start</span>
-          <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-            <svg
-              viewBox="0 0 25 25"
-              fill="none"
-              className=""
-              xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                strokeLinecap="round"
-                strokeLinejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  d="M4 12H20M20 12L14 6M20 12L14 18"
-                  stroke="#409bd4"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"></path>
-              </g>
-            </svg>
-          </span>
-        </button>
+        <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group"><span>Login</span><span className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+      isScrolled ? 'bg-gray-200' : 'bg-[#080b0e]'
+    }`}>
+                <LuLogIn className="h-10"/>
+                </span></button>
+      </div>
       </div>
     </div>
   );
