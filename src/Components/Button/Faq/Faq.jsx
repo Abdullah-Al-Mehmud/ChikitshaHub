@@ -18,7 +18,7 @@ const Faq = () => {
     return (
         <div className="max-w-6xl mx-auto my-14">
             <h2 className="text-5xl font-bold text-center mb-5">Frequently Asked Questions</h2>
-            <div className="flex justify-between items-center gap-5">
+            <div className="flex flex-col lg:flex-row px-5 lg:px-0 justify-between items-center gap-5">
                 {/* faq images */}
                 <div className="flex-1">
                     <img src="https://i.ibb.co/VvgxsyS/Questions-pana.png" alt="" />
