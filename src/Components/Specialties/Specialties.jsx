@@ -19,7 +19,7 @@ const Specialties = () => {
 
 
     return (
-        <div className='max-w-6xl mx-auto my-14'>
+        <div className='max-w-6xl mx-auto my-24'>
             <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6'>Specialties</h2>
             <Swiper
                 breakpoints={{
@@ -58,8 +58,8 @@ const Specialties = () => {
 
             </Swiper>
 
-            <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] p-4 rounded-full group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                <FaArrowRightLong/>
+            <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                <FaArrowRightLong className='h-10'/>
                 </span></button>
         </div>
     );

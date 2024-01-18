@@ -18,7 +18,7 @@ const Partners = () => {
   }, []);
   const partnersData = data.partners;
   return (
-    <>
+    <div className="max-w-6xl mx-auto my-24">
       <h1 className="text-center font-bold text-3xl">Partners</h1>
       <Splide
         options={{
@@ -44,7 +44,7 @@ const Partners = () => {
           </SplideSlide>
         ))}
       </Splide>
-    </>
+    </div>
   );
 };
 

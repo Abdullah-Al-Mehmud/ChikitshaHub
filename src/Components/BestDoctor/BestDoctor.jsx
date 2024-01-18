@@ -23,7 +23,7 @@ const BestDoctor = () => {
 
 
     return (
-        <div className='max-w-6xl mx-auto my-14'>
+        <div className='max-w-6xl mx-auto my-24'>
             <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6'>Best Doctors</h2>
             <Swiper
                 breakpoints={{
@@ -49,7 +49,7 @@ const BestDoctor = () => {
                 className="mySwiper"
             >
                 {
-                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="mx-auto" key={doctor.id}>
+                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="px-6 py-10" key={doctor.id}>
                         <div className="border-2 rounded-xl hover:border-[#409bd4] pb-6">
                             <img className='w-full rounded-t-xl' src={doctor.img} alt="" />
                             <div className="flex justify-between items-center px-3 mt-6">
