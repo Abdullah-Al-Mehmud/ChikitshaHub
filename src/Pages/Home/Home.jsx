@@ -6,8 +6,6 @@ const Home = () => {
   return (
     <>
       <Header></Header>
-      <Partners />
-      <Footer />
     </>
   );
 };
