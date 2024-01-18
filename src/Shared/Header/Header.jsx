@@ -50,7 +50,7 @@ const Header = () => {
   
 
   return (
-    <div className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 overflow-hidden ${
+    <div className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
       isScrolled ? 'bg-gray-200 text-black' : 'bg-none text-white'
     }`}>
       <div className="max-w-6xl mx-auto navbar py-3 px-6">
@@ -78,7 +78,7 @@ const Header = () => {
           {show ? (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-500 font-bold rounded-box w-52">
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52">
               {links}
             </ul>
           ) : (
