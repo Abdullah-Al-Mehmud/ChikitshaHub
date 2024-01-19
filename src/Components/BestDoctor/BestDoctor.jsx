@@ -14,7 +14,7 @@ const BestDoctor = () => {
     const [doctorList, setDoctorList] = useState([]);
 
     useEffect(() => {
-        fetch('DoctorList.json')
+        fetch('../../../public/DoctorList.json')
             .then(res => res.json())
             .then(data => setDoctorList(data))
     }, []);
