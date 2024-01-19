@@ -12,7 +12,7 @@ const Specialties = () => {
     const [specialtiesData, setSpecialtiesData] = useState([]);
 
     useEffect(() => {
-        fetch('../../../public/specialtiesData.json')
+        fetch('specialtiesData.json')
             .then(res => res.json())
             .then(data => setSpecialtiesData(data))
     }, [])
