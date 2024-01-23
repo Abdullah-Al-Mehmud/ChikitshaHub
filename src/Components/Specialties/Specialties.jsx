@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Specialties = () => {
 
@@ -58,9 +59,11 @@ const Specialties = () => {
 
             </Swiper>
 
-            <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                <FaArrowRightLong className='h-10'/>
+            <Link to='/specialties'>
+                <button className="flex items-center relative w-28 mx-auto border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>See All</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaArrowRightLong className='h-10' />
                 </span></button>
+            </Link>
         </div>
     );
 };

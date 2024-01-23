@@ -1,82 +1,98 @@
 [
-    {
-      "id": 1,
-      "name": "General Practitioners",
-      "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png"
-    },
-    {
-      "id": 2,
-      "name": "Cardiologists",
-      "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png"
-    },
-    {
-      "id": 3,
-      "name": "Dermatologists",
-      "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png"
-    },
-    {
-      "id": 4,
-      "name": "Pediatricians",
-      "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png"
-    },
-    {
-      "id": 5,
-      "name": "Orthopedic Surgeons",
-      "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png"
-    },
-    {
-      "id": 6,
-      "name": "Psychiatrists",
-      "img": "https://i.ibb.co/f947g02/Psychiatrists.png"
-    },
-    {
-      "id": 7,
-      "name": "Gynecologists",
-      "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png"
-    },
-    {
-      "id": 8,
-      "name": "Endocrinologists",
-      "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png"
-    },
-    {
-      "id": 9,
-      "name": "Ophthalmologists",
-      "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png"
-    },
-    {
-      "id": 10,
-      "name": "Urologists",
-      "img": "https://i.ibb.co/MpJG3Y8/Urologists.png"
-    },
-    {
-      "id": 11,
-      "name": "ENT Specialists",
-      "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png"
-    },
-    {
-      "id": 12,
-      "name": "Gastroenterologists",
-      "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png"
-    },
-    {
-      "id": 13,
-      "name": "Neurologists",
-      "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png"
-    },
-    {
-      "id": 14,
-      "name": "Allergists/Immunologists",
-      "img": "https://i.ibb.co/KXv5YnB/allergist.png"
-    },
-    {
-      "id": 15,
-      "name": "Infectious Disease Specialists",
-      "img": "https://i.ibb.co/bLLjrPM/Infectious.png"
-    },
-    {
-      "id": 16,
-      "name": "Emergency Medicine Physicians",
-      "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "General Practitioners",
+    "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png",
+    "description": "Comprehensive primary care for all ages, focusing on preventive care, routine check-ups, and managing common illnesses. Our dedicated general practitioners prioritize your overall well-being with personalized healthcare."
+  },
+  {
+    "id": 2,
+    "name": "Cardiologists",
+    "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png",
+    "description": "Specializing in heart health, our cardiologists provide expert diagnosis and treatment for cardiovascular conditions. Ensure optimal heart function and well-being with the care of our experienced professionals."
+  },
+  {
+    "id": 3,
+    "name": "Dermatologists",
+    "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png",
+    "description": "Skilled dermatologists offer personalized skincare solutions, diagnosing and treating various skin conditions. From acne to dermatitis, our experts prioritize your skin health with comprehensive and compassionate care."
+  },
+  {
+    "id": 4,
+    "name": "Pediatricians",
+    "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png",
+    "description": "Compassionate pediatricians specialize in the care of infants, children, and adolescents. Focusing on preventive care, vaccinations, and developmental milestones, our experts ensure the health and well-being of your child."
+  },
+  {
+    "id": 5,
+    "name": "Orthopedic Surgeons",
+    "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png",
+    "description": "Renowned orthopedic surgeons excel in diagnosing and treating musculoskeletal issues. From joint replacements to sports injuries, our experts promote optimal mobility and function with personalized care."
+  },
+  {
+    "id": 6,
+    "name": "Psychiatrists",
+    "img": "https://i.ibb.co/f947g02/Psychiatrists.png",
+    "description": "Compassionate psychiatrists provide mental health support through therapy, counseling, and medication management. Enhance emotional well-being and resilience with the care of our dedicated mental health professionals."
+  },
+  {
+    "id": 7,
+    "name": "Gynecologists",
+    "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png",
+    "description": "Specializing in women's health, our gynecologists offer comprehensive care, addressing reproductive health, family planning, and managing gynecological conditions with sensitivity and expertise."
+  },
+  {
+    "id": 8,
+    "name": "Endocrinologists",
+    "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png",
+    "description": "Expert endocrinologists focus on hormonal health, diagnosing and treating conditions such as diabetes, thyroid disorders, and hormonal imbalances. Optimize your overall well-being with personalized care from our specialists."
+  },
+  {
+    "id": 9,
+    "name": "Ophthalmologists",
+    "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png",
+    "description": "Dedicated ophthalmologists prioritize eye health with comprehensive eye exams, vision correction, and treatment for various eye conditions. Enhance and preserve your vision with the care of our experienced professionals."
+  },
+  {
+    "id": 10,
+    "name": "Urologists",
+    "img": "https://i.ibb.co/MpJG3Y8/Urologists.png",
+    "description": "Experienced urologists specialize in the diagnosis and treatment of urinary tract and male reproductive system conditions. Ensure optimal urological health for all patients with the expertise of our professionals."
+  },
+  {
+    "id": 11,
+    "name": "ENT Specialists",
+    "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png",
+    "description": "ENT specialists focus on ear, nose, and throat health, offering expert diagnosis and treatment for related conditions. Enhance your overall well-being with personalized care from our dedicated professionals."
+  },
+  {
+    "id": 12,
+    "name": "Gastroenterologists",
+    "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png",
+    "description": "Expert gastroenterologists specialize in the diagnosis and treatment of digestive system conditions. From gastrointestinal disorders to liver diseases, our professionals ensure your digestive health with personalized care."
+  },
+  {
+    "id": 13,
+    "name": "Neurologists",
+    "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png",
+    "description": "Expert neurologists focus on the diagnosis and treatment of neurological conditions. From migraines to neurological disorders, our specialists prioritize your brain and nervous system health with personalized care."
+  },
+  {
+    "id": 14,
+    "name": "Allergists/Immunologists",
+    "img": "https://i.ibb.co/KXv5YnB/allergist.png",
+    "description": "Specializing in allergies and immunology, our experts offer diagnosis and treatment for allergic reactions and immune system disorders. Ensure optimal well-being with personalized care from our dedicated professionals."
+  },
+  {
+    "id": 15,
+    "name": "Infectious Disease Specialists",
+    "img": "https://i.ibb.co/bLLjrPM/Infectious.png",
+    "description": "Infectious disease specialists focus on the diagnosis and treatment of infectious diseases. From viral infections to bacterial diseases, our professionals prioritize your health with personalized and expert care."
+  },
+  {
+    "id": 16,
+    "name": "Emergency Medicine Physicians",
+    "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png",
+    "description": "Emergency medicine physicians specialize in acute care and emergency medical situations. From injuries to critical illnesses, our professionals ensure timely and expert medical care in emergency situations."
+  }
+]
