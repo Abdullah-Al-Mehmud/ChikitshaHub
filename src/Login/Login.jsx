@@ -1,5 +1,5 @@
 import { FaFacebook } from "react-icons/fa6";
-import { FaEye } from "react-icons/fa";
+
 import {useForm} from 'react-hook-form'
 const Login = () => {
     const {register,handleSubmit, formState:{errors}} = useForm ({defaultValues:{
@@ -53,7 +53,7 @@ const Login = () => {
             <form onSubmit={handleSubmit (onSubmit)} >
             <div className="mt-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                <input {...register('email', {required:'input field is required'})} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  />
+                <input {...register('email',  {required:'input field is required'})} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  />
                 <p className="text-red-500 py-3 font-bold" >{errors.email?.message}</p>
             </div>
             {/* new */}
