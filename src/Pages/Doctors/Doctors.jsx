@@ -3,6 +3,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Doctors = () => {
     const [range, setRange] = useState([0, 1000]);
@@ -100,7 +101,8 @@ const Doctors = () => {
                 <div className="col-span-12 md:col-span-8">
                     <div>
                         {
-                            doctorList.map(doctor => <div key={doctor.id} className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
+                            doctorList.map(doctor => <Link to={`/doctor/${doctor.id}`} key={doctor.id}>
+                            <div className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
                                 <div className="flex items-center justify-between gap-2 flex-col md:flex-row">
                                     <div>
                                         <div className="flex items-center gap-6">
@@ -132,7 +134,8 @@ const Doctors = () => {
                                         
                                     </div>
                                 </div>
-                            </div>)
+                            </div>
+                            </Link>)
                         }
                     </div>
                 </div>
