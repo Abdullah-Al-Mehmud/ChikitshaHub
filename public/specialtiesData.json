@@ -1,82 +1,98 @@
 [
-    {
-      "id": 1,
-      "name": "General Practitioners",
-      "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png"
-    },
-    {
-      "id": 2,
-      "name": "Cardiologists",
-      "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png"
-    },
-    {
-      "id": 3,
-      "name": "Dermatologists",
-      "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png"
-    },
-    {
-      "id": 4,
-      "name": "Pediatricians",
-      "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png"
-    },
-    {
-      "id": 5,
-      "name": "Orthopedic Surgeons",
-      "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png"
-    },
-    {
-      "id": 6,
-      "name": "Psychiatrists",
-      "img": "https://i.ibb.co/f947g02/Psychiatrists.png"
-    },
-    {
-      "id": 7,
-      "name": "Obstetricians/Gynecologists",
-      "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png"
-    },
-    {
-      "id": 8,
-      "name": "Endocrinologists",
-      "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png"
-    },
-    {
-      "id": 9,
-      "name": "Ophthalmologists",
-      "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png"
-    },
-    {
-      "id": 10,
-      "name": "Urologists",
-      "img": "https://i.ibb.co/MpJG3Y8/Urologists.png"
-    },
-    {
-      "id": 11,
-      "name": "ENT Specialists",
-      "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png"
-    },
-    {
-      "id": 12,
-      "name": "Gastroenterologists",
-      "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png"
-    },
-    {
-      "id": 13,
-      "name": "Neurologists",
-      "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png"
-    },
-    {
-      "id": 14,
-      "name": "Allergists/Immunologists",
-      "img": "https://i.ibb.co/KXv5YnB/allergist.png"
-    },
-    {
-      "id": 15,
-      "name": "Infectious Disease Specialists",
-      "img": "https://i.ibb.co/bLLjrPM/Infectious.png"
-    },
-    {
-      "id": 16,
-      "name": "Emergency Medicine Physicians",
-      "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "General Practitioners",
+    "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png",
+    "description": "General Practitioners provide primary healthcare services, offering routine check-ups, vaccinations, and general health advice."
+  },
+  {
+    "id": 2,
+    "name": "Cardiologists",
+    "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png",
+    "description": "Cardiologists specialize in the diagnosis and treatment of heart and cardiovascular system disorders."
+  },
+  {
+    "id": 3,
+    "name": "Dermatologists",
+    "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png",
+    "description": "Dermatologists focus on the diagnosis and treatment of skin, hair, and nail conditions, including dermatitis, acne, and skin cancer."
+  },
+  {
+    "id": 4,
+    "name": "Pediatricians",
+    "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png",
+    "description": "Pediatricians specialize in the medical care of infants, children, and adolescents, addressing their unique health needs."
+  },
+  {
+    "id": 5,
+    "name": "Orthopedic Surgeons",
+    "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png",
+    "description": "Orthopedic Surgeons deal with the diagnosis and surgical/non-surgical treatment of musculoskeletal conditions, such as fractures and joint issues."
+  },
+  {
+    "id": 6,
+    "name": "Psychiatrists",
+    "img": "https://i.ibb.co/f947g02/Psychiatrists.png",
+    "description": "Psychiatrists specialize in the diagnosis and treatment of mental health disorders, providing therapy, medications, and counseling."
+  },
+  {
+    "id": 7,
+    "name": "Obstetricians/Gynecologists",
+    "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png",
+    "description": "Obstetricians/Gynecologists focus on women's reproductive health, including pregnancy, childbirth, and gynecological issues."
+  },
+  {
+    "id": 8,
+    "name": "Endocrinologists",
+    "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png",
+    "description": "Endocrinologists specialize in the diagnosis and treatment of hormonal disorders, including diabetes, thyroid conditions, and hormonal imbalances."
+  },
+  {
+    "id": 9,
+    "name": "Ophthalmologists",
+    "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png",
+    "description": "Ophthalmologists specialize in the diagnosis and treatment of eye disorders, including vision problems, eye injuries, and surgeries."
+  },
+  {
+    "id": 10,
+    "name": "Urologists",
+    "img": "https://i.ibb.co/MpJG3Y8/Urologists.png",
+    "description": "Urologists focus on the diagnosis and treatment of disorders related to the urinary tract and male reproductive system."
+  },
+  {
+    "id": 11,
+    "name": "ENT Specialists",
+    "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png",
+    "description": "ENT Specialists (Ear, Nose, and Throat) diagnose and treat disorders related to the ears, nose, throat, and related structures."
+  },
+  {
+    "id": 12,
+    "name": "Gastroenterologists",
+    "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png",
+    "description": "Gastroenterologists specialize in the diagnosis and treatment of digestive system disorders, including the stomach, intestines, liver, and pancreas."
+  },
+  {
+    "id": 13,
+    "name": "Neurologists",
+    "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png",
+    "description": "Neurologists specialize in the diagnosis and treatment of disorders of the nervous system, including the brain, spinal cord, and nerves."
+  },
+  {
+    "id": 14,
+    "name": "Allergists/Immunologists",
+    "img": "https://i.ibb.co/KXv5YnB/allergist.png",
+    "description": "Allergists/Immunologists focus on the diagnosis and treatment of allergies, asthma, and disorders related to the immune system."
+  },
+  {
+    "id": 15,
+    "name": "Infectious Disease Specialists",
+    "img": "https://i.ibb.co/bLLjrPM/Infectious.png",
+    "description": "Infectious Disease Specialists specialize in the diagnosis and treatment of infectious diseases caused by bacteria, viruses, fungi, or parasites."
+  },
+  {
+    "id": 16,
+    "name": "Emergency Medicine Physicians",
+    "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png",
+    "description": "Emergency Medicine Physicians provide immediate medical care for acute illnesses and injuries in emergency situations."
+  }
+]
