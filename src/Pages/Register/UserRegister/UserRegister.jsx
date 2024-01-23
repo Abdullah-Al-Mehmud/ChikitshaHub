@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 
 import { Link } from "react-router-dom";
-import registerImg from "../../../assets/images/register.png"
+//import registerImg from "../../../assets/images/register.png"
 
 const UserRegistration = () => {
     const {
