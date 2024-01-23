@@ -27,12 +27,12 @@ const Specialties = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 max-w-6xl mx-auto px-6 py-16 lg:py-20">
 
                 {
-                    specialtiesData.map(category => <Link to={`/Doctors/${category.name}`} key={category.id}>
+                    specialtiesData.map(category => <Link to={`/doctors`} key={category.id}>
                         <div className="px-6 py-10">
-                            <div className="border-2 rounded-xl hover:border-[#409bd4] flex items-center gap-6 p-6">
+                            <div className="border-2 rounded-xl hover:border-[#409bd4] flex flex-col md:flex-row items-center gap-6 p-6">
                                 <div className='bg-base-300 rounded-full w-40 h-40'>
                                     <img className='w-28 h-28 mx-auto my-6' src={category.img} alt="" />
                                 </div>
