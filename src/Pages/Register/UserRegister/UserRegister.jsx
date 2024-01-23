@@ -88,7 +88,7 @@ const UserRegistration = () => {
                             <div></div>
                             <div className='flex bg-white items-center rounded-r-lg gap-5  px-[8.5%] py-10'>
                                 <p className='font-bold '>Are you a doctor?</p>
-                                <Link className='border-[#409bd4] border rounded-full px-5 py-2'>Join as a doctor</Link>
+                                <Link to="/doctorRegister" className='border-[#409bd4] border rounded-full px-5 py-2'>Join as a doctor</Link>
                             </div>
                         </div>
                     </div>
