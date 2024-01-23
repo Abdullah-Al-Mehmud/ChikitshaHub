@@ -17,7 +17,7 @@ const UserRegistration = () => {
                     <div className="flex justify-center px-6 py-6">
                         <div className="w-full xl:w-3/4 lg:w-11/12 flex gap-5 items-center">
                             <div className="w-full h-auto bg-gray-400 dark:bg-gray-800 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
-                                <img className='' src={registerImg} alt="" />
+                                <img className='' src="https://i.ibb.co/t8C35YM/416184993-317205861315040-2894419172803826832-n.png" alt="" />
                             </div>
                             <div className="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none">
                                 <h3 className="py-4 text-2xl text-center text-gray-800 dark:text-white">Create an Account!</h3>
