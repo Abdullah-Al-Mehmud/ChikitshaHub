@@ -2,8 +2,13 @@ import { FaFacebook } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import {useForm} from 'react-hook-form'
 const Login = () => {
-    const {login,handleLogin} = useForm ()
-    const
+    const {register,handleSubmit, formState:{errors}} = useForm ({defaultValues:{
+        password:'*****',
+        email:'johon12@gmail.com'
+    }})
+    const onSubmit = data =>{
+        console.log(data)
+    }
     return(
         <div>
 <div className="py-20 ">
@@ -12,7 +17,7 @@ const Login = () => {
             <img src="https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png" alt="" />
         </div>
         <div className="w-full p-8 lg:w-1/2">
-            <h2 className="text-2xl font-semibold text-gray-700 text-center">Brand</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 text-center"></h2>
             <p className="text-xl text-gray-600 text-center">Welcome back!</p>
             <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
                 <div className="px-4 py-3">
@@ -45,10 +50,11 @@ const Login = () => {
                 <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with email</a>
                 <span className="border-b w-1/5 lg:w-1/4"></span>
             </div>
-            <form onSubmit={handleLogin(onSubmit)} >
+            <form onSubmit={handleSubmit (onSubmit)} >
             <div className="mt-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                <input {...login('email')} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" />
+                <input {...register('email', {required:'input field is required'})} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  />
+                <p className="text-red-500 py-3 font-bold" >{errors.email?.message}</p>
             </div>
             {/* new */}
             
@@ -58,8 +64,9 @@ const Login = () => {
                     <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                     <a href="#" className="text-xs text-gray-500">Forget Password?</a>
                 </div>
-                <div className="">
-                <input {...login('password')}  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none " type="password" />
+                <div  className="">
+                <input  {...register('password',{required:'input field is required', minLength:{value:8,message:"you password must be 8 character"}})}   className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none " type="password" />
+                <p className="text-red-500 py-3 font-bold" >{errors.password?.message}</p>
                 </div> 
                
             </div>
