@@ -3,13 +3,13 @@ import Root from "../Layout/Root";
 import Contact from './../Pages/contact/Contact';
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Home from "../Pages/Home/Home";
-import Specialties from "../Pages/Specialties/Specialties";
 import Doctors from "../Pages/Doctors/Doctors";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
+import Specialties from './../Pages/Specialties/Specialties';
+
 
 const router = createBrowserRouter([
   {
@@ -54,10 +54,6 @@ const router = createBrowserRouter([
         path:"/login",
         element:<Login></Login>
       },
-      {
-        path:"/morespecialties",
-        element:<MoreSpecialties></MoreSpecialties>
-      }
     ],
   },
 ]);
