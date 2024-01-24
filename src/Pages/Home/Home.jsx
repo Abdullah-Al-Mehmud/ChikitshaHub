@@ -5,6 +5,7 @@ import Partners from '../../Components/partners/Partners';
 import Banner from '../../Components/Banner/Banner';
 import Faq from '../../Components/Faq/Faq';
 import Testimonials from '../../Components/Testimonials/Testimonials';
+import BMICalculator from '../../Components/BMICalculator/BMICalculator';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <Faq/>
       <Testimonials/>
       <Partners />
+      <BMICalculator/>
 
     </>
   );
