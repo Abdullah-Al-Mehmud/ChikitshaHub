@@ -33,7 +33,7 @@ const Doctors = () => {
                 </div>
             </div>
             <div className="grid grid-cols-12 gap-6 max-w-6xl mx-auto px-6 py-16 lg:py-20">
-                <div className="col-span-12 md:col-span-4">
+                <div className="col-span-12 md:col-span-4 rounded-lg">
                     <div className="flex justify-between mb-4 text-gray-600">
                         <h4 className="text-xl font-bold">Filters</h4>
                         <h4 className="text-xl font-bold">Reset</h4>
@@ -102,39 +102,39 @@ const Doctors = () => {
                     <div>
                         {
                             doctorList.map(doctor => <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
-                            <div className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
-                                <div className="flex items-center justify-between gap-2 flex-col md:flex-row">
-                                    <div>
-                                        <div className="flex items-center gap-6">
-                                            <img src={doctor.img} alt="" className="w-28 h-28" />
-                                            <div>
-                                                <h4 className="text-xl font-semibold">{doctor.name}</h4>
-                                                <p className="text-sm font-semibold text-gray-600">{doctor.specialties}</p>
+                                <div className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
+                                    <div className="flex items-center justify-between gap-2 flex-col md:flex-row">
+                                        <div>
+                                            <div className="flex items-center gap-6">
+                                                <img src={doctor.img} alt="" className="w-28 h-28" />
+                                                <div>
+                                                    <h4 className="text-xl font-semibold">{doctor.name}</h4>
+                                                    <p className="text-sm font-semibold text-gray-600">{doctor.specialties}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="mt-6">
-                                            <h4 className="text-lg font-medium text-gray-600">Working on: <span className="text-xl font-semibold text-black">{doctor.location}</span></h4>
-                                            <div className="flex md: flex-col lg:flex-row lg:items-center gap-4 mt-2">
-                                                <h4 className="text-lg font-medium text-gray-600">Experience: <span className="text-xl font-semibold text-black">{doctor.experience?.year} + Years</span></h4>
-                                                <div className="flex gap-1 items-center">
-                                                    <h4 className="text-lg font-medium text-gray-600 flex items-center gap-2">Rating: <Rating
-                                                        initialRating={doctor.rating}
-                                                        emptySymbol={<AiOutlineStar className="text-orange-300 w-6 h-6" />}
-                                                        fullSymbol={<AiFillStar className="text-orange-300 w-6 h-6" />}
-                                                    ></Rating></h4>
-                                                    <p className="text-lg font-medium text-gray-600">({doctor.rating})</p>
+                                            <div className="mt-6">
+                                                <h4 className="text-lg font-medium text-gray-600">Working on: <span className="text-xl font-semibold text-black">{doctor.location}</span></h4>
+                                                <div className="flex md: flex-col lg:flex-row lg:items-center gap-4 mt-2">
+                                                    <h4 className="text-lg font-medium text-gray-600">Experience: <span className="text-xl font-semibold text-black">{doctor.experience?.year} + Years</span></h4>
+                                                    <div className="flex gap-1 items-center">
+                                                        <h4 className="text-lg font-medium text-gray-600 flex items-center gap-2">Rating: <Rating
+                                                            initialRating={doctor.rating}
+                                                            emptySymbol={<AiOutlineStar className="text-orange-300 w-6 h-6" />}
+                                                            fullSymbol={<AiFillStar className="text-orange-300 w-6 h-6" />}
+                                                        ></Rating></h4>
+                                                        <p className="text-lg font-medium text-gray-600">({doctor.rating})</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="bg-base-200 px-10 py-16 text-center w-full rounded-lg md:w-fit">
-                                        
-                                        <h4 className="text-2xl font-bold">$ {doctor.fee} <span className="text-sm font-normal text-gray-600">per <br /> consultation</span></h4>
-                                        <p className="text-sm font-normal text-gray-600 mt-4">Follow Up: $ {doctor.followUpFee}</p>
-                                        
+                                        <div className="bg-base-200 px-10 py-16 text-center w-full rounded-lg md:w-fit">
+
+                                            <h4 className="text-2xl font-bold">$ {doctor.fee} <span className="text-sm font-normal text-gray-600">per <br /> consultation</span></h4>
+                                            <p className="text-sm font-normal text-gray-600 mt-4">Follow Up: $ {doctor.followUpFee}</p>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </Link>)
                         }
                     </div>

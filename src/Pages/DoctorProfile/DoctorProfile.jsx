@@ -8,22 +8,27 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 
-
 const DoctorProfile = () => {
 
     const doctor = useLoaderData();
 
+
+
     const { register, handleSubmit } = useForm({
         defaultValues: {
-          name: '',
-          rating: 5,
-          comment: '',
+            name: '',
+            rating: 5,
+            comment: '',
         },
-      });
+    });
 
-      const onSubmit = (data) => {
+    const onSubmit = (data) => {
         console.log('Submitted:', data);
-      };
+    };
+
+      
+
+
 
     return (
         <div>
@@ -40,11 +45,11 @@ const DoctorProfile = () => {
             <div className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
                 <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
                     <div className="flex items-center gap-6">
-                        <img src={doctor.img} alt="" className="w-28 h-28 rounded-lg" />
+                        <img src={doctor.img} alt="" className="w-32 h-32 rounded-lg" />
                         <div>
                             <h4 className="text-xl font-semibold">{doctor.name}</h4>
                             <p className="text-sm font-semibold text-gray-600 my-1">{doctor.specialties}</p>
-                            {/* <p className="text-sm font-medium text-gray-600 flex gap-2">{doctor.specializations[0]}, {doctor.specializations[1]}</p> */}
+                            <p className="text-sm font-medium text-gray-600 flex gap-2">{doctor.specializations[0]}, {doctor.specializations[1]}</p>
                             <h4 className="text-lg font-medium text-gray-600 mt-2">Working at <span className="text-lg font-semibold text-black">{doctor.location}</span></h4>
                         </div>
                     </div>
@@ -54,6 +59,10 @@ const DoctorProfile = () => {
                         <button className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"><span>See Doctor Now</span><span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                             <FaVideo className='h-10' />
                         </span></button>
+
+                        
+
+
                     </div>
                 </div>
                 <div className="flex items-center gap-6 my-10">
@@ -117,46 +126,46 @@ const DoctorProfile = () => {
                     </TabPanel>
                     <TabPanel>
                         <div className="mt-8">
-                        <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-            Your Name:
-          </label>
-          <input
-            type="text"
-            id="name"
-            {...register('name')}
-            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="rating" className="block text-sm font-medium text-gray-600">
-            Rating:
-          </label>
-          <Rating
-                                    initialRating={0}
-                                    emptySymbol={<AiOutlineStar className="text-orange-300 w-8 h-8" />}
-                                    fullSymbol={<AiFillStar className="text-orange-300 w-8 h-8" />}
-                                ></Rating>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="comment" className="block text-sm font-medium text-gray-600">
-            Your Review:
-          </label>
-          <textarea
-            id="comment"
-            {...register('comment')}
-            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-        <div>
-        <button type="submit" className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>Review</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                    <FaArrowRightLong className='h-10' />
-                </span></button>
-        </div>
-      </form>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="mb-4">
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+                                        Your Name:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        {...register('name')}
+                                        className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <label htmlFor="rating" className="block text-sm font-medium text-gray-600">
+                                        Rating:
+                                    </label>
+                                    <Rating
+                                        initialRating={0}
+                                        emptySymbol={<AiOutlineStar className="text-orange-300 w-8 h-8" />}
+                                        fullSymbol={<AiFillStar className="text-orange-300 w-8 h-8" />}
+                                    ></Rating>
+                                </div>
+                                <div className="mb-4">
+                                    <label htmlFor="comment" className="block text-sm font-medium text-gray-600">
+                                        Your Review:
+                                    </label>
+                                    <textarea
+                                        id="comment"
+                                        {...register('comment')}
+                                        className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <button type="submit" className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>Review</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                                        <FaArrowRightLong className='h-10' />
+                                    </span></button>
+                                </div>
+                            </form>
                         </div>
                     </TabPanel>
                 </Tabs>

@@ -14,7 +14,7 @@ const BestDoctor = () => {
     const [doctorList, setDoctorList] = useState([]);
 
     useEffect(() => {
-        fetch('../../../public/DoctorList.json')
+        fetch('https://chikitsha-hub-server.vercel.app/doctors/')
             .then(res => res.json())
             .then(data => setDoctorList(data))
     }, []);
@@ -49,7 +49,7 @@ const BestDoctor = () => {
                 className="mySwiper"
             >
                 {
-                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="px-6 py-10" key={doctor.id}>
+                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="px-6 py-10" key={doctor._id}>
                         <div className="border-2 rounded-xl hover:border-[#409bd4] pb-6">
                             <img className='w-full rounded-t-xl' src={doctor.img} alt="" />
                             <div className="flex justify-between items-center px-3 mt-6">
