@@ -6,6 +6,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import Specialties from "../Pages/Specialties/Specialties";
 import Login from "../Login/Login";
 import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
+import Tips from "../Pages/Tips/Tips";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:"/morespecialties",
         element:<MoreSpecialties></MoreSpecialties>
+      },
+      {
+        path:"/tips",
+        element:<Tips></Tips>
       }
     ],
   },
