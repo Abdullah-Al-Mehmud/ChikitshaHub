@@ -56,9 +56,12 @@ const DoctorProfile = () => {
                     <div className="text-center">
                         <h4 className="text-xl font-bold">Consultation Fee</h4>
                         <h3 className="text-2xl font-bold text-[#409bd4] my-2">$ {doctor.fee} <span className="text-sm font-bold text-gray-600">(incl. VAT)</span></h3>
-                        <button className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"><span>See Doctor Now</span><span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
+                        <button className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"><span>See Doctor Now</span><span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                             <FaVideo className='h-10' />
                         </span></button>
+                       
+                        <label htmlFor="booking" className="text-lg font-semibold">Booking Appointment:</label> <br />
+                        <input type="datetime-local" name="booking" id="" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold"/>
 
                         
 

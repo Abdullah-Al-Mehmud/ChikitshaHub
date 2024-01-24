@@ -3,17 +3,25 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Doctors = () => {
     const [range, setRange] = useState([0, 1000]);
-    const [doctorList, setDoctorList] = useState([]);
+    // const [doctorList, setDoctorList] = useState([]);
+    
 
-    useEffect(() => {
-        fetch('https://chikitsha-hub-server.vercel.app/doctors')
-            .then(res => res.json())
-            .then(data => setDoctorList(data))
-    }, []);
+    const doctorList = useLoaderData();
+
+    // const axios = useAxiosPublic();
+
+    // useEffect(() => {
+    //     axios.get('/doctors')
+    //     .then(res => {
+    //         setDoctorList(res.data)
+    //     })
+    // }, [axios]);
+
 
     const handleSliderChange = (value) => {
         setRange(value);
@@ -69,7 +77,7 @@ const Doctors = () => {
                     <h2 className="text-2xl font-bold mt-16 mb-4 text-black">Sort By</h2>
                     <div className="mt-6">
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Popularity' />
+                            <input onChange={() => setPopularity(!popularity)} type="checkbox" name="popularity" id="" className="w-6 h-6" value='Popularity' />
                             <label className="text-xl font-medium text-gray-700">Popularity</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
@@ -88,14 +96,7 @@ const Doctors = () => {
                             <input type="checkbox" name="" id="" className="w-6 h-6" value='Experience' />
                             <label className="text-xl font-medium text-gray-700">Experience</label>
                         </div>
-                        <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Specialist First' />
-                            <label className="text-xl font-medium text-gray-700">Specialist First</label>
-                        </div>
-                        <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Ranking' />
-                            <label className="text-xl font-medium text-gray-700">Ranking</label>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className="col-span-12 md:col-span-8">

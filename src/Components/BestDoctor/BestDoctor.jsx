@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
 import { FaRegStar } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa6";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const BestDoctor = () => {
@@ -13,11 +14,14 @@ const BestDoctor = () => {
 
     const [doctorList, setDoctorList] = useState([]);
 
+    const axios = useAxiosPublic();
+
     useEffect(() => {
-        fetch('https://chikitsha-hub-server.vercel.app/doctors/')
-            .then(res => res.json())
-            .then(data => setDoctorList(data))
-    }, []);
+        axios.get('/doctors')
+        .then(res => {
+            setDoctorList(res.data)
+        })
+    }, [axios]);
 
     const sortedDoctors = [...doctorList].sort((a, b) => b.rating - a.rating);
 

@@ -30,8 +30,9 @@ const router = createBrowserRouter([
         element: <Specialties />,
       },
       {
-        path: "/doctors",
+        path: "/doctors/1/:category",
         element: <Doctors />,
+        loader: ({params}) => fetch(`https://chikitsha-hub-server.vercel.app/doctors/1/${params.category}`)
       },
       {
         path: "/doctor/:id",

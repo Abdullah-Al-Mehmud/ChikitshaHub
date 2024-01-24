@@ -30,7 +30,7 @@ const Specialties = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto py-16 lg:py-20">
 
                 {
-                    specialtiesData.map(category => <Link to={`/doctors`} key={category.id}>
+                    specialtiesData.map(category => <Link to={`/doctors/1/${category.name}`} key={category.id}>
                         <div className="px-4 py-4">
                             <div className="border-2 rounded-xl hover:border-[#409bd4] flex flex-col md:flex-row items-center gap-6 p-6">
                                 <div className='bg-base-300 rounded-full w-32 h-32'>
