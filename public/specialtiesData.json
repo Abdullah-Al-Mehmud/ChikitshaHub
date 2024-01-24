@@ -1,82 +1,82 @@
 [
-    {
-      "id": 1,
-      "name": "General Practitioners",
-      "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png"
-    },
-    {
-      "id": 2,
-      "name": "Cardiologists",
-      "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png"
-    },
-    {
-      "id": 3,
-      "name": "Dermatologists",
-      "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png"
-    },
-    {
-      "id": 4,
-      "name": "Pediatricians",
-      "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png"
-    },
-    {
-      "id": 5,
-      "name": "Orthopedic Surgeons",
-      "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png"
-    },
-    {
-      "id": 6,
-      "name": "Psychiatrists",
-      "img": "https://i.ibb.co/f947g02/Psychiatrists.png"
-    },
-    {
-      "id": 7,
-      "name": "Gynecologists",
-      "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png"
-    },
-    {
-      "id": 8,
-      "name": "Endocrinologists",
-      "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png"
-    },
-    {
-      "id": 9,
-      "name": "Ophthalmologists",
-      "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png"
-    },
-    {
-      "id": 10,
-      "name": "Urologists",
-      "img": "https://i.ibb.co/MpJG3Y8/Urologists.png"
-    },
-    {
-      "id": 11,
-      "name": "ENT Specialists",
-      "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png"
-    },
-    {
-      "id": 12,
-      "name": "Gastroenterologists",
-      "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png"
-    },
-    {
-      "id": 13,
-      "name": "Neurologists",
-      "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png"
-    },
-    {
-      "id": 14,
-      "name": "Allergists/Immunologists",
-      "img": "https://i.ibb.co/KXv5YnB/allergist.png"
-    },
-    {
-      "id": 15,
-      "name": "Infectious Disease Specialists",
-      "img": "https://i.ibb.co/bLLjrPM/Infectious.png"
-    },
-    {
-      "id": 16,
-      "name": "Emergency Medicine Physicians",
-      "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "General Practitioners",
+    "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png"
+  },
+  {
+    "id": 2,
+    "name": "Cardiologists",
+    "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png"
+  },
+  {
+    "id": 3,
+    "name": "Dermatologists",
+    "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png"
+  },
+  {
+    "id": 4,
+    "name": "Pediatricians",
+    "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png"
+  },
+  {
+    "id": 5,
+    "name": "Orthopedic Surgeons",
+    "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png"
+  },
+  {
+    "id": 6,
+    "name": "Psychiatrists",
+    "img": "https://i.ibb.co/f947g02/Psychiatrists.png"
+  },
+  {
+    "id": 7,
+    "name": "Obstetricians/Gynecologists",
+    "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png"
+  },
+  {
+    "id": 8,
+    "name": "Endocrinologists",
+    "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png"
+  },
+  {
+    "id": 9,
+    "name": "Ophthalmologists",
+    "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png"
+  },
+  {
+    "id": 10,
+    "name": "Urologists",
+    "img": "https://i.ibb.co/MpJG3Y8/Urologists.png"
+  },
+  {
+    "id": 11,
+    "name": "ENT Specialists",
+    "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png"
+  },
+  {
+    "id": 12,
+    "name": "Gastroenterologists",
+    "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png"
+  },
+  {
+    "id": 13,
+    "name": "Neurologists",
+    "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png"
+  },
+  {
+    "id": 14,
+    "name": "Allergists/Immunologists",
+    "img": "https://i.ibb.co/KXv5YnB/allergist.png"
+  },
+  {
+    "id": 15,
+    "name": "Infectious Disease Specialists",
+    "img": "https://i.ibb.co/bLLjrPM/Infectious.png"
+  },
+  {
+    "id": 16,
+    "name": "Emergency Medicine Physicians",
+    "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png"
+  }
+]
