@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "image": "https://example.com/tip1.jpg",
+      "post_date": "2024-01-25",
+      "title": "Healthy Eating Habits",
+      "long_description": "Maintaining a balanced diet with a variety of fruits, vegetables, lean proteins, and whole grains is crucial for overall health. Consider reducing processed foods and sugars for better well-being."
+    },
+    {
+      "id": 2,
+      "image": "https://example.com/tip2.jpg",
+      "post_date": "2024-01-26",
+      "title": "Importance of Regular Exercise",
+      "long_description": "Engaging in regular physical activity is essential for cardiovascular health, weight management, and stress reduction. Find an exercise routine that suits your preferences and lifestyle."
+    },
+    {
+      "id": 3,
+      "image": "https://example.com/tip3.jpg",
+      "post_date": "2024-01-27",
+      "title": "Getting Adequate Sleep",
+      "long_description": "Quality sleep is crucial for overall well-being. Aim for 7-9 hours of sleep each night. Establish a bedtime routine and create a comfortable sleep environment to improve sleep quality."
+    },
+    {
+      "id": 4,
+      "image": "https://example.com/tip4.jpg",
+      "post_date": "2024-01-28",
+      "title": "Stress Management Techniques",
+      "long_description": "Chronic stress can have negative impacts on health. Explore stress management techniques such as deep breathing, meditation, and time management to promote mental well-being."
+    },
+    {
+      "id": 5,
+      "image": "https://example.com/tip5.jpg",
+      "post_date": "2024-01-29",
+      "title": "Hydration and its Benefits",
+      "long_description": "Staying hydrated is vital for various bodily functions. Aim to drink at least 8 glasses of water per day. Herbal teas and infused water can add flavor and additional health benefits."
+    }
+   
+  ]
