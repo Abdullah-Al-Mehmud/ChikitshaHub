@@ -5,6 +5,9 @@ import Contact from './../Pages/contact/Contact';
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
+import Specialties from "../Pages/Specialties/Specialties";
+import Login from "../Login/Login";
+import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
       {
         path: '/doctorRegister',
         element: <DoctorRegister></DoctorRegister>
+      },
+      {
+        path: "/specialties",
+        element: <Specialties/>,
+      },
+      {
+        path:"/login",
+        element:<Login></Login>
+      },
+      {
+        path:"/morespecialties",
+        element:<MoreSpecialties></MoreSpecialties>
       }
     ],
   },
