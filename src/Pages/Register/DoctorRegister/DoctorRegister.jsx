@@ -1,11 +1,23 @@
 import { useForm } from "react-hook-form";
+import Select from "react-select";
 
 import { Link } from "react-router-dom";
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
+  const weekDays = [
+    { value: "Saturday", label: "Saturday" },
+    { value: "Sunday", label: "Sunday" },
+    { value: "Monday", label: "Monday" },
+    { value: "Tuesday", label: "Tuesday" },
+    { value: "Wednesday", label: "Wednesday" },
+    { value: "Thursday", label: "Thursday" },
+    { value: "Friday", label: "Friday" },
+  ];
+
   const {
     register,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -184,12 +196,17 @@ const DoctorRegister = () => {
                       <label className="block mb-2 text-sm font-bold  ">
                         Availability
                       </label>
-                      <input
-                        type="text"
+
+                      <Select
                         {...register("availability", { required: true })}
-                        name="availability"
-                        placeholder="Availability"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        // defaultValue={[weekDays[4], weekDays[7]]}
+                        isMulti
+                        onChange={(selectedOptions) => {
+                          setValue("hashtags", selectedOptions);
+                        }}
+                        options={weekDays}
+                        className=" border-2  border-main-blue-300 rounded-lg"
+                        classNamePrefix="select"
                         required
                       />
                       {errors.availability && (
