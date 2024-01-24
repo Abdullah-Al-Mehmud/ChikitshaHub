@@ -1,10 +1,9 @@
-
+import Banner from './../../Components/Banner/Banner';
 import Specialties from './../../Components/Specialties/Specialties';
 import BestDoctor from './../../Components/BestDoctor/BestDoctor';
-import Partners from '../../Components/partners/Partners';
-import Banner from '../../Components/Banner/Banner';
-import Faq from '../../Components/Faq/Faq';
-import Testimonials from '../../Components/Testimonials/Testimonials';
+import Faq from './../../Components/Faq/Faq';
+import Testimonials from './../../Components/Testimonials/Testimonials';
+import Partners from './../../Components/Partners/Partners';
 
 
 const Home = () => {
@@ -21,4 +20,5 @@ const Home = () => {
     </>
   );
 };
-export default Home
+
+export default Home;
