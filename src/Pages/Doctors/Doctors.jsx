@@ -10,7 +10,7 @@ const Doctors = () => {
     const [doctorList, setDoctorList] = useState([]);
 
     useEffect(() => {
-        fetch('../../../public/DoctorList.json')
+        fetch('https://chikitsha-hub-server.vercel.app/doctors')
             .then(res => res.json())
             .then(data => setDoctorList(data))
     }, []);
@@ -101,7 +101,7 @@ const Doctors = () => {
                 <div className="col-span-12 md:col-span-8">
                     <div>
                         {
-                            doctorList.map(doctor => <Link to={`/doctor/${doctor.id}`} key={doctor.id}>
+                            doctorList.map(doctor => <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
                             <div className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
                                 <div className="flex items-center justify-between gap-2 flex-col md:flex-row">
                                     <div>
@@ -115,7 +115,7 @@ const Doctors = () => {
                                         <div className="mt-6">
                                             <h4 className="text-lg font-medium text-gray-600">Working on: <span className="text-xl font-semibold text-black">{doctor.location}</span></h4>
                                             <div className="flex md: flex-col lg:flex-row lg:items-center gap-4 mt-2">
-                                                <h4 className="text-lg font-medium text-gray-600">Experience: <span className="text-xl font-semibold text-black">{doctor.experience.year} + Years</span></h4>
+                                                <h4 className="text-lg font-medium text-gray-600">Experience: <span className="text-xl font-semibold text-black">{doctor.experience?.year} + Years</span></h4>
                                                 <div className="flex gap-1 items-center">
                                                     <h4 className="text-lg font-medium text-gray-600 flex items-center gap-2">Rating: <Rating
                                                         initialRating={doctor.rating}

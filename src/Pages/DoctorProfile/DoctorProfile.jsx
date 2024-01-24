@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
 import { FaVideo } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
+import { useForm } from 'react-hook-form';
+import Rating from "react-rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 
 
 const DoctorProfile = () => {
 
-    const [doctorList, setDoctorList] = useState([]);
+    const doctor = useLoaderData();
 
-    useEffect(() => {
-        fetch('../../../public/DoctorList.json')
-            .then(res => res.json())
-            .then(data => setDoctorList(data))
-    }, []);
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+          name: '',
+          rating: 5,
+          comment: '',
+        },
+      });
 
-    const doctor = doctorList.find(list => list.id === 1)
+      const onSubmit = (data) => {
+        console.log('Submitted:', data);
+      };
 
-    console.log(doctor)
     return (
         <div>
             <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
@@ -51,8 +58,8 @@ const DoctorProfile = () => {
                 </div>
                 <div className="flex items-center gap-6 my-10">
                     <h4 className="text-xl font-normal text-gray-600">Total Experience <br /> <span className="text-black font-semibold">{doctor.experience.year} + Years</span></h4>
-                    <h4 className="text-xl font-normal text-gray-600">BMDC Number <br /> <span className="text-black font-semibold">{doctor.experience.year} + Years</span></h4>
-                    <h4 className="text-xl font-normal text-gray-600">Joined ChikitshaHub <br /> <span className="text-black font-semibold">{doctor.experience.year} + Years</span></h4>
+                    <h4 className="text-xl font-normal text-gray-600">BMDC Number <br /> <span className="text-black font-semibold">{doctor.bmdcNumber}</span></h4>
+                    <h4 className="text-xl font-normal text-gray-600">Joined ChikitshaHub <br /> <span className="text-black font-semibold">{doctor.joiningDate}</span></h4>
                 </div>
 
                 <Tabs>
@@ -63,13 +70,94 @@ const DoctorProfile = () => {
                     </TabList>
 
                     <TabPanel>
-                        <h2>Any content 1</h2>
+                        <div className="flex gap-10 mt-8">
+                            <div className="w-1/2">
+                                <h2 className="text-xl font-bold">About {doctor.name}</h2>
+                                <p className="mt-2 font-medium text-gray-600">{doctor.aboutDoctor}</p>
+                            </div>
+                            <div className="w-1/2">
+                                <div>
+                                    <h4 className="text-xl font-bold mb-2">Availability</h4>
+                                    <div className="border-l-4 p-2 border-l-[#409bd4]">
+                                        <h6 className="text-lg font-medium text-gray-600">Instant Consultation Time</h6>
+                                        <h4 className="text-lg font-bold">{doctor.availability[0]}, {doctor.availability[1]}, {doctor.availability[2]}</h4>
+                                    </div>
+                                </div>
+                                <div className="my-6">
+                                    <h4 className="text-xl font-bold mb-2">At a Glance</h4>
+                                    <div className="flex gap-4 mb-4">
+                                        <div className="border-l-4 p-2 border-l-[#409bd4]">
+                                            <h6 className="text-lg font-medium text-gray-600">Consultation Fee</h6>
+                                            <h4 className="text-lg font-bold">$ {doctor.fee} <span className="text-sm font-bold text-gray-600">(Incl.VAT)</span></h4>
+                                        </div>
+                                        <div className="border-l-4 p-2 border-l-[#409bd4]">
+                                            <h6 className="text-lg font-medium text-gray-600">Follow-Up Fee</h6>
+                                            <h4 className="text-lg font-bold">$ {doctor.followUpFee} <span className="text-sm font-bold text-gray-600">(Incl.VAT)</span></h4>
+                                            <p>(Within 14 Days)</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="border-l-4 p-2 border-l-[#409bd4]">
+                                            <h6 className="text-lg font-medium text-gray-600">Doctor Code</h6>
+                                            <h4 className="text-lg font-bold">{doctor.doctorCode}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Any content 2</h2>
+                        <div className="mt-8">
+                            <h4 className="text-xl font-bold mb-2">{doctor.experience.hospitalName}</h4>
+                            <div className="border-l-4 p-2 border-l-[#409bd4]">
+                                <h6 className="text-lg font-medium text-gray-600">{doctor.experience.start} - {doctor.experience.end}</h6>
+                                <h4 className="text-lg font-bold"> Experience: {doctor.experience.year} + Years</h4>
+                            </div>
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Any content 3</h2>
+                        <div className="mt-8">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+            Your Name:
+          </label>
+          <input
+            type="text"
+            id="name"
+            {...register('name')}
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="rating" className="block text-sm font-medium text-gray-600">
+            Rating:
+          </label>
+          <Rating
+                                    initialRating={0}
+                                    emptySymbol={<AiOutlineStar className="text-orange-300 w-8 h-8" />}
+                                    fullSymbol={<AiFillStar className="text-orange-300 w-8 h-8" />}
+                                ></Rating>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="comment" className="block text-sm font-medium text-gray-600">
+            Your Review:
+          </label>
+          <textarea
+            id="comment"
+            {...register('comment')}
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+        <button type="submit" className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"><span>Review</span><span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaArrowRightLong className='h-10' />
+                </span></button>
+        </div>
+      </form>
+                        </div>
                     </TabPanel>
                 </Tabs>
             </div>
