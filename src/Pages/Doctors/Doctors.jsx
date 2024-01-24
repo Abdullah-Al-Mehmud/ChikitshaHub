@@ -78,10 +78,6 @@ const Doctors = () => {
                             <label className="text-xl font-medium text-gray-700">Fees: high too low</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Rating' />
-                            <label className="text-xl font-medium text-gray-700">Rating</label>
-                        </div>
-                        <div className="flex gap-4 items-center mb-2">
                             <input type="checkbox" name="" id="" className="w-6 h-6" value='Experience' />
                             <label className="text-xl font-medium text-gray-700">Experience</label>
                         </div>
