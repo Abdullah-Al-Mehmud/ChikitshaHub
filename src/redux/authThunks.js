@@ -39,6 +39,7 @@ export const signInWithGoogleAsync = () => async (dispatch) => {
   try {
     const userCredential = await signInWithGoogle();
     dispatch(setUser(userCredential.user));
+    console.log("object worked");
   } catch (error) {
     console.log(error);
   }
