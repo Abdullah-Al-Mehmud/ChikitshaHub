@@ -17,7 +17,7 @@ const DoctorRegister = () => {
                     <div className="flex justify-center px-6 py-6">
                         <div className="w-full xl:w-3/4 lg:w-11/12 flex gap-5 items-center">
                             <div className="w-full  bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none">
-                                <h3 className="py-4 text-2xl text-center text-gray-800 dark:text-white">Create an Account!</h3>
+                                <h3 className="py-4 text-2xl text-center text-gray-800 dark:text-white">Doctor Registration</h3>
                                 <form className="px-8 pt-6 pb-8 mb-4 bg-white dark:bg-gray-800 rounded">
                                     <div className='flex gap-5 w-full'>
                                         <div className="w-1/2 mb-4">
@@ -97,6 +97,38 @@ const DoctorRegister = () => {
                                             </label>
                                             <input type="text" {...register("aboutDoctor", { required: true })} placeholder="About Doctor" className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required />
                                             {errors.aboutDoctor && <span className="text-red-600">About Doctor is required</span>}
+                                        </div>
+                                    </div>
+                                    <div className='flex gap-5 w-full'>
+                                        <div className="w-1/2 mb-4">
+                                            <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-white" >
+                                                Rating
+                                            </label>
+                                            <input type="number" {...register("rating", { required: true })} name="rating" placeholder="Rating" className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required />
+                                            {errors.rating && <span className="text-red-600">Rating is required</span>}
+                                        </div>
+                                        <div className="mb-4 w-1/2">
+                                            <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-white" >
+                                                Academy
+                                            </label>
+                                            <input type="text" {...register("academy", { required: true })} name='academy' placeholder="Academy" className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required />
+                                            {errors.academy && <span className="text-red-600">Follow Up Fee is required</span>}
+                                        </div>
+                                    </div>
+                                    <div className='flex gap-5 w-full'>
+                                        <div className="w-1/2 mb-4">
+                                            <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-white" >
+                                                Course Name
+                                            </label>
+                                            <input type="text" {...register("courseName", { required: true })} name="courseName" placeholder="Course Name" className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required />
+                                            {errors.courseName && <span className="text-red-600">Course Name is required</span>}
+                                        </div>
+                                        <div className="mb-4 w-1/2">
+                                            <label className="block mb-2 text-sm font-bold text-gray-700 dark:text-white" >
+                                                Session
+                                            </label>
+                                            <input type="number" {...register("session", { required: true })} name='session' placeholder="Session" className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required />
+                                            {errors.academy && <span className="text-red-600">Session Fee is required</span>}
                                         </div>
                                     </div>
                                     <div className="mb-4">
