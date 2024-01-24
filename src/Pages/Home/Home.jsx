@@ -20,5 +20,9 @@ const Home = () => {
     </>
   );
 };
+<<<<<<< HEAD
 
 export default Home;
+=======
+export default Home
+>>>>>>> 20202366511affff6fc37630cb3ce584b7be2f07
