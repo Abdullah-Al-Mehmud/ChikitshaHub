@@ -6,7 +6,10 @@ import Home from "../Pages/Home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
 import Doctors from "../Pages/Doctors/Doctors";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
-
+import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
+import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
+import Login from "../Login/Login";
+import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,14 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
+        path: '/userRegister',
+        element: <UserRegistration></UserRegistration>
+      },
+      {
+        path: '/doctorRegister',
+        element: <DoctorRegister></DoctorRegister>
+      },
+      {
         path: "/specialties",
         element: <Specialties />,
       },
@@ -39,6 +50,14 @@ const router = createBrowserRouter([
         element: <DoctorProfile />,
         loader: ({params}) => fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`)
       },
+      {
+        path:"/login",
+        element:<Login></Login>
+      },
+      {
+        path:"/morespecialties",
+        element:<MoreSpecialties></MoreSpecialties>
+      }
     ],
   },
 ]);
