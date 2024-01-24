@@ -38,13 +38,13 @@ const DoctorProfile = () => {
                 </div>
             </div>
             <div className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
                     <div className="flex items-center gap-6">
                         <img src={doctor.img} alt="" className="w-28 h-28 rounded-lg" />
                         <div>
                             <h4 className="text-xl font-semibold">{doctor.name}</h4>
                             <p className="text-sm font-semibold text-gray-600 my-1">{doctor.specialties}</p>
-                            <p className="text-sm font-medium text-gray-600 flex gap-2">{doctor.specializations[0]}, {doctor.specializations[1]}</p>
+                            {/* <p className="text-sm font-medium text-gray-600 flex gap-2">{doctor.specializations[0]}, {doctor.specializations[1]}</p> */}
                             <h4 className="text-lg font-medium text-gray-600 mt-2">Working at <span className="text-lg font-semibold text-black">{doctor.location}</span></h4>
                         </div>
                     </div>
@@ -70,12 +70,12 @@ const DoctorProfile = () => {
                     </TabList>
 
                     <TabPanel>
-                        <div className="flex gap-10 mt-8">
-                            <div className="w-1/2">
+                        <div className="flex flex-col md:flex-row gap-10 mt-8">
+                            <div className="md:w-1/2">
                                 <h2 className="text-xl font-bold">About {doctor.name}</h2>
                                 <p className="mt-2 font-medium text-gray-600">{doctor.aboutDoctor}</p>
                             </div>
-                            <div className="w-1/2">
+                            <div className="md:w-1/2">
                                 <div>
                                     <h4 className="text-xl font-bold mb-2">Availability</h4>
                                     <div className="border-l-4 p-2 border-l-[#409bd4]">
