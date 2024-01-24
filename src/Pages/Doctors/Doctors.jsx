@@ -1,26 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLoaderData } from "react-router-dom";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Doctors = () => {
     const [range, setRange] = useState([0, 1000]);
-    // const [doctorList, setDoctorList] = useState([]);
     
 
     const doctorList = useLoaderData();
-
-    // const axios = useAxiosPublic();
-
-    // useEffect(() => {
-    //     axios.get('/doctors')
-    //     .then(res => {
-    //         setDoctorList(res.data)
-    //     })
-    // }, [axios]);
 
 
     const handleSliderChange = (value) => {
@@ -77,7 +66,7 @@ const Doctors = () => {
                     <h2 className="text-2xl font-bold mt-16 mb-4 text-black">Sort By</h2>
                     <div className="mt-6">
                         <div className="flex gap-4 items-center mb-2">
-                            <input onChange={() => setPopularity(!popularity)} type="checkbox" name="popularity" id="" className="w-6 h-6" value='Popularity' />
+                            <input type="checkbox" name="popularity" id="" className="w-6 h-6" value='Popularity' />
                             <label className="text-xl font-medium text-gray-700">Popularity</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
