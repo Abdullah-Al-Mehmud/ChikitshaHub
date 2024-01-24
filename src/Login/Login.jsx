@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { FaFacebook } from "react-icons/fa6";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { signInWithGoogleAsync } from "../redux/authThunks";
+import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
 
 const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
-  console.log(user);
-  console.log(loading);
+  //   console.log(user);
+  //   console.log(loading);
   const {
     register,
     handleSubmit,
@@ -21,12 +23,21 @@ const Login = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+    signInAsync(email, password).then(()=>)
+    console.log(email, password);
+    // console.log(data);
   };
   const handleSignInWithGoogle = () => {
     dispatch(signInWithGoogleAsync());
   };
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
   //   console.log(handleSignInWithGoogle);
   return (
     <div>
@@ -132,7 +143,7 @@ const Login = () => {
                     Forget Password?
                   </a>
                 </div>
-                <div className="">
+                <div className="relative">
                   <input
                     {...register("password", {
                       required: "input field is required",
@@ -141,9 +152,22 @@ const Login = () => {
                         message: "you password must be 8 character",
                       },
                     })}
-                    className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none "
-                    type="password"
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4  w-full appearance-none "
+                    // type="password"
                   />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none h-10"
+                  >
+                    {showPassword ? (
+                      <FaEyeSlash className="text-gray-500" />
+                    ) : (
+                      <FaEye className="text-gray-500" />
+                    )}
+                  </button>
                   <p className="text-red-500 py-3 font-bold">
                     {errors.password?.message}
                   </p>
