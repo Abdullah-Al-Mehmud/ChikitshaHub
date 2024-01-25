@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Specialties = () => {
@@ -26,20 +27,22 @@ const Specialties = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto py-16 lg:py-20">
 
                 {
-                    specialtiesData.map(category => <div className="px-6 py-10" key={category.id}>
-                        <div className="border-2 rounded-xl hover:border-[#409bd4] flex items-center gap-6 p-6">
-                            <div className='bg-base-300 rounded-full'>
-                                <img className='w-28 h-28' src={category.img} alt="" />
-                            </div>
-                            <div>
-                                <h5 className='text-2xl font-semibold text-center my-6'>{category.name}</h5>
-                                <p>{category.descriptions}</p>
+                    specialtiesData.map(category => <Link to={`/doctors/1/${category.name}`} key={category.id}>
+                        <div className="px-4 py-4">
+                            <div className="border-2 rounded-xl hover:border-[#409bd4] flex flex-col md:flex-row items-center gap-6 p-6">
+                                <div className='bg-base-300 rounded-full w-32 h-32'>
+                                    <img className='w-24 h-24 p-4 mx-auto my-6' src={category.img} alt="" />
+                                </div>
+                                <div className="w-2/3">
+                                    <h5 className='text-2xl font-semibold my-2'>{category.name}</h5>
+                                    <p>{category.description}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>)
+                    </Link>)
                 }
             </div>
         </div>

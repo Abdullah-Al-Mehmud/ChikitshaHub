@@ -18,8 +18,8 @@ const onSubmit = data =>{
             </div>
           </div>
         </div>
-
       </div>
+      
       <section className="bg-white my-6 max-w-6xl mx-auto px-6" id="contact ">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
 
