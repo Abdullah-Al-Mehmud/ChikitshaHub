@@ -7,6 +7,7 @@ import Specialties from "../Pages/Specialties/Specialties";
 import Login from "../Login/Login";
 import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
 import Tips from "../Pages/Tips/Tips";
+import Readmore from "../Pages/Tips/Readmore";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
       {
         path:"/tips",
         element:<Tips></Tips>
-      }
+      },
+      {
+        path:'/readmores/:id',
+        element:<Readmore></Readmore>,
+        loader:()=>fetch(`/Tips.json`)
+       },
     ],
   },
 ]);
