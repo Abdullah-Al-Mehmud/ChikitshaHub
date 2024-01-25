@@ -54,6 +54,7 @@ const DoctorRegister = () => {
   const {
     register,
     handleSubmit,
+    reset,
     setValue,
     formState: { errors },
   } = useForm();
@@ -77,11 +78,17 @@ const DoctorRegister = () => {
         courseName: data.courseName,
         session: data.session,
       },
+      experience: {
+        hospitalName: data.hospitalName,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        years: data.years,
+      },
       aboutDoctor: data.aboutDoctor,
     };
     console.log(newDoctor);
     axios.post("http://localhost:3000/doctors", newDoctor).then((result) => {
-      if (result.data.insertedId) {
+      if (result.data.success) {
         Swal.fire({
           position: "center",
           icon: "success",
@@ -89,7 +96,7 @@ const DoctorRegister = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        // reset();
+        reset();
       }
     });
   };
@@ -301,7 +308,7 @@ const DoctorRegister = () => {
                         Follow Up Fee
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         {...register("followUpFee", { required: true })}
                         name="followUpFee"
                         placeholder="Follow Up Fee"
@@ -455,7 +462,7 @@ const DoctorRegister = () => {
                       />
                       {errors.startDate && (
                         <span className="text-red-600">
-                          Follow Up Fee is required
+                          Start Date is required
                         </span>
                       )}
                     </div>
