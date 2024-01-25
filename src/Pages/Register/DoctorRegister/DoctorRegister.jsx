@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 
-import { Link } from "react-router-dom";
-import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
+// import { Link } from "react-router-dom";
+// import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
+import Swal from "sweetalert2";
+import axios from "axios";
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
-  const axiosPrivate = useAxiosPrivet();
+  // const axiosPrivate = useAxiosPrivet();
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -65,22 +67,25 @@ const DoctorRegister = () => {
       category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
+      rating: 0,
       fee: data.fee,
       followUpFee: data.followUpFee,
       availability: data.availability?.map((avail) => avail?.value),
       degrees: data.degrees?.map((degree) => degree?.value),
-      academy: data.academy,
-      courseName: data.courseName,
-      session: data.session,
+      education: {
+        academy: data.academy,
+        courseName: data.courseName,
+        session: data.session,
+      },
       aboutDoctor: data.aboutDoctor,
     };
     console.log(newDoctor);
-    axiosPrivate.post("/doctors", newDoctor).then((result) => {
+    axios.post("http://localhost:3000/doctors", newDoctor).then((result) => {
       if (result.data.insertedId) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Article has been added",
+          title: "Registration Successful!!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -310,6 +315,8 @@ const DoctorRegister = () => {
                       )}
                     </div>
                   </div>
+
+                  {/* availability  */}
                   <div className="flex gap-5 w-full">
                     <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
@@ -359,7 +366,8 @@ const DoctorRegister = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-5 w-full">
+                  <div className="font-bold mt-2 text-2xl">Education : </div>
+                  <div className="flex mt-4 gap-5 w-full">
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
                         Academy
@@ -411,6 +419,78 @@ const DoctorRegister = () => {
                       {errors.academy && (
                         <span className="text-red-600">
                           Session Fee is required
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {/* experience */}
+                  <div className="font-bold mt-2 text-2xl">Experience : </div>
+                  <div className="flex gap-5 mt-4 w-full">
+                    <div className="w-1/2 mb-4">
+                      <label className="block mb-2 text-sm font-bold  ">
+                        Hospital Name
+                      </label>
+                      <input
+                        type="text"
+                        {...register("hospitalName", { required: true })}
+                        name="hospitalName"
+                        placeholder="hospitalName"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        required
+                      />
+                      {errors.hospitalName && (
+                        <span className="text-red-600">Fee is required</span>
+                      )}
+                    </div>
+                    <div className="mb-4 w-1/2">
+                      <label className="block mb-2 text-sm font-bold  ">
+                        Start Date
+                      </label>
+                      <input
+                        type="date"
+                        {...register("startDate", { required: true })}
+                        name="startDate"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        required
+                      />
+                      {errors.startDate && (
+                        <span className="text-red-600">
+                          Follow Up Fee is required
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex gap-5 mt-4 w-full">
+                    <div className="w-1/2 mb-4">
+                      <label className="block mb-2 text-sm font-bold  ">
+                        End Date
+                      </label>
+                      <input
+                        type="text"
+                        {...register("endDate", { required: true })}
+                        name="endDate"
+                        placeholder="endDate"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        required
+                      />
+                      {errors.endDate && (
+                        <span className="text-red-600">Fee is required</span>
+                      )}
+                    </div>
+                    <div className="mb-4 w-1/2">
+                      <label className="block mb-2 text-sm font-bold  ">
+                        Years
+                      </label>
+                      <input
+                        type="number"
+                        {...register("years", { required: true })}
+                        name="years"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        required
+                      />
+                      {errors.years && (
+                        <span className="text-red-600">
+                          Follow Up Fee is required
                         </span>
                       )}
                     </div>
