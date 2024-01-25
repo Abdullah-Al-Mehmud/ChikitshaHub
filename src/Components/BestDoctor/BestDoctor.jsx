@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
 import { FaRegStar } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa6";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const BestDoctor = () => {
@@ -13,11 +14,14 @@ const BestDoctor = () => {
 
     const [doctorList, setDoctorList] = useState([]);
 
+    const axios = useAxiosPublic();
+
     useEffect(() => {
-        fetch('../../../public/DoctorList.json')
-            .then(res => res.json())
-            .then(data => setDoctorList(data))
-    }, []);
+        axios.get('/doctors')
+        .then(res => {
+            setDoctorList(res.data)
+        })
+    }, [axios]);
 
     const sortedDoctors = [...doctorList].sort((a, b) => b.rating - a.rating);
 
@@ -49,7 +53,7 @@ const BestDoctor = () => {
                 className="mySwiper"
             >
                 {
-                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="px-6 py-10" key={doctor.id}>
+                    sortedDoctors.slice(0, 6).map(doctor => <SwiperSlide className="px-6 py-10" key={doctor._id}>
                         <div className="border-2 rounded-xl hover:border-[#409bd4] pb-6">
                             <img className='w-full rounded-t-xl' src={doctor.img} alt="" />
                             <div className="flex justify-between items-center px-3 mt-6">
