@@ -6,21 +6,24 @@ const BMICalculator = () => {
     const [bmiResult, setBmiResult] = useState(null);
     const [status, setStatus] = useState('');
 
-    function calculateBMI(){
+    function calculateBMI() {
         let bmi = Number(weight / (height / 100) ** 2).toFixed(2);
         setBmiResult(bmi);
         let bmiStatus = getStatus(bmi)
         setStatus(bmiStatus)
+
+        setWeight("");
+        setHeight("");
     }
 
-    function getStatus(bmi){
-        if(bmi < 18.5){
+    function getStatus(bmi) {
+        if (bmi < 18.5) {
             return "underweight";
-        } else if(bmi >= 18.5 && bmi < 24.9){
+        } else if (bmi >= 18.5 && bmi < 24.9) {
             return "Normal";
-        } else if(bmi >= 25 && bmi < 29.9){
+        } else if (bmi >= 25 && bmi < 29.9) {
             return "Overweight"
-        }else return "Obese"
+        } else return "Obese"
     }
     return (
         <div className="min-h-screen bg-base-200">
@@ -42,7 +45,15 @@ const BMICalculator = () => {
                                 </label>
                                 <input type="text" id="height in cm" value={height} onChange={e => setHeight(e.target.value)} placeholder="Height" className="input input-bordered" required />
                             </div>
-                            <p>{status} {bmiResult}</p>
+                            {
+                                bmiResult && (
+                                    <div>
+                                        <h1 className="text-[#409bd4] font-bold">Result:</h1>
+                                        <p>Currently status: {status}</p>
+                                        <p>Your BMI is: {bmiResult}</p>
+                                    </div>
+                                )
+                            }
                             <div className="form-control mt-6">
                                 <button onClick={calculateBMI} className="btn bg-[#409bd4] text-white">BMI Calculate</button>
                             </div>
