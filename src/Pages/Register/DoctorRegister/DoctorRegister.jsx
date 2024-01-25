@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import Select from "react-select";
 
 import { Link } from "react-router-dom";
+import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
+  const axiosPrivate = useAxiosPrivet();
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -15,7 +17,7 @@ const DoctorRegister = () => {
     { value: "Friday", label: "Friday" },
   ];
 
-  const doctorTitle = [
+  const degrees = [
     { value: "Doctor of Medicine (MD)", label: "Doctor of Medicine (MD)" },
     {
       value: "Doctor of Osteopathic Medicine (DO)",
@@ -49,9 +51,43 @@ const DoctorRegister = () => {
 
   const {
     register,
+    handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+
+    const newDoctor = {
+      name: data.name,
+      title: data.title,
+      specialties: data.specialties,
+      category: data.category,
+      doctorCode: data.doctorCode,
+      location: data.location,
+      fee: data.fee,
+      followUpFee: data.followUpFee,
+      availability: data.availability?.map((avail) => avail?.value),
+      degrees: data.degrees?.map((degree) => degree?.value),
+      academy: data.academy,
+      courseName: data.courseName,
+      session: data.session,
+      aboutDoctor: data.aboutDoctor,
+    };
+    console.log(newDoctor);
+    axiosPrivate.post("/doctors", newDoctor).then((result) => {
+      if (result.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Article has been added",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // reset();
+      }
+    });
+  };
 
   return (
     <>
@@ -60,7 +96,7 @@ const DoctorRegister = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                Doctor's Registration Page
+                {`Doctor's Registration Page`}
               </h2>
               <p className="font-medium text-white mt-1">
                 Home &gt; <span className="text-[#409bd4]">Register Here</span>
@@ -77,7 +113,9 @@ const DoctorRegister = () => {
                 <h3 className="py-7 text-4xl font-bold text-center ">
                   Doctor Registration!!
                 </h3>
-                <form className="px-8 pt-6 pb-8 mb-4 bg-white  rounded">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="px-8 pt-6 pb-8 mb-4 bg-white  rounded">
                   <div className="flex gap-5 w-full">
                     <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
@@ -97,16 +135,28 @@ const DoctorRegister = () => {
                     </div>
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Photo URL
+                        Title
                       </label>
-                      <input
-                        type="text"
-                        {...register("photoURL", { required: true })}
-                        placeholder="Photo Url"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+
+                      <select
+                        {...register("title", { required: true })}
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
-                      />
-                      {errors.photoURL && (
+                        id="title"
+                        name="title">
+                        <option disabled defaultValue>
+                          Choose Title
+                        </option>
+                        <option value="Dr.">Dr.</option>
+                        <option value="Prof. Dr.">Prof. Dr.</option>
+                        <option value=" Assoc. Prof. Dr.">
+                          Assoc. Prof. Dr.
+                        </option>
+                        <option value=" Asst. Prof. Dr.">
+                          Asst. Prof. Dr.
+                        </option>
+                      </select>
+                      {errors.title && (
                         <span className="text-red-600">
                           Photo Url is required
                         </span>
@@ -118,14 +168,51 @@ const DoctorRegister = () => {
                       <label className="block mb-2 text-sm font-bold  ">
                         Specialties
                       </label>
-                      <input
-                        type="text"
+
+                      <select
                         {...register("specialties", { required: true })}
-                        name="specialties"
-                        placeholder="Specialties"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
-                      />
+                        id="Specialties"
+                        name="Specialties">
+                        <option disabled defaultValue>
+                          Choose specialties
+                        </option>
+                        <option value=" General Practitioners">
+                          General Practitioners
+                        </option>
+                        <option value="Cardiologists">Cardiologists</option>
+                        <option value="Dermatologists">Dermatologists</option>
+                        <option value=" Pediatricians">Pediatricians</option>
+                        <option value="Orthopedic Surgeons">
+                          Orthopedic Surgeons
+                        </option>
+                        <option value=" Psychiatrists">Psychiatrists</option>
+                        <option value="  Gynecologists">Gynecologists</option>
+                        <option value="  Endocrinologists">
+                          Endocrinologists
+                        </option>
+                        <option value="  Ophthalmologists">
+                          Ophthalmologists
+                        </option>
+                        <option value="  Urologists">Urologists</option>
+                        <option value="  ENT Specialists">
+                          ENT Specialists
+                        </option>
+                        <option value="  Gastroenterologists">
+                          Gastroenterologists
+                        </option>
+                        <option value="  Neurologists">Neurologists</option>
+                        <option value="  Allergists/Immunologists">
+                          Allergists/Immunologists
+                        </option>
+                        <option value="  Infectious Disease Specialists">
+                          Infectious Disease Specialists
+                        </option>
+                        <option value="  Emergency Medicine Physicians">
+                          Emergency Medicine Physicians
+                        </option>
+                      </select>
                       {errors.specialties && (
                         <span className="text-red-600">
                           Specialties is required
@@ -250,21 +337,21 @@ const DoctorRegister = () => {
 
                     <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
-                        {`Doctor's Title`}
+                        {`Degrees`}
                       </label>
                       <Select
-                        {...register("doctorTitle", { required: true })}
+                        {...register("degrees", { required: true })}
                         // defaultValue={[weekDays[4], weekDays[7]]}
                         isMulti
                         onChange={(selectedOptions) => {
-                          setValue("doctorTitle", selectedOptions);
+                          setValue("degrees", selectedOptions);
                         }}
-                        options={doctorTitle}
+                        options={degrees}
                         className=" border-2  border-main-blue-300 rounded-lg"
                         classNamePrefix="select"
                         required
                       />
-                      {errors.doctorTitle && (
+                      {errors.degrees && (
                         <span className="text-red-600">
                           {`Doctor's Title is required`}
                         </span>
@@ -407,14 +494,14 @@ const DoctorRegister = () => {
                       </p>
                     )}
                   </div> */}
-                  <div className="mb-6 text-center">
+                  <div className=" text-center">
                     <button
                       className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700  dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                      type="button">
+                      type="submit">
                       Register Account
                     </button>
                   </div>
-                  <hr className="mb-6 border-t" />
+                  {/* <hr className="mb-6 border-t" /> */}
                   {/* forgot password */}
                   {/* <div className="text-center">
                     <a
@@ -423,11 +510,11 @@ const DoctorRegister = () => {
                       Forgot Password?
                     </a>
                   </div> */}
-                  <div className="text-center">
+                  {/* <div className="text-center">
                     <p className="inline-block cursor-pointer text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800">
                       Already have an account? <Link to="/login">Log In</Link>
                     </p>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
