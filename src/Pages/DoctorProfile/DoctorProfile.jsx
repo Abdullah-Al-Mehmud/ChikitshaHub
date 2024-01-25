@@ -1,4 +1,4 @@
-import { FaVideo } from "react-icons/fa";
+import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
@@ -6,12 +6,37 @@ import { useForm } from 'react-hook-form';
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from "react";
 
 
 const DoctorProfile = () => {
 
+    const [selectedDateTime, setSelectedDateTime] = useState(null);
     const doctor = useLoaderData();
+    const bookedSlots = [];
 
+    const isSlotAvailable = (date) => {
+        const formattedDate = date.toISOString(); // Adjust the format based on your backend data
+        return !bookedSlots.includes(formattedDate);
+    };
+
+    const filterUnavailableDates = (date) => {
+        return isSlotAvailable(date);
+    };
+
+    const isTimeSlotDisabled = (time) => {
+        const selectedDate = new Date(selectedDateTime);
+        const selectedTime = new Date(selectedDate.setHours(time.getHours(), time.getMinutes()));
+
+        return !isSlotAvailable(selectedTime);
+    };
+
+
+    const dateObject = new Date(doctor.joiningDate);
+    const formattedDate = dateObject.toLocaleDateString();
+    doctor.joiningDate = formattedDate;
 
 
     const { register, handleSubmit } = useForm({
@@ -26,7 +51,7 @@ const DoctorProfile = () => {
         console.log('Submitted:', data);
     };
 
-      
+
 
 
 
@@ -47,8 +72,8 @@ const DoctorProfile = () => {
                     <div className="flex items-center gap-6">
                         <img src={doctor.img} alt="" className="w-32 h-32 rounded-lg" />
                         <div>
-                            <h4 className="text-xl font-semibold">{doctor.name}</h4>
-                            <p className="text-sm font-semibold text-gray-600 my-1">{doctor.specialties}</p>
+                            <h4 className="text-xl font-semibold">{doctor.name} <span className="text-sm font-semibold text-gray-600">({doctor.degrees[0]}, {doctor.degrees[1]})</span></h4>
+                            <p className="text-sm font-semibold text-gray-600 my-2">{doctor.specialties}</p>
                             <p className="text-sm font-medium text-gray-600 flex gap-2">{doctor.specializations[0]}, {doctor.specializations[1]}</p>
                             <h4 className="text-lg font-medium text-gray-600 mt-2">Working at <span className="text-lg font-semibold text-black">{doctor.location}</span></h4>
                         </div>
@@ -59,16 +84,34 @@ const DoctorProfile = () => {
                         <button className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"><span>See Doctor Now</span><span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                             <FaVideo className='h-10' />
                         </span></button>
-                       
-                        <label htmlFor="booking" className="text-lg font-semibold">Booking Appointment:</label> <br />
-                        <input type="datetime-local" name="booking" id="" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold"/>
 
-                        
+                        <form className="relative">
+                            <DatePicker
+                                selected={selectedDateTime}
+                                onChange={(date) => setSelectedDateTime(date)}
+                                showTimeSelect
+                                timeIntervals={15}
+                                dateFormat="MMMM d, yyyy h:mm aa"
+                                minDate={new Date()}
+                                filterDate={filterUnavailableDates}
+                                timeCaption="Time"
+                                disabledTimeIntervals={[{ after: new Date() }]}
+                                shouldDisableTime={(time) => isTimeSlotDisabled(time)}
+                                placeholderText="Booking Appointment"
+                                className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
+                            />
+
+                            <button type="submit" className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0">
+                                <FaCalendarAlt />
+                            </button>
+                        </form>
+
+
 
 
                     </div>
                 </div>
-                <div className="flex items-center gap-6 my-10">
+                <div className="flex flex-col md:flex-row items-center gap-6 my-10">
                     <h4 className="text-xl font-normal text-gray-600">Total Experience <br /> <span className="text-black font-semibold">{doctor.experience.year} + Years</span></h4>
                     <h4 className="text-xl font-normal text-gray-600">BMDC Number <br /> <span className="text-black font-semibold">{doctor.bmdcNumber}</span></h4>
                     <h4 className="text-xl font-normal text-gray-600">Joined ChikitshaHub <br /> <span className="text-black font-semibold">{doctor.joiningDate}</span></h4>
