@@ -1,12 +1,13 @@
-/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  user: null,
+  loading: true,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: null,
-    loading: true,
-  },
+  initialState,
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;

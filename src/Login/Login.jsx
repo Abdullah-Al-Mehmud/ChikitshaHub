@@ -4,30 +4,43 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
 
 const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
-  //   console.log(user);
-  //   console.log(loading);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      password: "*****",
+      password: "password",
       email: "johon12@gmail.com",
     },
   });
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    signInAsync(email, password).then(()=>)
+    const handleLogIn = async () => {
+      try {
+        const logInResult = await dispatch(signInAsync(email, password));
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleLogIn();
     console.log(email, password);
-    // console.log(data);
   };
   const handleSignInWithGoogle = () => {
     dispatch(signInWithGoogleAsync());
@@ -38,7 +51,7 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-  //   console.log(handleSignInWithGoogle);
+
   return (
     <div>
       <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
@@ -55,7 +68,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="py-20 ">
+      <div className="py-20">
         <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl ">
           <div className="hidden lg:block lg:w-1/2 bg-cover">
             <img
@@ -64,9 +77,6 @@ const Login = () => {
             />
           </div>
           <div className="w-full p-8 lg:w-1/2">
-            {/* <h2 className="text-2xl font-semibold text-gray-700 text-center"></h2> */}
-            {/* <p className="text-xl text-gray-600 text-center">Welcome back!</p> */}
-            {/* <a href="#"></a> */}
             <button
               onClick={() => handleSignInWithGoogle()}
               className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
@@ -105,7 +115,6 @@ const Login = () => {
                 Sign in with Facebook
               </h1>
             </button>
-
             <div className="mt-4 flex items-center justify-between">
               <span className="border-b w-1/5 lg:w-1/4"></span>
               <a
@@ -174,16 +183,19 @@ const Login = () => {
                 </div>
               </div>
               <div className="mt-8">
-                <button className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
+                <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                   Login
                 </button>
               </div>
             </form>
             <div className="mt-4 flex items-center justify-between">
               <span className="border-b w-1/5 md:w-1/4"></span>
-              <a href="#" className="text-xs text-gray-500 uppercase">
+              <Link
+                to={"/userRegister"}
+                className="text-xs text-gray-500 uppercase"
+              >
                 or sign up
-              </a>
+              </Link>
               <span className="border-b w-1/5 md:w-1/4"></span>
             </div>
           </div>

@@ -5,10 +5,7 @@ import Partners from "../../Components/partners/Partners";
 import Banner from "../../Components/Banner/Banner";
 import Faq from "../../Components/Faq/Faq";
 import Testimonials from "../../Components/Testimonials/Testimonials";
-import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
-  const user = useSelector((state) => state.auth.user);
-  console.log(user);
   return (
     <>
       <Banner />
