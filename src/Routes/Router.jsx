@@ -8,7 +8,8 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
+import Specialties from "../Components/Specialties/Specialties";
+
 
 const router = createBrowserRouter([
   {
@@ -53,10 +54,7 @@ const router = createBrowserRouter([
         path:"/login",
         element:<Login></Login>
       },
-      {
-        path:"/morespecialties",
-        element:<MoreSpecialties></MoreSpecialties>
-      }
+     
     ],
   },
 ]);
