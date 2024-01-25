@@ -30,9 +30,9 @@ const BMICalculator = () => {
             <h1 className="text-3xl py-10 text-center font-bold">BMI Calculation</h1>
             <div className="hero ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src="https://i.ibb.co/G7cKSNB/10177-removebg-preview.png" className="max-w-sm h-80 rounded-lg shadow-2xl" />
+                    <img src="https://i.ibb.co/G7cKSNB/10177-removebg-preview.png" className="w-full h-80 rounded-lg" />
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form className="card-body">
+                        <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Weight</span>
@@ -57,7 +57,7 @@ const BMICalculator = () => {
                             <div className="form-control mt-6">
                                 <button onClick={calculateBMI} className="btn bg-[#409bd4] text-white">BMI Calculate</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
