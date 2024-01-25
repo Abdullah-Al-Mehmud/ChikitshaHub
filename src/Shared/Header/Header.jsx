@@ -35,15 +35,21 @@ const Header = () => {
         Home
       </NavLink>
       <NavLink
-        to="/about"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-6 text-[#409bd4] text-lg font-semibold"
-            : "mr-6 text-lg font-semibold"
-        }
-      >
-        About Us
-      </NavLink>
+            to="/specialties"
+            className={({ isActive }) =>
+             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
+            }
+        >
+            Specialties
+        </NavLink>
+      <NavLink
+            to="/about"
+            className={({ isActive }) =>
+             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
+            }
+        >
+            About Us
+        </NavLink>
       <NavLink
         to="/Contact"
         className={({ isActive }) =>

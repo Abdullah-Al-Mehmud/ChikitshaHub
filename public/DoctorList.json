@@ -1,219 +1,380 @@
 [
-    {
-      "id": 1,
-      "name": "Dr. Emily Davis",
-      "specialties": ["Gynecology"],
-      "category": "Gynecologists",
-      "img": "https://i.ibb.co/3fm5cW3/woman-doctor-wearing-lab-coat-with-stethoscope-isolated.jpg",
-      "doctorCode": "GYN001",
-      "location": "Women's Health Clinic",
-      "fee": 170,
-      "followUpFee": 110,
-      "availability": ["Monday", "Wednesday", "Friday"],
-      "aboutDoctor": "Dr. Emily Davis is a compassionate gynecologist dedicated to providing personalized and comprehensive women's health care. With over 15 years of experience, she has a deep commitment to promoting women's well-being and addressing their unique health needs. Dr. Davis believes in establishing a strong doctor-patient relationship built on trust and open communication.",
-      "rating": 4.7,
-      "education": {
-        "academy": "Medical College",
-        "courseName": "Doctor of Medicine",
-        "session": "2000-2006"
-      },
-      "experience": {
-        "hospitalName": "Women's Wellness Hospital",
-        "start": "2007-01-01",
-        "end": "present",
-        "year": 15
-      },
-      "awards": [
-        {"date": "2012-07-18", "name": "Outstanding Gynecologist Award", "description": "Recognized for excellence in gynecological care."},
-        {"date": "2015-05-10", "name": "Women's Health Advocate", "description": "Advocacy for women's health issues and awareness."}
-      ],
-      "services": ["Annual Exams", "Prenatal Care", "Family Planning"],
-      "specializations": ["Obstetrics", "Reproductive Endocrinology"]
+  {
+    "id": 1,
+    "name": "Dr. Emily Davis",
+    "specialties": [
+      "Gynecology"
+    ],
+    "category": "Gynecologists",
+    "img": "https://i.ibb.co/3fm5cW3/woman-doctor-wearing-lab-coat-with-stethoscope-isolated.jpg",
+    "doctorCode": "GYN001",
+    "bmdcNumber": "GYNBMDC001",
+    "joiningDate": "2022-01-20",
+    "location": "Women's Health Clinic",
+    "fee": 170,
+    "followUpFee": 110,
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "aboutDoctor": "Dr. Emily Davis is a compassionate gynecologist dedicated to providing personalized and comprehensive women's health care. With over 15 years of experience, she has a deep commitment to promoting women's well-being and addressing their unique health needs. Dr. Davis believes in establishing a strong doctor-patient relationship built on trust and open communication.",
+    "rating": 4.7,
+    "education": {
+      "academy": "Medical College",
+      "courseName": "Doctor of Medicine",
+      "session": "2000-2006"
     },
-    {
-      "id": 2,
-      "name": "Dr. James Turner",
-      "specialties": ["Orthopedics"],
-      "category": "Orthopedic Surgeons",
-      "img": "https://i.ibb.co/m40vNW0/confident-attractive-male-doctor-wearing-white-lab-coat-while-standing-with-arms-crossed-against-tur.jpg",
-      "doctorCode": "ORTHO002",
-      "location": "OrthoCare Hospital",
-      "fee": 190,
-      "followUpFee": 120,
-      "availability": ["Tuesday", "Thursday", "Saturday"],
-      "aboutDoctor": "Dr. James Turner is a highly skilled orthopedic surgeon specializing in joint and bone-related conditions. With a focus on patient-centered care, he combines surgical expertise with a commitment to rehabilitation and post-operative support. Dr. Turner is known for his dedication to helping patients regain mobility and improve their quality of life.",
-      "rating": 4.9,
-      "education": {
-        "academy": "Orthopedic Institute",
-        "courseName": "Orthopedic Surgery",
-        "session": "2004-2010"
-      },
-      "experience": {
-        "hospitalName": "Joint Health Center",
-        "start": "2011-01-01",
-        "end": "present",
-        "year": 11
-      },
-      "awards": [
-        {"date": "2014-11-25", "name": "Orthopedic Surgeon of the Year", "description": "Excellence in orthopedic surgical procedures."},
-        {"date": "2018-09-08", "name": "Innovative Joint Replacement Award", "description": "Pioneering advancements in joint replacement techniques."}
-      ],
-      "services": ["Joint Replacement Surgery", "Fracture Repair", "Sports Injury Treatment"],
-      "specializations": ["Hip and Knee Surgery", "Orthopedic Trauma"]
+    "experience": {
+      "hospitalName": "Women's Wellness Hospital",
+      "start": "2007-01-01",
+      "end": "present",
+      "year": 15
     },
-    {
-      "id": 3,
-      "name": "Dr. Jennifer Lee",
-      "specialties": ["Pediatrics"],
-      "category": "Pediatricians",
-      "img": "https://i.ibb.co/sgH2RrD/portrait-successful-young-doctor-with-folder-stethoscope.jpg",
-      "doctorCode": "PED003",
-      "location": "Children's Health Center",
-      "fee": 150,
-      "followUpFee": 100,
-      "availability": ["Monday", "Wednesday", "Friday"],
-      "aboutDoctor": "Dr. Jennifer Lee is a caring and dedicated pediatrician committed to the health and well-being of children. With a focus on preventive care and early intervention, she strives to create a positive and comfortable environment for both children and their parents. Dr. Lee believes in building lasting relationships with families to ensure comprehensive and personalized pediatric care.",
-      "rating": 4.8,
-      "education": {
-        "academy": "Pediatric Medical School",
-        "courseName": "Doctor of Pediatrics",
-        "session": "2005-2011"
+    "awards": [
+      {
+        "date": "2012-07-18",
+        "name": "Outstanding Gynecologist Award",
+        "description": "Recognized for excellence in gynecological care."
       },
-      "experience": {
-        "hospitalName": "KidsCare Clinic",
-        "start": "2012-01-01",
-        "end": "present",
-        "year": 10
-      },
-      "awards": [
-        {"date": "2016-08-15", "name": "Pediatric Excellence Award", "description": "Acknowledged for outstanding contributions to pediatric care."},
-        {"date": "2019-06-22", "name": "Community Service Award", "description": "Dedication to community health and child wellness."}
-      ],
-      "services": ["Wellness Checkups", "Vaccinations", "Developmental Screenings"],
-      "specializations": ["General Pediatrics", "Child Development"]
+      {
+        "date": "2015-05-10",
+        "name": "Women's Health Advocate",
+        "description": "Advocacy for women's health issues and awareness."
+      }
+    ],
+    "services": [
+      "Annual Exams",
+      "Prenatal Care",
+      "Family Planning"
+    ],
+    "specializations": [
+      "Obstetrics",
+      "Reproductive Endocrinology"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Dr. James Turner",
+    "specialties": [
+      "Orthopedics"
+    ],
+    "category": "Orthopedic Surgeons",
+    "img": "https://i.ibb.co/m40vNW0/confident-attractive-male-doctor-wearing-white-lab-coat-while-standing-with-arms-crossed-against-tur.jpg",
+    "doctorCode": "ORTHO002",
+    "bmdcNumber": "ORTHOBMDC002",
+    "joiningDate": "2022-01-21",
+    "location": "OrthoCare Hospital",
+    "fee": 190,
+    "followUpFee": 120,
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "aboutDoctor": "Dr. James Turner is a highly skilled orthopedic surgeon specializing in joint and bone-related conditions. With a focus on patient-centered care, he combines surgical expertise with a commitment to rehabilitation and post-operative support. Dr. Turner is known for his dedication to helping patients regain mobility and improve their quality of life.",
+    "rating": 4.9,
+    "education": {
+      "academy": "Orthopedic Institute",
+      "courseName": "Orthopedic Surgery",
+      "session": "2004-2010"
     },
-    {
-      "id": 4,
-      "name": "Dr. David Robinson",
-      "specialties": ["Cardiology"],
-      "category": "Cardiologists",
-      "img": "https://i.ibb.co/5nfRCN9/medical-workers-covid-19-vaccination-concept-confident-professional-doctor-female-nurse-blue-scrubs.jpg",
-      "doctorCode": "CARD004",
-      "location": "HeartCare Hospital",
-      "fee": 180,
-      "followUpFee": 120,
-      "availability": ["Tuesday", "Thursday", "Saturday"],
-      "aboutDoctor": "Dr. David Robinson is a seasoned cardiologist with a focus on providing comprehensive cardiovascular care. With over 20 years of experience, he has expertise in both diagnostic and interventional cardiology. Dr. Robinson is dedicated to staying updated with the latest advancements in cardiology to ensure the best possible care for his patients.",
-      "rating": 4.9,
-      "education": {
-        "academy": "Cardiology Institute",
-        "courseName": "Doctor of Cardiology",
-        "session": "1995-2001"
-      },
-      "experience": {
-        "hospitalName": "HeartCare Hospital",
-        "start": "2002-01-01",
-        "end": "present",
-        "year": 20
-      },
-      "awards": [
-        {"date": "2008-07-20", "name": "Cardiologist of the Year", "description": "Acknowledged for outstanding contributions to cardiology."},
-        {"date": "2013-05-12", "name": "Service Excellence Award", "description": "Exemplary service in patient care and cardiac interventions."}
-      ],
-      "services": ["Echocardiography", "Coronary Angiography", "Cardiac Rehabilitation"],
-      "specializations": ["Adult Cardiology", "Interventional Cardiology"]
+    "experience": {
+      "hospitalName": "Joint Health Center",
+      "start": "2011-01-01",
+      "end": "present",
+      "year": 11
     },
-    {
-      "id": 5,
-      "name": "Dr. Kimberly Chang",
-      "specialties": ["Ophthalmology"],
-      "category": "Ophthalmologists",
-      "img": "https://i.ibb.co/ckN5zVW/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini.jpg",
-      "doctorCode": "OPHTH005",
-      "location": "EyeCare Center",
-      "fee": 160,
-      "followUpFee": 100,
-      "availability": ["Monday", "Wednesday", "Friday"],
-      "aboutDoctor": "Dr. Kimberly Chang is a skilled ophthalmologist dedicated to preserving and improving vision. With a focus on both medical and surgical eye care, she is committed to providing the highest standard of ophthalmic services. Dr. Chang strives to educate her patients about eye health and empower them to make informed decisions about their eye care.",
-      "rating": 4.8,
-      "education": {
-        "academy": "Ophthalmic Institute",
-        "courseName": "Doctor of Ophthalmology",
-        "session": "2006-2012"
+    "awards": [
+      {
+        "date": "2014-11-25",
+        "name": "Orthopedic Surgeon of the Year",
+        "description": "Excellence in orthopedic surgical procedures."
       },
-      "experience": {
-        "hospitalName": "EyeCare Hospital",
-        "start": "2013-01-01",
-        "end": "present",
-        "year": 9
-      },
-      "awards": [
-        {"date": "2017-09-18", "name": "Ophthalmologist of the Year", "description": "Recognition for excellence in ophthalmic care."},
-        {"date": "2020-04-25", "name": "Innovative Eye Surgery Award", "description": "Contributions to advanced eye surgical techniques."}
-      ],
-      "services": ["Cataract Surgery", "LASIK", "Glaucoma Treatment"],
-      "specializations": ["General Ophthalmology", "Refractive Surgery"]
+      {
+        "date": "2018-09-08",
+        "name": "Innovative Joint Replacement Award",
+        "description": "Pioneering advancements in joint replacement techniques."
+      }
+    ],
+    "services": [
+      "Joint Replacement Surgery",
+      "Fracture Repair",
+      "Sports Injury Treatment"
+    ],
+    "specializations": [
+      "Hip and Knee Surgery",
+      "Orthopedic Trauma"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Dr. Jennifer Lee",
+    "specialties": [
+      "Pediatrics"
+    ],
+    "category": "Pediatricians",
+    "img": "https://i.ibb.co/sgH2RrD/portrait-successful-young-doctor-with-folder-stethoscope.jpg",
+    "doctorCode": "PED003",
+    "bmdcNumber": "PEDBMDC003",
+    "joiningDate": "2022-01-22",
+    "location": "Children's Health Center",
+    "fee": 150,
+    "followUpFee": 100,
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "aboutDoctor": "Dr. Jennifer Lee is a caring and dedicated pediatrician committed to the health and well-being of children. With a focus on preventive care and early intervention, she strives to create a positive and comfortable environment for both children and their parents. Dr. Lee believes in building lasting relationships with families to ensure comprehensive and personalized pediatric care.",
+    "rating": 4.8,
+    "education": {
+      "academy": "Pediatric Medical School",
+      "courseName": "Doctor of Pediatrics",
+      "session": "2005-2011"
     },
-    {
-      "id": 6,
-      "name": "Dr. Laura Miller",
-      "specialties": ["Psychiatry"],
-      "category": "Psychiatrists",
-      "img": "https://i.ibb.co/fk2rcSh/smiling-doctor-with-strethoscope-isolated-grey.jpg",
-      "doctorCode": "PSYCH007",
-      "location": "MindCare Center",
-      "fee": 200,
-      "followUpFee": 150,
-      "availability": ["Monday", "Wednesday", "Friday"],
-      "aboutDoctor": "Dr. Laura Miller is a compassionate psychiatrist dedicated to providing comprehensive mental health care. With a focus on evidence-based treatments and a patient-centered approach, she aims to empower individuals to overcome mental health challenges. Dr. Miller believes in the importance of destigmatizing mental health and fostering a supportive environment for her patients.",
-      "rating": 4.7,
-      "education": {
-        "academy": "Psychiatry Institute",
-        "courseName": "Doctor of Psychiatry",
-        "session": "2000-2006"
-      },
-      "experience": {
-        "hospitalName": "MindCare Hospital",
-        "start": "2007-01-01",
-        "end": "present",
-        "year": 15
-      },
-      "awards": [
-        {"date": "2012-08-10", "name": "Outstanding Psychiatrist Award", "description": "Recognized for excellence in psychiatric care."},
-        {"date": "2015-05-22", "name": "Mental Health Advocacy Award", "description": "Advocacy for mental health awareness and destigmatization."}
-      ],
-      "services": ["Psychotherapy", "Medication Management", "Cognitive Behavioral Therapy"],
-      "specializations": ["Adult Psychiatry", "Mood Disorders"]
+    "experience": {
+      "hospitalName": "KidsCare Clinic",
+      "start": "2012-01-01",
+      "end": "present",
+      "year": 10
     },
-    {
-      "id": 7,
-      "name": "Dr. Samuel Wright",
-      "specialties": ["ENT"],
-      "category": "Ophthalmologists",
-      "img": "https://i.ibb.co/1XgTCfR/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg",
-      "doctorCode": "ENT008",
-      "location": "EarNoseThroat Clinic",
-      "fee": 170,
-      "followUpFee": 120,
-      "availability": ["Tuesday", "Thursday", "Saturday"],
-      "aboutDoctor": "Dr. Samuel Wright is a skilled otolaryngologist specializing in ear, nose, and throat disorders. With a commitment to patient-centric care, he combines medical expertise with a compassionate approach. Dr. Wright believes in thorough diagnosis and personalized treatment plans to address a wide range of ENT conditions.",
-      "rating": 4.8,
-      "education": {
-        "academy": "ENT Medical Institute",
-        "courseName": "Doctor of Otolaryngology",
-        "session": "2006-2012"
+    "awards": [
+      {
+        "date": "2016-08-15",
+        "name": "Pediatric Excellence Award",
+        "description": "Acknowledged for outstanding contributions to pediatric care."
       },
-      "experience": {
-        "hospitalName": "ENT Wellness Center",
-        "start": "2013-01-01",
-        "end": "present",
-        "year": 9
+      {
+        "date": "2019-06-22",
+        "name": "Community Service Award",
+        "description": "Dedication to community health and child wellness."
+      }
+    ],
+    "services": [
+      "Wellness Checkups",
+      "Vaccinations",
+      "Developmental Screenings"
+    ],
+    "specializations": [
+      "General Pediatrics",
+      "Child Development"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Dr. David Robinson",
+    "specialties": [
+      "Cardiology"
+    ],
+    "category": "Cardiologists",
+    "img": "https://i.ibb.co/5nfRCN9/medical-workers-covid-19-vaccination-concept-confident-professional-doctor-female-nurse-blue-scrubs.jpg",
+    "doctorCode": "CARD004",
+    "bmdcNumber": "CARDBMDC004",
+    "joiningDate": "2022-01-23",
+    "location": "HeartCare Hospital",
+    "fee": 180,
+    "followUpFee": 120,
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "aboutDoctor": "Dr. David Robinson is a seasoned cardiologist with a focus on providing comprehensive cardiovascular care. With over 20 years of experience, he has expertise in both diagnostic and interventional cardiology. Dr. Robinson is dedicated to staying updated with the latest advancements in cardiology to ensure the best possible care for his patients.",
+    "rating": 4.9,
+    "education": {
+      "academy": "Cardiology Institute",
+      "courseName": "Doctor of Cardiology",
+      "session": "1995-2001"
+    },
+    "experience": {
+      "hospitalName": "HeartCare Hospital",
+      "start": "2002-01-01",
+      "end": "present",
+      "year": 20
+    },
+    "awards": [
+      {
+        "date": "2008-07-20",
+        "name": "Cardiologist of the Year",
+        "description": "Acknowledged for outstanding contributions to cardiology."
       },
-      "awards": [
-        {"date": "2017-09-18", "name": "ENT Specialist of the Year", "description": "Acknowledged for excellence in otolaryngology."},
-        {"date": "2020-04-25", "name": "Innovative ENT Procedures Award", "description": "Contributions to advanced ear, nose, and throat treatments."}
-      ],
-      "services": ["Ear Surgery", "Sinus Treatment", "Voice Disorders"],
-      "specializations": ["General Otolaryngology", "Head and Neck Surgery"]
-    }
+      {
+        "date": "2013-05-12",
+        "name": "Service Excellence Award",
+        "description": "Exemplary service in patient care and cardiac interventions."
+      }
+    ],
+    "services": [
+      "Echocardiography",
+      "Coronary Angiography",
+      "Cardiac Rehabilitation"
+    ],
+    "specializations": [
+      "Adult Cardiology",
+      "Interventional Cardiology"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Dr. Kimberly Chang",
+    "specialties": [
+      "Ophthalmology"
+    ],
+    "category": "Ophthalmologists",
+    "img": "https://i.ibb.co/ckN5zVW/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini.jpg",
+    "doctorCode": "OPHTH005",
+    "bmdcNumber": "OPHTHBMDC005",
+    "joiningDate": "2022-01-24",
+    "location": "EyeCare Center",
+    "fee": 160,
+    "followUpFee": 100,
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "aboutDoctor": "Dr. Kimberly Chang is a skilled ophthalmologist dedicated to preserving and improving vision. With a focus on both medical and surgical eye care, she is committed to providing the highest standard of ophthalmic services. Dr. Chang strives to educate her patients about eye health and empower them to make informed decisions about their eye care.",
+    "rating": 4.8,
+    "education": {
+      "academy": "Ophthalmic Institute",
+      "courseName": "Doctor of Ophthalmology",
+      "session": "2006-2012"
+    },
+    "experience": {
+      "hospitalName": "EyeCare Hospital",
+      "start": "2013-01-01",
+      "end": "present",
+      "year": 9
+    },
+    "awards": [
+      {
+        "date": "2017-09-18",
+        "name": "Ophthalmologist of the Year",
+        "description": "Recognition for excellence in ophthalmic care."
+      },
+      {
+        "date": "2020-04-25",
+        "name": "Innovative Eye Surgery Award",
+        "description": "Contributions to advanced eye surgical techniques."
+      }
+    ],
+    "services": [
+      "Cataract Surgery",
+      "LASIK",
+      "Glaucoma Treatment"
+    ],
+    "specializations": [
+      "General Ophthalmology",
+      "Refractive Surgery"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Dr. Laura Miller",
+    "specialties": [
+      "Psychiatry"
+    ],
+    "category": "Psychiatrists",
+    "img": "https://i.ibb.co/fk2rcSh/smiling-doctor-with-strethoscope-isolated-grey.jpg",
+    "doctorCode": "PSYCH007",
+    "bmdcNumber": "PSYCHDC007",
+    "joiningDate": "2022-01-22",
+    "location": "MindCare Center",
+    "fee": 200,
+    "followUpFee": 150,
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "aboutDoctor": "Dr. Laura Miller is a compassionate psychiatrist dedicated to providing comprehensive mental health care. With a focus on evidence-based treatments and a patient-centered approach, she aims to empower individuals to overcome mental health challenges. Dr. Miller believes in the importance of destigmatizing mental health and fostering a supportive environment for her patients.",
+    "rating": 4.7,
+    "education": {
+      "academy": "Psychiatry Institute",
+      "courseName": "Doctor of Psychiatry",
+      "session": "2000-2006"
+    },
+    "experience": {
+      "hospitalName": "MindCare Hospital",
+      "start": "2007-01-01",
+      "end": "present",
+      "year": 15
+    },
+    "awards": [
+      {
+        "date": "2012-08-10",
+        "name": "Outstanding Psychiatrist Award",
+        "description": "Recognized for excellence in psychiatric care."
+      },
+      {
+        "date": "2015-05-22",
+        "name": "Mental Health Advocacy Award",
+        "description": "Advocacy for mental health awareness and destigmatization."
+      }
+    ],
+    "services": [
+      "Psychotherapy",
+      "Medication Management",
+      "Cognitive Behavioral Therapy"
+    ],
+    "specializations": [
+      "Adult Psychiatry",
+      "Mood Disorders"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Dr. Samuel Wright",
+    "specialties": [
+      "ENT"
+    ],
+    "category": "Ophthalmologists",
+    "img": "https://i.ibb.co/1XgTCfR/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg",
+    "doctorCode": "ENT008",
+    "bmdcNumber": "ENTDC008",
+    "joiningDate": "2021-01-21",
+    "location": "EarNoseThroat Clinic",
+    "fee": 170,
+    "followUpFee": 120,
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "aboutDoctor": "Dr. Samuel Wright is a skilled otolaryngologist specializing in ear, nose, and throat disorders. With a commitment to patient-centric care, he combines medical expertise with a compassionate approach. Dr. Wright believes in thorough diagnosis and personalized treatment plans to address a wide range of ENT conditions.",
+    "rating": 4.8,
+    "education": {
+      "academy": "ENT Medical Institute",
+      "courseName": "Doctor of Otolaryngology",
+      "session": "2006-2012"
+    },
+    "experience": {
+      "hospitalName": "ENT Wellness Center",
+      "start": "2013-01-01",
+      "end": "present",
+      "year": 9
+    },
+    "awards": [
+      {
+        "date": "2017-09-18",
+        "name": "ENT Specialist of the Year",
+        "description": "Acknowledged for excellence in otolaryngology."
+      },
+      {
+        "date": "2020-04-25",
+        "name": "Innovative ENT Procedures Award",
+        "description": "Contributions to advanced ear, nose, and throat treatments."
+      }
+    ],
+    "services": [
+      "Ear Surgery",
+      "Sinus Treatment",
+      "Voice Disorders"
+    ],
+    "specializations": [
+      "General Otolaryngology",
+      "Head and Neck Surgery"
+    ]
+  }
 ]

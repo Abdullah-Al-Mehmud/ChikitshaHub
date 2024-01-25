@@ -1,10 +1,13 @@
-/* eslint-disable no-unused-vars */
-import Specialties from "../../Components/Specialties/Specialties";
-import BestDoctor from "../../Components/BestDoctor/BestDoctor";
-import Partners from "../../Components/partners/Partners";
-import Banner from "../../Components/Banner/Banner";
-import Faq from "../../Components/Faq/Faq";
-import Testimonials from "../../Components/Testimonials/Testimonials";
+import Banner from './../../Components/Banner/Banner';
+import Specialties from './../../Components/Specialties/Specialties';
+import BestDoctor from './../../Components/BestDoctor/BestDoctor';
+import Partners from '../../Components/partners/Partners';
+import Banner from '../../Components/Banner/Banner';
+import Faq from '../../Components/Faq/Faq';
+import Testimonials from '../../Components/Testimonials/Testimonials';
+import BMICalculator from '../../Components/BMICalculator/BMICalculator';
+
+
 const Home = () => {
   return (
     <>
@@ -14,7 +17,10 @@ const Home = () => {
       <Faq />
       <Testimonials />
       <Partners />
+      <BMICalculator/>
+
     </>
   );
 };
+
 export default Home;
