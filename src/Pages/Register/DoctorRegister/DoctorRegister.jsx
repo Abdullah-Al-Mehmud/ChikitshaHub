@@ -15,6 +15,38 @@ const DoctorRegister = () => {
     { value: "Friday", label: "Friday" },
   ];
 
+  const doctorTitle = [
+    { value: "Doctor of Medicine (MD)", label: "Doctor of Medicine (MD)" },
+    {
+      value: "Doctor of Osteopathic Medicine (DO)",
+      label: "Doctor of Osteopathic Medicine (DO)",
+    },
+    {
+      value: "Doctor of Dental Medicine (DMD)",
+      label: "Doctor of Dental Medicine (DMD)",
+    },
+    {
+      value: "Doctor of Veterinary Medicine (DVM)",
+      label: "Doctor of Veterinary Medicine (DVM)",
+    },
+    {
+      value: "Doctor of Philosophy (Ph.D.)",
+      label: "Doctor of Philosophy (Ph.D.)",
+    },
+    {
+      value: "Doctor of Nursing Practice (DNP)",
+      label: "Doctor of Nursing Practice (DNP)",
+    },
+    {
+      value: "Doctor of Chiropractic (DC)",
+      label: "Doctor of Chiropractic (DC)",
+    },
+    {
+      value: "Doctor of Pharmacy (Pharm.D.)",
+      label: "Doctor of Pharmacy (Pharm.D.)",
+    },
+  ];
+
   const {
     register,
     setValue,
@@ -202,7 +234,7 @@ const DoctorRegister = () => {
                         // defaultValue={[weekDays[4], weekDays[7]]}
                         isMulti
                         onChange={(selectedOptions) => {
-                          setValue("hashtags", selectedOptions);
+                          setValue("availability", selectedOptions);
                         }}
                         options={weekDays}
                         className=" border-2  border-main-blue-300 rounded-lg"
@@ -215,41 +247,32 @@ const DoctorRegister = () => {
                         </span>
                       )}
                     </div>
-                    <div className="mb-4 w-1/2">
+
+                    <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
-                        About Doctor
+                        {`Doctor's Title`}
                       </label>
-                      <input
-                        type="text"
-                        {...register("aboutDoctor", { required: true })}
-                        placeholder="About Doctor"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      <Select
+                        {...register("doctorTitle", { required: true })}
+                        // defaultValue={[weekDays[4], weekDays[7]]}
+                        isMulti
+                        onChange={(selectedOptions) => {
+                          setValue("doctorTitle", selectedOptions);
+                        }}
+                        options={doctorTitle}
+                        className=" border-2  border-main-blue-300 rounded-lg"
+                        classNamePrefix="select"
                         required
                       />
-                      {errors.aboutDoctor && (
+                      {errors.doctorTitle && (
                         <span className="text-red-600">
-                          About Doctor is required
+                          {`Doctor's Title is required`}
                         </span>
                       )}
                     </div>
                   </div>
+
                   <div className="flex gap-5 w-full">
-                    <div className="w-1/2 mb-4">
-                      <label className="block mb-2 text-sm font-bold  ">
-                        Rating
-                      </label>
-                      <input
-                        type="number"
-                        {...register("rating", { required: true })}
-                        name="rating"
-                        placeholder="Rating"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        required
-                      />
-                      {errors.rating && (
-                        <span className="text-red-600">Rating is required</span>
-                      )}
-                    </div>
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
                         Academy
@@ -268,8 +291,6 @@ const DoctorRegister = () => {
                         </span>
                       )}
                     </div>
-                  </div>
-                  <div className="flex gap-5 w-full">
                     <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
                         Course Name
@@ -307,7 +328,26 @@ const DoctorRegister = () => {
                       )}
                     </div>
                   </div>
-                  <div className="mb-4">
+                  {/* about doctor */}
+                  <div className="mb-4 w-full">
+                    <label className="block mb-2 text-sm font-bold  ">
+                      About Doctor
+                    </label>
+                    <textarea
+                      type="text"
+                      {...register("aboutDoctor", { required: true })}
+                      placeholder="About Doctor"
+                      className="w-full px-3 py-2 text-sm leading-tight h-44  border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      required
+                    />
+                    {errors.aboutDoctor && (
+                      <span className="text-red-600">
+                        About Doctor is required
+                      </span>
+                    )}
+                  </div>
+                  {/* email and pass */}
+                  {/* <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold  ">
                       Email
                     </label>
@@ -366,7 +406,7 @@ const DoctorRegister = () => {
                         number and one special character{" "}
                       </p>
                     )}
-                  </div>
+                  </div> */}
                   <div className="mb-6 text-center">
                     <button
                       className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700  dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
@@ -375,13 +415,14 @@ const DoctorRegister = () => {
                     </button>
                   </div>
                   <hr className="mb-6 border-t" />
-                  <div className="text-center">
+                  {/* forgot password */}
+                  {/* <div className="text-center">
                     <a
                       className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800"
                       href="#">
                       Forgot Password?
                     </a>
-                  </div>
+                  </div> */}
                   <div className="text-center">
                     <p className="inline-block cursor-pointer text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800">
                       Already have an account? <Link to="/login">Log In</Link>
