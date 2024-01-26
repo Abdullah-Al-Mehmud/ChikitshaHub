@@ -10,15 +10,13 @@ import BMICalculator from '../../Components/BMICalculator/BMICalculator';
 const Home = () => {
   return (
     <>
-
       <Banner />
       <Specialties />
       <BestDoctor />
-      <Faq/>
-      <Testimonials/>
+      <Faq />
+      <Testimonials />
       <Partners />
-      <BMICalculator/>
-
+      <BMICalculator />
     </>
   );
 };
