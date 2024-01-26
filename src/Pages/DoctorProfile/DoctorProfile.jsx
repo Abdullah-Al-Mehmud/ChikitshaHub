@@ -9,6 +9,9 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from "react";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 
 const DoctorProfile = () => {
@@ -51,7 +54,30 @@ const DoctorProfile = () => {
         console.log('Submitted:', data);
     };
 
+    const user = useSelector((state) => state.auth.user);
+    const { displayName, email } = user || {};
 
+    const axios = useAxiosPublic();
+
+    const handleAppointment = (e) => {
+        e.preventDefault();
+        const appointment = e.target.appointment.value;
+
+        const appointmentDetails = { doctor: doctor.name, doctorCode: doctor.doctorCode, passantName: displayName, passantEmail: email, appointmentTime: appointment }
+        
+        axios.post('/appointment', appointmentDetails)
+        .then(res=>{
+     if (res.data.success) {
+        console.log(res.data);
+        Swal.fire({
+            title: "Good job!",
+            text: "Your Appointment is Successfully Booked!",
+            icon: "success"
+          });
+     }
+    })
+
+    }
 
 
 
@@ -85,7 +111,7 @@ const DoctorProfile = () => {
                             <FaVideo className='h-10' />
                         </span></button>
 
-                        <form className="relative">
+                        <form className="relative" onSubmit={handleAppointment()}>
                             <DatePicker
                                 selected={selectedDateTime}
                                 onChange={(date) => setSelectedDateTime(date)}
@@ -96,6 +122,7 @@ const DoctorProfile = () => {
                                 filterDate={filterUnavailableDates}
                                 timeCaption="Time"
                                 disabledTimeIntervals={[{ after: new Date() }]}
+                                name="appointment"
                                 shouldDisableTime={(time) => isTimeSlotDisabled(time)}
                                 placeholderText="Booking Appointment"
                                 className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
