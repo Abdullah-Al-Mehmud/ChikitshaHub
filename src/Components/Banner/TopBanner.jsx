@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-
-const TopBanner = () => {
+// Specialties &gt; Doctors &gt;{" "}
+const TopBanner = ({ details }) => {
   return (
     <div>
       <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
@@ -9,11 +10,11 @@ const TopBanner = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                Doctor Profile
+                {details.header}
               </h2>
               <p className="font-medium text-white mt-1">
-                Home &gt; Specialties &gt; Doctors &gt;{" "}
-                <span className="text-[#409bd4]">Doctor Profile</span>
+                Home &gt;
+                <span className="text-[#409bd4]">Your Profile</span>
               </p>
             </div>
           </div>

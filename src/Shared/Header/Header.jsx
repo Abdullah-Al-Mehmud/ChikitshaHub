@@ -142,8 +142,13 @@ const Header = () => {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link className="text-black w-full" to={""}>
+                  <Link className="text-black w-full" to="/userProfile">
                     <h1 className="text-center">Your Profile</h1>
+                  </Link>
+                </li>
+                <li>
+                  <Link className="text-black w-full" to="/">
+                    <h1 className="text-center">Join as a Doctor</h1>
                   </Link>
                 </li>
                 <li>
