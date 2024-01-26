@@ -9,13 +9,13 @@ import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
 // import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
-import Specialties from "../Components/Specialties/Specialties";
+// import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
-// import Specialties from "../Pages/Specialties/Specialties";
+import Specialties from "../Pages/Specialties/Specialties";
 
 const router = createBrowserRouter([
   {
