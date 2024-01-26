@@ -9,9 +9,9 @@ import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
 
+import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
-import UserProfile from "../Pages/userProfile/UserProfile";
 
 const router = createBrowserRouter([
   {
