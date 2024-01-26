@@ -1,16 +1,35 @@
 import { useState } from "react";
 import TopBanner from "../../Components/Banner/TopBanner";
 import { useSelector } from "react-redux";
+import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
+import Swal from "sweetalert2";
 
 const UserProfile = () => {
   const [openModal, setOpenModal] = useState(false);
+  const axiosPrivate = useAxiosPrivet();
+  //   const [bmiResult, setBmiResult] = useState(null);
+  //   const [status, setStatus] = useState("");
   const user = useSelector((state) => state.auth.user);
-  const { displayName, photoURL } = user || {};
+  const { displayName, photoURL, email } = user || {};
   const details = {
     header: "Your Profile",
     headerSec: "profile",
   };
-
+  // axiosPrivate
+  const url = `/bmi?email=${email}`;
+  axiosPrivate.get(url).then((res) => {
+    console.log(res.data);
+    if (res.data.success) {
+      console.log(res.data);
+      Swal.fire({
+        title: "Good job!",
+        text: "Your BMI is Added!",
+        icon: "success",
+      });
+      //   setStatus("");
+      //   setBmiResult(null);
+    }
+  });
   return (
     <>
       <TopBanner details={details} />
