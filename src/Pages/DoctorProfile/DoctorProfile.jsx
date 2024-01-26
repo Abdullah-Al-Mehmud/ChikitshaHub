@@ -1,21 +1,19 @@
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import 'react-tabs/style/react-tabs.css';
-import { useForm } from 'react-hook-form';
+import "react-tabs/style/react-tabs.css";
+import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-
 const DoctorProfile = () => {
-
     const [selectedDateTime, setSelectedDateTime] = useState(null);
     const doctor = useLoaderData();
     const bookedSlots = [];
@@ -28,6 +26,7 @@ const DoctorProfile = () => {
     const filterUnavailableDates = (date) => {
         return isSlotAvailable(date);
     };
+
 
     const isTimeSlotDisabled = (time) => {
         const selectedDate = new Date(selectedDateTime);
@@ -59,23 +58,22 @@ const DoctorProfile = () => {
 
     const axios = useAxiosPublic();
 
-    const handleAppointment = (e) => {
-        e.preventDefault();
-        const appointment = e.target.appointment.value;
+    const handleAppointment = (appointment) => {
 
-        const appointmentDetails = { doctor: doctor.name, doctorCode: doctor.doctorCode, passantName: displayName, passantEmail: email, appointmentTime: appointment }
-        
-        axios.post('/appointment', appointmentDetails)
-        .then(res=>{
-     if (res.data.success) {
-        console.log(res.data);
-        Swal.fire({
-            title: "Good job!",
-            text: "Your Appointment is Successfully Booked!",
-            icon: "success"
-          });
-     }
-    })
+
+        const appointmentDetails = { doctorName: doctor.name, doctorCode: doctor.doctorCode, patientName: displayName, patientEmail: email, appointmentTime: appointment }
+
+        axios.post('/appointments', appointmentDetails)
+        .then(res => {
+            console.log(res.data)
+                if (res.data.success) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Your Appointment is Successfully Booked!",
+                        icon: "success"
+                    });
+                }
+            })
 
     }
 
@@ -111,7 +109,7 @@ const DoctorProfile = () => {
                             <FaVideo className='h-10' />
                         </span></button>
 
-                        <form className="relative" onSubmit={handleAppointment()}>
+                        <form className="relative" onSubmit={(e) => handleAppointment(e.preventDefault(), e.target.appointment.value)}>
                             <DatePicker
                                 selected={selectedDateTime}
                                 onChange={(date) => setSelectedDateTime(date)}
@@ -248,6 +246,7 @@ const DoctorProfile = () => {
 
         </div>
     );
-};
+}
+
 
 export default DoctorProfile;
