@@ -12,6 +12,8 @@ import Login from "../Login/Login";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
+import Tips from './../Pages/Tips/Tips';
+import Readmore from './../Pages/Tips/Readmore';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,15 @@ const router = createBrowserRouter([
       {
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "/tips",
+        element: <Tips/>,
+      },
+      {
+        path: "/readMores/:id",
+        element: <Readmore/>,
+        loader: () => fetch(`Tips.json`)
       },
     ],
   },

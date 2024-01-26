@@ -29,8 +29,8 @@ const Header = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "mr-6 text-[#409bd4] text-lg font-semibold"
-            : "mr-6 text-lg font-semibold"
+            ? "mr-6 text-[#409bd4] text-base font-semibold"
+            : "mr-6 text-base font-semibold"
         }
       >
         Home
@@ -39,18 +39,28 @@ const Header = () => {
         to="/specialties"
         className={({ isActive }) =>
           isActive
-            ? "mr-6 text-[#409bd4] text-lg font-semibold"
-            : "mr-6 text-lg font-semibold"
+            ? "mr-6 text-[#409bd4] text-base font-semibold"
+            : "mr-6 text-base font-semibold"
         }
       >
         Specialties
       </NavLink>
       <NavLink
+        to="/tips"
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-base font-semibold"
+            : "mr-6 text-base font-semibold"
+        }
+      >
+        Tips
+      </NavLink>
+      <NavLink
         to="/about"
         className={({ isActive }) =>
           isActive
-            ? "mr-6 text-[#409bd4] text-lg font-semibold"
-            : "mr-6 text-lg font-semibold"
+            ? "mr-6 text-[#409bd4] text-base font-semibold"
+            : "mr-6 text-base font-semibold"
         }
       >
         About Us
@@ -59,8 +69,8 @@ const Header = () => {
         to="/Contact"
         className={({ isActive }) =>
           isActive
-            ? "mr-6 text-[#409bd4] text-lg font-semibold"
-            : "mr-6 text-lg font-semibold"
+            ? "mr-6 text-[#409bd4] text-base font-semibold"
+            : "mr-6 text-base font-semibold"
         }
       >
         Contact Us
@@ -123,11 +133,10 @@ const Header = () => {
             </div>
           </Link>
         </div>
-
-        <div className="navbar-end">
-          <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+        <div className="navbar-center hidden lg:flex mx-auto">
+            <ul className="menu menu-horizontal">{links}</ul>
           </div>
+        <div className="navbar-end">
           {user?.email ? (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className=" m-1">
