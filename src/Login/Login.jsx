@@ -1,91 +1,207 @@
+/* eslint-disable no-unused-vars */
 import { FaFacebook } from "react-icons/fa6";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
 
-import {useForm} from 'react-hook-form'
 const Login = () => {
-    const {register,handleSubmit, formState:{errors}} = useForm ({defaultValues:{
-        password:'*****',
-        email:'johon12@gmail.com'
-    }})
-    const onSubmit = data =>{
-        console.log(data)
-    }
-    return(
-        <div>
-<div className="py-20 ">
-    <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl ">
-        <div className="hidden lg:block lg:w-1/2 bg-cover">
-            <img src="https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png" alt="" />
-        </div>
-        <div className="w-full p-8 lg:w-1/2">
-            <h2 className="text-2xl font-semibold text-gray-700 text-center"></h2>
-            <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-           <button>
-           <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
-                <div className="px-4 py-3">
-                    <svg className="h-6 w-6" viewBox="0 0 40 40">
-                        <path
-                            d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                            fill="#FFC107" />
-                        <path
-                            d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
-                            fill="#FF3D00" />
-                        <path
-                            d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
-                            fill="#4CAF50" />
-                        <path
-                            d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
-                            fill="#1976D2" />
-                    </svg>
-                </div>
-                <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
-            </a>
-           </button>
-          <button>
-          <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
-                <div className="px-4 py-3">
-                <span className="text-sky-500 text-2xl">< FaFacebook /></span>
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      password: "password",
+      email: "johon12@gmail.com",
+    },
+  });
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+    const handleLogIn = async () => {
+      try {
+        const logInResult = await dispatch(signInAsync(email, password));
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleLogIn();
+    console.log(email, password);
+  };
+  const handleSignInWithGoogle = () => {
+    dispatch(signInWithGoogleAsync());
+  };
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-                </div>
-                <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Facebook</h1>
-            </a>
-          </button>
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  return (
+    <div>
+      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
+        <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                Log In
+              </h2>
+              <p className="font-medium text-white mt-1">
+                Home &gt; <span className="text-[#409bd4]">LogIn</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="py-20">
+        <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl ">
+          <div className="hidden lg:block lg:w-1/2 bg-cover">
+            <img
+              src="https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png"
+              alt=""
+            />
+          </div>
+          <div className="w-full p-8 lg:w-1/2">
+            <button
+              onClick={() => handleSignInWithGoogle()}
+              className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
+            >
+              <div className="px-4 py-3">
+                <svg className="h-6 w-6" viewBox="0 0 40 40">
+                  <path
+                    d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
+                    fill="#FFC107"
+                  />
+                  <path
+                    d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
+                    fill="#FF3D00"
+                  />
+                  <path
+                    d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
+                    fill="#4CAF50"
+                  />
+                  <path
+                    d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
+                    fill="#1976D2"
+                  />
+                </svg>
+              </div>
+              <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">
+                Sign in with Google
+              </h1>
+            </button>
+            <button className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full">
+              <div className="px-4 py-3">
+                <span className="text-sky-500 text-2xl">
+                  <FaFacebook />
+                </span>
+              </div>
+              <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">
+                Sign in with Facebook
+              </h1>
+            </button>
             <div className="mt-4 flex items-center justify-between">
-                <span className="border-b w-1/5 lg:w-1/4"></span>
-                <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with email</a>
-                <span className="border-b w-1/5 lg:w-1/4"></span>
+              <span className="border-b w-1/5 lg:w-1/4"></span>
+              <a
+                href="#"
+                className="text-xs text-center text-gray-500 uppercase"
+              >
+                or login with email
+              </a>
+              <span className="border-b w-1/5 lg:w-1/4"></span>
             </div>
-            <form onSubmit={handleSubmit (onSubmit)} >
-            <div className="mt-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                <input {...register('email',  {required:'input field is required'})} className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email"  />
-                <p className="text-red-500 py-3 font-bold" >{errors.email?.message}</p>
-            </div>
-            {/* new */}
-            
-            
-            <div className="mt-4">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mt-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Email Address
+                </label>
+                <input
+                  {...register("email", {
+                    required: "input field is required",
+                  })}
+                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="email"
+                />
+                <p className="text-red-500 py-3 font-bold">
+                  {errors.email?.message}
+                </p>
+              </div>
+              {/* new */}
+
+              <div className="mt-4">
                 <div className="flex justify-between">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                    <a href="#" className="text-xs text-gray-500">Forget Password?</a>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Password
+                  </label>
+                  <a href="#" className="text-xs text-gray-500">
+                    Forget Password?
+                  </a>
                 </div>
-                <div  className="">
-                <input  {...register('password',{required:'input field is required', minLength:{value:8,message:"you password must be 8 character"}})}   className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none " type="password" />
-                <p className="text-red-500 py-3 font-bold" >{errors.password?.message}</p>
-                </div> 
-               
-            </div>
-            <div className="mt-8">
-                <button className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
-            </div>
+                <div className="relative">
+                  <input
+                    {...register("password", {
+                      required: "input field is required",
+                      minLength: {
+                        value: 8,
+                        message: "you password must be 8 character",
+                      },
+                    })}
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4  w-full appearance-none "
+                    // type="password"
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none h-10"
+                  >
+                    {showPassword ? (
+                      <FaEyeSlash className="text-gray-500" />
+                    ) : (
+                      <FaEye className="text-gray-500" />
+                    )}
+                  </button>
+                  <p className="text-red-500 py-3 font-bold">
+                    {errors.password?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-8">
+                <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                  Login
+                </button>
+              </div>
             </form>
             <div className="mt-4 flex items-center justify-between">
-                <span className="border-b w-1/5 md:w-1/4"></span>
-                <a href="#" className="text-xs text-gray-500 uppercase">or sign up</a>
-                <span className="border-b w-1/5 md:w-1/4"></span>
+              <span className="border-b w-1/5 md:w-1/4"></span>
+              <Link
+                to={"/userRegister"}
+                className="text-xs text-gray-500 uppercase"
+              >
+                or sign up
+              </Link>
+              <span className="border-b w-1/5 md:w-1/4"></span>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-        </div>
-    )}
+  );
+};
 export default Login;
