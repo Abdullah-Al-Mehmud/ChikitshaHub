@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import Select from "react-select";
 
 // import { Link } from "react-router-dom";
-// import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
+import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 import Swal from "sweetalert2";
-import axios from "axios";
+
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
-  // const axiosPrivate = useAxiosPrivet();
+  const axiosPrivate = useAxiosPrivet();
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -73,6 +73,7 @@ const DoctorRegister = () => {
       followUpFee: data.followUpFee,
       availability: data.availability?.map((avail) => avail?.value),
       degrees: data.degrees?.map((degree) => degree?.value),
+      bmdcNumber: data.bmdc,
       education: {
         academy: data.academy,
         courseName: data.courseName,
@@ -80,14 +81,14 @@ const DoctorRegister = () => {
       },
       experience: {
         hospitalName: data.hospitalName,
-        startDate: data.startDate,
-        endDate: data.endDate,
-        years: data.years,
+        start: data.startDate,
+        end: data.endDate,
+        year: data.years,
       },
       aboutDoctor: data.aboutDoctor,
     };
     console.log(newDoctor);
-    axios.post("http://localhost:3000/doctors", newDoctor).then((result) => {
+    axiosPrivate.post("/doctors", newDoctor).then((result) => {
       if (result.data.success) {
         Swal.fire({
           position: "center",
@@ -369,6 +370,25 @@ const DoctorRegister = () => {
                         <span className="text-red-600">
                           {`Doctor's Title is required`}
                         </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-5 w-full">
+                    <div className="mb-4 w-1/2">
+                      <label className="block mb-2 text-sm font-bold  ">
+                        BMDC Number
+                      </label>
+                      <input
+                        type="text"
+                        {...register("bmdc", { required: true })}
+                        name="bmdc"
+                        placeholder="bmdc"
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        required
+                      />
+                      {errors.bmdc && (
+                        <span className="text-red-600">bmdc is required</span>
                       )}
                     </div>
                   </div>
