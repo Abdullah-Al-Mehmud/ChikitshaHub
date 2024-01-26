@@ -31,7 +31,7 @@ const BMICalculator = () => {
         setBmiResult(null);
       }
     });
-    console.log(BmiData);
+    // console.log(BmiData);
     setWeight("");
     setHeight("");
   };
