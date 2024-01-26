@@ -19,7 +19,8 @@ const Login = () => {
         <div className="w-full p-8 lg:w-1/2">
             <h2 className="text-2xl font-semibold text-gray-700 text-center"></h2>
             <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-            <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+           <button>
+           <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
                 <div className="px-4 py-3">
                     <svg className="h-6 w-6" viewBox="0 0 40 40">
                         <path
@@ -38,13 +39,16 @@ const Login = () => {
                 </div>
                 <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
             </a>
-            <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+           </button>
+          <button>
+          <a href="#" className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
                 <div className="px-4 py-3">
                 <span className="text-sky-500 text-2xl">< FaFacebook /></span>
 
                 </div>
                 <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Facebook</h1>
             </a>
+          </button>
             <div className="mt-4 flex items-center justify-between">
                 <span className="border-b w-1/5 lg:w-1/4"></span>
                 <a href="#" className="text-xs text-center text-gray-500 uppercase">or login with email</a>

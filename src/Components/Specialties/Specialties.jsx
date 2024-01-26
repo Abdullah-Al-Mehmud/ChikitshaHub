@@ -13,7 +13,7 @@ const Specialties = () => {
     const [specialtiesData, setSpecialtiesData] = useState([]);
 
     useEffect(() => {
-        fetch('../../../public/specialtiesData.json')
+        fetch('specialtiesData.json')
             .then(res => res.json())
             .then(data => setSpecialtiesData(data))
     }, [])
@@ -47,12 +47,14 @@ const Specialties = () => {
             >
                 {
                     specialtiesData.slice(0, 6).map(category => <SwiperSlide className="px-6 py-10" key={category.id}>
+                        <Link to={`/doctors/1/${category.name}`}>
                         <div className="border-2 px-4 py-8 rounded-xl hover:border-[#409bd4]">
                             <div className='bg-base-300 rounded-full w-fit mx-auto p-4'>
                                 <img className='w-28 h-28 mx-auto p-4' src={category.img} alt="" />
                             </div>
                             <h5 className='text-xl font-medium text-center my-6 min-h-14'>{category.name}</h5>
                         </div>
+                        </Link>
                     </SwiperSlide>)
                 }
                 <div className="mb-10"></div>
