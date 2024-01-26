@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Root";
 import Contact from "./../Pages/contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
-import Home from "../Pages/Home/Home";
+
 import Doctors from "../Pages/Doctors/Doctors";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
@@ -12,6 +12,10 @@ import Login from "../Login/Login";
 import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
+
+import UserProfile from "../Pages/user/userProfile";
+import Home from "../Pages/home/Home";
+// import Specialties from "../Pages/Specialties/Specialties";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +77,10 @@ const router = createBrowserRouter([
       //   path: "/morespecialties",
       //   element: <MoreSpecialties></MoreSpecialties>,
       // },
+      {
+        path: "/userProfile",
+        element: <UserProfile></UserProfile>,
+      },
     ],
   },
 ]);
