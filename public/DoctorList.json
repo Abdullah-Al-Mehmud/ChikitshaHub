@@ -1,9 +1,10 @@
 [
   {
-    "id": 1,
     "name": "Dr. Emily Davis",
-    "specialties": [
-      "Gynecology"
+    "specialties": ["Gynecology"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)"
     ],
     "category": "Gynecologists",
     "img": "https://i.ibb.co/3fm5cW3/woman-doctor-wearing-lab-coat-with-stethoscope-isolated.jpg",
@@ -13,11 +14,7 @@
     "location": "Women's Health Clinic",
     "fee": 170,
     "followUpFee": 110,
-    "availability": [
-      "Monday",
-      "Wednesday",
-      "Friday"
-    ],
+    "availability": ["Monday", "Wednesday", "Friday"],
     "aboutDoctor": "Dr. Emily Davis is a compassionate gynecologist dedicated to providing personalized and comprehensive women's health care. With over 15 years of experience, she has a deep commitment to promoting women's well-being and addressing their unique health needs. Dr. Davis believes in establishing a strong doctor-patient relationship built on trust and open communication.",
     "rating": 4.7,
     "education": {
@@ -43,21 +40,15 @@
         "description": "Advocacy for women's health issues and awareness."
       }
     ],
-    "services": [
-      "Annual Exams",
-      "Prenatal Care",
-      "Family Planning"
-    ],
-    "specializations": [
-      "Obstetrics",
-      "Reproductive Endocrinology"
-    ]
+    "services": ["Annual Exams", "Prenatal Care", "Family Planning"],
+    "specializations": ["Obstetrics", "Reproductive Endocrinology"]
   },
   {
-    "id": 2,
     "name": "Dr. James Turner",
-    "specialties": [
-      "Orthopedics"
+    "specialties": ["Orthopedics"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)"
     ],
     "category": "Orthopedic Surgeons",
     "img": "https://i.ibb.co/m40vNW0/confident-attractive-male-doctor-wearing-white-lab-coat-while-standing-with-arms-crossed-against-tur.jpg",
@@ -67,11 +58,7 @@
     "location": "OrthoCare Hospital",
     "fee": 190,
     "followUpFee": 120,
-    "availability": [
-      "Tuesday",
-      "Thursday",
-      "Saturday"
-    ],
+    "availability": ["Tuesday", "Thursday", "Saturday"],
     "aboutDoctor": "Dr. James Turner is a highly skilled orthopedic surgeon specializing in joint and bone-related conditions. With a focus on patient-centered care, he combines surgical expertise with a commitment to rehabilitation and post-operative support. Dr. Turner is known for his dedication to helping patients regain mobility and improve their quality of life.",
     "rating": 4.9,
     "education": {
@@ -102,16 +89,14 @@
       "Fracture Repair",
       "Sports Injury Treatment"
     ],
-    "specializations": [
-      "Hip and Knee Surgery",
-      "Orthopedic Trauma"
-    ]
+    "specializations": ["Hip and Knee Surgery", "Orthopedic Trauma"]
   },
   {
-    "id": 3,
     "name": "Dr. Jennifer Lee",
-    "specialties": [
-      "Pediatrics"
+    "specialties": ["Pediatrics"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)"
     ],
     "category": "Pediatricians",
     "img": "https://i.ibb.co/sgH2RrD/portrait-successful-young-doctor-with-folder-stethoscope.jpg",
@@ -121,11 +106,7 @@
     "location": "Children's Health Center",
     "fee": 150,
     "followUpFee": 100,
-    "availability": [
-      "Monday",
-      "Wednesday",
-      "Friday"
-    ],
+    "availability": ["Monday", "Wednesday", "Friday"],
     "aboutDoctor": "Dr. Jennifer Lee is a caring and dedicated pediatrician committed to the health and well-being of children. With a focus on preventive care and early intervention, she strives to create a positive and comfortable environment for both children and their parents. Dr. Lee believes in building lasting relationships with families to ensure comprehensive and personalized pediatric care.",
     "rating": 4.8,
     "education": {
@@ -156,16 +137,14 @@
       "Vaccinations",
       "Developmental Screenings"
     ],
-    "specializations": [
-      "General Pediatrics",
-      "Child Development"
-    ]
+    "specializations": ["General Pediatrics", "Child Development"]
   },
   {
-    "id": 4,
     "name": "Dr. David Robinson",
-    "specialties": [
-      "Cardiology"
+    "specialties": ["Cardiology"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)"
     ],
     "category": "Cardiologists",
     "img": "https://i.ibb.co/5nfRCN9/medical-workers-covid-19-vaccination-concept-confident-professional-doctor-female-nurse-blue-scrubs.jpg",
@@ -175,11 +154,7 @@
     "location": "HeartCare Hospital",
     "fee": 180,
     "followUpFee": 120,
-    "availability": [
-      "Tuesday",
-      "Thursday",
-      "Saturday"
-    ],
+    "availability": ["Tuesday", "Thursday", "Saturday"],
     "aboutDoctor": "Dr. David Robinson is a seasoned cardiologist with a focus on providing comprehensive cardiovascular care. With over 20 years of experience, he has expertise in both diagnostic and interventional cardiology. Dr. Robinson is dedicated to staying updated with the latest advancements in cardiology to ensure the best possible care for his patients.",
     "rating": 4.9,
     "education": {
@@ -210,16 +185,14 @@
       "Coronary Angiography",
       "Cardiac Rehabilitation"
     ],
-    "specializations": [
-      "Adult Cardiology",
-      "Interventional Cardiology"
-    ]
+    "specializations": ["Adult Cardiology", "Interventional Cardiology"]
   },
   {
-    "id": 5,
     "name": "Dr. Kimberly Chang",
-    "specialties": [
-      "Ophthalmology"
+    "specialties": ["Ophthalmology"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)"
     ],
     "category": "Ophthalmologists",
     "img": "https://i.ibb.co/ckN5zVW/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini.jpg",
@@ -229,11 +202,7 @@
     "location": "EyeCare Center",
     "fee": 160,
     "followUpFee": 100,
-    "availability": [
-      "Monday",
-      "Wednesday",
-      "Friday"
-    ],
+    "availability": ["Monday", "Wednesday", "Friday"],
     "aboutDoctor": "Dr. Kimberly Chang is a skilled ophthalmologist dedicated to preserving and improving vision. With a focus on both medical and surgical eye care, she is committed to providing the highest standard of ophthalmic services. Dr. Chang strives to educate her patients about eye health and empower them to make informed decisions about their eye care.",
     "rating": 4.8,
     "education": {
@@ -259,21 +228,16 @@
         "description": "Contributions to advanced eye surgical techniques."
       }
     ],
-    "services": [
-      "Cataract Surgery",
-      "LASIK",
-      "Glaucoma Treatment"
-    ],
-    "specializations": [
-      "General Ophthalmology",
-      "Refractive Surgery"
-    ]
+    "services": ["Cataract Surgery", "LASIK", "Glaucoma Treatment"],
+    "specializations": ["General Ophthalmology", "Refractive Surgery"]
   },
   {
-    "id": 6,
     "name": "Dr. Laura Miller",
-    "specialties": [
-      "Psychiatry"
+    "specialties": ["Psychiatry"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)",
+      "Doctor of Psychiatry (Ph.D.)"
     ],
     "category": "Psychiatrists",
     "img": "https://i.ibb.co/fk2rcSh/smiling-doctor-with-strethoscope-isolated-grey.jpg",
@@ -283,11 +247,7 @@
     "location": "MindCare Center",
     "fee": 200,
     "followUpFee": 150,
-    "availability": [
-      "Monday",
-      "Wednesday",
-      "Friday"
-    ],
+    "availability": ["Monday", "Wednesday", "Friday"],
     "aboutDoctor": "Dr. Laura Miller is a compassionate psychiatrist dedicated to providing comprehensive mental health care. With a focus on evidence-based treatments and a patient-centered approach, she aims to empower individuals to overcome mental health challenges. Dr. Miller believes in the importance of destigmatizing mental health and fostering a supportive environment for her patients.",
     "rating": 4.7,
     "education": {
@@ -318,16 +278,15 @@
       "Medication Management",
       "Cognitive Behavioral Therapy"
     ],
-    "specializations": [
-      "Adult Psychiatry",
-      "Mood Disorders"
-    ]
+    "specializations": ["Adult Psychiatry", "Mood Disorders"]
   },
   {
-    "id": 7,
     "name": "Dr. Samuel Wright",
-    "specialties": [
-      "ENT"
+    "specialties": ["ENT"],
+    "degrees": [
+      "Doctor of Medicine (MD)",
+      "Doctor of Osteopathic Medicine (DO)",
+      "Doctor of Otolaryngology (Ph.D.)"
     ],
     "category": "Ophthalmologists",
     "img": "https://i.ibb.co/1XgTCfR/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg",
@@ -337,11 +296,7 @@
     "location": "EarNoseThroat Clinic",
     "fee": 170,
     "followUpFee": 120,
-    "availability": [
-      "Tuesday",
-      "Thursday",
-      "Saturday"
-    ],
+    "availability": ["Tuesday", "Thursday", "Saturday"],
     "aboutDoctor": "Dr. Samuel Wright is a skilled otolaryngologist specializing in ear, nose, and throat disorders. With a commitment to patient-centric care, he combines medical expertise with a compassionate approach. Dr. Wright believes in thorough diagnosis and personalized treatment plans to address a wide range of ENT conditions.",
     "rating": 4.8,
     "education": {
@@ -367,14 +322,7 @@
         "description": "Contributions to advanced ear, nose, and throat treatments."
       }
     ],
-    "services": [
-      "Ear Surgery",
-      "Sinus Treatment",
-      "Voice Disorders"
-    ],
-    "specializations": [
-      "General Otolaryngology",
-      "Head and Neck Surgery"
-    ]
+    "services": ["Ear Surgery", "Sinus Treatment", "Voice Disorders"],
+    "specializations": ["General Otolaryngology", "Head and Neck Surgery"]
   }
 ]
