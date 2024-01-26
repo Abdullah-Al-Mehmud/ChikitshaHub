@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { LuLogIn } from "react-icons/lu";
+import { MdLogout } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/authProbiver";
 const Header = () => {
@@ -35,21 +36,25 @@ const Header = () => {
         Home
       </NavLink>
       <NavLink
-            to="/specialties"
-            className={({ isActive }) =>
-             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
-            }
-        >
-            Specialties
-        </NavLink>
+        to="/specialties"
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-lg font-semibold"
+            : "mr-6 text-lg font-semibold"
+        }
+      >
+        Specialties
+      </NavLink>
       <NavLink
-            to="/about"
-            className={({ isActive }) =>
-             isActive ? "mr-6 text-[#409bd4] text-lg font-semibold" : "mr-6 text-lg font-semibold"
-            }
-        >
-            About Us
-        </NavLink>
+        to="/about"
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-lg font-semibold"
+            : "mr-6 text-lg font-semibold"
+        }
+      >
+        About Us
+      </NavLink>
       <NavLink
         to="/Contact"
         className={({ isActive }) =>
@@ -137,7 +142,7 @@ const Header = () => {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link className="text-black text-center w-full" to={""}>
+                  <Link className="text-black w-full" to={""}>
                     <h1 className="text-center">Your Profile</h1>
                   </Link>
                 </li>
@@ -146,7 +151,12 @@ const Header = () => {
                     className="btn btn-sm bg-transparent border-none bg-white text-start text-blue-700"
                     onClick={logOut}
                   >
-                    <h1 className="whitespace-nowrap text-start">Log out</h1>
+                    <div className="flex justify-between gap-2">
+                      <span>
+                        <MdLogout />
+                      </span>
+                      <span>Log out</span>
+                    </div>
                   </button>
                 </li>
               </ul>

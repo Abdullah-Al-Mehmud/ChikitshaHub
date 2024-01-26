@@ -11,6 +11,7 @@ import Login from "../Login/Login";
 
 import Home from "../Pages/home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
+import UserProfile from "../Pages/userProfile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/userProfile",
+        element: <UserProfile></UserProfile>,
       },
     ],
   },

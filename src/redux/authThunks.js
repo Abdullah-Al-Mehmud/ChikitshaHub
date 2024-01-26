@@ -81,9 +81,9 @@ export const logOutAsync = () => async (dispatch) => {
   }
 };
 
-export const updateUserAsync = (name, photo) => async (dispatch) => {
+export const updateUserAsync = (name, photoUrl) => async (dispatch) => {
   try {
-    await updateUser(name, photo);
+    await updateUser(name, photoUrl);
   } catch (error) {
     console.log(error);
   }

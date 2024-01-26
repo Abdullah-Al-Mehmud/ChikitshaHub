@@ -26,15 +26,17 @@ const UserRegistration = () => {
   const onSubmit = (data) => {
     const name = data.name;
     const email = data.email;
+    const photoUrl = data.photo;
     const password = data.password;
     const userInfo = {
       name,
       email,
+      photoUrl,
     };
     const handleRegistration = async () => {
       try {
         const signUpResult = await dispatch(signUpAsync(email, password));
-        await dispatch(updateUserAsync(name));
+        await dispatch(updateUserAsync(name, photoUrl));
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -109,8 +111,9 @@ const UserRegistration = () => {
                       {...register("photo", {
                         required: "input field is required",
                       })}
+                      // name="photo"
                       className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                      type="file"
+                      type="text"
                     />
                     <p className="text-red-500 py-3 font-bold">
                       {errors.photo?.message}

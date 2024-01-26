@@ -29,7 +29,7 @@ export const logOut = () => {
   return signOut(auth);
 };
 
-export const updateUser = (name, photo) => {
+export const updateUser = (name, photoUrl) => {
   const user = auth.currentUser;
-  return updateProfile(user, { displayName: name, photoURL: photo });
+  return updateProfile(user, { displayName: name, photoURL: photoUrl });
 };
