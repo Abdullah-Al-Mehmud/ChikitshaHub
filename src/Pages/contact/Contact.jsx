@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-
+import {useForm} from 'react-hook-form'
 const Contact = () => {
+  const {register,handleSubmit,formState:{errors}} = useForm ()
+const onSubmit = data =>{
+    console.log(data)
+}
   return (
 
     <div className="">
@@ -14,8 +18,8 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
       </div>
+      
       <section className="bg-white my-6 max-w-6xl mx-auto px-6" id="contact ">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
 
@@ -132,7 +136,7 @@ const Contact = () => {
                 <h2 className="mb-4 text-2xl font-bold">
                   Ready to Get Started?
                 </h2>
-                <form id="contactForm">
+                <form id="contactForm" onSubmit={handleSubmit (onSubmit)} >
                   <div className="mb-6">
                     <div className="mx-0 mb-1 sm:mb-4">
                       <div className="mx-0 mb-1 sm:mb-4">
@@ -141,6 +145,7 @@ const Contact = () => {
                           className="pb-1 text-xs uppercase tracking-wider"
                         ></label>
                         <input
+                        {...register('name',  {required:'input field is required'})}
                           type="text"
                           id="name"
                           autoComplete="given-name"
@@ -148,6 +153,7 @@ const Contact = () => {
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
                           name="name"
                         />
+                        <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                       </div>
                       <div className="mx-0 mb-1 sm:mb-4">
                         <label
@@ -155,6 +161,7 @@ const Contact = () => {
                           className="pb-1 text-xs uppercase tracking-wider"
                         ></label>
                         <input
+                        {...register('email',  {required:'input field is required'})}
                           type="email"
                           id="email"
                           autoComplete="email"
@@ -162,6 +169,7 @@ const Contact = () => {
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
                           name="email"
                         />
+                        <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                       </div>
                     </div>
                     <div className="mx-0 mb-1 sm:mb-4">
@@ -170,13 +178,17 @@ const Contact = () => {
                         className="pb-1 text-xs uppercase tracking-wider"
                       ></label>
                       <textarea
+                      {...register('textarea',  {required:'input field is required'})}
                         id="textarea"
                         name="textarea"
                         cols="30"
                         rows="5"
                         placeholder="Write your message..."
                         className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
-                      ></textarea>
+                      >
+
+                      </textarea>
+                      <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                     </div>
                   </div>
                   <div className="text-center">
