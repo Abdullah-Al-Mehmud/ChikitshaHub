@@ -3,12 +3,8 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const Banner = () => {
   return (
-    // <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
-
-    // </div>
-
     <div>
-      <div className="w-full  lg:pb-40 lg:pt-24 md:pb-28 md:pt-24 pb-20 ">
+      <div className="w-full  lg:pb-40 lg:pt-28 md:pb-28 md:pt-24 pb-20 ">
         <div className="lg:flex items-center gap-20 max-w-6xl mx-auto px-6">
           <div className="w-full lg:text-left text-center">
             <h4 className="font-bold mb-1 ">
@@ -26,7 +22,7 @@ const Banner = () => {
             <div className="flex md:justify-start justify-center">
               <button className="flex items-center relative w-32 md:mx-auto lg:mx-0 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-6">
                 <span>Get Start</span>
-                <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-black rounded-full">
+                <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                   <FaArrowRightLong className="h-10" />
                 </span>
               </button>

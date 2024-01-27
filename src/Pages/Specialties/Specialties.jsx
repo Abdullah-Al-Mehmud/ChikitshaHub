@@ -14,7 +14,7 @@ const Specialties = () => {
   }, []);
   return (
     <div className="">
-      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
+      {/* <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
         <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
           <div className="max-w-6xl mx-auto px-6">
             <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
@@ -27,11 +27,11 @@ const Specialties = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto py-16 lg:py-20">
+      </div> */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto my-12 lg:py-20">
         {specialtiesData.map((category) => (
           <Link to={`/doctors/1/${category.name}`} key={category.id}>
-            <div className="px-4 py-4">
+            <div className="px-4 ">
               <div className="border-2 rounded-xl hover:border-[#409bd4] flex flex-col md:flex-row items-center gap-6 p-6">
                 <div className="bg-base-300 rounded-full w-32 h-32">
                   <img

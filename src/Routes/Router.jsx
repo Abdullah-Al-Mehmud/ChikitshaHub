@@ -34,10 +34,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-      {
-        path: "/userRegister",
-        element: <UserRegistration></UserRegistration>,
-      },
+      // {
+      //   path: "/userRegister",
+      //   element: <UserRegistration></UserRegistration>,
+      // },
       {
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
@@ -69,10 +69,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login></Login>,
+      // },
       // {
       //   path: "/morespecialties",
       //   element: <MoreSpecialties></MoreSpecialties>,
@@ -82,6 +82,14 @@ const router = createBrowserRouter([
         element: <UserProfile></UserProfile>,
       },
     ],
+  },
+  {
+    path: "/userRegister",
+    element: <UserRegistration></UserRegistration>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
   },
 ]);
 
