@@ -1,5 +1,5 @@
 import Banner from "./../../Components/Banner/Banner";
-import Specialties from "./../../Components/Specialties/Specialties";
+// import Specialties from "./../../Components/Specialties/Specialties";
 import BestDoctor from "./../../Components/BestDoctor/BestDoctor";
 import Partners from "../../Components/partners/Partners";
 import Faq from "../../Components/Faq/Faq";
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <Specialties />
+      {/* <Specialties /> */}
       <BestDoctor />
       <Testimonials />
       <Faq />

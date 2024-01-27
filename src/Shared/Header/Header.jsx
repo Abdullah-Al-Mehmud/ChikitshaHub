@@ -53,6 +53,15 @@ const Header = () => {
         About Us
       </NavLink>
       <NavLink
+        to="/tips"
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-lg font-semibold"
+            : "mr-6 text-lg font-semibold"
+        }>
+        Tips
+      </NavLink>
+      <NavLink
         to="/Contact"
         className={({ isActive }) =>
           isActive
@@ -69,7 +78,7 @@ const Header = () => {
       className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
         isScrolled ? "bg-gray-200 text-black" : " text-black"
       }`}>
-      <div className="max-w-7xl  flex justify-around mx-auto navbar py-3 px-6">
+      <div className="max-w-7xl flex justify-around mx-auto navbar py-3 px-6">
         <div className="">
           <div className="dropdown">
             <div

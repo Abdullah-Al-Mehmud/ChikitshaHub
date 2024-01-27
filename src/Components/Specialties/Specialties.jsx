@@ -17,7 +17,7 @@ const Specialties = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto my-24">
+    <div className="max-w-6xl mx-auto ">
       <h2 className="text-4xl md:text-3xl lg:text-4xl font-bold  text-center mb-6">
         Specialties
       </h2>

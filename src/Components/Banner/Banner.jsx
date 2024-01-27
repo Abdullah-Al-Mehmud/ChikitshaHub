@@ -13,7 +13,7 @@ const Banner = () => {
             <h1 className="font-bold lg:text-5xl md:text-4xl text-3xl">
               Meet <span className="text-[#409ad4]">Your Health</span> Heroes
             </h1>
-            <p className="font-medium mt-6">
+            <p className="font-semibold mt-6">
               Empower your medical practice with our cutting-edge Doctor
               Management System, designed to streamline operations, enhance
               patient care, and revolutionize the way you manage your healthcare
