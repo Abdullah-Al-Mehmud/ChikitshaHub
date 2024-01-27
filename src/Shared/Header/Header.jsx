@@ -147,7 +147,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="text-black w-full" to="/">
+                  <Link className="text-black w-full" to="/doctorRegister">
                     <h1 className="text-center">Join as a Doctor</h1>
                   </Link>
                 </li>

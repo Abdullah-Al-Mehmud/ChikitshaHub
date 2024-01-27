@@ -1,21 +1,80 @@
 import { useState } from "react";
-import Slider from 'rc-slider';
+// import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Doctors = () => {
-    const [range, setRange] = useState([0, 1000]);
-    
-
+    // const [range, setRange] = useState([0, 1000]);
     const doctorList = useLoaderData();
+    const [doctors, setDoctors] = useState(doctorList);
+    const [sortByFeesHighToLow, setSortByFeesHighToLow] = useState(false);
+    const [sortByFeesLowToHigh, setSortByFeesLowToHigh] = useState(false);
+    const [sortByExperience, setSortByExperience] = useState(false);
+    const [sortByRating, setSortByRating] = useState(false);
 
-
-    const handleSliderChange = (value) => {
-        setRange(value);
+    const priceHighToLow = () => {
+        const sortedDoctors = doctorList.sort((a, b) => b?.fee - a?.fee);
+        setDoctors(sortedDoctors)
+    }
+    const priceLowToHigh = () => {
+        const sortedDoctors = doctorList.sort((a, b) => a?.fee - b?.fee);
+        setDoctors(sortedDoctors)
+    }
+    const experience = () => {
+        const sortedDoctor = doctorList.sort((a, b) => a?.experience?.year < b?.experience?.year ? 1 : -1);
+        setDoctors(sortedDoctor);
+    };
+    const rating = () => {
+        const sortedDoctor = doctorList.sort((a, b) => a?.rating < b?.rating ? 1 : -1);
+        setDoctors(sortedDoctor);
     };
 
+    const handleSortByFeesHighToLow = () => {
+        setSortByFeesHighToLow(!sortByFeesHighToLow);
+        if (!sortByFeesHighToLow) {
+            priceHighToLow();
+        }
+        else {
+            priceLowToHigh();
+        }
+    }
+    const handleSortByFeesLowToHigh = () => {
+        setSortByFeesLowToHigh(!sortByFeesLowToHigh)
+        if (!sortByFeesLowToHigh) {
+            priceLowToHigh();
+        }
+        else {
+            setDoctors(doctorList);
+        }
+    };
+    const handleSortByExperience = () => {
+        setSortByExperience(!sortByExperience);
+        if (!sortByExperience) {
+            experience();
+        }
+        else {
+            const sortedDoctor = doctorList.sort((a, b) => a?.experience?.year > b?.experience?.year ? 1 : -1);
+            setDoctors(sortedDoctor);
+        }
+    }
+    const handleSortByRating = () => {
+        setSortByRating(!sortByRating);
+        if (!sortByRating) {
+            rating();
+        }
+        else {
+            const sortedDoctor = doctorList.sort((a, b) => a?.rating > b?.rating ? 1 : -1);
+            setDoctors(sortedDoctor);
+        }
+    }
+
+
+
+    // const handleSliderChange = (value) => {
+    //     setRange(value);
+    // };
 
     return (
         <div>
@@ -31,21 +90,21 @@ const Doctors = () => {
             </div>
             <div className="grid grid-cols-12 gap-6 max-w-6xl mx-auto px-6 py-16 lg:py-20">
                 <div className="col-span-12 md:col-span-4 rounded-lg">
-                    <div className="flex justify-between mb-4 text-gray-600">
+                    {/* <div className="flex justify-between mb-4 text-gray-600">
                         <h4 className="text-xl font-bold">Filters</h4>
                         <h4 className="text-xl font-bold">Reset</h4>
-                    </div>
-                    <h2 className="text-2xl font-bold mb-4 text-black">Consultation Fee</h2>
+                    </div> */}
+                    {/* <h2 className="text-2xl font-bold mb-4 text-black">Consultation Fee</h2> */}
 
-                    <p>Price Range: ${range[0]} - ${range[1]}</p>
-                    <Slider
+                    {/* <p>Price Range: ${range[0]} - ${range[1]}</p> */}
+                    {/* <Slider
                         range
                         min={0}
                         max={1000}
                         value={range}
                         onChange={handleSliderChange}
-                    />
-                    <div className="mt-6">
+                    /> */}
+                    {/* <div className="mt-6">
                         <div className="flex gap-4 items-center mb-2">
                             <input type="checkbox" name="" id="" className="w-6 h-6" value='Online now' />
                             <label className="text-xl font-medium text-gray-700">Online Now</label>
@@ -62,32 +121,32 @@ const Doctors = () => {
                             <input type="checkbox" name="" id="" className="w-6 h-6" value='Female doctors only' />
                             <label className="text-xl font-medium text-gray-700">Female doctors only</label>
                         </div>
-                    </div>
+                    </div> */}
                     <h2 className="text-2xl font-bold mt-16 mb-4 text-black">Sort By</h2>
                     <div className="mt-6">
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="popularity" id="" className="w-6 h-6" value='Popularity' />
+                            <input onChange={handleSortByRating} type="checkbox" name="popularity" id="" className="w-6 h-6" value='Popularity' />
                             <label className="text-xl font-medium text-gray-700">Popularity</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Fees: low too high' />
+                            <input onChange={handleSortByFeesLowToHigh} type="checkbox" name="" id="" className="w-6 h-6" value='Fees: low too high' />
                             <label className="text-xl font-medium text-gray-700">Fees: low too high</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Fees: high too low' />
+                            <input onChange={handleSortByFeesHighToLow} type="checkbox" name="" id="" className="w-6 h-6" value='Fees: high too low' />
                             <label className="text-xl font-medium text-gray-700">Fees: high too low</label>
                         </div>
                         <div className="flex gap-4 items-center mb-2">
-                            <input type="checkbox" name="" id="" className="w-6 h-6" value='Experience' />
+                            <input onChange={handleSortByExperience} type="checkbox" name="" id="" className="w-6 h-6" value='Experience' />
                             <label className="text-xl font-medium text-gray-700">Experience</label>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div className="col-span-12 md:col-span-8">
                     <div>
                         {
-                            doctorList.map(doctor => <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
+                            doctors?.map(doctor => <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
                                 <div className="p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl">
                                     <div className="flex items-center justify-between gap-2 flex-col md:flex-row">
                                         <div>

@@ -1,16 +1,38 @@
 import { useState } from "react";
 import TopBanner from "../../Components/Banner/TopBanner";
 import { useSelector } from "react-redux";
+import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
+import Swal from "sweetalert2";
+import moment from "moment";
 
 const UserProfile = () => {
   const [openModal, setOpenModal] = useState(false);
+  const axiosPrivate = useAxiosPrivet();
+  const [bmiResult, setBmiResult] = useState();
+  //   const [status, setStatus] = useState("");
   const user = useSelector((state) => state.auth.user);
-  const { displayName, photoURL } = user || {};
+  const { displayName, photoURL, email } = user || {};
   const details = {
     header: "Your Profile",
     headerSec: "profile",
   };
-
+  // axiosPrivate
+  const url = `/bmi?email=${email}`;
+  axiosPrivate.get(url).then((res) => {
+    console.log(res.data);
+    setBmiResult(res.data);
+    if (res.data.success) {
+      console.log(res.data);
+      Swal.fire({
+        title: "Good job!",
+        text: "Your BMI is Added!",
+        icon: "success",
+      });
+      //   setStatus("");
+      //   setBmiResult(res.data);
+    }
+  });
+  console.log(bmiResult);
   return (
     <>
       <TopBanner details={details} />
@@ -52,9 +74,9 @@ const UserProfile = () => {
         <div className="flex-1 bg-[#e3e1e6]">
           <div className="grid lg:grid-cols-4  mx-5 gap-5 ">
             {/* modal */}
-            <div>
+            <div className="overflow-hidden w-full py-6 sm:py-12">
               <button onClick={() => setOpenModal(true)} className="">
-                <div className="overflow-hidden   py-6 sm:py-12">
+                <div>
                   <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10">
                     <span className="absolute top-10 z-0 h-20 w-20 left-10 rounded-full bg-sky-500 transition-all duration-300 group-hover:scale-[10]"></span>
                     <div className="relative z-10 mx-auto max-w-md">
@@ -97,12 +119,19 @@ const UserProfile = () => {
                   }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">
-                    Welcome to NavigateUI!
+                    Welcome to ChikitshaHub
                   </h1>
-                  <p className="mb-3">
-                    Elevate your React projects with beautifully crafted
-                    components designed for TailwindCSS.
-                  </p>
+                  {/* bmiResult */}
+                  <div>
+                    {bmiResult?.map((dd) => (
+                      <div key={dd._id}>
+                        <h1>
+                          {moment().format("MMM Do YY")} : BMI result :
+                          {dd.bmiResult}{" "}
+                        </h1>
+                      </div>
+                    ))}
+                  </div>
                   <button
                     onClick={() => setOpenModal(false)}
                     className="text-white me-2 bg-[#16c55c] px-6 py-2 rounded-full"
@@ -121,7 +150,7 @@ const UserProfile = () => {
             {/* card-1 */}
 
             {/* card-2 */}
-            <div className="overflow-hidden   py-6 sm:py-12">
+            <div className="overflow-hidden w-full py-6 sm:py-12">
               <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10">
                 <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-sky-500 transition-all duration-300 group-hover:scale-[10]"></span>
                 <div className="relative z-10 mx-auto max-w-md">
@@ -149,7 +178,7 @@ const UserProfile = () => {
               </div>
             </div>
             {/* card-3 */}
-            <div className="overflow-hidden   py-6 sm:py-12">
+            <div className="overflow-hidden w-full   py-6 sm:py-12">
               <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10">
                 <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-sky-500 transition-all duration-300 group-hover:scale-[10]"></span>
                 <div className="relative z-10 mx-auto max-w-md">
@@ -177,7 +206,7 @@ const UserProfile = () => {
               </div>
             </div>
             {/* card-4 */}
-            <div className="overflow-hidden   py-6 sm:py-12">
+            <div className="overflow-hidden w-full   py-6 sm:py-12">
               <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10">
                 <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-sky-500 transition-all duration-300 group-hover:scale-[10]"></span>
                 <div className="relative z-10 mx-auto max-w-md">
