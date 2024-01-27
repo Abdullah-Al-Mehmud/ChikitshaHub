@@ -5,11 +5,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
   const {
@@ -23,6 +24,7 @@ const Login = () => {
     const handleLogIn = async () => {
       try {
         const logInResult = await dispatch(signInAsync(email, password));
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -39,6 +41,7 @@ const Login = () => {
   };
   const handleSignInWithGoogle = () => {
     dispatch(signInWithGoogleAsync());
+    navigate("/");
   };
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

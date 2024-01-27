@@ -171,7 +171,7 @@ const Header = () => {
                   </span>
                 </button>
               </Link>
-              <Link to={"/login"}>
+              <Link to={"/userRegister"}>
                 <button className="flex items-center relative w-32 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
                   <span>Register</span>
                   <span

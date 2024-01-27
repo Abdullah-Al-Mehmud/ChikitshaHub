@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { signUpAsync, updateUserAsync } from "../../../redux/authThunks";
 
 const UserRegistration = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -33,12 +34,13 @@ const UserRegistration = () => {
         const signUpResult = await dispatch(signUpAsync(email, password));
         await dispatch(updateUserAsync(name, photoUrl));
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Registration Successful",
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       } catch (error) {
         // Handle errors if needed
         // console.log(error);

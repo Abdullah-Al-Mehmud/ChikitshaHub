@@ -4,7 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const Banner = () => {
   return (
     <div>
-      <div className="w-full  lg:pb-40 lg:pt-28 md:pb-28 md:pt-24 pb-20 ">
+      <div className="w-full  lg:pb-40 lg:pt-28 pt-32 md:pb-28 md:pt-24 pb-20 ">
         <div className="lg:flex items-center gap-20 max-w-6xl mx-auto px-6">
           <div className="w-full lg:text-left text-center">
             <h4 className="font-bold mb-1 ">
