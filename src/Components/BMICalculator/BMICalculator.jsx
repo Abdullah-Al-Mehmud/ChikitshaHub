@@ -52,85 +52,83 @@ const BMICalculator = () => {
     } else return "Obese";
   }
   return (
-    <div className="min-h-screen bg-base-200">
-      <h1 className="text-3xl py-10 text-center font-bold">BMI Calculation</h1>
-      <div className="hero ">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img
-            src="https://i.ibb.co/G7cKSNB/10177-removebg-preview.png"
-            className="w-full h-80 rounded-lg"
-          />
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">
-                    Weight{" "}
-                    <span className="text-xs font-semibold text-gray-600">
-                      (kg)
-                    </span>{" "}
-                  </span>
-                </label>
-                <input
-                  type="weight in kg"
-                  id="weight"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  placeholder="Weight"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">
-                    Height{" "}
-                    <span className="text-xs font-semibold text-gray-600">
-                      (cm)
-                    </span>{" "}
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  id="height in cm"
-                  value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  placeholder="Height"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              {bmiResult ? (
-                <div>
-                  <h1 className="text-[#409bd4] font-bold">Result:</h1>
-                  <p>Currently status: {status}</p>
-                  <p>Your BMI is: {bmiResult}</p>
-                  <button
-                    onClick={handleSubmit}
-                    className="flex items-center relative w-28  border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"
-                  >
-                    <span>Save</span>
-                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                      <FaArrowRightLong className="h-10" />
-                    </span>
-                  </button>
-                </div>
-              ) : (
-                ""
-              )}
-              <div className="form-control mt-6">
+    <>
+      <h1 className="text-4xl py-10 text-center font-bold">BMI Calculator</h1>
+      <div className="lg:flex max-w-5xl mx-auto items-center gap-10 ">
+        <div className=" w-full max-w-md shadow-2xl bg-base-100">
+          <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">
+                  Weight{" "}
+                  <span className="text-xs font-semibold text-gray-600">
+                    (kg)
+                  </span>{" "}
+                </span>
+              </label>
+              <input
+                type="weight in kg"
+                id="weight"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                placeholder="Weight"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">
+                  Height{" "}
+                  <span className="text-xs font-semibold text-gray-600">
+                    (cm)
+                  </span>{" "}
+                </span>
+              </label>
+              <input
+                type="text"
+                id="height in cm"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                placeholder="Height"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            {bmiResult ? (
+              <div>
+                <h1 className="text-[#409bd4] font-bold">Result:</h1>
+                <p>Currently status: {status}</p>
+                <p>Your BMI is: {bmiResult}</p>
                 <button
-                  onClick={calculateBMI}
-                  className="btn bg-[#409bd4] text-white"
-                >
-                  BMI Calculate
+                  onClick={handleSubmit}
+                  className="flex items-center relative w-28  border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4">
+                  <span>Save</span>
+                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaArrowRightLong className="h-10" />
+                  </span>
                 </button>
               </div>
+            ) : (
+              ""
+            )}
+            <div className="form-control mt-6">
+              <button
+                onClick={calculateBMI}
+                className="btn bg-[#409bd4] text-white">
+                BMI Calculate
+              </button>
             </div>
           </div>
         </div>
+        <div className="w-full">
+          <img
+            src="https://i.ibb.co/RYJfcyf/2202-i402-007-F-m004-c9-FP-keto-diet-flat-background-removebg-preview.png"
+            alt=""
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

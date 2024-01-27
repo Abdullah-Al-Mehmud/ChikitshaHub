@@ -19,7 +19,9 @@ const Partners = () => {
   const partnersData = data.partners;
   return (
     <div className="max-w-6xl mx-auto my-24">
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mb-6">Partners</h1>
+      <h1 className="text-4xl md:text-3xl lg:text-4xl font-bold text-center mb-6">
+        Partners
+      </h1>
       <Splide
         options={{
           type: "loop",
@@ -36,8 +38,7 @@ const Partners = () => {
           },
         }}
         extensions={{ AutoScroll }}
-        className="lg:p-10 p-3 rounded-lg max-w-6xl mx-auto"
-      >
+        className="lg:p-10 p-3 rounded-lg max-w-6xl mx-auto">
         {partnersData?.map((dd) => (
           <SplideSlide key={dd._id}>
             <img src={dd.image_link} alt="Image 1" width="100px" />
