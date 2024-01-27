@@ -69,8 +69,8 @@ const Header = () => {
       className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
         isScrolled ? "bg-gray-200 text-black" : " text-black"
       }`}>
-      <div className="max-w-6xl mx-auto navbar py-3 px-6">
-        <div className="navbar-start">
+      <div className="max-w-7xl  flex justify-around mx-auto navbar py-3 px-6">
+        <div className="">
           <div className="dropdown">
             <div
               onClick={() => setShow(!show)}
@@ -109,17 +109,19 @@ const Header = () => {
                 src="https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png"
                 alt=""
               />
-              <h2 className="md:text-3xl text-xl font-semibold">
+              <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
                 Chikitsha<span className="text-[#409bd4]">Hub</span>
               </h2>
             </div>
           </Link>
         </div>
 
-        <div className="navbar-end">
+        <div className=" w-fit  ">
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu  menu-horizontal px-1">{links}</ul>
           </div>
+        </div>
+        <div className="">
           {user?.email ? (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className=" m-1">
@@ -157,17 +159,30 @@ const Header = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"}>
-              <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
-                <span>Login</span>
-                <span
-                  className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
-                    isScrolled ? "bg-gray-200" : "bg-white"
-                  }`}>
-                  <LuLogIn className="h-10" />
-                </span>
-              </button>
-            </Link>
+            <div className="flex gap-5">
+              <Link to={"/login"}>
+                <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Login</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}>
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+              <Link to={"/login"}>
+                <button className="flex items-center relative w-32 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Register</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}>
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </div>
