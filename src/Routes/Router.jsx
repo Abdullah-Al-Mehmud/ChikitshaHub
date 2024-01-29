@@ -8,6 +8,10 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
+// import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
+// import Specialties from "../Components/Specialties/Specialties";
+import Tips from "../Pages/Tips/Tips";
+import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
@@ -30,10 +34,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-      {
-        path: "/userRegister",
-        element: <UserRegistration></UserRegistration>,
-      },
+      // {
+      //   path: "/userRegister",
+      //   element: <UserRegistration></UserRegistration>,
+      // },
       {
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
@@ -41,6 +45,15 @@ const router = createBrowserRouter([
       {
         path: "/specialties",
         element: <Specialties />,
+      },
+      {
+        path: "/tips",
+        element: <Tips></Tips>,
+      },
+      {
+        path: "/readmores/:id",
+        element: <Readmore></Readmore>,
+        loader: () => fetch("/Tips.json"),
       },
       {
         path: "/doctors/1/:category",
@@ -56,15 +69,27 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login></Login>,
+      // },
+      // {
+      //   path: "/morespecialties",
+      //   element: <MoreSpecialties></MoreSpecialties>,
+      // },
       {
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
     ],
+  },
+  {
+    path: "/userRegister",
+    element: <UserRegistration></UserRegistration>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
   },
 ]);
 

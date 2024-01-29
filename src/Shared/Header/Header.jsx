@@ -31,8 +31,7 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }
-      >
+        }>
         Home
       </NavLink>
       <NavLink
@@ -41,9 +40,17 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }
-      >
+        }>
         Specialties
+      </NavLink>
+      <NavLink
+        to="/tips"
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-lg font-semibold"
+            : "mr-6 text-lg font-semibold"
+        }>
+        Tips
       </NavLink>
       <NavLink
         to="/about"
@@ -51,18 +58,17 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }
-      >
+        }>
         About Us
       </NavLink>
+
       <NavLink
         to="/Contact"
         className={({ isActive }) =>
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }
-      >
+        }>
         Contact Us
       </NavLink>
     </>
@@ -71,25 +77,22 @@ const Header = () => {
   return (
     <div
       className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
-        isScrolled ? "bg-gray-200 text-black" : "bg-none text-white"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto navbar py-3 px-6">
-        <div className="navbar-start">
+        isScrolled ? "bg-gray-200 text-black" : " text-black"
+      }`}>
+      <div className="max-w-7xl flex justify-around mx-auto navbar py-3 px-6">
+        <div className="">
           <div className="dropdown">
             <div
               onClick={() => setShow(!show)}
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden"
-            >
+              className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -101,8 +104,7 @@ const Header = () => {
             {show ? (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52"
-              >
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52">
                 {links}
               </ul>
             ) : (
@@ -117,17 +119,19 @@ const Header = () => {
                 src="https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png"
                 alt=""
               />
-              <h2 className="md:text-3xl text-xl font-semibold">
+              <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
                 Chikitsha<span className="text-[#409bd4]">Hub</span>
               </h2>
             </div>
           </Link>
         </div>
 
-        <div className="navbar-end">
+        <div className=" w-fit  ">
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu  menu-horizontal px-1">{links}</ul>
           </div>
+        </div>
+        <div className="">
           {user?.email ? (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className=" m-1">
@@ -139,8 +143,7 @@ const Header = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link className="text-black w-full" to="/userProfile">
                     <h1 className="text-center">Your Profile</h1>
@@ -154,8 +157,7 @@ const Header = () => {
                 <li>
                   <button
                     className="btn btn-sm bg-transparent border-none bg-white text-start text-blue-700"
-                    onClick={logOut}
-                  >
+                    onClick={logOut}>
                     <div className="flex justify-between gap-2">
                       <span>
                         <MdLogout />
@@ -167,18 +169,30 @@ const Header = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"}>
-              <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
-                <span>Login</span>
-                <span
-                  className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
-                    isScrolled ? "bg-gray-200" : "bg-[#080b0e]"
-                  }`}
-                >
-                  <LuLogIn className="h-10" />
-                </span>
-              </button>
-            </Link>
+            <div className="flex gap-5">
+              <Link to={"/login"}>
+                <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Login</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}>
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+              <Link to={"/userRegister"}>
+                <button className="flex items-center relative w-32 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Register</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}>
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </div>

@@ -5,29 +5,26 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      password: "password",
-      email: "johon12@gmail.com",
-    },
-  });
+  } = useForm();
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
     const handleLogIn = async () => {
       try {
         const logInResult = await dispatch(signInAsync(email, password));
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -44,6 +41,7 @@ const Login = () => {
   };
   const handleSignInWithGoogle = () => {
     dispatch(signInWithGoogleAsync());
+    navigate("/");
   };
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -54,33 +52,15 @@ const Login = () => {
 
   return (
     <div>
-      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
-        <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                Log In
-              </h2>
-              <p className="font-medium text-white mt-1">
-                Home &gt; <span className="text-[#409bd4]">LogIn</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="py-20">
-        <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl ">
+      <div className="md:pt-10 py-6">
+        <div className="flex items-center bg-white rounded-lg shadow-xl overflow-hidden mx-auto max-w-sm lg:max-w-4xl ">
           <div className="hidden lg:block lg:w-1/2 bg-cover">
-            <img
-              src="https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png"
-              alt=""
-            />
+            <img src="https://i.ibb.co/Lh5BzVX/log-Inbanner.png" alt="" />
           </div>
           <div className="w-full p-8 lg:w-1/2">
             <button
               onClick={() => handleSignInWithGoogle()}
-              className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
-            >
+              className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full">
               <div className="px-4 py-3">
                 <svg className="h-6 w-6" viewBox="0 0 40 40">
                   <path
@@ -119,8 +99,7 @@ const Login = () => {
               <span className="border-b w-1/5 lg:w-1/4"></span>
               <a
                 href="#"
-                className="text-xs text-center text-gray-500 uppercase"
-              >
+                className="text-xs text-center text-gray-500 uppercase">
                 or login with email
               </a>
               <span className="border-b w-1/5 lg:w-1/4"></span>
@@ -134,8 +113,9 @@ const Login = () => {
                   {...register("email", {
                     required: "input field is required",
                   })}
-                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
                   type="email"
+                  placeholder="example@gmail.com"
                 />
                 <p className="text-red-500 py-3 font-bold">
                   {errors.email?.message}
@@ -163,14 +143,14 @@ const Login = () => {
                     })}
                     type={showPassword ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4  w-full appearance-none "
+                    className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
+                    placeholder="***********"
                     // type="password"
                   />
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none h-10"
-                  >
+                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10">
                     {showPassword ? (
                       <FaEyeSlash className="text-gray-500" />
                     ) : (
@@ -192,8 +172,7 @@ const Login = () => {
               <span className="border-b w-1/5 md:w-1/4"></span>
               <Link
                 to={"/userRegister"}
-                className="text-xs text-gray-500 uppercase"
-              >
+                className="text-xs font-bold uppercase">
                 or sign up
               </Link>
               <span className="border-b w-1/5 md:w-1/4"></span>

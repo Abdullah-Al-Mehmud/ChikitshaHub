@@ -16,8 +16,7 @@ const Tips = () => {
         {TipsData.map((tips, idx) => (
           <div
             key={idx}
-            className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col"
-          >
+            className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col">
             <img
               src={tips.image}
               alt="Card img"
@@ -37,7 +36,8 @@ const Tips = () => {
                 <div className="flex justify-between items-center">
                   <Link to={`/readmores/${tips.id}`}>
                     <button className="inline-block pb-1 mt-2 text-base font-black text-[#409bd4] uppercase border-b border-transparent hover:border-blue-600">
-                      Read More -&gt;{" "}
+                      Read
+                      {`More -> `}
                     </button>
                   </Link>
                   <p>

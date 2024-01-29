@@ -65,7 +65,7 @@ const DoctorRegister = () => {
       name: data.name,
       title: data.title,
       specialties: data.specialties,
-      category: data.category,
+      // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
       rating: 0,
@@ -104,23 +104,9 @@ const DoctorRegister = () => {
 
   return (
     <>
-      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
-        <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                {`Doctor's Registration Page`}
-              </h2>
-              <p className="font-medium text-white mt-1">
-                Home &gt; <span className="text-[#409bd4]">Register Here</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="h-full py-20 bg-gray-400 ">
-        <div className="mx-auto">
-          <div className="flex justify-center px-6 py-6">
+      <div className="h-full  ">
+        <div className="mx-auto px-20 py-20">
+          <div className="flex justify-center px-6 py-6 shadow-xl">
             <div className="w-full xl:w-3/4 lg:w-11/12 flex gap-5 items-center">
               <div className="w-full  bg-white  p-5 rounded-lg lg:rounded-l-none">
                 <h3 className="py-7 text-4xl font-bold text-center ">
@@ -191,9 +177,11 @@ const DoctorRegister = () => {
                         <option disabled defaultValue>
                           Choose specialties
                         </option>
+
                         <option value=" General Practitioners">
                           General Practitioners
                         </option>
+
                         <option value="Cardiologists">Cardiologists</option>
                         <option value="Dermatologists">Dermatologists</option>
                         <option value=" Pediatricians">Pediatricians</option>
@@ -234,16 +222,16 @@ const DoctorRegister = () => {
                     </div>
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Category
+                        BMDC Number
                       </label>
                       <input
                         type="text"
-                        {...register("category", { required: true })}
-                        placeholder="Category"
+                        {...register("bmdc", { required: true })}
+                        placeholder="bmdc"
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         required
                       />
-                      {errors.category && (
+                      {errors.bmdc && (
                         <span className="text-red-600">
                           Category is required
                         </span>
@@ -370,25 +358,6 @@ const DoctorRegister = () => {
                         <span className="text-red-600">
                           {`Doctor's Title is required`}
                         </span>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex gap-5 w-full">
-                    <div className="mb-4 w-1/2">
-                      <label className="block mb-2 text-sm font-bold  ">
-                        BMDC Number
-                      </label>
-                      <input
-                        type="text"
-                        {...register("bmdc", { required: true })}
-                        name="bmdc"
-                        placeholder="bmdc"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        required
-                      />
-                      {errors.bmdc && (
-                        <span className="text-red-600">bmdc is required</span>
                       )}
                     </div>
                   </div>
