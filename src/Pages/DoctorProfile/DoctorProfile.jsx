@@ -8,7 +8,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -96,9 +96,9 @@ const DoctorProfile = () => {
               <p className="text-sm font-semibold text-gray-600 my-2">
                 {doctor.specialties}
               </p>
-              <p className="text-sm font-medium text-gray-600 flex gap-2">
+              {/* <p className="text-sm font-medium text-gray-600 flex gap-2">
                 {doctor.specializations[0]}, {doctor.specializations[1]}
-              </p>
+              </p> */}
               <h4 className="text-lg font-medium text-gray-600 mt-2">
                 Working at{" "}
                 <span className="text-lg font-semibold text-black">
@@ -197,9 +197,15 @@ const DoctorProfile = () => {
                     <h6 className="text-lg font-medium text-gray-600">
                       Instant Consultation Time
                     </h6>
-                    <h4 className="text-lg font-bold">
-                      {doctor.availability[0]}, {doctor.availability[1]},{" "}
-                      {doctor.availability[2]}
+                    <h4 className="text-lg flex font-bold">
+                      {doctor.availability?.map((avail, index) => (
+                        <React.Fragment key={index}>
+                          <p className="">{avail}</p>
+                          {index < doctor.availability.length - 1 && (
+                            <span>, </span>
+                          )}
+                        </React.Fragment>
+                      ))}
                     </h4>
                   </div>
                 </div>
