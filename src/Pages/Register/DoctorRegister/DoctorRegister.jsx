@@ -177,9 +177,11 @@ const DoctorRegister = () => {
                         <option disabled defaultValue>
                           Choose specialties
                         </option>
+
                         <option value=" General Practitioners">
                           General Practitioners
                         </option>
+
                         <option value="Cardiologists">Cardiologists</option>
                         <option value="Dermatologists">Dermatologists</option>
                         <option value=" Pediatricians">Pediatricians</option>

@@ -63,12 +63,10 @@ const Testimonials = () => {
                 </p>
                 <div className="flex flex-col-reverse md:flex-row items-center justify-between">
                   <div className="flex flex-col md:flex-row items-center gap-4">
-                    <div className="w-14 h-14">
-                      <img
-                        src={review.img}
-                        alt=""
-                        className="rounded-full w-14 h-14"
-                      />
+                    <div className="avatar">
+                      <div className="w-16 rounded-full">
+                        <img src={review.img} />
+                      </div>
                     </div>
                     <div className="text-start text-[#222e48]">
                       <h4 className="text-xl font-semibold mb-2">
