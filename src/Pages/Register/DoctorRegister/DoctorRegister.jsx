@@ -4,11 +4,16 @@ import Select from "react-select";
 // import { Link } from "react-router-dom";
 import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
   const axiosPrivate = useAxiosPrivet();
+  const user = useSelector((state) => state.auth.user);
+  // console.log(user);
+  // const { photoURL } = user || {};
+
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -65,6 +70,8 @@ const DoctorRegister = () => {
       name: data.name,
       title: data.title,
       specialties: data.specialties,
+      img: user?.photoURL,
+      role: "pending",
       // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
@@ -172,45 +179,41 @@ const DoctorRegister = () => {
                         {...register("specialties", { required: true })}
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
-                        id="Specialties"
-                        name="Specialties">
+                        id="specialties"
+                        name="specialties">
                         <option disabled defaultValue>
-                          Choose specialties
+                          Choose Title
                         </option>
-
-                        <option value=" General Practitioners">
+                        <option value="General Practitioners">
                           General Practitioners
                         </option>
-
                         <option value="Cardiologists">Cardiologists</option>
                         <option value="Dermatologists">Dermatologists</option>
-                        <option value=" Pediatricians">Pediatricians</option>
+                        <option value="Pediatricians">Pediatricians</option>
                         <option value="Orthopedic Surgeons">
                           Orthopedic Surgeons
                         </option>
-                        <option value=" Psychiatrists">Psychiatrists</option>
-                        <option value="  Gynecologists">Gynecologists</option>
-                        <option value="  Endocrinologists">
+                        <option value="Psychiatrists">Psychiatrists</option>
+                        <option value="Gynecologists">Gynecologists</option>
+                        <option value="Endocrinologists">
                           Endocrinologists
                         </option>
-                        <option value="  Ophthalmologists">
+                        <option value="Ophthalmologists">
                           Ophthalmologists
                         </option>
-                        <option value="  Urologists">Urologists</option>
-                        <option value="  ENT Specialists">
-                          ENT Specialists
-                        </option>
-                        <option value="  Gastroenterologists">
+                        <option value="Urologists">Urologists</option>
+                        <option value="ENT Specialists">ENT Specialists</option>
+                        <option value="Gastroenterologists">
                           Gastroenterologists
                         </option>
-                        <option value="  Neurologists">Neurologists</option>
-                        <option value="  Allergists/Immunologists">
+                        <option value="Neurologists">Neurologists</option>
+                        <option value="Allergists/Immunologists">
                           Allergists/Immunologists
                         </option>
-                        <option value="  Infectious Disease Specialists">
+                        <option value="Infectious Disease Specialists">
                           Infectious Disease Specialists
                         </option>
-                        <option value="  Emergency Medicine Physicians">
+                        <option value="Emergency Medicine Physicians">
                           Emergency Medicine Physicians
                         </option>
                       </select>
@@ -405,7 +408,7 @@ const DoctorRegister = () => {
                         Session
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         {...register("session", { required: true })}
                         name="session"
                         placeholder="Session"
