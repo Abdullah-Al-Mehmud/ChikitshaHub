@@ -40,6 +40,18 @@ const DoctorProfile = () => {
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
+  const dateObjectStart = new Date(doctor.experience.start);
+  const formattedDateStart = dateObjectStart.toLocaleDateString();
+  doctor.experience.start = formattedDateStart;
+
+  if(doctor.experience.end === "present"){
+   doctor.experience.end = "present";
+  }else{
+    const dateObjectEnd = new Date(doctor.experience.end);
+    const formattedDateEnd = dateObjectEnd.toLocaleDateString();
+    doctor.experience.end = formattedDateEnd;
+  }
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: "",
