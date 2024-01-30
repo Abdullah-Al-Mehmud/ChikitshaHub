@@ -23,10 +23,9 @@ const Meet = () => {
 
     // console.log(userId, userName)
 
-
     const myMeeting = async (element) => {
-        const appID = 1064521483;
-        const serverSecret = "7215c500b6b837ab322dcdd397507095";
+        const appID = parseInt(import.meta.env.VITE_APP_ID);
+        const serverSecret = import.meta.env.VITE_SERVER_SECRET;
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
             appID,
             serverSecret,
