@@ -21,6 +21,7 @@ const DoctorProfile = () => {
   const bookedSlots = [];
   const navigate = useNavigate();
 
+  console.log(meetId)
 
   const isSlotAvailable = (date) => {
     const formattedDate = date.toISOString(); // Adjust the format based on your backend data
@@ -101,7 +102,7 @@ const DoctorProfile = () => {
     setMeetId(newId);
 
 
-    navigate(`/meet/${meetId}`)
+    navigate(`/meet/${newId}`)
   }
 
 
