@@ -7,7 +7,8 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Meet = () => {
 
-    const [currentUser, setCurrentUser] = useState('')
+    const [currentUser, setCurrentUser] = useState('');
+
     const { meetId } = useParams();
     const user = useSelector((state) => state.auth.user);
     const axios = useAxiosPublic();
@@ -23,7 +24,7 @@ const Meet = () => {
     // console.log(userId, userName)
 
 
-    const myMeeting = async () => {
+    const myMeeting = async (element) => {
         const appID = 1064521483;
         const serverSecret = "7215c500b6b837ab322dcdd397507095";
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -35,30 +36,17 @@ const Meet = () => {
         const zc = ZegoUIKitPrebuilt.create(kitToken);
 
         zc.joinRoom({
-            turnOnMicrophoneWhenJoining: true,
-            turnOnCameraWhenJoining: true,
-            showMyCameraToggleButton: true,
-            showMyMicrophoneToggleButton: true,
-            showAudioVideoSettingsButton: true,
-            showScreenSharingButton: true,
-            showTextChat: true,
-            showUserList: true,
-            maxUsers: 2,
-            layout: "Auto",
-            showLayoutButton: false,
+            container: element,
             scenario: {
-                mode: "OneONoneCall",
-                config: {
-                    role: "Host",
-                },
-            },
+                mode: ZegoUIKitPrebuilt.OneONoneCall,
+            }
         });
     }
     // console.log(currentUser[0]._id)
 
     return (
-        <div ref={myMeeting} className="max-w-6xl mx-auto  px-6 mt-16 lg:py-20">
-
+        <div className="max-w-6xl mx-auto  px-6 mt-16 lg:py-20">
+            <div ref={myMeeting}></div>
         </div>
     );
 };
