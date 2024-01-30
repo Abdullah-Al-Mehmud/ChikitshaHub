@@ -39,8 +39,8 @@ const Partners = () => {
         }}
         extensions={{ AutoScroll }}
         className="lg:p-10 p-3 rounded-lg max-w-6xl mx-auto">
-        {partnersData?.map((dd) => (
-          <SplideSlide key={dd._id}>
+        {partnersData?.map((dd, idx) => (
+          <SplideSlide key={idx}>
             <img src={dd.image_link} alt="Image 1" width="100px" />
           </SplideSlide>
         ))}

@@ -7,12 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { signUpAsync, updateUserAsync } from "../../../redux/authThunks";
+import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const axiosPrivate = useAxiosPrivet();
   const {
     register,
     handleSubmit,
@@ -24,22 +26,29 @@ const UserRegistration = () => {
     const email = data.email;
     const photoUrl = data.photo;
     const password = data.password;
+    const role = "user";
     const userInfo = {
       name,
       email,
       photoUrl,
+      role,
     };
+    console.log(userInfo);
     const handleRegistration = async () => {
       try {
         const signUpResult = await dispatch(signUpAsync(email, password));
         await dispatch(updateUserAsync(name, photoUrl));
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Registration Successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        const userData = await axiosPrivate.post("/users", userInfo);
+        if (userData.data.success) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Registration Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
         navigate("/");
       } catch (error) {
         // Handle errors if needed

@@ -8,7 +8,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -16,12 +16,12 @@ import Swal from "sweetalert2";
 
 const DoctorProfile = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-  const [meetId, setMeetId] = useState('');
+  const [meet, setMeet] = useState('');
   const doctor = useLoaderData();
   const bookedSlots = [];
   const navigate = useNavigate();
 
-  console.log(meetId)
+  console.log(meet)
 
   const isSlotAvailable = (date) => {
     const formattedDate = date.toISOString(); // Adjust the format based on your backend data
@@ -95,14 +95,8 @@ const DoctorProfile = () => {
     });
   };
 
-  const handleMeetId = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const newId = form.meetId.value;
-    setMeetId(newId);
-
-
-    navigate(`/meet/${newId}`)
+  const handleMeetId = () => {
+    navigate(`/meet/${meet}`)
   }
 
 
@@ -126,9 +120,9 @@ const DoctorProfile = () => {
               <p className="text-sm font-semibold text-gray-600 my-2">
                 {doctor.specialties}
               </p>
-              <p className="text-sm font-medium text-gray-600 flex gap-2">
+              {/* <p className="text-sm font-medium text-gray-600 flex gap-2">
                 {doctor.specializations[0]}, {doctor.specializations[1]}
-              </p>
+              </p> */}
               <h4 className="text-lg font-medium text-gray-600 mt-2">
                 Working at{" "}
                 <span className="text-lg font-semibold text-black">
@@ -162,15 +156,13 @@ const DoctorProfile = () => {
 
             <dialog id="my_modal_2" className="modal">
               <div className="modal-box">
-                <form onSubmit={handleMeetId}>
-                  <input type="text" name="meetId" id="" placeholder="Enter your meet id" className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800" />
-                  <button type="submit" className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
-              <span>Join</span>
-              <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                <FaVideo className="h-10" />
-              </span>
+                  <input onChange={e => setMeet(e.target.value)} type="text" name="meetId" id="" placeholder="Enter your meet id" className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800" />
+                  <button type="submit" onClick={handleMeetId} className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
+                    <span>Join</span>
+                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                      <FaVideo className="h-10" />
+                    </span>
                   </button>
-                </form>
               </div>
               <form method="dialog" className="modal-backdrop">
                 <button>close</button>
@@ -259,9 +251,15 @@ const DoctorProfile = () => {
                     <h6 className="text-lg font-medium text-gray-600">
                       Instant Consultation Time
                     </h6>
-                    <h4 className="text-lg font-bold">
-                      {doctor.availability[0]}, {doctor.availability[1]},{" "}
-                      {doctor.availability[2]}
+                    <h4 className="text-lg flex font-bold">
+                      {doctor.availability?.map((avail, index) => (
+                        <React.Fragment key={index}>
+                          <p className="">{avail}</p>
+                          {index < doctor.availability.length - 1 && (
+                            <span>, </span>
+                          )}
+                        </React.Fragment>
+                      ))}
                     </h4>
                   </div>
                 </div>

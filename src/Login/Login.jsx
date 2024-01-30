@@ -7,12 +7,15 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithGoogleAsync, signInAsync } from "../redux/authThunks";
+import useAxiosPrivet from "../Hooks/useAxiosPrivet";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
+
   const loading = useSelector((state) => state.auth.loading);
+  const axiosPrivate = useAxiosPrivet();
   const {
     register,
     handleSubmit,
@@ -26,12 +29,13 @@ const Login = () => {
         const logInResult = await dispatch(signInAsync(email, password));
 
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "LogIn Successful",
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       } catch (error) {
         console.log(error);
       }
@@ -39,8 +43,45 @@ const Login = () => {
     handleLogIn();
     console.log(email, password);
   };
+
   const handleSignInWithGoogle = () => {
-    dispatch(signInWithGoogleAsync());
+    dispatch(signInWithGoogleAsync()).then((result) => {
+      // console.log(result.payload.displayName);
+      const googleLoginUser = {
+        name: result?.payload?.displayName,
+        email: result?.payload?.email,
+        photoUrl: result?.payload?.photoURL,
+        role: "user",
+      };
+      console.log(googleLoginUser);
+      axiosPrivate.post("/users", googleLoginUser);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Registration Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    });
+    // axiosPrivate.post("/users", googleLoginUser).then((result) => {
+    //   console.log(result);
+    // });
+
+    // axiosPrivate.post("/users", googleLoginUser).then((result) => {
+    //   console.log(result);
+    //   // if (result.data.success) {
+    //   //   Swal.fire({
+    //   //     position: "center",
+    //   //     icon: "success",
+    //   //     title: "Registration Successful!!",
+    //   //     showConfirmButton: false,
+    //   //     timer: 1500,
+    //   //   });
+    //   //   // reset();
+    //   // }
+    // });
+
     navigate("/");
   };
   const [password, setPassword] = useState("");
@@ -49,6 +90,8 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
+
+  console.log(user);
 
   return (
     <div>
