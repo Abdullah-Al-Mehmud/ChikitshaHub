@@ -1,5 +1,5 @@
 import Banner from './../../Components/Banner/Banner';
-import Specialties from './../../Components/Specialties/Specialties';
+//import Specialties from './../../Components/Specialties/Specialties';
 import BestDoctor from './../../Components/BestDoctor/BestDoctor';
 import Partners from '../../Components/partners/Partners';
 
@@ -11,15 +11,13 @@ import BMICalculator from '../../Components/BMICalculator/BMICalculator';
 const Home = () => {
   return (
     <>
-
-      <Banner/>
-      <Specialties />
+      <Banner />
+      {/* <Specialties /> */}
       <BestDoctor />
-      <Faq/>
-      <Testimonials/>
+      <Testimonials />
+      <Faq />
       <Partners />
-      <BMICalculator/>
-
+      <BMICalculator />
     </>
   );
 };

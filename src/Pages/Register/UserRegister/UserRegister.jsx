@@ -1,178 +1,201 @@
-import { useForm } from "react-hook-form";
+/* eslint-disable no-unused-vars */
 
-import { Link } from "react-router-dom";
-//import registerImg from "../../../assets/images/register.png"
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { signUpAsync, updateUserAsync } from "../../../redux/authThunks";
+import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 
 const UserRegistration = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const axiosPrivate = useAxiosPrivet();
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const onSubmit = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const photoUrl = data.photo;
+    const password = data.password;
+    const role = "user";
+    const userInfo = {
+      name,
+      email,
+      photoUrl,
+      role,
+    };
+    console.log(userInfo);
+    const handleRegistration = async () => {
+      try {
+        const signUpResult = await dispatch(signUpAsync(email, password));
+        await dispatch(updateUserAsync(name, photoUrl));
+        const userData = await axiosPrivate.post("/users", userInfo);
+        if (userData.data.success) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Registration Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
+        navigate("/");
+      } catch (error) {
+        // Handle errors if needed
+        // console.log(error);
+      }
+    };
+
+    handleRegistration();
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
   return (
     <>
-      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
-        <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                Register Here
-              </h2>
-              <p className="font-medium text-white mt-1">
-                Home &gt; <span className="text-[#409bd4]">Register Here</span>
-              </p>
+      {/* <Registration /> */}
+      <div className="md:pt-10 py-10">
+        <div className="flex gap-10 items-center bg-white rounded-lg  overflow-hidden mx-auto max-w-sm lg:max-w-5xl">
+          <div className="hidden lg:block lg:w-2/3 bg-cover">
+            <img
+              src="
+https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png"
+              alt=""
+            />
+          </div>
+          <div className="w-full p-8 lg:w-2/3">
+            <h3 className="py-4 text-4xl font-bold text-center  ">
+              Create an Account!!
+            </h3>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mt-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Full Name
+                </label>
+                <input
+                  {...register("name", {
+                    required: "input field is required",
+                  })}
+                  className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
+                  type="fullName"
+                  placeholder="Your Name"
+                />
+                <p className="text-red-500 py-3 font-bold">
+                  {errors.fullName?.message}
+                </p>
+              </div>
+              <div className="">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Profile Photo
+                </label>
+                <input
+                  {...register("photo", {
+                    required: "input field is required",
+                  })}
+                  // name="photo"
+                  className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
+                  type="text"
+                  placeholder="Your Photo URL"
+                />
+                <p className="text-red-500 py-3 font-bold">
+                  {errors.photo?.message}
+                </p>
+              </div>
+              <div className="">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Email Address
+                </label>
+                <input
+                  {...register("email", {
+                    required: "input field is required",
+                  })}
+                  className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
+                  type="email"
+                  placeholder="example@gmail.com"
+                />
+                <p className="text-red-500 py-3 font-bold">
+                  {errors.email?.message}
+                </p>
+              </div>
+              {/* new */}
+
+              <div className="">
+                <div className="flex justify-between">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Password
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
+                    {...register("password", {
+                      required: "input field is required",
+                      minLength: {
+                        value: 8,
+                        message: "you password must be 8 character",
+                      },
+                    })}
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
+                    placeholder="***********"
+                    // type="password"
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10">
+                    {showPassword ? (
+                      <FaEyeSlash className="text-gray-500" />
+                    ) : (
+                      <FaEye className="text-gray-500" />
+                    )}
+                  </button>
+                  <p className="text-red-500 py-3 font-bold">
+                    {errors.password?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <button className="w-full relative rounded-full pl-5 py-2 font-bold border-2 bg-[#409ad4] text-white outline-none">
+                  Register
+                </button>
+              </div>
+            </form>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="border-b w-1/5 md:w-1/4"></span>
+
+              <Link to={"/login"} className="text-xs font-bold uppercase">
+                or Log In
+              </Link>
+              <span className="border-b w-1/5 md:w-1/4"></span>
             </div>
           </div>
         </div>
       </div>
-      <div className="h-full py-20 bg-base-200 ">
-        <div className="mx-auto">
-          <div className="flex justify-center px-6 py-6">
-            <div className="w-full xl:w-3/4 lg:w-11/12 flex gap-5 items-center">
-              <div className="w-full h-auto bg-base-200  hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
-                <img
-                  className=""
-                  src="https://i.ibb.co/t8C35YM/416184993-317205861315040-2894419172803826832-n.png"
-                  alt=""
-                />
-              </div>
-              <div className="w-full lg:w-7/12 bg-whit p-5 rounded-lg lg:rounded-l-none">
-                <h3 className="py-4 text-4xl font-bold text-center  ">
-                  Create an Account!!
-                </h3>
-                <form className="px-8 pt-6 pb-8  bg-whit rounded">
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold  ">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      {...register("name", { required: true })}
-                      name="name"
-                      placeholder="Name"
-                      className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      required
-                    />
-                    {errors.name && (
-                      <span className="text-red-600">Name is required</span>
-                    )}
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold  ">
-                      Photo URL
-                    </label>
-                    <input
-                      type="text"
-                      {...register("photoURL", { required: true })}
-                      placeholder="Photo Url"
-                      className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      required
-                    />
-                    {errors.photoURL && (
-                      <span className="text-red-600">
-                        Photo Url is required
-                      </span>
-                    )}
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold  ">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      {...register("email", {
-                        required: true,
-                        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      })}
-                      name="email"
-                      placeholder="Email"
-                      className=" w-full px-3 py-2 mb-3 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      required
-                    />
-                    {errors.email && errors.email.type === "required" && (
-                      <span className="text-red-600">Email is required</span>
-                    )}
-                    {errors.email && errors.email.type === "pattern" && (
-                      <span className="text-red-600">Invalid email format</span>
-                    )}
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold  ">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      {...register("password", {
-                        required: true,
-                        minLength: 6,
-                        maxLength: 20,
-                        pattern:
-                          /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                      })}
-                      name="password"
-                      placeholder="password"
-                      className="w-full px-3 py-2 mb-3 text-sm leading-tight   rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                      required
-                    />
-                    {errors.password?.type === "required" && (
-                      <p className="text-red-600">Password is required</p>
-                    )}
-                    {errors.password?.type === "minLength" && (
-                      <p className="text-red-600">
-                        Password must be 6 character
-                      </p>
-                    )}
-                    {errors.password?.type === "maxLength" && (
-                      <p className="text-red-600">
-                        Password must be less than 20 character
-                      </p>
-                    )}
-                    {errors.password?.type === "pattern" && (
-                      <p className="text-red-600">
-                        Password must have one uppercase one lowercase, one
-                        number and one special character{" "}
-                      </p>
-                    )}
-                  </div>
-                  <div className="mb-6 text-center">
-                    <button
-                      className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700  dark focus:outline-none focus:shadow-outline"
-                      type="button">
-                      Register Account
-                    </button>
-                  </div>
-                  <hr className="mb-6 border-t" />
-                  <div className="text-center">
-                    <a
-                      className="inline-block text-sm text-blue-500  align-baseline hover:text-blue-800"
-                      href="#">
-                      Forgot Password?
-                    </a>
-                  </div>
-                  <div className="text-center">
-                    <p className="inline-block cursor-pointer text-sm text-blue-500  align-baseline hover:text-blue-800">
-                      Already have an account? <Link to="/login">Log In</Link>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="">
+      {/* <div className="">
             <div className="flex justify-between mr-[14%]">
               <div></div>
               <div className="flex bg-white items-center rounded-r-lg gap-5  px-[8.5%] py-10">
                 <p className="font-bold ">Are you a doctor?</p>
                 <Link
                   to="/doctorRegister"
-                  className="border-[#409bd4] border rounded-full px-5 py-2">
+                  className="border-[#409bd4] border rounded-full px-5 py-2"
+                >
                   Join as a doctor
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> */}
     </>
   );
 };
