@@ -9,6 +9,7 @@ import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
 import Specialties from './../Pages/Specialties/Specialties';
+import Emailjs from "../Components/Emailjs/Emailjs";
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         path:"/login",
         element:<Login></Login>
       },
+      {
+        path: '/emailjs',
+        element: <Emailjs/>
+      }
     ],
   },
 ]);
