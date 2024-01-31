@@ -16,6 +16,7 @@ import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
+import Chats from "../Pages/Chats/Chats";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "/chats",
+        element: <Chats></Chats>,
       },
     ],
   },
