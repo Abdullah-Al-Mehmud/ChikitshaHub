@@ -15,8 +15,8 @@ import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
-import Home from "../Pages/Home/Home";
-
+import Home from "../Pages/home/Home";
+import Meet from "../Pages/Meet/Meet";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +69,10 @@ const router = createBrowserRouter([
         element: <DoctorProfile />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
+      },
+      {
+        path: "/meet/:meetId",
+        element: <Meet />
       },
       // {
       //   path: "/login",
