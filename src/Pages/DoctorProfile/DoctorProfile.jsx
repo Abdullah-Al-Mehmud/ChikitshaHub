@@ -9,7 +9,6 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
 
@@ -56,19 +55,6 @@ const DoctorProfile = () => {
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
 
-  // const axios = useAxiosPublic();
-
-  // const handleAppointment = (appointment) => {
-  //   const appointmentDetails = {
-  //     doctorName: doctor?.name,
-  //     doctorCode: doctor?.doctorCode,
-  //     patientName: displayName,
-  //     patientEmail: email,
-  //     appointmentTime: appointment,
-  //   };
-  //   // console.log(appointmentDetails)
-  //   return appointmentDetails;
-  // };
 
   return (
     <div>
