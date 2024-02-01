@@ -1,5 +1,5 @@
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useForm } from "react-hook-form";
@@ -121,12 +121,14 @@ const DoctorProfile = () => {
                 <FaVideo className="h-10" />
               </span>
             </button>
-            <button className="flex items-center relative w-60 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
-              <span>Chat With Doctor</span>
-              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
-                <FaMessage className="h-10" />
-              </span>
-            </button>
+            <Link to={`/chats`}>
+              <button className="flex items-center relative w-60 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
+                <span>Chat With Doctor</span>
+                <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
+                  <FaMessage className="h-10" />
+                </span>
+              </button>
+            </Link>
 
             <form
               className="relative"
