@@ -16,6 +16,7 @@
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.4.0",
+    "@zegocloud/zego-uikit-prebuilt": "^1.10.2",
     "axios": "^1.6.7",
     "date-fns": "^3.3.1",
     "firebase": "^10.7.2",
