@@ -16,6 +16,8 @@ import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
+import Dashboard from "../Pages/dashboard/Dashboard";
+import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
 // import Specialties from "../Pages/Specialties/Specialties";
 import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
@@ -107,6 +109,16 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserDashboard />,
+      },
+    ],
   },
 ]);
 
