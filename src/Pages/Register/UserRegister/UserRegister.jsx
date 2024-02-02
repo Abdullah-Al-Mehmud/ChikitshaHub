@@ -47,9 +47,16 @@ const UserRegistration = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/");
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Already Registered",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-
-        navigate("/");
       } catch (error) {
         // Handle errors if needed
         // console.log(error);

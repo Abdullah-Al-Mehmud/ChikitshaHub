@@ -5,23 +5,22 @@ import "react-tabs/style/react-tabs.css";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaMessage } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
 
-
 const DoctorProfile = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-  const [appointmentTime, setAppointmentTime] = useState('');
-  const [meet, setMeet] = useState('');
+  const [appointmentTime, setAppointmentTime] = useState("");
+  const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const bookedSlots = [];
   const navigate = useNavigate();
 
-  console.log(meet)
+  console.log(meet);
 
   const isSlotAvailable = (date) => {
     const formattedDate = date.toISOString(); // Adjust the format based on your backend data
@@ -72,13 +71,9 @@ const DoctorProfile = () => {
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
 
-
   const handleMeetId = () => {
-    navigate(`/meet/${meet}`)
-  }
-
-
-
+    navigate(`/meet/${meet}`);
+  };
 
   return (
     <div>
@@ -117,47 +112,47 @@ const DoctorProfile = () => {
                 (incl. VAT)
               </span>
             </h3>
-            <button onClick={() => document.getElementById('my_modal_2').showModal()} className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
+            <button
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+              // onClick={handleMeetId}
+              className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
               <span>See Doctor Now</span>
               <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                 <FaVideo className="h-10" />
               </span>
             </button>
-
-
-
-
-
-
-
-
-
-            <dialog id="my_modal_2" className="modal">
+            <dialog id="my_modal_3" className="modal">
               <div className="modal-box">
-                  <input onChange={e => setMeet(e.target.value)} type="text" name="meetId" id="" placeholder="Enter your meet id" className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800" />
-                  <button type="submit" onClick={handleMeetId} className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
-                    <span>Join</span>
-                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                      <FaVideo className="h-10" />
-                    </span>
-                  </button>
+                <input
+                  onChange={(e) => setMeet(e.target.value)}
+                  type="text"
+                  name="meetId"
+                  id=""
+                  placeholder="Enter your meet id"
+                  className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800"
+                />
+                <button
+                  type="submit"
+                  onClick={handleMeetId}
+                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
+                  <span>Join</span>
+                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaVideo className="h-10" />
+                  </span>
+                </button>
               </div>
               <form method="dialog" className="modal-backdrop">
                 <button>close</button>
               </form>
             </dialog>
 
-
-
-
-
-
-
-
             <form
               className="relative"
               onSubmit={(e) =>
-                setAppointmentTime(e.preventDefault(),e.target.appointment.value)
+                setAppointmentTime(
+                  e.preventDefault(),
+                  e.target.appointment.value
+                )
               }>
               <DatePicker
                 selected={selectedDateTime}
@@ -175,21 +170,30 @@ const DoctorProfile = () => {
                 className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
               />
 
-              <button onClick={() => document.getElementById('my_modal_2').showModal()}
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_2").showModal()
+                }
                 type="submit"
                 className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0">
                 <FaCalendarAlt />
               </button>
             </form>
-              {/* Open the modal using document.getElementById('ID').showModal() method */}
-              <dialog id="my_modal_2" className="modal">
-                <div className="modal-box">
-                  <Payment doctorName={doctor?.name} doctorCode={doctor?.doctorCode} patientName={displayName} patientEmail={email} appointmentTime={appointmentTime} fee={doctor?.fee}></Payment>
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                  <button>close</button>
-                </form>
-              </dialog>
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="my_modal_2" className="modal">
+              <div className="modal-box">
+                <Payment
+                  doctorName={doctor?.name}
+                  doctorCode={doctor?.doctorCode}
+                  patientName={displayName}
+                  patientEmail={email}
+                  appointmentTime={appointmentTime}
+                  fee={doctor?.fee}></Payment>
+              </div>
+              <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-6 my-10">

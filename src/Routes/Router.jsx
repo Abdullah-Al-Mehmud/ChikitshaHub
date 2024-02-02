@@ -18,7 +18,10 @@ import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
 import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
+// import Specialties from "../Pages/Specialties/Specialties";
+import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
+import Emailjs from "../Components/Emailjs/Emailjs";
 
 const router = createBrowserRouter([
   {
@@ -88,8 +91,17 @@ const router = createBrowserRouter([
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "/chats",
+        element: <Chats></Chats>,
+      },
+      {
+        path: "/sendTips",
+        element: <Emailjs></Emailjs>,
+      },
     ],
   },
+
   {
     path: "/userRegister",
     element: <UserRegistration></UserRegistration>,
