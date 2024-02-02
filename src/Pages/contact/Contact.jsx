@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser';
 import Swal from "sweetalert2";
-import ReCAPTCHA from "react-google-recaptcha";
+
 const Contact = () => {
   const { register, formState: { errors } } = useForm()
-  const [verified, setVerified] = useState(false)
-  function onChange(value) {
-    console.log("Captcha value:", value);
-    setVerified(true)
-  }
+  // const [verified, setVerified] = useState(false)
+  // function onChange(value) {
+  //   console.log("Captcha value:", value);
+  //   setVerified(true)
+  // }
   
   // email js
   const form = useRef();
@@ -223,14 +223,14 @@ const Contact = () => {
                       <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                     </div>
                   </div>
-                  <ReCAPTCHA
+                  {/* <ReCAPTCHA
                     sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                     onChange={onChange}
-                  />,
+                  />, */}
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="w-full bg-[#409AD4] text-white px-6 py-3 font-xl rounded-md sm:mb-0" disabled={!verified}>
+                      className="w-full bg-[#409AD4] text-white px-6 py-3 font-xl rounded-md sm:mb-0">
                       Send Message
                     </button>
                   </div>
