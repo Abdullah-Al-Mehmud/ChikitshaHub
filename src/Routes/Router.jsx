@@ -19,6 +19,7 @@ import Home from "../Pages/home/Home";
 // import Specialties from "../Pages/Specialties/Specialties";
 import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
+import Emailjs from "../Components/Emailjs/Emailjs";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "/chats",
         element: <Chats></Chats>,
+      },
+      {
+        path: "/sendTips",
+        element: <Emailjs></Emailjs>,
       },
     ],
   },

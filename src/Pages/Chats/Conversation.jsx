@@ -10,7 +10,9 @@ const Conversation = ({ chat, currentUserEmail }) => {
   const { data: users = [] } = useQuery({
     queryKey: ["users", chatEmail],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/users/${chatEmail}`);
+      const res = await axios.get(
+        `https://chikitsha-hub-server.vercel.app/users/${chatEmail}`
+      );
       return res.data;
     },
   });

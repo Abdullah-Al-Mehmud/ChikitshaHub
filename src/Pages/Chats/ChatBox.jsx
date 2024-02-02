@@ -9,7 +9,9 @@ import { IoIosSend } from "react-icons/io";
 const ChatBox = ({
   currentChat,
   currentUser,
+  // eslint-disable-next-line react/prop-types
   setSendMessage,
+  // eslint-disable-next-line react/prop-types
   receiveMessage,
 }) => {
   const [newMessage, setNewMessage] = useState("");
@@ -20,7 +22,9 @@ const ChatBox = ({
   const { data: chats = [] } = useQuery({
     queryKey: ["users", chatEmail],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/users/${chatEmail}`);
+      const res = await axios.get(
+        `https://chikitsha-hub-server.vercel.app/users/${chatEmail}`
+      );
       return res.data;
     },
   });
@@ -31,7 +35,7 @@ const ChatBox = ({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:3000/messages/${currentChat?._id}`
+        `https://chikitsha-hub-server.vercel.app/messages/${currentChat?._id}`
       );
       return res.data;
     },
@@ -57,10 +61,12 @@ const ChatBox = ({
     };
 
     // send to database
-    axios.post("http://localhost:3000/messages", message).then((result) => {
-      setNewMessage([...messages, result]);
-      setNewMessage("");
-    });
+    axios
+      .post("https://chikitsha-hub-server.vercel.app/messages", message)
+      .then((result) => {
+        setNewMessage([...messages, result]);
+        setNewMessage("");
+      });
 
     // send message to socket server
     const receiverId = currentChat.members.fin(

@@ -113,13 +113,38 @@ const DoctorProfile = () => {
               </span>
             </h3>
             <button
-              onClick={() => document.getElementById("my_modal_2").showModal()}
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+              // onClick={handleMeetId}
               className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
               <span>See Doctor Now</span>
               <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                 <FaVideo className="h-10" />
               </span>
             </button>
+            <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+                <input
+                  onChange={(e) => setMeet(e.target.value)}
+                  type="text"
+                  name="meetId"
+                  id=""
+                  placeholder="Enter your meet id"
+                  className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800"
+                />
+                <button
+                  type="submit"
+                  onClick={handleMeetId}
+                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
+                  <span>Join</span>
+                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaVideo className="h-10" />
+                  </span>
+                </button>
+              </div>
+              <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
 
             <form
               className="relative"
