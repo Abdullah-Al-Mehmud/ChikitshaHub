@@ -1,11 +1,43 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import {useForm} from 'react-hook-form'
+import React, { useRef, useState } from "react";
+import { useForm } from 'react-hook-form'
+import emailjs from '@emailjs/browser';
+import Swal from "sweetalert2";
+import ReCAPTCHA from "react-google-recaptcha";
 const Contact = () => {
-  const {register,handleSubmit,formState:{errors}} = useForm ()
-const onSubmit = data =>{
+  const { register, formState: { errors } } = useForm()
+  const [verified, setVerified] = useState(false)
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true)
+  }
+  
+  // email js
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_qc3qzre',
+      'template_fld7g8l',
+      form.current,
+      'tuObuX9QTV2i18MsU')
+      .then((result) => {
+        console.log(result.text);
+        Swal.fire({
+          title: "Good job!",
+          text: "Your Email is send!",
+          icon: "success"
+        });
+      }, (error) => {
+        console.log(error.text);
+      });
+  };
+  // email js
+  const onSubmit = data => {
     console.log(data)
-}
+  }
   return (
 
     <div className="">
@@ -19,7 +51,7 @@ const onSubmit = data =>{
           </div>
         </div>
       </div>
-      
+
       <section className="bg-white my-6 max-w-6xl mx-auto px-6" id="contact ">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
 
@@ -136,7 +168,7 @@ const onSubmit = data =>{
                 <h2 className="mb-4 text-2xl font-bold">
                   Ready to Get Started?
                 </h2>
-                <form id="contactForm" onSubmit={handleSubmit (onSubmit)} >
+                <form ref={form} id="contactForm" onSubmit={sendEmail} >
                   <div className="mb-6">
                     <div className="mx-0 mb-1 sm:mb-4">
                       <div className="mx-0 mb-1 sm:mb-4">
@@ -145,13 +177,13 @@ const onSubmit = data =>{
                           className="pb-1 text-xs uppercase tracking-wider"
                         ></label>
                         <input
-                        {...register('name',  {required:'input field is required'})}
+                          {...register('name', { required: 'input field is required' })}
                           type="text"
                           id="name"
                           autoComplete="given-name"
                           placeholder="Your name"
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
-                          name="name"
+                          name="from_name"
                         />
                         <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                       </div>
@@ -161,13 +193,13 @@ const onSubmit = data =>{
                           className="pb-1 text-xs uppercase tracking-wider"
                         ></label>
                         <input
-                        {...register('email',  {required:'input field is required'})}
+                          {...register('email', { required: 'input field is required' })}
                           type="email"
                           id="email"
                           autoComplete="email"
                           placeholder="Your email address"
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
-                          name="email"
+                          name="form_email"
                         />
                         <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                       </div>
@@ -178,9 +210,9 @@ const onSubmit = data =>{
                         className="pb-1 text-xs uppercase tracking-wider"
                       ></label>
                       <textarea
-                      {...register('textarea',  {required:'input field is required'})}
+                        {...register('textarea', { required: 'input field is required' })}
                         id="textarea"
-                        name="textarea"
+                        name="message"
                         cols="30"
                         rows="5"
                         placeholder="Write your message..."
@@ -191,11 +223,14 @@ const onSubmit = data =>{
                       <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
                     </div>
                   </div>
+                  <ReCAPTCHA
+                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    onChange={onChange}
+                  />,
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="w-full bg-[#409AD4] text-white px-6 py-3 font-xl rounded-md sm:mb-0"
-                    >
+                      className="w-full bg-[#409AD4] text-white px-6 py-3 font-xl rounded-md sm:mb-0" disabled={!verified}>
                       Send Message
                     </button>
                   </div>

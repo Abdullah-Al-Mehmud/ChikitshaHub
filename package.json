@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@react-icons/all-files": "^4.1.0",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
@@ -22,6 +23,7 @@
     "react-datepicker": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-dual-range-slider": "^1.0.4",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.49.3",
     "react-icons": "^5.0.1",
     "react-input-slider": "^6.0.1",
