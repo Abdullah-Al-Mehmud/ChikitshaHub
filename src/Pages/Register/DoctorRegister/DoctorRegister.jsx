@@ -179,7 +179,7 @@ const DoctorRegister = () => {
                         {...register("specialties", { required: true })}
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
-                        id="specialties"
+                        id="Specialties"
                         name="specialties">
                         <option disabled defaultValue>
                           Choose Title
