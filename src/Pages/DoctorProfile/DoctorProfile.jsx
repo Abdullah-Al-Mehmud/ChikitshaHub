@@ -9,13 +9,13 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import Payment from "../Payment/Payment";
 
 
 const DoctorProfile = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [appointmentTime, setAppointmentTime] = useState('');
   const [meet, setMeet] = useState('');
   const doctor = useLoaderData();
   const bookedSlots = [];
@@ -72,28 +72,6 @@ const DoctorProfile = () => {
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
 
-  const axios = useAxiosPublic();
-
-  const handleAppointment = (appointment) => {
-    const appointmentDetails = {
-      doctorName: doctor.name,
-      doctorCode: doctor.doctorCode,
-      patientName: displayName,
-      patientEmail: email,
-      appointmentTime: appointment,
-    };
-
-    axios.post("/appointments", appointmentDetails).then((res) => {
-      console.log(res.data);
-      if (res.data.success) {
-        Swal.fire({
-          title: "Good job!",
-          text: "Your Appointment is Successfully Booked!",
-          icon: "success",
-        });
-      }
-    });
-  };
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`)
@@ -179,10 +157,7 @@ const DoctorProfile = () => {
             <form
               className="relative"
               onSubmit={(e) =>
-                handleAppointment(
-                  e.preventDefault(),
-                  e.target.appointment.value
-                )
+                setAppointmentTime(e.preventDefault(),e.target.appointment.value)
               }>
               <DatePicker
                 selected={selectedDateTime}
@@ -200,12 +175,21 @@ const DoctorProfile = () => {
                 className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
               />
 
-              <button
+              <button onClick={() => document.getElementById('my_modal_2').showModal()}
                 type="submit"
                 className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0">
                 <FaCalendarAlt />
               </button>
             </form>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+              <dialog id="my_modal_2" className="modal">
+                <div className="modal-box">
+                  <Payment doctorName={doctor?.name} doctorCode={doctor?.doctorCode} patientName={displayName} patientEmail={email} appointmentTime={appointmentTime} fee={doctor?.fee}></Payment>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-6 my-10">
