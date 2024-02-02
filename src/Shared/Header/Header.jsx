@@ -155,7 +155,7 @@ const Header = () => {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link className="text-black w-full" to="/userProfile">
+                  <Link className="text-black w-full" to="/dashboard">
                     <h1 className="text-center">Your Profile</h1>
                   </Link>
                 </li>
