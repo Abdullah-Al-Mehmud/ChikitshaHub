@@ -8,6 +8,7 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
+import Specialties from "./../Pages/Specialties/Specialties";
 // import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
 // import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
@@ -15,9 +16,9 @@ import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
-import Specialties from "../Pages/Specialties/Specialties";
 import Dashboard from "../Pages/dashboard/Dashboard";
 import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
+import Meet from "../Pages/Meet/Meet";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/contact",
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         element: <DoctorProfile />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
+      },
+      {
+        path: "/meet/:meetId",
+        element: <Meet />,
       },
       // {
       //   path: "/login",

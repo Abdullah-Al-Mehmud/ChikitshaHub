@@ -1,5 +1,5 @@
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useForm } from "react-hook-form";
@@ -9,14 +9,19 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import Payment from "../Payment/Payment";
+
 
 const DoctorProfile = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [appointmentTime, setAppointmentTime] = useState('');
+  const [meet, setMeet] = useState('');
   const doctor = useLoaderData();
   const bookedSlots = [];
+  const navigate = useNavigate();
+
+  console.log(meet)
 
   const isSlotAvailable = (date) => {
     const formattedDate = date.toISOString(); // Adjust the format based on your backend data
@@ -40,6 +45,18 @@ const DoctorProfile = () => {
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
+  const dateObjectStart = new Date(doctor.experience.start);
+  const formattedDateStart = dateObjectStart.toLocaleDateString();
+  doctor.experience.start = formattedDateStart;
+
+  if (doctor.experience.end === "present") {
+    doctor.experience.end = "present";
+  } else {
+    const dateObjectEnd = new Date(doctor.experience.end);
+    const formattedDateEnd = dateObjectEnd.toLocaleDateString();
+    doctor.experience.end = formattedDateEnd;
+  }
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: "",
@@ -55,28 +72,13 @@ const DoctorProfile = () => {
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
 
-  const axios = useAxiosPublic();
 
-  const handleAppointment = (appointment) => {
-    const appointmentDetails = {
-      doctorName: doctor.name,
-      doctorCode: doctor.doctorCode,
-      patientName: displayName,
-      patientEmail: email,
-      appointmentTime: appointment,
-    };
+  const handleMeetId = () => {
+    navigate(`/meet/${meet}`)
+  }
 
-    axios.post("/appointments", appointmentDetails).then((res) => {
-      console.log(res.data);
-      if (res.data.success) {
-        Swal.fire({
-          title: "Good job!",
-          text: "Your Appointment is Successfully Booked!",
-          icon: "success",
-        });
-      }
-    });
-  };
+
+
 
   return (
     <div>
@@ -115,20 +117,47 @@ const DoctorProfile = () => {
                 (incl. VAT)
               </span>
             </h3>
-            <button className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
+            <button onClick={() => document.getElementById('my_modal_2').showModal()} className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
               <span>See Doctor Now</span>
               <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                 <FaVideo className="h-10" />
               </span>
             </button>
 
+
+
+
+
+
+
+
+
+            <dialog id="my_modal_2" className="modal">
+              <div className="modal-box">
+                  <input onChange={e => setMeet(e.target.value)} type="text" name="meetId" id="" placeholder="Enter your meet id" className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800" />
+                  <button type="submit" onClick={handleMeetId} className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
+                    <span>Join</span>
+                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                      <FaVideo className="h-10" />
+                    </span>
+                  </button>
+              </div>
+              <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+
+
+
+
+
+
+
+
             <form
               className="relative"
               onSubmit={(e) =>
-                handleAppointment(
-                  e.preventDefault(),
-                  e.target.appointment.value
-                )
+                setAppointmentTime(e.preventDefault(),e.target.appointment.value)
               }>
               <DatePicker
                 selected={selectedDateTime}
@@ -146,12 +175,21 @@ const DoctorProfile = () => {
                 className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
               />
 
-              <button
+              <button onClick={() => document.getElementById('my_modal_2').showModal()}
                 type="submit"
                 className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0">
                 <FaCalendarAlt />
               </button>
             </form>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+              <dialog id="my_modal_2" className="modal">
+                <div className="modal-box">
+                  <Payment doctorName={doctor?.name} doctorCode={doctor?.doctorCode} patientName={displayName} patientEmail={email} appointmentTime={appointmentTime} fee={doctor?.fee}></Payment>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-6 my-10">
