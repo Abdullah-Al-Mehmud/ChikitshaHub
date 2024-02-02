@@ -54,7 +54,6 @@ const Contact = () => {
 
       <section className="bg-white my-6 max-w-6xl mx-auto px-6" id="contact ">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-
           <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
               <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900  text-3xl sm:text-5xl">
@@ -67,7 +66,6 @@ const Contact = () => {
           </div>
 
           <div className="flex items-center justify-center">
-
             <div className="grid md:grid-cols-2">
               <div className="h-full pr-6">
                 <p className="mt-3 mb-12 text-lg text-gray-600">
@@ -89,8 +87,7 @@ const Contact = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="h-6 w-6"
-                      >
+                        className="h-6 w-6">
                         <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
                         <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
                       </svg>
@@ -117,8 +114,7 @@ const Contact = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="h-6 w-6"
-                      >
+                        className="h-6 w-6">
                         <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
                         <path d="M15 7a2 2 0 0 1 2 2"></path>
                         <path d="M15 3a6 6 0 0 1 6 6"></path>
@@ -144,8 +140,7 @@ const Contact = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="h-6 w-6"
-                      >
+                        className="h-6 w-6">
                         <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
                         <path d="M12 7v5l3 3"></path>
                       </svg>
@@ -174,8 +169,7 @@ const Contact = () => {
                       <div className="mx-0 mb-1 sm:mb-4">
                         <label
                           htmlFor="name"
-                          className="pb-1 text-xs uppercase tracking-wider"
-                        ></label>
+                          className="pb-1 text-xs uppercase tracking-wider"></label>
                         <input
                           {...register('name', { required: 'input field is required' })}
                           type="text"
@@ -185,13 +179,14 @@ const Contact = () => {
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
                           name="from_name"
                         />
-                        <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
+                        <p className="text-red-500 py-3 font-bold">
+                          {errors.name?.message}
+                        </p>
                       </div>
                       <div className="mx-0 mb-1 sm:mb-4">
                         <label
                           htmlFor="email"
-                          className="pb-1 text-xs uppercase tracking-wider"
-                        ></label>
+                          className="pb-1 text-xs uppercase tracking-wider"></label>
                         <input
                           {...register('email', { required: 'input field is required' })}
                           type="email"
@@ -201,14 +196,15 @@ const Contact = () => {
                           className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
                           name="form_email"
                         />
-                        <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
+                        <p className="text-red-500 py-3 font-bold">
+                          {errors.name?.message}
+                        </p>
                       </div>
                     </div>
                     <div className="mx-0 mb-1 sm:mb-4">
                       <label
                         htmlFor="textarea"
-                        className="pb-1 text-xs uppercase tracking-wider"
-                      ></label>
+                        className="pb-1 text-xs uppercase tracking-wider"></label>
                       <textarea
                         {...register('textarea', { required: 'input field is required' })}
                         id="textarea"
@@ -216,11 +212,10 @@ const Contact = () => {
                         cols="30"
                         rows="5"
                         placeholder="Write your message..."
-                        className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"
-                      >
-
-                      </textarea>
-                      <p className="text-red-500 py-3 font-bold" >{errors.name?.message}</p>
+                        className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-sm  sm:mb-0"></textarea>
+                      <p className="text-red-500 py-3 font-bold">
+                        {errors.name?.message}
+                      </p>
                     </div>
                   </div>
                   {/* <ReCAPTCHA

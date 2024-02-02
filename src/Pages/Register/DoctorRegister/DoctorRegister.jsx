@@ -4,11 +4,16 @@ import Select from "react-select";
 // import { Link } from "react-router-dom";
 import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 //import registerImg from "../../../assets/images/register.png"
 
 const DoctorRegister = () => {
   const axiosPrivate = useAxiosPrivet();
+  const user = useSelector((state) => state.auth.user);
+  // console.log(user);
+  // const { photoURL } = user || {};
+
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -65,7 +70,9 @@ const DoctorRegister = () => {
       name: data.name,
       title: data.title,
       specialties: data.specialties,
-      category: data.category,
+      img: user?.photoURL,
+      role: "pending",
+      // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
       rating: 0,
@@ -104,23 +111,9 @@ const DoctorRegister = () => {
 
   return (
     <>
-      <div className="bg-[url('https://i.ibb.co/qYS91BQ/banner2.jpg')] bg-no-repeat bg-cover">
-        <div className="w-full bg-black bg-opacity-70 lg:pb-40 lg:pt-36 md:pb-28 md:pt-24 pb-20 pt-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="pt-10 text-[#ffffffea] w-full lg:text-left text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                {`Doctor's Registration Page`}
-              </h2>
-              <p className="font-medium text-white mt-1">
-                Home &gt; <span className="text-[#409bd4]">Register Here</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="h-full py-20 bg-gray-400 ">
-        <div className="mx-auto">
-          <div className="flex justify-center px-6 py-6">
+      <div className="h-full  ">
+        <div className="mx-auto px-20 py-20">
+          <div className="flex justify-center px-6 py-6 shadow-xl">
             <div className="w-full xl:w-3/4 lg:w-11/12 flex gap-5 items-center">
               <div className="w-full  bg-white  p-5 rounded-lg lg:rounded-l-none">
                 <h3 className="py-7 text-4xl font-bold text-center ">
@@ -187,42 +180,40 @@ const DoctorRegister = () => {
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
                         id="Specialties"
-                        name="Specialties">
+                        name="specialties">
                         <option disabled defaultValue>
-                          Choose specialties
+                          Choose Title
                         </option>
-                        <option value=" General Practitioners">
+                        <option value="General Practitioners">
                           General Practitioners
                         </option>
                         <option value="Cardiologists">Cardiologists</option>
                         <option value="Dermatologists">Dermatologists</option>
-                        <option value=" Pediatricians">Pediatricians</option>
+                        <option value="Pediatricians">Pediatricians</option>
                         <option value="Orthopedic Surgeons">
                           Orthopedic Surgeons
                         </option>
-                        <option value=" Psychiatrists">Psychiatrists</option>
-                        <option value="  Gynecologists">Gynecologists</option>
-                        <option value="  Endocrinologists">
+                        <option value="Psychiatrists">Psychiatrists</option>
+                        <option value="Gynecologists">Gynecologists</option>
+                        <option value="Endocrinologists">
                           Endocrinologists
                         </option>
-                        <option value="  Ophthalmologists">
+                        <option value="Ophthalmologists">
                           Ophthalmologists
                         </option>
-                        <option value="  Urologists">Urologists</option>
-                        <option value="  ENT Specialists">
-                          ENT Specialists
-                        </option>
-                        <option value="  Gastroenterologists">
+                        <option value="Urologists">Urologists</option>
+                        <option value="ENT Specialists">ENT Specialists</option>
+                        <option value="Gastroenterologists">
                           Gastroenterologists
                         </option>
-                        <option value="  Neurologists">Neurologists</option>
-                        <option value="  Allergists/Immunologists">
+                        <option value="Neurologists">Neurologists</option>
+                        <option value="Allergists/Immunologists">
                           Allergists/Immunologists
                         </option>
-                        <option value="  Infectious Disease Specialists">
+                        <option value="Infectious Disease Specialists">
                           Infectious Disease Specialists
                         </option>
-                        <option value="  Emergency Medicine Physicians">
+                        <option value="Emergency Medicine Physicians">
                           Emergency Medicine Physicians
                         </option>
                       </select>
@@ -234,16 +225,16 @@ const DoctorRegister = () => {
                     </div>
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Category
+                        BMDC Number
                       </label>
                       <input
                         type="text"
-                        {...register("category", { required: true })}
-                        placeholder="Category"
+                        {...register("bmdc", { required: true })}
+                        placeholder="bmdc"
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         required
                       />
-                      {errors.category && (
+                      {errors.bmdc && (
                         <span className="text-red-600">
                           Category is required
                         </span>
@@ -374,25 +365,6 @@ const DoctorRegister = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-5 w-full">
-                    <div className="mb-4 w-1/2">
-                      <label className="block mb-2 text-sm font-bold  ">
-                        BMDC Number
-                      </label>
-                      <input
-                        type="text"
-                        {...register("bmdc", { required: true })}
-                        name="bmdc"
-                        placeholder="bmdc"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        required
-                      />
-                      {errors.bmdc && (
-                        <span className="text-red-600">bmdc is required</span>
-                      )}
-                    </div>
-                  </div>
-
                   <div className="font-bold mt-2 text-2xl">Education : </div>
                   <div className="flex mt-4 gap-5 w-full">
                     <div className="mb-4 w-1/2">
@@ -436,7 +408,7 @@ const DoctorRegister = () => {
                         Session
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         {...register("session", { required: true })}
                         name="session"
                         placeholder="Session"
