@@ -9,21 +9,42 @@
 
 // export default Chats;
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 import { useQuery } from "@tanstack/react-query";
 import Conversation from "./Conversation";
 import ChatBox from "./ChatBox";
+import { io } from "socket.io-client";
 // import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 
 const Chats = () => {
-  const [currentChat, setCurrentChat] = useState(null);
   const user = useSelector((state) => state.auth.user);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [sendMessage, setSendMessage] = useState(null);
+  const [receiveMessage, setReceiveMessage] = useState(null);
   // console.log(user?.email);
   const axiosPrivate = useAxiosPrivet();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const socket = useRef();
+
+  // send message to socket server
+  useEffect(() => {
+    if (sendMessage !== null) {
+      socket.current.emit("send-message", sendMessage);
+    }
+  }, [sendMessage]);
+
+  useEffect(() => {
+    socket.current = io("http://localhost:8800");
+    socket.current.emit("new-user-add", user?.email);
+    socket.current.on("get-users", (users) => {
+      setOnlineUsers(users);
+      console.log(onlineUsers);
+    });
+  }, [user]);
 
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
@@ -36,6 +57,13 @@ const Chats = () => {
       return res.data;
     },
   });
+
+  // receive message from a socket server
+  useEffect(() => {
+    socket.current.on("receive-message", (data) => {
+      setReceiveMessage(data);
+    });
+  }, []);
 
   return (
     <div
@@ -166,6 +194,8 @@ const Chats = () => {
         </header>
         <main className="mt-20 scroll-smooth">
           <ChatBox
+            setSendMessage={setSendMessage}
+            receiveMessage={receiveMessage}
             currentChat={currentChat}
             currentUser={user?.email}></ChatBox>
         </main>

@@ -3,10 +3,15 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosSend } from "react-icons/io";
 
-const ChatBox = ({ currentChat, currentUser }) => {
+const ChatBox = ({
+  currentChat,
+  currentUser,
+  setSendMessage,
+  receiveMessage,
+}) => {
   const [newMessage, setNewMessage] = useState("");
   const chatEmail = currentChat?.members?.find(
     (email) => email !== currentUser
@@ -33,8 +38,35 @@ const ChatBox = ({ currentChat, currentUser }) => {
   });
   console.log(messages);
 
+  useEffect(() => {
+    if (receiveMessage !== null && receiveMessage.chatId === currentChat._id) {
+      messages[receiveMessage];
+    }
+  }, [receiveMessage]);
+
   const handleChange = (newMessage) => {
     setNewMessage(newMessage);
+  };
+
+  const handleMsgSend = (e) => {
+    e.preventDefault();
+    const message = {
+      senderEmail: currentUser,
+      text: newMessage,
+      chatId: currentChat._id,
+    };
+
+    // send to database
+    axios.post("http://localhost:3000/messages", message).then((result) => {
+      setNewMessage([...messages, result]);
+      setNewMessage("");
+    });
+
+    // send message to socket server
+    const receiverId = currentChat.members.fin(
+      (email) => email !== currentUser
+    );
+    setSendMessage([...messages, receiverId]);
   };
 
   return (
@@ -70,11 +102,11 @@ const ChatBox = ({ currentChat, currentUser }) => {
                   </div>
                 </div>
               ) : (
-                <div className="chat chat-start">
+                <div className=" chat-start">
                   <div className="chat-bubble">
                     {messages?.map((message) => (
-                      <div key={message?._id}>
-                        {message.text}
+                      <div key={message?._id} className="mt-7">
+                        {message.text} <span>{`(${message.senderEmail})`}</span>
                         <span className="block font-thin text-xs">
                           {format(message.createdAt)}
                         </span>
@@ -90,7 +122,9 @@ const ChatBox = ({ currentChat, currentUser }) => {
                     value={newMessage}
                     onChange={handleChange}></InputEmoji>
                 </div>
-                <button className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group ">
+                <button
+                  onClick={handleMsgSend}
+                  className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group ">
                   <span>Send</span>
                   <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                     <IoIosSend className="w-14" />
