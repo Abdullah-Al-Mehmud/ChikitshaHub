@@ -8,7 +8,7 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import Specialties from './../Pages/Specialties/Specialties';
+import Specialties from "./../Pages/Specialties/Specialties";
 // import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
 // import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
@@ -16,7 +16,10 @@ import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
+// import Specialties from "../Pages/Specialties/Specialties";
+import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
+import Emailjs from "../Components/Emailjs/Emailjs";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "/contact",
@@ -72,7 +75,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/meet/:meetId",
-        element: <Meet />
+        element: <Meet />,
       },
       // {
       //   path: "/login",
@@ -86,8 +89,17 @@ const router = createBrowserRouter([
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "/chats",
+        element: <Chats></Chats>,
+      },
+      {
+        path: "/sendTips",
+        element: <Emailjs></Emailjs>,
+      },
     ],
   },
+
   {
     path: "/userRegister",
     element: <UserRegistration></UserRegistration>,
