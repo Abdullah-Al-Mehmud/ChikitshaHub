@@ -10,7 +10,7 @@ const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  // console.log(user);
+  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -31,7 +31,8 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }>
+        }
+      >
         Home
       </NavLink>
       <NavLink
@@ -40,7 +41,8 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }>
+        }
+      >
         Specialties
       </NavLink>
       <NavLink
@@ -49,7 +51,8 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }>
+        }
+      >
         Tips
       </NavLink>
       <NavLink
@@ -58,7 +61,8 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }>
+        }
+      >
         About Us
       </NavLink>
 
@@ -68,7 +72,8 @@ const Header = () => {
           isActive
             ? "mr-6 text-[#409bd4] text-lg font-semibold"
             : "mr-6 text-lg font-semibold"
-        }>
+        }
+      >
         Contact Us
       </NavLink>
     </>
@@ -78,7 +83,8 @@ const Header = () => {
     <div
       className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
         isScrolled ? "bg-gray-200 text-black" : " text-black"
-      }`}>
+      }`}
+    >
       <div className="max-w-7xl flex justify-around mx-auto navbar py-3 px-6">
         <div className="">
           <div className="dropdown">
@@ -86,13 +92,15 @@ const Header = () => {
               onClick={() => setShow(!show)}
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden">
+              className="btn btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor">
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -104,7 +112,8 @@ const Header = () => {
             {show ? (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52">
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white text-black font-bold rounded-box w-52"
+              >
                 {links}
               </ul>
             ) : (
@@ -143,7 +152,8 @@ const Header = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
                 <li>
                   <Link className="text-black w-full" to="/userProfile">
                     <h1 className="text-center">Your Profile</h1>
@@ -157,7 +167,8 @@ const Header = () => {
                 <li>
                   <button
                     className="btn btn-sm bg-transparent border-none bg-white text-start text-blue-700"
-                    onClick={logOut}>
+                    onClick={logOut}
+                  >
                     <div className="flex justify-between gap-2">
                       <span>
                         <MdLogout />
@@ -176,7 +187,8 @@ const Header = () => {
                   <span
                     className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
                       isScrolled ? "bg-gray-200" : "bg-white"
-                    }`}>
+                    }`}
+                  >
                     <LuLogIn className="h-10" />
                   </span>
                 </button>
@@ -187,7 +199,8 @@ const Header = () => {
                   <span
                     className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
                       isScrolled ? "bg-gray-200" : "bg-white"
-                    }`}>
+                    }`}
+                  >
                     <LuLogIn className="h-10" />
                   </span>
                 </button>

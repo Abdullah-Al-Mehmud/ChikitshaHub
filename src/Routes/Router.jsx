@@ -16,6 +16,8 @@ import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Specialties from "../Pages/Specialties/Specialties";
+import Dashboard from "../Pages/dashboard/Dashboard";
+import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,16 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserDashboard />,
+      },
+    ],
   },
 ]);
 
