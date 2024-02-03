@@ -17,11 +17,11 @@ import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
-import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
-// import Specialties from "../Pages/Specialties/Specialties";
+
 import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
+import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 
 const router = createBrowserRouter([
   {
@@ -87,10 +87,10 @@ const router = createBrowserRouter([
       //   path: "/morespecialties",
       //   element: <MoreSpecialties></MoreSpecialties>,
       // },
-      {
-        path: "/userProfile",
-        element: <UserProfile></UserProfile>,
-      },
+      // {
+      //   path: "/userProfile",
+      //   element: <UserProfile></UserProfile>,
+      // },
       {
         path: "/chats",
         element: <Chats></Chats>,
@@ -116,7 +116,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <UserDashboard />,
+        element: <UserProfile />,
+      },
+      {
+        path: "alldoctors",
+        element: <AllDoctors />,
       },
     ],
   },
