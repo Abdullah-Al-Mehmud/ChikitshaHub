@@ -10,7 +10,6 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 const AllDoctors = () => {
   const user = useSelector((state) => state.auth.user);
   const axios = useAxiosPublic();
-  console.log(user);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
   const [page, setPage] = useState(1);
