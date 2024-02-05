@@ -9,8 +9,9 @@ const Doctors = () => {
   // const [range, setRange] = useState([0, 1000]);
   const doctorList = useLoaderData();
   const [doctors, setDoctors] = useState(doctorList);
-  const [sortByFeesHighToLow, setSortByFeesHighToLow] = useState(false);
-  const [sortByFeesLowToHigh, setSortByFeesLowToHigh] = useState(false);
+  // const [sortByFeesHighToLow, setSortByFeesHighToLow] = useState(false);
+  // const [sortByFeesLowToHigh, setSortByFeesLowToHigh] = useState(false);
+  const [sortBy, setSortBy] = useState("");
   const [sortByExperience, setSortByExperience] = useState(false);
   const [sortByRating, setSortByRating] = useState(false);
 
@@ -35,20 +36,33 @@ const Doctors = () => {
     setDoctors(sortedDoctor);
   };
 
-  const handleSortByFeesHighToLow = () => {
-    setSortByFeesHighToLow(!sortByFeesHighToLow);
-    if (!sortByFeesHighToLow) {
+  // const handleSortByFeesHighToLow = () => {
+  //   setSortByFeesHighToLow(!sortByFeesHighToLow);
+  //   if (!sortByFeesHighToLow) {
+  //     priceHighToLow();
+  //   } else {
+  //     priceLowToHigh();
+  //   }
+  // };
+  // const handleSortByFeesLowToHigh = () => {
+  //   setSortByFeesLowToHigh(!sortByFeesLowToHigh);
+  //   if (!sortByFeesLowToHigh) {
+  //     priceLowToHigh();
+  //   } else {
+  //     setDoctors(doctorList);
+  //   }
+  // };
+
+  const handleSortByChange = (event) => {
+    const selectedSortBy = event.target.value;
+    setSortBy(selectedSortBy);
+
+    if (selectedSortBy === "highToLow") {
       priceHighToLow();
-    } else {
-      priceLowToHigh();
-    }
-  };
-  const handleSortByFeesLowToHigh = () => {
-    setSortByFeesLowToHigh(!sortByFeesLowToHigh);
-    if (!sortByFeesLowToHigh) {
+    } else if (selectedSortBy === "lowToHigh") {
       priceLowToHigh();
     } else {
-      setDoctors(doctorList);
+      // Handle other cases or fallback
     }
   };
   const handleSortByExperience = () => {
@@ -114,59 +128,94 @@ const Doctors = () => {
                             <label className="text-xl font-medium text-gray-700">Female doctors only</label>
                         </div>
                     </div> */}
-          <h2 className="text-2xl font-bold  mb-4 text-black">Sort By</h2>
-          <div className="mt-6">
-            <div className="flex gap-4 items-center mb-2">
-              <input
-                onChange={handleSortByRating}
-                type="checkbox"
-                name="popularity"
-                id=""
-                className="w-6 h-6"
-                value="Popularity"
-              />
-              <label className="text-xl font-medium text-gray-700">
-                Popularity
-              </label>
-            </div>
-            <div className="flex gap-4 items-center mb-2">
-              <input
-                onChange={handleSortByFeesLowToHigh}
-                type="checkbox"
-                name=""
-                id=""
-                className="w-6 h-6"
-                value="Fees: low too high"
-              />
-              <label className="text-xl font-medium text-gray-700">
-                Fees: low too high
-              </label>
-            </div>
-            <div className="flex gap-4 items-center mb-2">
-              <input
-                onChange={handleSortByFeesHighToLow}
-                type="checkbox"
-                name=""
-                id=""
-                className="w-6 h-6"
-                value="Fees: high too low"
-              />
-              <label className="text-xl font-medium text-gray-700">
-                Fees: high too low
-              </label>
-            </div>
-            <div className="flex gap-4 items-center mb-2">
-              <input
-                onChange={handleSortByExperience}
-                type="checkbox"
-                name=""
-                id=""
-                className="w-6 h-6"
-                value="Experience"
-              />
-              <label className="text-xl font-medium text-gray-700">
-                Experience
-              </label>
+          <div className="fixed bg-slate-50 lg:bg-transparent">
+            <h2 className="text-2xl font-bold  mb-4 text-black ">Sort By</h2>
+            <div className="mt-6 lg:flex-col grid grid-cols-4 lg:grid-cols-1 text-sm">
+              <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByRating}
+                  type="checkbox"
+                  name="popularity"
+                  id=""
+                  className="w-6 h-6"
+                  value="Popularity"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Popularity
+                </label>
+              </div>
+
+              {/* <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByFeesLowToHigh}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-6 h-6"
+                  value="Fees: low too high"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Fees: low too high
+                </label>
+              </div>
+              <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByFeesHighToLow}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-6 h-6"
+                  value="Fees: high too low"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Fees: high too low
+                </label>
+              </div> */}
+              <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByExperience}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-6 h-6"
+                  value="Experience"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Experience
+                </label>
+              </div>
+              <div className="flex justify-between items-center text-lg w-full">
+                <div>
+                  <h1>Sort by:</h1>
+                </div>
+                <div>
+                  <select
+                    className="select w-full max-w-[180px] lg:text-xl text-sm font-medium text-gray-700 border-none flex justify-between"
+                    onChange={handleSortByChange}
+                    value={sortBy}
+                  >
+                    <option
+                      className="lg:text-base text-sm font-medium text-gray-700  border-none"
+                      disabled
+                      value=""
+                    >
+                      Fees
+                    </option>
+                    <option
+                      className="lg:text-base text-sm font-medium text-gray-700"
+                      value="lowToHigh  border-none"
+                    >
+                      low to high
+                    </option>
+                    <option
+                      className="lg:text-base text-sm font-medium text-gray-700  border-none"
+                      value="highToLow"
+                    >
+                      high to low
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -216,7 +265,8 @@ const Doctors = () => {
                                 }
                                 fullSymbol={
                                   <AiFillStar className="text-orange-300 w-6 h-6" />
-                                }></Rating>
+                                }
+                              ></Rating>
                             </h4>
                             <p className="text-lg font-medium text-gray-600">
                               ({doctor.rating})
