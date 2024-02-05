@@ -5,7 +5,7 @@ const Tips = () => {
   const [TipsData, setTipsData] = useState([]);
 
   useEffect(() => {
-    fetch("../../../public/Tips.json")
+    fetch("Tips.json")
       .then((res) => res.json())
       .then((data) => setTipsData(data));
   }, []);

@@ -118,6 +118,15 @@ const router = createBrowserRouter([
       //   path: "/dashboard/userProfile",
       //   element: <UserProfile></UserProfile>,
       // },
+      {
+        path: "/tips",
+        element: <Tips/>,
+      },
+      {
+        path: "/readMores/:id",
+        element: <Readmore/>,
+        loader: () => fetch(`Tips.json`)
+      },
     ],
   },
 ]);
