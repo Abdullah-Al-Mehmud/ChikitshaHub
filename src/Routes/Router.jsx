@@ -8,12 +8,20 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
+import Specialties from "./../Pages/Specialties/Specialties";
+// import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
+// import Specialties from "../Components/Specialties/Specialties";
+import Tips from "../Pages/Tips/Tips";
+import Readmore from "../Pages/Tips/Readmore";
 
-import UserProfile from "../Pages/user/userProfile";
+// import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
-import Specialties from "../Pages/Specialties/Specialties";
-import Tips from './../Pages/Tips/Tips';
-import Readmore from './../Pages/Tips/Readmore';
+import Dashboard from "../Pages/dashboard/Dashboard";
+import UserDashboard from "../Pages/dashboard/userDashboard/UserDashboard";
+// import Specialties from "../Pages/Specialties/Specialties";
+import Chats from "../Pages/Chats/Chats";
+import Meet from "../Pages/Meet/Meet";
+import Emailjs from "../Components/Emailjs/Emailjs";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/contact",
@@ -32,10 +40,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-      {
-        path: "/userRegister",
-        element: <UserRegistration></UserRegistration>,
-      },
+      // {
+      //   path: "/userRegister",
+      //   element: <UserRegistration></UserRegistration>,
+      // },
       {
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
@@ -43,6 +51,15 @@ const router = createBrowserRouter([
       {
         path: "/specialties",
         element: <Specialties />,
+      },
+      {
+        path: "/tips",
+        element: <Tips></Tips>,
+      },
+      {
+        path: "/readmores/:id",
+        element: <Readmore></Readmore>,
+        loader: () => fetch("/Tips.json"),
       },
       {
         path: "/doctors/1/:category",
@@ -59,22 +76,48 @@ const router = createBrowserRouter([
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },
       {
-        path: "/login",
-        element: <Login></Login>,
+        path: "/meet/:meetId",
+        element: <Meet />,
+      },
+      // {
+      //   path: "/login",
+      //   element: <Login></Login>,
+      // },
+      // {
+      //   path: "/morespecialties",
+      //   element: <MoreSpecialties></MoreSpecialties>,
+      // },
+      {
+        path: "/chats",
+        element: <Chats></Chats>,
+      },
+    ],
+  },
+
+  {
+    path: "/userRegister",
+    element: <UserRegistration></UserRegistration>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserDashboard />,
       },
       {
-        path: "/userProfile",
-        element: <UserProfile></UserProfile>,
+        path: "/dashboard/sendTips",
+        element: <Emailjs></Emailjs>,
       },
-      {
-        path: "/tips",
-        element: <Tips/>,
-      },
-      {
-        path: "/readMores/:id",
-        element: <Readmore/>,
-        loader: () => fetch(`Tips.json`)
-      },
+      // {
+      //   path: "/dashboard/userProfile",
+      //   element: <UserProfile></UserProfile>,
+      // },
     ],
   },
 ]);

@@ -10,7 +10,7 @@ const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  // console.log(user);
+  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -65,6 +65,7 @@ const Header = () => {
       >
         About Us
       </NavLink>
+
       <NavLink
         to="/Contact"
         className={({ isActive }) =>
@@ -81,10 +82,10 @@ const Header = () => {
   return (
     <div
       className={`fixed max-w-full top-0 left-0 right-0 mx-auto z-10 ${
-        isScrolled ? "bg-gray-200 text-black" : "bg-none text-white"
+        isScrolled ? "bg-gray-200 text-black" : " text-black"
       }`}
     >
-      <div className="max-w-6xl mx-auto navbar py-3 px-6">
+      <div className="max-w-7xl flex justify-around mx-auto navbar py-3 px-6">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -127,7 +128,7 @@ const Header = () => {
                 src="https://i.ibb.co/98D4kxf/chikitsha-Hub-logo.png"
                 alt=""
               />
-              <h2 className="md:text-3xl text-xl font-semibold">
+              <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
                 Chikitsha<span className="text-[#409bd4]">Hub</span>
               </h2>
             </div>
@@ -151,7 +152,7 @@ const Header = () => {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link className="text-black w-full" to="/userProfile">
+                  <Link className="text-black w-full" to="/dashboard">
                     <h1 className="text-center">Your Profile</h1>
                   </Link>
                 </li>
@@ -176,18 +177,32 @@ const Header = () => {
               </ul>
             </div>
           ) : (
-            <Link to={"/login"}>
-              <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
-                <span>Login</span>
-                <span
-                  className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
-                    isScrolled ? "bg-gray-200" : "bg-[#080b0e]"
-                  }`}
-                >
-                  <LuLogIn className="h-10" />
-                </span>
-              </button>
-            </Link>
+            <div className="flex gap-5">
+              <Link to={"/login"}>
+                <button className="flex items-center relative w-24 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Login</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}
+                  >
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+              <Link to={"/userRegister"}>
+                <button className="flex items-center relative w-32 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group">
+                  <span>Register</span>
+                  <span
+                    className={`absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center rounded-full ${
+                      isScrolled ? "bg-gray-200" : "bg-white"
+                    }`}
+                  >
+                    <LuLogIn className="h-10" />
+                  </span>
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </div>
