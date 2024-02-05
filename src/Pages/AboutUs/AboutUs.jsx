@@ -3,8 +3,8 @@ import { BsArrowRight } from "react-icons/bs";
 
 const AboutUs = () => {
   return (
-    <div className="py-16">
-      <div className="flex flex-col md:flex-row gap-5 mx-auto max-w-6xl px-6  lg:py-20">
+    <div className="py-6">
+      <div className="flex flex-col md:flex-row gap-5 mx-auto max-w-6xl px-6 py-16 lg:py-20">
         {/* 1st image */}
         <div className="flex items-center justify-center px-2 lg:px-0">
           <div className="overflow-hidden aspect-video cursor-pointer rounded-xl relative group">
