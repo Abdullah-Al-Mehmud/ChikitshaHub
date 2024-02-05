@@ -14,7 +14,7 @@ import Specialties from "./../Pages/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
-import UserProfile from "../Pages/user/userProfile";
+// import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
 
@@ -95,10 +95,6 @@ const router = createBrowserRouter([
         path: "/chats",
         element: <Chats></Chats>,
       },
-      {
-        path: "/sendTips",
-        element: <Emailjs></Emailjs>,
-      },
     ],
   },
 
@@ -122,6 +118,14 @@ const router = createBrowserRouter([
         path: "alldoctors",
         element: <AllDoctors />,
       },
+      {
+        path: "/dashboard/sendTips",
+        element: <Emailjs></Emailjs>,
+      },
+      // {
+      //   path: "/dashboard/userProfile",
+      //   element: <UserProfile></UserProfile>,
+      // },
     ],
   },
 ]);
