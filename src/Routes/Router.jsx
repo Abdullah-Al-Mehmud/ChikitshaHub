@@ -14,7 +14,7 @@ import Specialties from "./../Pages/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
-// import UserProfile from "../Pages/user/userProfile";
+import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
 
