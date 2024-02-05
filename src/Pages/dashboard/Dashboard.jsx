@@ -87,9 +87,9 @@ const Dashboard = () => {
                     </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    <Link to='/dashboard/sendTips'
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
-                      href="#"
+                      
                     >
                       <AiOutlineHome />
                       <span className="ml-4">DASHBOARD</span>
