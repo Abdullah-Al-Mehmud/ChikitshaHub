@@ -86,7 +86,7 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl flex justify-around mx-auto navbar py-3 px-6">
-        <div className="">
+        <div className="navbar-start">
           <div className="dropdown">
             <div
               onClick={() => setShow(!show)}
