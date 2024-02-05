@@ -13,8 +13,8 @@ const Specialties = () => {
       .then((data) => setSpecialtiesData(data));
   }, []);
   return (
-    <div className="">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto my-12 lg:py-20">
+    <div className="py-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto py-16 lg:py-20">
         {specialtiesData.map((category) => (
           <Link to={`/doctors/1/${category.name}`} key={category.id}>
             <div className="px-4 ">
