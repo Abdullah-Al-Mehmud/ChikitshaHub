@@ -1,208 +1,282 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import { useGetDoctorsQuery } from "../../../api/apiSlice";
-import { Link } from "react-router-dom";
-import Rating from "react-rating";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import React, { useState } from "react";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { HiMiniBars3CenterLeft } from "react-icons/hi2";
+import { Link, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-const UserDashboard = () => {
+import { MdLogout } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
+import { FaUserDoctor } from "react-icons/fa6";
+import { MdOutlineCollectionsBookmark } from "react-icons/md";
+import { LuMessagesSquare } from "react-icons/lu";
+import { BsPrescription } from "react-icons/bs";
+import { BsFileEarmarkMedical } from "react-icons/bs";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { logOut } from "../../../redux/authProbiver";
+const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
   const user = useSelector((state) => state.auth.user);
-  const axios = useAxiosPublic();
-  console.log(user);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [location, setLocation] = useState("");
-  const [page, setPage] = useState(1);
-  const [limit] = useState(10);
-  const [doctors, setDoctors] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalDoctors, setTotalDoctors] = useState(0);
-  const handleOnClick = () => {
-    setPage(1);
-  };
-  // const { data: doctors, error, isLoading } = useGetDoctorsQuery();
-  // const {
-  //   data: doctors,
-  //   isLoading,
-  //   error,
-  //   refetch,
-  // } = useGetDoctorsQuery({
-  //   limit: 10,
-  //   sortBy: "name",
-  //   sortOrder: 1,
-  //   search: "",
-  //   location: "",
-  // });
-  // const {
-  //   data: doctors,
-  //   isLoading,
-  //   error,
-  // } = useGetDoctorsQuery({
-  //   page: 1,
-  //   sortBy: "specialty",
-  //   sortOrder: -1,
-  // });
-  // console.log(doctors);
-
-  // const {
-  //   data: doctors,
-  //   isLoading,
-  //   error,
-  //   refetch,
-  // } = useGetDoctorsQuery({
-  //   page: 1,
-  //   sortBy: "specialty",
-  //   sortOrder: -1,
-  // });
-  // console.log(doctors);
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // }
-  // // console.log(data);
-  // const handleSearch = () => {
-  //   refetch();
-  // };
-
-  // const handleChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-  useEffect(() => {
-    async function fetchDoctors() {
-      try {
-        const response = await axios.get("/doctors/search", {
-          params: {
-            page,
-            limit,
-            searchTerm: searchTerm,
-            location: location,
-          },
-        });
-        setDoctors(response.data.data);
-        setTotalPages(response.data.totalPages);
-        setTotalDoctors(response.data.totalDoctors);
-      } catch (error) {
-        console.error("Error while fetching doctors:", error);
-      }
-    }
-    fetchDoctors();
-  }, [axios, page, searchTerm, location, limit]);
-
+  const { photoURL, displayName } = user || {};
   return (
-    <div>
-      <div className="fixed top-0 z-50 w-[60%] mx-auto right-2">
-        <div className="relative flex flex-wrap items-stretch mb-3 mt-2">
-          <input
-            type="search"
-            placeholder="Search doctor's"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onClick={(e) => handleOnClick(e)}
-            className="form-input px-3 py-3 placeholder-gray-700 text-gray-700 relative bg-white rounded-lg text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10"
-          />
-          <span className="z-10 h-full leading-snug font-normal text-center text-gray-700 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 -mt-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </span>
-        </div>
-      </div>
-      <div className="z-40 mt-5 px-5">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 md:gap-3 gap-2">
-          {doctors?.map((doctor) => (
-            <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
-              <div className=" p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl h-[300px]">
-                <div className="flex items-center gap-2 flex-row">
-                  <div>
-                    <div className="flex items-center gap-6">
-                      <div className="avatar">
-                        <div className="w-20 rounded-xl">
-                          <img src={doctor.img} />
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold">{doctor.name}</h4>
-                        <p className="text-sm font-semibold text-gray-600">
-                          {doctor.specialties}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="mt-6">
-                      <h4 className="text-lg font-medium text-gray-600">
-                        Working on:{" "}
-                        <span className="text-lg font-semibold text-black">
-                          {doctor.location}
-                        </span>
-                      </h4>
-                      {/* <div className="flex md: flex-col lg:flex-row lg:items-center gap-4 mt-2">
-                        <h4 className="text-lg font-medium text-gray-600">
-                          Experience:{" "}
-                          <span className="text-lg font-semibold text-black">
-                            {doctor.experience?.year} + Years
-                          </span>
-                        </h4>
-                      </div> */}
-                      <div className="flex gap-1 items-center">
-                        <h4 className="text-lg font-medium text-gray-600 flex items-center gap-2">
-                          Rating:{" "}
-                          <Rating
-                            initialRating={doctor.rating}
-                            emptySymbol={
-                              <AiOutlineStar className="text-orange-300 w-6 h-6" />
-                            }
-                            fullSymbol={
-                              <AiFillStar className="text-orange-300 w-6 h-6" />
-                            }
-                          ></Rating>
-                        </h4>
-                        <p className="text-lg font-medium text-gray-600">
-                          ({doctor.rating})
-                        </p>
-                      </div>
-                      <div className="flex flex-col">
-                        <h4 className="text-2xl font-bold">
-                          $ {doctor.fee}{" "}
-                          <span className="text-sm font-normal text-gray-600">
-                            per consultation
-                          </span>
-                        </h4>
-                        <p className="text-sm font-normal text-gray-600 mt-2">
-                          Follow Up: $ {doctor.followUpFee}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <div className="bg-base-200 px-10 py-16 text-center w-full rounded-lg md:w-fit">
-                    <h4 className="text-2xl font-bold">
-                      $ {doctor.fee}{" "}
-                      <span className="text-sm font-normal text-gray-600">
-                        per <br /> consultation
-                      </span>
-                    </h4>
-                    <p className="text-sm font-normal text-gray-600 mt-4">
-                      Follow Up: $ {doctor.followUpFee}
-                    </p>
-                  </div> */}
+    <div
+      className={`flex h-screen bg-white ${
+        isSideMenuOpen ? "overflow-hidden" : ""
+      }`}
+    >
+      <aside className="z-20 flex-shrink-0 hidden w-60 pl-2 overflow-y-auto bg-white md:block">
+        <div>
+          <div className="text-blue-950 flex flex-col justify-between">
+            <div className="">
+              <div className="flex p-2  bg-white">
+                <div className="flex py-3 px-2 items-center">
+                  <Link to={"/"}>
+                    <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
+                      Chikitsha<span className="text-[#409bd4]">Hub</span>
+                    </h2>
+                  </Link>
                 </div>
               </div>
-            </Link>
-          ))}
+              <div className="flex justify-center">
+                <div>
+                  <img
+                    className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
+                    src={photoURL}
+                    alt=""
+                  />
+                  <p className="font-bold text-base  text-gray-700 pt-2 text-center w-24">
+                    {displayName}
+                  </p>
+                </div>
+              </div>
+              <div className=" flex flex-col justify-between">
+                <ul className="mt-6 leading-10">
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"/dashboard"}
+                    >
+                      <AiOutlineHome />
+                      <span className="ml-4">Home</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <FaUserDoctor />
+                      <span className="ml-4">All Doctors</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <MdOutlineCollectionsBookmark />
+                      <span className="ml-4">Appointments</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <LuMessagesSquare />
+                      <span className="ml-4">Messages</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <BsPrescription />
+                      <span className="ml-4">Prescription</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <BsFileEarmarkMedical />
+                      <span className="ml-4">Medical Records</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"alldoctors"}
+                    >
+                      <FaRegMoneyBill1 />
+                      <span className="ml-4">Billing</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="fixed bottom-0 mb-5">
+              <button
+                className="btn btn-sm bg-transparent border-none bg-slate-300  text-start text-blue-700"
+                onClick={logOut}
+              >
+                <div className="flex justify-between gap-2">
+                  <span>
+                    <MdLogout />
+                  </span>
+                  <span>Log out</span>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
+      </aside>
+      <div className="fixed inset-0 -z-10 flex items-end bg-slate-300 bg-opacity-50 sm:items-center sm:justify-center"></div>
+      <aside
+        className={`fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16  ease-in-out duration-300 overflow-y-auto bg-white
+        ${!isSideMenuOpen ? "-translate-x-full " : "translate-x-0"}
+        
+        md:hidden`}
+      >
+        <div className="text-blue-950">
+          <div className="flex flex-col justify-between p-2 bg-white">
+            <div>
+              <div className="flex py-3 px-2 items-center">
+                <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
+                  Chikitsha<span className="text-[#409bd4]">Hub</span>
+                </h2>
+              </div>
+              <div className="flex flex-col justify-between">
+                <ul className="mt-6 leading-10">
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"/dashboard"}
+                    >
+                      <AiOutlineHome />
+                      <span className="ml-4">Home</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <FaUserDoctor />
+                      <span className="ml-4">All Doctors</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <MdOutlineCollectionsBookmark />
+                      <span className="ml-4">Appointments</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <LuMessagesSquare />
+                      <span className="ml-4">Messages</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <BsPrescription />
+                      <span className="ml-4">Prescription</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <BsFileEarmarkMedical />
+                      <span className="ml-4">Medical Records</span>
+                    </Link>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to="alldoctors"
+                    >
+                      <FaRegMoneyBill1 />
+                      <span className="ml-4">Billing</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="fixed bottom-0 mb-5">
+              <button
+                className="btn btn-sm bg-transparent border-none bg-slate-300  text-start text-blue-700"
+                onClick={logOut}
+              >
+                <div className="flex justify-between gap-2">
+                  <span>
+                    <MdLogout />
+                  </span>
+                  <span>Log out</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <div className="flex flex-col flex-1 w-full overflow-y-auto ">
+        <header className="z-40 py-5 bg-slate-50 fixed w-full top-0">
+          <div className="flex items-center justify-between h-8 px-6 mx-auto">
+            <button
+              className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              onClick={toggleSideMenu}
+              aria-label="Menu"
+            >
+              {isSideMenuOpen ? (
+                <FaXmark className="w-6 h-6" />
+              ) : (
+                <FaBarsStaggered className="w-6 h-6" />
+              )}
+            </button>
+            <div className="flex justify-center mt-2 mr-4 w-[80%]">
+              {/* <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                <input
+                  type="search"
+                  placeholder="Search doctor's"
+                  // {...$attributes}
+                  className="form-input px-3 py-3 placeholder-gray-700 text-gray-700 relative bg-white rounded-lg text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10"
+                />
+                <span className="z-10 h-full leading-snug font-normal text-center text-gray-700 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 -mt-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </span>
+              </div> */}
+            </div>
+          </div>
+        </header>
+        <main className="mt-14 scroll-smooth">
+          <Outlet></Outlet>
+        </main>
       </div>
     </div>
   );
