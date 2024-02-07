@@ -5,7 +5,7 @@ import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 import { useSelector, useDispatch } from "react-redux";
 
 
-const CheckoutForm = ({ fee, doctorName, doctorCode, patientName, patientEmail, appointmentTime }) => {
+const CheckoutForm = ({ fee, doctorName,doctorEmail, doctorCode, patientName, patientEmail, appointmentTime }) => {
     console.log(doctorName, doctorCode, patientName, patientEmail)
     const user = useSelector((state) => state.auth.user);
     const { email, displayName } = user || {};
@@ -33,6 +33,7 @@ const CheckoutForm = ({ fee, doctorName, doctorCode, patientName, patientEmail, 
         const appointmentDetails = {
             doctorName,
             doctorCode,
+            doctorEmail,
             patientName,
             patientEmail,
             appointmentTime: Date(appointmentTime),

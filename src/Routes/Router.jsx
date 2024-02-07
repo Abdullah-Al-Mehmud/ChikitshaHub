@@ -22,6 +22,8 @@ import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
+import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
+import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
 
 const router = createBrowserRouter([
   {
@@ -122,6 +124,14 @@ const router = createBrowserRouter([
         path: "/dashboard/sendTips",
         element: <Emailjs></Emailjs>,
       },
+      {
+        path:"/dashboard/allappointments",
+        element:<AdminAppointment></AdminAppointment>
+      },
+      {
+        path:"/dashboard/adminAllDoctor",
+        element:<AdminAllDoctor/>
+      }
       // {
       //   path: "/dashboard/userProfile",
       //   element: <UserProfile></UserProfile>,
