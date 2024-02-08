@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
 import DataTable from "react-data-table-component"
 import { IoEyeSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const AdminAllDoctor = () => {
     const axiosPublic =useAxiosPublic()
@@ -29,18 +30,25 @@ const AdminAllDoctor = () => {
          name: "Joining Date",
          selector: row =>row.joiningDate
         },
+        // {
+            
+        //     cell:() => <Link to={`/doctor/${appointments[0]._id}`} ><button className="flex items-center gap-2"> view profile </button></Link>,
+        //     ignoreRowClick: true,
+        //     allowOverflow: true,
+        //     button: true,
+        //   },
         {
-            name:"View Doctor",
-            cell:() => <button><IoEyeSharp /></button>,
+            name:"View Profile",
+          selector: row  => <Link to={`/doctor/${row._id}`}>View Profile</Link>,
             ignoreRowClick: true,
             allowOverflow: true,
-            button: true,
+           
           },
          
        ]
 
     return(
-        <div style={{paddingTop: "10px",backgroundColor:"gray" }}> 
+        <div className="w-4/5 mx-auto overflow-x-auto" style={{paddingTop: "10px",backgroundColor:"gray" }}> 
             <DataTable
             columns={column}
             data={appointments}
