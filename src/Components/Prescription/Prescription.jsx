@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 const Prescription = () => {
+    const [suggestions, setSuggestions] = useState([]);
     const { register, control, handleSubmit } = useForm({
         defaultValues: { inputs: [{ value: '' }] } // Initial form data
     });
@@ -11,6 +13,9 @@ const Prescription = () => {
     const onSubmit = data => {
         console.log(data); // Form data
     };
+
+    
+
     return (
         <div>
             <div className="bg-white shadow-lg mx-36 mt-36">
@@ -22,7 +27,7 @@ const Prescription = () => {
                     <img className="w-20" src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" alt="" />
                 </div>
                 <div className="p-3">
-                    <form action="">
+                    {/* <form action="">
                         <div className="flex items-center mb-5">
                             <label className=" inline-block text-right text-gray-500 mr-4 text-gray-500">Patient Name</label>
                             <input name="patientName" id="patientName" type="text" placeholder="Your name" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
@@ -44,7 +49,7 @@ const Prescription = () => {
                         <div className="text-right">
                             <button className="py-3 px-8 bg-[#409bd4] text-green-100 font-bold rounded">Submit</button>
                         </div>
-                    </form>
+                    </form> */}
                 </div>
                 <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3 ">RX</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +59,7 @@ const Prescription = () => {
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
                             />
-                            <input placeholder='' name=''
+                            <input placeholder='1+0+1' name=''
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
                             />
@@ -71,7 +76,7 @@ const Prescription = () => {
 
                 <div className="bg-[#409bd4] text-white">
                     <div className="flex justify-between p-3">
-                        <h2 className="font-bold">Hospital</h2>
+                        <h2 className="font-bold">ChikitshaHub</h2>
                         <div>
                             <div className="flex gap-5">
                                 <p>+5678908765432</p>
