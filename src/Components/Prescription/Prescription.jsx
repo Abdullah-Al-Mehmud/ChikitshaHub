@@ -1,16 +1,16 @@
-//import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray } from 'react-hook-form';
 const Prescription = () => {
-    // const { register, control, handleSubmit } = useForm({
-    //     defaultValues: { inputs: [{ value: '' }] } // Initial form data
-    // });
-    // const { fields, append, remove } = useFieldArray({
-    //     control,
-    //     name: 'inputs' // Name of the array field
-    // });
+    const { register, control, handleSubmit } = useForm({
+        defaultValues: { inputs: [{ value: '' }] } // Initial form data
+    });
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'inputs' // Name of the array field
+    });
 
-    // const onSubmit = data => {
-    //     console.log(data); // Form data
-    // };
+    const onSubmit = data => {
+        console.log(data); // Form data
+    };
     return (
         <div>
             <div className="bg-white shadow-lg mx-36 mt-36">
@@ -47,7 +47,28 @@ const Prescription = () => {
                     </form>
                 </div>
                 <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3 ">RX</h2>
-                
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    {fields.map((field, index) => (
+                        <div key={field.id}>
+                            <input placeholder='Medicine Name' name='medicineName' className='ml-3'
+                                {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
+                                defaultValue={field.value} // Set default value
+                            />
+                            <input placeholder='' name=''
+                                {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
+                                defaultValue={field.value} // Set default value
+                            />
+                            <input placeholder='Days' name='days' className='ml-3'
+                                {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
+                                defaultValue={field.value} // Set default value
+                            />
+                            <button type="button" className='text-red-600 ml-2' onClick={() => remove(index)}>Remove</button>
+                        </div>
+                    ))}
+                    <button type="button" className='text-[#409bd4] mr-3' onClick={() => append({ value: '' })}>Click add to medicine</button>
+                    <button type="submit" className='text-white p-2 bg-[#409bd4] my-5'>Submit</button>
+                </form>
+
                 <div className="bg-[#409bd4] text-white">
                     <div className="flex justify-between p-3">
                         <h2 className="font-bold">Hospital</h2>
