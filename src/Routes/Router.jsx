@@ -24,6 +24,7 @@ import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
+import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
 
 const router = createBrowserRouter([
   {
@@ -131,6 +132,10 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/adminAllDoctor",
         element:<AdminAllDoctor/>
+      },
+      {
+        path:"/dashboard/allpatients",
+        element:<AdminAllPatients/>
       }
       // {
       //   path: "/dashboard/userProfile",
