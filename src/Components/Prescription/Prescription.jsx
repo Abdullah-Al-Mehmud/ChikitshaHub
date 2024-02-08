@@ -1,5 +1,11 @@
 import { useState } from 'react';
+//import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
+
+//medicine array
+const medicine =['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins', ''];
+const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
+const days =[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
     const [suggestions, setSuggestions] = useState([]);
     const { register, control, handleSubmit } = useForm({
@@ -14,20 +20,19 @@ const Prescription = () => {
         console.log(data); // Form data
     };
 
-    
-
     return (
         <div>
             <div className="bg-white shadow-lg mx-36 mt-36">
                 <div className="bg-[#409bd4] flex justify-between text-white p-3">
                     <div>
                         <h2 className="text-xl font-bold">DR. Doctor Name</h2>
-                        <p></p>
+                        <p>MBBS & FCPS surgery Department</p>
+                        <p>Dhaka medical </p>
                     </div>
                     <img className="w-20" src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" alt="" />
                 </div>
                 <div className="p-3">
-                    {/* <form action="">
+                    <form action="">
                         <div className="flex items-center mb-5">
                             <label className=" inline-block text-right text-gray-500 mr-4 text-gray-500">Patient Name</label>
                             <input name="patientName" id="patientName" type="text" placeholder="Your name" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
@@ -49,7 +54,7 @@ const Prescription = () => {
                         <div className="text-right">
                             <button className="py-3 px-8 bg-[#409bd4] text-green-100 font-bold rounded">Submit</button>
                         </div>
-                    </form> */}
+                    </form>
                 </div>
                 <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3 ">RX</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
