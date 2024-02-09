@@ -61,7 +61,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
-                      to={"alldoctors"}
+                      to={"adminAllDoctor"}
                     >
                       <FaUserDoctor />
                       <span className="ml-4">All Doctors</span>
@@ -86,40 +86,40 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allspecialities"}
                     >
                       <FaDisease />
                       <span className="ml-4">All Specialities</span>
-                    </Link>
+                    </Link> */}
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allreviews"}
                     >
                       <MdOutlineReviews />
                       <span className="ml-4">All Reviews</span>
-                    </Link>
+                    </Link> */}
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allreports"}
                     >
                       <TbFileReport />
                       <span className="ml-4">All Reports</span>
-                    </Link>
+                    </Link> */}
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"alltransactions"}
                     >
                       <GrTransaction />
                       <span className="ml-4">All Transactions</span>
-                    </Link>
+                    </Link> */}
                   </li>
                 </ul>
               </div>

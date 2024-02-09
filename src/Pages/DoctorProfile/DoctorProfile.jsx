@@ -185,6 +185,7 @@ const DoctorProfile = () => {
                 <Payment
                   doctorName={doctor?.name}
                   doctorCode={doctor?.doctorCode}
+                  doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
                   appointmentTime={appointmentTime}
