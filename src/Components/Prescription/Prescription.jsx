@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 //import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
 
 //medicine array
-const medicine =['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins', ''];
-const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
-const days =[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
+const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins'];
+//const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
+//const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
-    const [suggestions, setSuggestions] = useState([]);
+    const [isFocus, setIsFocus] = useState(false);
+    const [isHover, setIsHover] = useState(false);
+    const inputRef = useRef();
+    const [selectMedicine, setSelectMedicine] = useState("");
     const { register, control, handleSubmit } = useForm({
         defaultValues: { inputs: [{ value: '' }] } // Initial form data
     });
@@ -19,6 +22,7 @@ const Prescription = () => {
     const onSubmit = data => {
         console.log(data); // Form data
     };
+
 
     return (
         <div>
@@ -59,11 +63,43 @@ const Prescription = () => {
                 <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3 ">RX</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {fields.map((field, index) => (
-                        <div key={field.id}>
+                        <div key={field.id} className='relative'>
                             <input placeholder='Medicine Name' name='medicineName' className='ml-3'
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
+                                onFocus={() => setIsFocus(true)}
+                                onBlur={()=>{
+                                    if(!isHover){
+                                        setIsFocus(false);
+                                    }
+                                }}
+                                value={selectMedicine}
+                                onChange={(e)=>{
+                                    setSelectMedicine(e.target.value);
+                                }}
+                                ref={inputRef}
                             />
+                            {
+                                isFocus && (
+                                    <div className='shadow-lg absolute' onMouseEnter={()=>{setIsHover(true)}} onMouseLeave={()=>{setIsHover(false)}}>
+                                        {
+                                            medicines.map((medicine, index) => {
+                                                const isMatch = medicine.toLowerCase().indexOf(selectMedicine.toLowerCase()) > -1;
+                                                return (
+                                                    <div key={index}>
+                                                    {
+                                                        isMatch && (<div  className='p-5 hover:bg-gray-100 cursor-pointer' onClick={()=>{setSelectMedicine(medicine);
+                                                            inputRef.current.focus();
+                                                        }}>
+                                                        {medicine}
+                                                    </div>
+                                                    )}
+                                                    </div>
+                                                );
+                                            })
+                                        }
+                                    </div>
+                                )}
                             <input placeholder='1+0+1' name=''
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
