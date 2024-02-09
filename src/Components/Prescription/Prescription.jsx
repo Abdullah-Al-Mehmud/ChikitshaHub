@@ -1,8 +1,8 @@
-import axios from 'axios';
+
 import { useRef, useState } from 'react';
 //import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
-//import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
 //medicine array
@@ -10,7 +10,7 @@ const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg',
 //const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
 //const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
-    //const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
     const [isFocus, setIsFocus] = useState(false);
     const [isHover, setIsHover] = useState(false);
     const inputRef = useRef();
@@ -41,7 +41,7 @@ const Prescription = () => {
         console.log(medicineInfo);
 
         const handleSubmit = async () => {
-            axios.post("http://localhost:3000/medicines", medicineInfo).then((res) => {
+            axiosPublic.post("/medicines", medicineInfo).then((res) => {
                 console.log(res.data);
                 if (res.data.success) {
                     console.log(res.data);
