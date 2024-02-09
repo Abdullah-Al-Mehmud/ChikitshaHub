@@ -35,7 +35,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   </Link>
                 </div>
               </div>
-              {/* <div className="flex justify-center">
+              <div className="flex justify-center">
                 <div>
                   <img
                     className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
@@ -46,17 +46,17 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     {displayName}
                   </p>
                 </div>
-              </div> */}
+              </div>
               <div className=" flex flex-col justify-between">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"/dashboard"}
                     >
                       <AiOutlineHome />
                       <span className="ml-4">Home</span>
-                    </Link>
+                    </Link> */}
                   </li>
                   <li className="relative px-2 py-1 ">
                     <Link
@@ -95,40 +95,40 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    {/* <Link
+                    <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allspecialities"}
                     >
                       <FaDisease />
                       <span className="ml-4">All Specialities</span>
-                    </Link> */}
+                    </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    {/* <Link
+                    <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allreviews"}
                     >
                       <MdOutlineReviews />
                       <span className="ml-4">All Reviews</span>
-                    </Link> */}
+                    </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    {/* <Link
+                    <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"allreports"}
                     >
                       <TbFileReport />
                       <span className="ml-4">All Reports</span>
-                    </Link> */}
+                    </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    {/* <Link
+                    <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"alltransactions"}
                     >
                       <GrTransaction />
                       <span className="ml-4">All Transactions</span>
-                    </Link> */}
+                    </Link>
                   </li>
                 </ul>
               </div>
