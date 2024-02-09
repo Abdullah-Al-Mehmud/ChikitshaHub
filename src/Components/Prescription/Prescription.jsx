@@ -1,12 +1,15 @@
 import { useRef, useState } from 'react';
 //import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 //medicine array
 const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins'];
 //const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
 //const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
+    const axiosPublic = useAxiosPublic();
     const [isFocus, setIsFocus] = useState(false);
     const [isHover, setIsHover] = useState(false);
     const inputRef = useRef();
@@ -21,6 +24,30 @@ const Prescription = () => {
 
     const onSubmit = data => {
         console.log(data); // Form data
+        const medicineName = data.medicineName;
+        const dayToday = data.dayToday;
+        const days = data.days;
+        const medicineInfo = {
+          medicineName,
+          dayToday,
+          days
+        };
+        console.log(medicineInfo);
+
+        const handleSubmit = async () => {
+            axiosPublic.post("/medicines", medicineInfo).then((res) => {
+                console.log(res.data);
+                if (res.data.success) {
+                  console.log(res.data);
+                  Swal.fire({
+                    title: "Good job!",
+                    text: "Send medicine!",
+                    icon: "success",
+                  });
+                }
+              });
+        }   
+        handleSubmit();   
     };
 
 
@@ -100,7 +127,7 @@ const Prescription = () => {
                                         }
                                     </div>
                                 )}
-                            <input placeholder='1+0+1' name=''
+                            <input placeholder='1+0+1' name='dayToday'
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
                             />
