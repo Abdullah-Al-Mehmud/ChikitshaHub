@@ -25,6 +25,9 @@ import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
+import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
+import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
+import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
 
 const router = createBrowserRouter([
   {
@@ -138,7 +141,22 @@ const router = createBrowserRouter([
         element: <DoctorProfileReview />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
+      },{
+        path:"/dashboard/allappointments",
+        element:<AdminAppointment></AdminAppointment>
       },
+      {
+        path:"/dashboard/adminAllDoctor",
+        element:<AdminAllDoctor/>
+      },
+      {
+        path:"/dashboard/allpatients",
+        element:<AdminAllPatients/>
+      }
+      // {
+      //   path: "/dashboard/userProfile",
+      //   element: <UserProfile></UserProfile>,
+      // },
     ],
   },
 ]);

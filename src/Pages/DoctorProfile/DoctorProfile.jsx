@@ -6,7 +6,7 @@ import "react-tabs/style/react-tabs.css";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { FaArrowRightLong, FaMessage } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
@@ -190,6 +190,7 @@ const DoctorProfile = () => {
                 <Payment
                   doctorName={doctor?.name}
                   doctorCode={doctor?.doctorCode}
+                  doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
                   appointmentTime={appointmentTime}

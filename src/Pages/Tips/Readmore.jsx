@@ -8,12 +8,12 @@ const Readmore = () => {
   console.log(details);
   return (
     <div>
-      <div>
-        <div className="max-w-screen-lg mx-auto p-5 sm:p-10 md:p-16">
+      <div className="py-6">
+        <div className="max-w-screen-lg mx-auto py-16 lg:py-20">
           <div className="mb-10 rounded overflow-hidden flex flex-col mx-auto">
             <a
               href="#"
-              className="text-xl sm:text-4xl font-semibold my-5  transition duration-500 ease-in-out inline-block mb-2">
+              className="text-xl sm:text-4xl font-semibold my-5  transition duration-500 ease-in-out inline-block">
               {eventDetails.title}
             </a>
 
