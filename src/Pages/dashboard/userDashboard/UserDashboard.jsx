@@ -40,11 +40,11 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               <div className="flex justify-center">
                 <div>
                   <img
-                    className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
+                    className="hidden h-12 w-12 rounded-full sm:block object-cover mr-2 border-2 border-blue-400"
                     src={photoURL}
                     alt=""
                   />
-                  <p className="font-bold text-base  text-gray-700 pt-2 text-center w-24">
+                  <p className="font-bold text-base  text-gray-700 pt-2 text-center w-10">
                     {displayName}
                   </p>
                 </div>
