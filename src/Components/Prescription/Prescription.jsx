@@ -1,7 +1,8 @@
+import axios from 'axios';
 import { useRef, useState } from 'react';
 //import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
+//import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
 //medicine array
@@ -9,7 +10,7 @@ const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg',
 //const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
 //const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
-    const axiosPublic = useAxiosPublic();
+    //const axiosPublic = useAxiosPublic();
     const [isFocus, setIsFocus] = useState(false);
     const [isHover, setIsHover] = useState(false);
     const inputRef = useRef();
@@ -22,33 +23,69 @@ const Prescription = () => {
         name: 'inputs' // Name of the array field
     });
 
-    const onSubmit = data => {
-        console.log(data); // Form data
-        const medicineName = data.medicineName;
-        const dayToday = data.dayToday;
-        const days = data.days;
+    const onSubmit = (data) => {
+        // console.log(data); // Form data
+         const medicineName = data.medicineName;
+         const dayToday = data.dayToday;
+         const days = data.days;
+       /*  const medicineName = data.inputs[0].medicineName; // Assuming there's only one set of inputs
+        const dayToday = data.inputs[0].dayToday;
+        const days = data.inputs[0].days; */
+        // Extract medicineName, dayToday, and days from the data object
+        //const { medicineName, dayToday, days } = data.inputs[index];
         const medicineInfo = {
-          medicineName,
-          dayToday,
-          days
+            medicineName,
+            dayToday,
+            days
         };
         console.log(medicineInfo);
 
         const handleSubmit = async () => {
-            axiosPublic.post("/medicines", medicineInfo).then((res) => {
+            axios.post("http://localhost:3000/medicines", medicineInfo).then((res) => {
                 console.log(res.data);
                 if (res.data.success) {
-                  console.log(res.data);
-                  Swal.fire({
-                    title: "Good job!",
-                    text: "Send medicine!",
-                    icon: "success",
-                  });
+                    console.log(res.data);
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Send medicine!",
+                        icon: "success",
+                    });
                 }
-              });
-        }   
-        handleSubmit();   
+            });
+        }
+        handleSubmit();
     };
+
+    /* const onSubmit = async (formData) => {
+        console.log(formData); // Form data
+    
+        const medicinesData = formData.inputs.map(input => ({
+            medicineName: input.medicineName,
+            dayToday: input.dayToday,
+            days: input.days
+        }));
+    
+        console.log(medicinesData);
+    
+        // Assuming you want to send each medicine separately
+        for (const medicineInfo of medicinesData) {
+            try {
+                const res = await axiosPublic.post("/medicines", medicineInfo);
+                console.log(res.data);
+                if (res.data.success) {
+                    console.log(res.data);
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Send medicine!",
+                        icon: "success",
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                // Handle error
+            }
+        }
+    }; */
 
 
     return (
@@ -95,32 +132,33 @@ const Prescription = () => {
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
                                 onFocus={() => setIsFocus(true)}
-                                onBlur={()=>{
-                                    if(!isHover){
+                                onBlur={() => {
+                                    if (!isHover) {
                                         setIsFocus(false);
                                     }
                                 }}
                                 value={selectMedicine}
-                                onChange={(e)=>{
+                                onChange={(e) => {
                                     setSelectMedicine(e.target.value);
                                 }}
                                 ref={inputRef}
                             />
                             {
                                 isFocus && (
-                                    <div className='shadow-lg absolute' onMouseEnter={()=>{setIsHover(true)}} onMouseLeave={()=>{setIsHover(false)}}>
+                                    <div className='shadow-lg absolute' onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false) }}>
                                         {
                                             medicines.map((medicine, index) => {
                                                 const isMatch = medicine.toLowerCase().indexOf(selectMedicine.toLowerCase()) > -1;
                                                 return (
                                                     <div key={index}>
-                                                    {
-                                                        isMatch && (<div  className='p-5 hover:bg-gray-100 cursor-pointer' onClick={()=>{setSelectMedicine(medicine);
-                                                            inputRef.current.focus();
-                                                        }}>
-                                                        {medicine}
-                                                    </div>
-                                                    )}
+                                                        {
+                                                            isMatch && (<div className='p-5 hover:bg-gray-100 cursor-pointer' onClick={() => {
+                                                                setSelectMedicine(medicine);
+                                                                inputRef.current.focus();
+                                                            }}>
+                                                                {medicine}
+                                                            </div>
+                                                            )}
                                                     </div>
                                                 );
                                             })
@@ -139,7 +177,7 @@ const Prescription = () => {
                         </div>
                     ))}
                     <button type="button" className='text-[#409bd4] mr-3' onClick={() => append({ value: '' })}>Click add to medicine</button>
-                    <button type="submit" className='text-white p-2 bg-[#409bd4] my-5'>Submit</button>
+                    <button onClick={handleSubmit} type="submit" className='text-white p-2 bg-[#409bd4] my-5'>Submit</button>
                 </form>
 
                 <div className="bg-[#409bd4] text-white">
