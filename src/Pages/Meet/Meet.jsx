@@ -44,8 +44,9 @@ const Meet = () => {
     // console.log(currentUser[0]._id)
 
     return (
-        <div className="max-w-6xl mx-auto  px-6 mt-16 lg:py-20">
+        <div className="max-w-6xl mx-auto px-6 mt-16 lg:py-20">
             <div ref={myMeeting}></div>
+            
         </div>
     );
 };

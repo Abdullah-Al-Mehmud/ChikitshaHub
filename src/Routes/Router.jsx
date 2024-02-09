@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Root";
 import Contact from "./../Pages/contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
-
 import Doctors from "../Pages/Doctors/Doctors";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
@@ -13,15 +12,13 @@ import Specialties from "./../Pages/Specialties/Specialties";
 // import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
-
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
-
-import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
+import LiveChat from "../Pages/Chats/LiveChat";
 
 const router = createBrowserRouter([
   {
@@ -91,11 +88,12 @@ const router = createBrowserRouter([
       //   path: "/userProfile",
       //   element: <UserProfile></UserProfile>,
       // },
-      {
-        path: "/chats",
-        element: <Chats></Chats>,
-      },
+      
     ],
+  },
+  {
+    path: "/LiveChat",
+    element: <LiveChat/>,
   },
 
   {
