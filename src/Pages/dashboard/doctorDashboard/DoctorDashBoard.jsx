@@ -41,17 +41,17 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               <div className="flex justify-center">
                 <div>
                   <img
-                    className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
+                    className="hidden h-12 w-12 rounded-full sm:block object-cover mx-auto border-4 border-blue-400"
                     src={photoURL}
                     alt=""
                   />
-                  <p className="font-bold text-base  text-gray-700 pt-2 text-center w-24">
+                  <p className="font-bold text-base  text-gray-700 pt-2 text-center w-auto">
                     {displayName}
                   </p>
                 </div>
               </div>
               <div className=" flex flex-col justify-between">
-                <ul className="mt-6 leading-10">
+                <ul className="mt-2 leading-10">
                   <li className="relative px-2 py-1 ">
                     <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"

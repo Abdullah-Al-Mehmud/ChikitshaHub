@@ -35,7 +35,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   </Link>
                 </div>
               </div>
-              {/* <div className="flex justify-center">
+              <div className="flex justify-center">
                 <div>
                   <img
                     className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
@@ -46,25 +46,34 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     {displayName}
                   </p>
                 </div>
-              </div> */}
+              </div>
               <div className=" flex flex-col justify-between">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
-                    <Link
+                    {/* <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
                       to={"/dashboard"}
                     >
                       <AiOutlineHome />
                       <span className="ml-4">Home</span>
+                    </Link> */}
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <Link
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                      to={"adminAllDoctor"}
+                    >
+                      <FaUserDoctor />
+                      <span className="ml-4">All Doctors</span>
                     </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
                     <Link
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
-                      to={"alldoctors"}
+                      to={"doctorReq"}
                     >
                       <FaUserDoctor />
-                      <span className="ml-4">All Doctors</span>
+                      <span className="ml-4">All Doctors Request</span>
                     </Link>
                   </li>
                   <li className="relative px-2 py-1 ">
