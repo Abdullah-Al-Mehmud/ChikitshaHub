@@ -13,6 +13,7 @@ import {
 } from "./authProbiver";
 
 import { onAuthStateChanged } from "firebase/auth";
+import useAxiosPublic from './../Hooks/useAxiosPublic';
 // createUser;
 
 export const signUpAsync = (email, password) => async (dispatch) => {
@@ -90,7 +91,13 @@ export const updateUserAsync = (name, photoUrl) => async (dispatch) => {
 };
 
 export const subscribeToAuthChanges = () => async (dispatch) => {
+
+  const axios = useAxiosPublic();
+
   onAuthStateChanged(auth, (user) => {
+
+    const loggedUser = {email: user?.email}
+
     if (user) {
       const serializableUser = {
         uid: user.uid,
@@ -99,8 +106,19 @@ export const subscribeToAuthChanges = () => async (dispatch) => {
         photoURL: user.photoURL,
       };
       dispatch(setUser(serializableUser));
+
+      
+
+      axios.post('/jwt', loggedUser)
+        .then(res => {
+          console.log(res);
+        })
     } else {
       dispatch(clearUser());
+      // axios.post('/logout', loggedUser)
+      //               .then(res => {
+      //                   console.log(res);
+      //               })
     }
   });
 };

@@ -18,7 +18,6 @@ import Dashboard from "../Pages/dashboard/Dashboard";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
-import LiveChat from "../Pages/Chats/LiveChat";
 
 const router = createBrowserRouter([
   {
@@ -90,10 +89,6 @@ const router = createBrowserRouter([
       // },
       
     ],
-  },
-  {
-    path: "/LiveChat",
-    element: <LiveChat/>,
   },
 
   {
