@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { MdLogout } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
@@ -30,11 +30,11 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
             <div className="">
               <div className="flex p-2  bg-white">
                 <div className="flex py-3 px-2 items-center">
-                  <Link to={"/"}>
+                  <NavLink to={"/"}>
                     <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
                       Chikitsha<span className="text-[#409bd4]">Hub</span>
                     </h2>
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -52,67 +52,67 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               <div className=" flex flex-col justify-between">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"/dashboard"}
                     >
                       <AiOutlineHome />
                       <span className="ml-4">Home</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <FaUserDoctor />
                       <span className="ml-4">All Doctors</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <MdOutlineCollectionsBookmark />
                       <span className="ml-4">Appointments</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <LuMessagesSquare />
                       <span className="ml-4">Messages</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <BsPrescription />
                       <span className="ml-4">Prescription</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <BsFileEarmarkMedical />
                       <span className="ml-4">Medical Records</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
                       <FaRegMoneyBill1 />
                       <span className="ml-4">Billing</span>
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -151,67 +151,67 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               <div className="flex flex-col justify-between">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"/dashboard"}
                     >
                       <AiOutlineHome />
                       <span className="ml-4">Home</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <FaUserDoctor />
                       <span className="ml-4">All Doctors</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <MdOutlineCollectionsBookmark />
                       <span className="ml-4">Appointments</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <LuMessagesSquare />
                       <span className="ml-4">Messages</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <BsPrescription />
                       <span className="ml-4">Prescription</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <BsFileEarmarkMedical />
                       <span className="ml-4">Medical Records</span>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
-                    <Link
-                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600"
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
                       <FaRegMoneyBill1 />
                       <span className="ml-4">Billing</span>
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>

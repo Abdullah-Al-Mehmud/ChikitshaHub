@@ -24,7 +24,7 @@ const DoctorProfile = () => {
   console.log(meet);
 
   const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString(); // Adjust the format based on your backend data
+    const formattedDate = date.toISOString();
     return !bookedSlots.includes(formattedDate);
   };
 
@@ -41,7 +41,7 @@ const DoctorProfile = () => {
     return !isSlotAvailable(selectedTime);
   };
 
-  const dateObject = new Date(doctor.joiningDate);
+  const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
