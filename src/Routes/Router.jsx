@@ -8,8 +8,6 @@ import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
 import Specialties from "./../Pages/Specialties/Specialties";
-// import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
-// import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
@@ -44,10 +42,6 @@ const router = createBrowserRouter([
         path: "/about",
         element: <PrivateRouter><AboutUs /></PrivateRouter>,
       },
-      // {
-      //   path: "/userRegister",
-      //   element: <UserRegistration></UserRegistration>,
-      // },
       {
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
@@ -83,18 +77,6 @@ const router = createBrowserRouter([
         path: "/meet/:meetId",
         element: <Meet />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login></Login>,
-      // },
-      // {
-      //   path: "/morespecialties",
-      //   element: <MoreSpecialties></MoreSpecialties>,
-      // },
-      // {
-      //   path: "/userProfile",
-      //   element: <UserProfile></UserProfile>,
-      // },
       
     ],
   },

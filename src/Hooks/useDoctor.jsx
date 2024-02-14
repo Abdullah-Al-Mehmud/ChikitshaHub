@@ -13,7 +13,7 @@ const useDoctor = () => {
         queryKey: [user?.email, 'isDoctor'],
         enabled: !isLoading,
         queryFn: async () => {
-            const res = await axios.get(`/doctor/${user?.email}`)
+            const res = await axios.get(`/users/doctor/${user?.email}`)
             return res?.data?.isDoctor
         }
     })
