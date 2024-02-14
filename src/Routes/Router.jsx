@@ -4,7 +4,6 @@ import Contact from "./../Pages/contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 
 import Doctors from "../Pages/Doctors/Doctors";
-import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
@@ -14,8 +13,8 @@ import Specialties from "./../Pages/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
-import UserProfile from "../Pages/user/userProfile";
-import Home from "../Pages/home/Home";
+
+
 import Dashboard from "../Pages/dashboard/Dashboard";
 
 import Chats from "../Pages/Chats/Chats";
@@ -24,10 +23,14 @@ import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
-import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
+// import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
 import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
 import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
+
+import UserProfile from "../Pages/user/UserProfile";
+import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
+import Home from "../Pages/home/Home";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        // element: <Home />,
       },
       {
         path: "/contact",
@@ -138,7 +141,7 @@ const router = createBrowserRouter([
       },
       {
         path: "doctorReq/doctorProfileReview/:id",
-        element: <DoctorProfileReview />,
+        // element:<DoctorProfileReview />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },{
