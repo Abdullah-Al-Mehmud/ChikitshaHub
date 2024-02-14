@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 const CheckoutForm = ({ fee, doctorName,doctorEmail, doctorCode, patientName, patientEmail, appointmentTime }) => {
