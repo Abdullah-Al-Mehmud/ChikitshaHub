@@ -3,21 +3,21 @@ import useAxiosPrivet from "./useAxiosPrivet";
 import { useSelector } from "react-redux";
 
 
-const useAdmin = () => {
+const useDoctor = () => {
 
     const user = useSelector((state) => state.auth.user);
     const isLoading = useSelector((state) => state.auth.loading);
     const axios = useAxiosPrivet();
 
-    const { data: isAdmin, isPending: isAdminLoading } = useQuery({
-        queryKey: [user?.email, 'isAdmin'],
+    const { data: isDoctor, isPending: isDoctorLoading } = useQuery({
+        queryKey: [user?.email, 'isDoctor'],
         enabled: !isLoading,
         queryFn: async () => {
-            const res = await axios.get(`/admin/${user?.email}`)
-            return res?.data?.isAdmin
+            const res = await axios.get(`/doctor/${user?.email}`)
+            return res?.data?.isDoctor
         }
     })
-    return [isAdmin, isAdminLoading]
+    return [isDoctor, isDoctorLoading]
 };
 
-export default useAdmin;
+export default useDoctor;

@@ -25,6 +25,7 @@ import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
 import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
+import PrivateRouter from './PrivateRouter';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: <PrivateRouter><AboutUs /></PrivateRouter>,
       },
       // {
       //   path: "/userRegister",
