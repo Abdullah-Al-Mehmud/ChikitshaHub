@@ -70,7 +70,9 @@ const DoctorRegister = () => {
       name: data.name,
       title: data.title,
       specialties: data.specialties,
+
       img: user?.photoURL,
+      doctorEmail: user?.email,
       role: "pending",
       // category: data.category,
       doctorCode: data.doctorCode,

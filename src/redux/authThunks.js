@@ -115,10 +115,10 @@ export const subscribeToAuthChanges = () => async (dispatch) => {
         })
     } else {
       dispatch(clearUser());
-      // axios.post('/logout', loggedUser)
-      //               .then(res => {
-      //                   console.log(res);
-      //               })
+      axios.post('/logout', loggedUser)
+                    .then(res => {
+                        console.log(res);
+                    })
     }
   });
 };

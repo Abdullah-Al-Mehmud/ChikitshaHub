@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -23,7 +24,7 @@ const DoctorProfile = () => {
   console.log(meet);
 
   const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString(); // Adjust the format based on your backend data
+    const formattedDate = date.toISOString();
     return !bookedSlots.includes(formattedDate);
   };
 
@@ -40,7 +41,7 @@ const DoctorProfile = () => {
     return !isSlotAvailable(selectedTime);
   };
 
-  const dateObject = new Date(doctor.joiningDate);
+  const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
@@ -115,7 +116,8 @@ const DoctorProfile = () => {
             <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
-              className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4">
+              className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"
+            >
               <span>See Doctor Now</span>
               <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
                 <FaVideo className="h-10" />
@@ -134,7 +136,8 @@ const DoctorProfile = () => {
                 <button
                   type="submit"
                   onClick={handleMeetId}
-                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold">
+                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
+                >
                   <span>Join</span>
                   <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                     <FaVideo className="h-10" />
@@ -153,7 +156,8 @@ const DoctorProfile = () => {
                   e.preventDefault(),
                   e.target.appointment.value
                 )
-              }>
+              }
+            >
               <DatePicker
                 selected={selectedDateTime}
                 onChange={(date) => setSelectedDateTime(date)}
@@ -175,7 +179,8 @@ const DoctorProfile = () => {
                   document.getElementById("my_modal_2").showModal()
                 }
                 type="submit"
-                className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0">
+                className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0"
+              >
                 <FaCalendarAlt />
               </button>
             </form>
@@ -185,10 +190,12 @@ const DoctorProfile = () => {
                 <Payment
                   doctorName={doctor?.name}
                   doctorCode={doctor?.doctorCode}
+                  doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
                   appointmentTime={appointmentTime}
-                  fee={doctor?.fee}></Payment>
+                  fee={doctor?.fee}
+                ></Payment>
               </div>
               <form method="dialog" className="modal-backdrop">
                 <button>close</button>
@@ -312,7 +319,8 @@ const DoctorProfile = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-600">
+                    className="block text-sm font-medium text-gray-600"
+                  >
                     Your Name:
                   </label>
                   <input
@@ -326,7 +334,8 @@ const DoctorProfile = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="rating"
-                    className="block text-sm font-medium text-gray-600">
+                    className="block text-sm font-medium text-gray-600"
+                  >
                     Rating:
                   </label>
                   <Rating
@@ -336,12 +345,14 @@ const DoctorProfile = () => {
                     }
                     fullSymbol={
                       <AiFillStar className="text-orange-300 w-8 h-8" />
-                    }></Rating>
+                    }
+                  ></Rating>
                 </div>
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
-                    className="block text-sm font-medium text-gray-600">
+                    className="block text-sm font-medium text-gray-600"
+                  >
                     Your Review:
                   </label>
                   <textarea
@@ -354,7 +365,8 @@ const DoctorProfile = () => {
                 <div>
                   <button
                     type="submit"
-                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4">
+                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"
+                  >
                     <span>Review</span>
                     <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                       <FaArrowRightLong className="h-10" />

@@ -18,6 +18,13 @@ import Dashboard from "../Pages/dashboard/Dashboard";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
+import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
+import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
+import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
+import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
+import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
+import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
+import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
 
 const router = createBrowserRouter([
   {
@@ -104,7 +111,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/dashboard",
+        path: "home",
         element: <UserProfile />,
       },
       {
@@ -112,8 +119,38 @@ const router = createBrowserRouter([
         element: <AllDoctors />,
       },
       {
-        path: "/dashboard/sendTips",
+        path: "sendTips",
         element: <Emailjs></Emailjs>,
+      },
+      {
+        path: "doctorHome",
+        element: <DoctorHome />,
+      },
+      {
+        path: "doctorReq",
+        element: <DoctorReq />,
+      },
+      {
+        path: "doctorReq/doctorProfileReview/:id",
+        element: <DoctorProfileReview />,
+        loader: ({ params }) =>
+          fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
+      },
+      {
+        path: "/dashboard/allappointments",
+        element: <AdminAppointment></AdminAppointment>,
+      },
+      {
+        path: "/dashboard/adminAllDoctor",
+        element: <AdminAllDoctor />,
+      },
+      {
+        path: "/dashboard/allpatients",
+        element: <AdminAllPatients />,
+      },
+      {
+        path: "allspecialities",
+        element: <AdminSpecialities />,
       },
       // {
       //   path: "/dashboard/userProfile",
