@@ -113,7 +113,7 @@ const Prescription = () => {
                     </div>
                     <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3  mb-10">RX</h2>
                     {medicineNames.map((medicineName, index) => (
-                        <div key={index}>
+                        <div key={index} className="mb-5">
                             <input
                                 type="text"
                                 value={medicineName}
@@ -137,15 +137,15 @@ const Prescription = () => {
                             <button type="button" className='text-red-600 ml-2' onClick={() => removeField(index)}>Remove</button>
                         </div>
                     ))}
-                    <button type="button" onClick={addField}>
-                        Add Field
+                    <button type="button" className="text-[#409bd4]" onClick={addField}>
+                        Click Add to medicine
                     </button>
-                    <button type="submit" className="px-6 bg-red-500">
+                    <button type="submit" className="ml-3 text-[#409bd4] px-6 py-2 border-2 rounded-full border-[#409bd4] hover:text-white hover:bg-[#409bd4]">
                         Submit
                     </button>
                 </form>
 
-                <div className="bg-[#409bd4] text-white">
+                <div className="bg-[#409bd4] text-white mt-2">
                     <div className="flex justify-between p-3">
                         <h2 className="font-bold">ChikitshaHub</h2>
                         <div>
