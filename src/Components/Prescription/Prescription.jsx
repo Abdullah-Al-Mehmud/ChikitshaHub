@@ -1,20 +1,20 @@
 
-import { useRef, useState } from 'react';
+//import { useRef, useState } from 'react';
 //import Autosuggest from 'react-autosuggest';
 import { useForm, useFieldArray } from 'react-hook-form';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
 //medicine array
-const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins'];
+//const medicines = ['Tetracyclines', 'Levoxin 500mg', 'Festal 12mg', 'Opal 20mg', 'Aminoglycosides', 'Augmentin', 'Amoxicillin', 'Cephalexin', 'Penicillins'];
 //const dayToDay = ['1+0+1', '0+1+0', '1+1+0', '1+1+1', '0+0+1', '1+0+0', '0+1+1'];
 //const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30]
 const Prescription = () => {
     const axiosPublic = useAxiosPublic();
-    const [isFocus, setIsFocus] = useState(false);
-    const [isHover, setIsHover] = useState(false);
-    const inputRef = useRef();
-    const [selectMedicine, setSelectMedicine] = useState("");
+    //const [isFocus, setIsFocus] = useState(false);
+    //const [isHover, setIsHover] = useState(false);
+    //const inputRef = useRef();
+    //const [selectMedicine, setSelectMedicine] = useState("");
     const { register, control, handleSubmit } = useForm({
         defaultValues: { inputs: [{ value: '' }] } // Initial form data
     });
@@ -25,12 +25,9 @@ const Prescription = () => {
 
     const onSubmit = (data) => {
         // console.log(data); // Form data
-         const medicineName = data.medicineName;
-         const dayToday = data.dayToday;
-         const days = data.days;
-       /*  const medicineName = data.inputs[0].medicineName; // Assuming there's only one set of inputs
-        const dayToday = data.inputs[0].dayToday;
-        const days = data.inputs[0].days; */
+        const medicineName = data.medicineName;
+        const dayToday = data.dayToday;
+        const days = data.days;
         // Extract medicineName, dayToday, and days from the data object
         //const { medicineName, dayToday, days } = data.inputs[index];
         const medicineInfo = {
@@ -40,20 +37,17 @@ const Prescription = () => {
         };
         console.log(medicineInfo);
 
-        const handleSubmit = async () => {
-            axiosPublic.post("/medicines", medicineInfo).then((res) => {
+        axiosPublic.post("/medicines", medicineInfo).then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
                 console.log(res.data);
-                if (res.data.success) {
-                    console.log(res.data);
-                    Swal.fire({
-                        title: "Good job!",
-                        text: "Send medicine!",
-                        icon: "success",
-                    });
-                }
-            });
-        }
-        handleSubmit();
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Send medicine!",
+                    icon: "success",
+                });
+            }
+        });
     };
 
     /* const onSubmit = async (formData) => {
@@ -99,8 +93,8 @@ const Prescription = () => {
                     </div>
                     <img className="w-20" src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" alt="" />
                 </div>
-                <div className="p-3">
-                    <form action="">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className='p-3'>
                         <div className="flex items-center mb-5">
                             <label className=" inline-block text-right text-gray-500 mr-4 text-gray-500">Patient Name</label>
                             <input name="patientName" id="patientName" type="text" placeholder="Your name" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
@@ -119,19 +113,14 @@ const Prescription = () => {
                                 <input type="text" name="date" id="date" placeholder="Appointment Date" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                             </div>
                         </div>
-                        <div className="text-right">
-                            <button className="py-3 px-8 bg-[#409bd4] text-green-100 font-bold rounded">Submit</button>
-                        </div>
-                    </form>
-                </div>
-                <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3 ">RX</h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                    </div>
+                    <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3  mb-10">RX</h2>
                     {fields.map((field, index) => (
                         <div key={field.id} className='relative'>
                             <input placeholder='Medicine Name' name='medicineName' className='ml-3'
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
                                 defaultValue={field.value} // Set default value
-                                onFocus={() => setIsFocus(true)}
+                                /* onFocus={() => setIsFocus(true)}
                                 onBlur={() => {
                                     if (!isHover) {
                                         setIsFocus(false);
@@ -141,9 +130,9 @@ const Prescription = () => {
                                 onChange={(e) => {
                                     setSelectMedicine(e.target.value);
                                 }}
-                                ref={inputRef}
+                                ref={inputRef} */
                             />
-                            {
+                            {/* {
                                 isFocus && (
                                     <div className='shadow-lg absolute' onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false) }}>
                                         {
@@ -164,9 +153,10 @@ const Prescription = () => {
                                             })
                                         }
                                     </div>
-                                )}
+                                )} */}
                             <input placeholder='1+0+1' name='dayToday'
                                 {...register(`inputs.${index}.value`)} // Register input field with react-hook-form
+
                                 defaultValue={field.value} // Set default value
                             />
                             <input placeholder='Days' name='days' className='ml-3'
@@ -176,7 +166,7 @@ const Prescription = () => {
                             <button type="button" className='text-red-600 ml-2' onClick={() => remove(index)}>Remove</button>
                         </div>
                     ))}
-                    <button type="button" className='text-[#409bd4] mr-3' onClick={() => append({ value: '' })}>Click add to medicine</button>
+                    <button type="button" className='text-[#409bd4] mr-3' onClick={() => append({ medicineName: '', dayToday: '', days: '' })}>Click add to medicine</button>
                     <button onClick={handleSubmit} type="submit" className='text-white p-2 bg-[#409bd4] my-5'>Submit</button>
                 </form>
 

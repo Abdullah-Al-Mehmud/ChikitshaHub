@@ -16,6 +16,7 @@ import Readmore from "../Pages/Tips/Readmore";
 
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/Home/Home";
+import Prescription from "../Components/Prescription/Prescription";
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
         path: "/userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "/prescription",
+        element: <Prescription></Prescription>
+      }
     ],
   },
   {
