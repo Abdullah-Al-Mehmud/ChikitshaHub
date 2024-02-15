@@ -5,13 +5,14 @@ const Tips = () => {
   const [TipsData, setTipsData] = useState([]);
 
   useEffect(() => {
-    fetch("../../../public/Tips.json")
+    fetch("Tips.json")
       .then((res) => res.json())
       .then((data) => setTipsData(data));
   }, []);
-  console.log(TipsData);
+  // console.log(TipsData);
   return (
-    <section className="flex flex-col my-20 justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+    <div className="py-6">
+      <section className="flex flex-col py-16 justify-center max-w-6xl min-h-screen px-4 lg:py-20 mx-auto sm:px-6">
       <div className="flex flex-wrap -mx-4">
         {TipsData.map((tips, idx) => (
           <div
@@ -50,6 +51,7 @@ const Tips = () => {
         ))}
       </div>
     </section>
+    </div>
   );
 };
 export default Tips;
