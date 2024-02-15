@@ -5,20 +5,22 @@ import auth from "../../firebase.config";
 const instance = axios.create({
   // baseURL: 'https://chikitsha-hub-server.vercel.app',
   baseURL: "http://localhost:3000",
-  withCredentials: true
+  withCredentials: true,
 });
 
 const useAxiosPrivet = () => {
-    instance.interceptors.response.use(function (response) {
+  instance.interceptors.response.use(
+    function (response) {
       return response;
-    }, async (error) => {
+    },
+    async (error) => {
       const status = error.response.status;
       if (status === 401 || status === 403) {
         await signOut(auth);
-
       }
       return Promise.reject(error);
-    });
+    }
+  );
 
   return instance;
 };

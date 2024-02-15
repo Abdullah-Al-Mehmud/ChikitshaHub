@@ -1,22 +1,54 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { useLoaderData } from "react-router-dom";
-const DoctorProfileReview = ({ id }) => {
+import { Navigate, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPrivet from "../../../../../Hooks/useAxiosPrivet";
+const DoctorProfileReview = () => {
   const doctor = useLoaderData();
+  const axios = useAxiosPrivet();
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+  const handleApproved = async (id) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "Approve The Doctor Request?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Approve",
+      denyButtonText: `Cancel`,
+    });
 
+    if (isConfirmed) {
+      try {
+        const response = await axios.patch(
+          `/doctors/admin/setStatus/${id}`,
+          {}
+        );
+        Swal.fire("Approved!", "Doctor request has been approved.", "success");
+        setShouldNavigate(true);
+      } catch (error) {
+        console.error("Error approving doctor request:", error);
+        Swal.fire("Error", "Failed to approve doctor request.", "error");
+      }
+    } else {
+      Swal.fire("Cancelled", "Doctor request approval was cancelled.", "info");
+    }
+  };
   return (
     <div>
+      {shouldNavigate && <Navigate to="/dashboard/doctorReq" />}
       <div className="mt-5 flex justify-center flex-col items-center gap-3">
         <h1 className="text-center font-semibold text-2xl">
           Review the Doctor Profile
         </h1>
-        <button className="btn bg-[#409bd4] text-white hover:bg-[#3485b8]">
+        <button
+          onClick={() => handleApproved(doctor._id)}
+          className="btn bg-[#409bd4] text-white hover:bg-[#3485b8]"
+        >
           Confirm Approved
         </button>
       </div>

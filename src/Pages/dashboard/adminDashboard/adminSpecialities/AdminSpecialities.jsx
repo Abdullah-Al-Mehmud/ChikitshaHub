@@ -36,14 +36,13 @@ const AdminSpecialities = () => {
     },
   });
   //   console.log(specialties);
-  const refreshData = async () => {
-    await queryClient.invalidateQueries("specialties");
-  };
-  useEffect(() => {
-    refreshData();
-  }, []);
+  // const refreshData = async () => {
+  //   await queryClient.invalidateQueries("specialties");
+  // };
+  // useEffect(() => {
+  //   refreshData();
+  // }, []);
   const handleDelete = (dataId) => {
-    // console.log(dataId);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -55,14 +54,14 @@ const AdminSpecialities = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/specialities/${dataId}`).then(async (res) => {
-          if (res.data.deletedCount > 0) {
+          // console.log(res.statusText);
+          if (res.statusText === "OK") {
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
             refetch();
-            refreshData();
           }
         });
       } else if (result.dismiss === "cancel") {
@@ -96,7 +95,9 @@ const AdminSpecialities = () => {
     }),
     columnHelper.accessor("description", {
       cell: (info) => (
-        <span className="text-sm text-slate-800">{info.getValue()}</span>
+        <span className="text-sm text-slate-800">
+          {info.getValue().slice(0, 15)}...
+        </span>
       ),
       header: "description",
     }),
@@ -117,7 +118,7 @@ const AdminSpecialities = () => {
                   onClick={() => handleEditClick(rowData)}
                   className="btn btn-sm btn-accent"
                 >
-                  Edit
+                  Update
                 </button>
                 <div
                   className={`fixed flex justify-center items-center z-[100] ${
@@ -186,13 +187,19 @@ const AdminSpecialities = () => {
       specialties,
       description,
     };
-    // console.log(specialitiesData);
     try {
       const res = await axios.post("/specialities", specialitiesData);
-      //   console.log(res);
-      setUploadImageName("Uploaded!");
-      //   console.log("client form");
-      refetch();
+      console.log(res.statusText);
+      if (res.statusText === "Created") {
+        setOpenModal(false);
+        setUploadImageName("Uploaded!");
+        refetch();
+        Swal.fire({
+          title: "Specialist Added!",
+          text: "Your request accepted.",
+          icon: "success",
+        });
+      }
     } catch (err) {
       console.log(err);
     } finally {
@@ -237,45 +244,47 @@ const AdminSpecialities = () => {
             </dialog>
           </div>
         </div>
-        <table className="border border-gray-50 w-full text-left">
-          <thead className="bg-indigo-100">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="capitalize px-3.5 py-2">
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row, i) => (
-                <tr
-                  key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-3.5 py-2">
+        <div className="overflow-x-auto">
+          <table className="border border-gray-50 w-full text-left overflow-scroll table-auto">
+            <thead className="bg-indigo-100 table-header-group">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id} className="capitalize px-3.5 py-2">
                       {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
+                        header.column.columnDef.header,
+                        header.getContext()
                       )}
-                    </td>
+                    </th>
                   ))}
                 </tr>
-              ))
-            ) : (
-              <tr className="text-center h-32">
-                <td colSpan={12}>No Record Found!</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody className="">
+              {table.getRowModel().rows.length ? (
+                table.getRowModel().rows.map((row, i) => (
+                  <tr
+                    key={row.id}
+                    className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id} className="px-3.5 py-2">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : (
+                <tr className="text-center h-32">
+                  <td colSpan={12}>No Record Found!</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}
@@ -298,19 +307,21 @@ const AdminSpecialities = () => {
               {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1">
-            | Go to page:
-            <input
-              type="number"
-              defaultValue={table.getState().pagination.pageIndex + 1}
-              onChange={(e) =>
-                table.setPageIndex(
-                  e.target.value ? Number(e.target.value) - 1 : 0
-                )
-              }
-              className="border p-1 rounded w-16 bg-transparent"
-            />
-          </span>
+          <div className="lg:block hidden">
+            <span className="flex items-center gap-1">
+              | Go to page:
+              <input
+                type="number"
+                defaultValue={table.getState().pagination.pageIndex + 1}
+                onChange={(e) =>
+                  table.setPageIndex(
+                    e.target.value ? Number(e.target.value) - 1 : 0
+                  )
+                }
+                className="border p-1 rounded w-16 bg-transparent"
+              />
+            </span>
+          </div>
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}

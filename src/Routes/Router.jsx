@@ -18,12 +18,13 @@ import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
-import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
+
 import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
 import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
-import PrivateRouter from './PrivateRouter';
+import PrivateRouter from "./PrivateRouter";
+import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <PrivateRouter><AboutUs /></PrivateRouter>,
+        element: (
+          <PrivateRouter>
+            <AboutUs />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/doctorRegister",
@@ -77,7 +82,6 @@ const router = createBrowserRouter([
         path: "/meet/:meetId",
         element: <Meet />,
       },
-      
     ],
   },
 

@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { signUpAsync, updateUserAsync } from "../../../redux/authThunks";
 import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
+import { imageUpload } from "../../../api/utils";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -21,19 +22,19 @@ const UserRegistration = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const name = data.name;
     const email = data.email;
-    const photoUrl = data.photo;
+    const photoUrl = data?.image?.[0];
     const password = data.password;
     const role = "user";
+    const img_url = await imageUpload(photoUrl);
     const userInfo = {
       name,
       email,
-      photoUrl,
+      photoUrl: img_url?.data?.display_url,
       role,
     };
-    console.log(userInfo);
     const handleRegistration = async () => {
       try {
         const signUpResult = await dispatch(signUpAsync(email, password));
@@ -106,16 +107,16 @@ https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png"
                   Profile Photo
                 </label>
                 <input
-                  {...register("photo", {
+                  {...register("image", {
                     required: "input field is required",
                   })}
-                  // name="photo"
-                  className="w-full relative rounded-full pl-5 py-2 font-bold border-2 border-[#409ad4] focus:border-[#409ad4] outline-none"
-                  type="text"
+                  name="image"
+                  className="w-full relative rounded-full pl-5 py-2 font-bold border-0 border-[#409ad4] focus:border-[#409ad4] outline-none text-[#409ad4]"
+                  type="file"
                   placeholder="Your Photo URL"
                 />
                 <p className="text-red-500 py-3 font-bold">
-                  {errors.photo?.message}
+                  {errors.image?.message}
                 </p>
               </div>
               <div className="">
@@ -160,7 +161,8 @@ https://i.ibb.co/kHcQKSp/416184993-317205861315040-2894419172803826832-n.png"
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10">
+                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10"
+                  >
                     {showPassword ? (
                       <FaEyeSlash className="text-gray-500" />
                     ) : (
