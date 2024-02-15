@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
 const CheckoutForm = ({ fee, doctorName,doctorEmail, doctorCode, patientName, patientEmail, appointmentTime }) => {
-    console.log(doctorName, doctorCode, patientName, patientEmail)
     const user = useSelector((state) => state.auth.user);
     const { email, displayName } = user || {};
     const [clientSecret, setClientSecret] = useState();
