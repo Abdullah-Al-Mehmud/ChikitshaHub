@@ -71,7 +71,7 @@ const DoctorRegister = () => {
       title: data.title,
       specialties: data.specialties,
       img: user?.photoURL,
-      role: "pending",
+      status: "pending",
       // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,

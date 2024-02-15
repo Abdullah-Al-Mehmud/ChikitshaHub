@@ -79,6 +79,7 @@ const router = createBrowserRouter([
         path: "/meet/:meetId",
         element: <Meet />,
       },
+
       // {
       //   path: "/login",
       //   element: <Login></Login>,
@@ -119,7 +120,7 @@ const router = createBrowserRouter([
         element: <AllDoctors />,
       },
       {
-        path: "/dashboard/sendTips",
+        path: "sendTips",
         element: <Emailjs></Emailjs>,
       },
       // {
