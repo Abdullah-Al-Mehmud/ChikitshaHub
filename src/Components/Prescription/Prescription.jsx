@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 //import Swal from "sweetalert2";
 import { useState } from "react";
@@ -10,7 +11,7 @@ const Prescription = () => {
     const [frequencies, setFrequencies] = useState([]);
     const [days, setDays] = useState([]);
 
-    const addField = () => {
+    const addMedicine = () => {
         setMedicineNames([...medicineNames, ""]);
         setFrequencies([...frequencies, ""]);
         setDays([...days, ""]);
@@ -38,20 +39,24 @@ const Prescription = () => {
             const age = document.getElementById('age').value;
             const date = document.getElementById('date').value;
 
+            const medicines = medicineNames.map((medicineName, index) => ({
+                medicineName,
+                frequency: frequencies[index],
+                days: days[index]
+            }));
+
             const dataToSend = {
                 patientName: patientName,
                 address: address,
                 age: age,
                 date: date,
-                medicines: medicineNames,
-                frequencies: frequencies,
-                days: days,
+                medicines: medicines
             };
 
+            //console.log(dataToSend);
             // Send data to the backend
-            const response = await axiosPublic.post("/prescription", dataToSend);
+            const response = await axiosPublic.post("/medicines", dataToSend);
             console.log(response.data);
-            console.log(dataToSend);
         } catch (error) {
             console.error("Error submitting data:", error);
         }
@@ -107,7 +112,7 @@ const Prescription = () => {
                             </div>
                             <div className="flex items-center mb-10">
                                 <label className="inline-block text-right mr-4 text-lg text-gray-500 text-gray-500">Date</label>
-                                <input type="text" name="date" id="date" placeholder="Appointment Date" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
+                                <input type="date" name="date" id="date" placeholder="Appointment Date" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                             </div>
                         </div>
                     </div>
@@ -126,7 +131,7 @@ const Prescription = () => {
                                 type="text"
                                 value={frequencies[index]}
                                 onChange={(e) => handleFrequencyChange(index, e.target.value)}
-                                placeholder="Frequency"
+                                placeholder="1+1+0"
                             />
                             <input
                                 type="text"
@@ -137,7 +142,7 @@ const Prescription = () => {
                             <button type="button" className='text-red-600 ml-2' onClick={() => removeField(index)}>Remove</button>
                         </div>
                     ))}
-                    <button type="button" className="text-[#409bd4]" onClick={addField}>
+                    <button type="button" className="text-[#409bd4]" onClick={addMedicine}>
                         Click Add to medicine
                     </button>
                     <button type="submit" className="ml-3 text-[#409bd4] px-6 py-2 border-2 rounded-full border-[#409bd4] hover:text-white hover:bg-[#409bd4]">
