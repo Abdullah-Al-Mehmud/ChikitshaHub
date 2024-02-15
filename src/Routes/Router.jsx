@@ -7,7 +7,7 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import Specialties from "./../Pages/Specialties/Specialties";
+import Specialties from './../Pages/Specialties/Specialties';
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
