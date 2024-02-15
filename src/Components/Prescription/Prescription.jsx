@@ -33,7 +33,16 @@ const Prescription = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            const patientName = document.getElementById('patientName').value;
+            const address = document.getElementById('address').value;
+            const age = document.getElementById('age').value;
+            const date = document.getElementById('date').value;
+
             const dataToSend = {
+                patientName: patientName,
+                address: address,
+                age: age,
+                date: date,
                 medicines: medicineNames,
                 frequencies: frequencies,
                 days: days,
@@ -84,20 +93,20 @@ const Prescription = () => {
                 <form onSubmit={handleSubmit}>
                     <div className='p-3'>
                         <div className="flex items-center mb-5">
-                            <label className=" inline-block text-right text-gray-500 mr-4 text-gray-500">Patient Name</label>
+                            <label className=" inline-block text-right text-gray-500 text-lg mr-4 text-gray-500">Patient Name</label>
                             <input name="patientName" id="patientName" type="text" placeholder="Your name" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                         </div>
                         <div className="flex items-center mb-10">
-                            <label className=" inline-block text-right mr-4 text-gray-500 text-gray-500">Address</label>
+                            <label className=" inline-block text-right mr-4  text-lg text-gray-500 text-gray-500">Address</label>
                             <input type="text" name="address" id="address" placeholder="Address" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                         </div>
                         <div className="flex">
                             <div className="flex items-center mb-10">
-                                <label className="inline-block text-right mr-4 text-gray-500 text-gray-500">Age</label>
+                                <label className="inline-block text-right mr-4 text-lg text-gray-500 text-gray-500">Age</label>
                                 <input type="text" name="age" id="age" placeholder="Patient Age" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                             </div>
                             <div className="flex items-center mb-10">
-                                <label className="inline-block text-right mr-4 text-gray-500 text-gray-500">Date</label>
+                                <label className="inline-block text-right mr-4 text-lg text-gray-500 text-gray-500">Date</label>
                                 <input type="text" name="date" id="date" placeholder="Appointment Date" className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400" />
                             </div>
                         </div>
