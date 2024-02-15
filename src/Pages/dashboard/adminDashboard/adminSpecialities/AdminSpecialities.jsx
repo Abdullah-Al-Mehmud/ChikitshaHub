@@ -118,7 +118,7 @@ const AdminSpecialities = () => {
                   onClick={() => handleEditClick(rowData)}
                   className="btn btn-sm btn-accent"
                 >
-                  Edit
+                  Update
                 </button>
                 <div
                   className={`fixed flex justify-center items-center z-[100] ${
@@ -187,7 +187,6 @@ const AdminSpecialities = () => {
       specialties,
       description,
     };
-    // console.log(specialitiesData);
     try {
       const res = await axios.post("/specialities", specialitiesData);
       console.log(res.statusText);

@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [isDoctor] = useDoctor();
   const [isAdmin] = useAdmin();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  // console.log(isAdmin);
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
@@ -20,7 +21,7 @@ const Dashboard = () => {
     setIsSideMenuOpen(false);
   };
 
-  console.log(isAdmin, isDoctor);
+  // console.log(isAdmin, isDoctor);
   return (
     <div>
       {isDoctor ? (
