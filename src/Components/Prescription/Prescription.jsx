@@ -1,6 +1,6 @@
 
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-//import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { useState } from "react";
 
 const Prescription = () => {
@@ -52,7 +52,15 @@ const Prescription = () => {
                 medicines: medicines
             };
 
-            //console.log(dataToSend);
+            await Swal.fire({
+                title: 'Data to Send',
+                html: JSON.stringify(dataToSend, null, 2), // Convert data to JSON string for better visualization
+                icon: 'info',
+                confirmButtonText: 'Submit',
+                showCancelButton: true
+            });
+
+            console.log(dataToSend);
             // Send data to the backend
             const response = await axiosPublic.post("/medicines", dataToSend);
             console.log(response.data);
