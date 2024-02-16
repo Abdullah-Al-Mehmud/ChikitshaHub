@@ -1,80 +1,169 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
-import DataTable from "react-data-table-component"
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import DataTable from "react-data-table-component";
 import { IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
+import Swal from "sweetalert2";
+import useAxiosPrivet from "../../../../Hooks/useAxiosPrivet";
 
 const AdminAllDoctor = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
   const [globalFilter, setGlobalFilter] = useState("");
-    const axiosPublic =useAxiosPublic()
-    const {data : appointments = [],refetch} = useQuery({
-        queryKey:['appointments'],
-        queryFn: async () => {
-          const res =await axiosPublic.get('/doctors')
-          return res.data
-        }
-      })
-      const refreshData = async () => {
-        await queryClient.invalidateQueries("appointment");
-      };
-      useEffect(() => {
-        refreshData();
-      }, []);
-      console.log(appointments);
-      // table dec colum
-      const columns = [
-        columnHelper.accessor("", {
-          id: "S.No",
-          cell: (info) => <span>{info.row.index + 1}</span>,
-          header: "S.No",
-        }),
-        columnHelper.accessor("name", {
-          cell: (info) => <span>{info.getValue()}</span>,
-          header: "Name",
-        }),
-    
-        columnHelper.accessor("doctorEmail", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "Doctor Email",
-        }),
-        columnHelper.accessor("_id", {
-          cell: (info) => (
-            <>
-              <Link to={`doctorProfileReview/${info.getValue()}`}>
-                View Profile
-              </Link>
-            </>
-          ),
-          header: "View profile",
-        }),
-        columnHelper.accessor("role", {
-          cell: (info) => (
-            <span className="text-rose-600 font-semibold">{info.getValue()}</span>
-          ),
-          header: "Status",
-        }),
-      ];
-    
+  const axios = useAxiosPrivet();
+  const { data: Alldoctors = [], refetch } = useQuery({
+    queryKey: ["Alldoctors"],
+    queryFn: async () => {
+      const res = await axios.get("/doctors");
+      return res.data;
+    },
+  });
+  // const refreshData = async () => {
+  //   await queryClient.invalidateQueries("appointment");
+  // };
+  // useEffect(() => {
+  //   refreshData();
+  // }, []);
+  // console.log(appointments);
+  // table dec colum
+  console.log(Alldoctors);
+  const handleUpdate = async (id) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "sure to update?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "update",
+      denyButtonText: `Cancel`,
+    });
 
-      const table = useReactTable({
-        data: appointments,
-        columns,
-        state: { globalFilter },
-        getFilteredRowModel: getFilteredRowModel(),
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-      });
+    if (isConfirmed) {
+      try {
+        const response = await axios.patch(
+          `/doctors/admin/statusUpdate/${id}`,
+          {}
+        );
+        Swal.fire("Updated!", "Doctor Status has been Updated.", "success");
+      } catch (error) {
+        console.error("Error Updating doctor status:", error);
+        Swal.fire("Error", "Failed to approve doctor update request.", "error");
+      }
+    } else {
+      Swal.fire(
+        "Cancelled",
+        "Doctor Status Update request approval was cancelled.",
+        "info"
+      );
+    }
+  };
+  const handleDelete = (dataId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/doctors/admin/docDelete/${dataId}`).then(async (res) => {
+          console.log(res.statusText);
+          if (res.statusText === "OK") {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      } else if (result.dismiss === "cancel") {
+        Swal.fire({
+          title: "Cancelled",
+          text: "Your donation camp is safe!",
+          icon: "info",
+        });
+      }
+    });
+  };
+  const columns = [
+    columnHelper.accessor("", {
+      id: "S.No",
+      cell: (info) => <span>{info.row.index + 1}</span>,
+      header: "S.No",
+    }),
+    columnHelper.accessor("name", {
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: "Name",
+    }),
 
-    return(
-        <> 
-         <div className="p-2 max-w-5xl mx-auto text-black">
+    columnHelper.accessor("_id", {
+      cell: (info) => (
+        <>
+          <Link to={`doctorProfileReview/${info.getValue()}`}>
+            View Profile
+          </Link>
+        </>
+      ),
+      header: "View profile",
+    }),
+    columnHelper.accessor("status", {
+      cell: (info) => (
+        <>
+          <span className="text-rose-600 font-semibold">{info.getValue()}</span>
+        </>
+      ),
+      header: "Status",
+    }),
+    columnHelper.accessor("action", {
+      cell: (props) => {
+        const { row } = props || {};
+        return (
+          <>
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleUpdate(row.original._id)}
+                className="btn btn-sm btn-accent"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => handleDelete(row.original._id)}
+                className="btn btn-sm btn-error"
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        );
+      },
+      header: "update/delete",
+    }),
+  ];
+
+  const table = useReactTable({
+    data: Alldoctors,
+    columns,
+    state: { globalFilter },
+    getFilteredRowModel: getFilteredRowModel(),
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  return (
+    <>
+      <div className="p-2 max-w-5xl mx-auto text-black">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch
@@ -172,6 +261,7 @@ const AdminAllDoctor = () => {
           </select>
         </div>
       </div>
-        </>
-    )}
+    </>
+  );
+};
 export default AdminAllDoctor;

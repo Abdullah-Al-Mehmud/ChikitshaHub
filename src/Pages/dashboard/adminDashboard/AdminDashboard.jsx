@@ -35,7 +35,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   </NavLink>
                 </div>
               </div>
-              {/* <div className="flex justify-center">
+              <div className="flex justify-center">
                 <div>
                   <img
                     className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
@@ -46,7 +46,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     {displayName}
                   </p>
                 </div>
-              </div> */}
+              </div>
               <div className=" flex flex-col justify-between">
                 <ul className="leading-10">
                   <li className="relative px-2 py-1 ">

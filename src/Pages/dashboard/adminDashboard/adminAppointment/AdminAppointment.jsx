@@ -1,161 +1,121 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
-
-import { useEffect, useState } from "react"
-
-import Swal from "sweetalert2"
-import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
-
-import TableSearch from "../../../../Components/tableSearch/TableSearch"
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import DataTable from "react-data-table-component";
+import { useEffect, useState } from "react";
+import { IoEyeSharp } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { Link } from "react-router-dom";
+import AdminAllPatients from "../adminAllPatients/AdminAllPatients";
+import TableSearch from "../../../../Components/tableSearch/TableSearch";
 
 const AdminAppointment = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
   const axios = useAxiosPublic();
   const [globalFilter, setGlobalFilter] = useState("");
-    const axiosPublic =useAxiosPublic()
-    const {data : appointments = [],refetch} = useQuery({
-        queryKey:['appointments'],
-        queryFn: async () => {
-          const res =await axiosPublic.get('/appointments')
-          return res.data
-        }
-      })
-      const refreshData = async () => {
-        await queryClient.invalidateQueries("appointments");
-      };
-      useEffect(() => {
-        refreshData();
-      }, []);
-      console.log(appointments);
-      
-//  Delete
-const handleDelete = (dataId) => {
-  // console.log(dataId);
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axios.delete(`/appointments/${dataId}`).then(async (res) => {
-        if (res.data.deletedCount > 0) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-          refetch();
-          refreshData();
-        }
-      });
-    } else if (result.dismiss === "cancel") {
-      Swal.fire({
-        title: "Cancelled",
-        text: "Your donation camp is safe!",
-        icon: "info",
-      });
-    }
+  const axiosPublic = useAxiosPublic();
+  const { data: appointments = [], refetch } = useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/appointments");
+      return res.data;
+    },
   });
-};
-// Delete
-      // table dec colum
-      const columns = [
-        columnHelper.accessor("", {
-          id: "S.No",
-          cell: (info) => <span>{info.row.index + 1}</span>,
-          header: "S.No",
-        }),
-        columnHelper.accessor("doctorCode", {
-          cell: (info) => <span>{info.getValue()}</span>,
-          header: "DoctorCode",
-        }),
-    
-        columnHelper.accessor("doctorName", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "Doctor Name",
-        }),
+  const refreshData = async () => {
+    await queryClient.invalidateQueries("appointments");
+  };
+  useEffect(() => {
+    refreshData();
+  }, []);
+  console.log(appointments);
 
-        columnHelper.accessor("patientName", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "Patient Name",
-        }),
+  // table dec colum
+  const columns = [
+    columnHelper.accessor("", {
+      id: "S.No",
+      cell: (info) => <span>{info.row.index + 1}</span>,
+      header: "S.No",
+    }),
+    columnHelper.accessor("doctorCode", {
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: "DoctorCode",
+    }),
 
-        columnHelper.accessor("patientEmail", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "Patient Email",
-        }),
+    columnHelper.accessor("doctorName", {
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+      ),
+      header: "Doctor Name",
+    }),
 
-        columnHelper.accessor("appointmentTime", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "AppointmentTime",
-        }),
+    columnHelper.accessor("patientName", {
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+      ),
+      header: "Patient Name",
+    }),
 
+    columnHelper.accessor("patientEmail", {
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+      ),
+      header: "Patient Email",
+    }),
 
+    columnHelper.accessor("appointmentTime", {
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+      ),
+      header: "AppointmentTime",
+    }),
 
-      
-        // delete
+    // delete
 
-        columnHelper.accessor("action", {
-          cell: () => {
-            
-            return (
-              <>
-                <div className="flex gap-3 font-normal">
-                  <div>
-                   
-                    <div>
-                      <div>
-                     
-                   
-    
-                        {/* <h1>{editedData.specialties}</h1> */}
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                  onClick={() => handleDelete()}
-                    className="btn btn-sm btn-error"
-                  >
-                    Delete
-                  </button>
+    columnHelper.accessor("action", {
+      cell: () => {
+        return (
+          <>
+            <div className="flex gap-3 font-normal">
+              <div>
+                <div>
+                  <div>{/* <h1>{editedData.specialties}</h1> */}</div>
                 </div>
-              </>
-            );
-          },
-          header: "description",
-        }),
+              </div>
+              <button className="btn btn-sm btn-error">Delete</button>
+            </div>
+          </>
+        );
+      },
+      header: "description",
+    }),
 
+    // delete
+  ];
 
-        // delete
-      ];
+  // table
+  const table = useReactTable({
+    data: appointments,
+    columns,
+    state: { globalFilter },
+    getFilteredRowModel: getFilteredRowModel(),
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
 
-// table
-      const table = useReactTable({
-        data: appointments,
-        columns,
-        state: { globalFilter },
-        getFilteredRowModel: getFilteredRowModel(),
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-      });
-
-    return(
-        <> 
-           <div className="p-2 max-w-5xl mx-auto text-black">
-          
+  return (
+    <>
+      <div className="p-2 max-w-5xl mx-auto text-black">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch
@@ -253,6 +213,7 @@ const handleDelete = (dataId) => {
           </select>
         </div>
       </div>
-        </>
-    )}
+    </>
+  );
+};
 export default AdminAppointment;

@@ -10,29 +10,28 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 import { Link } from "react-router-dom";
+import useAxiosPrivet from "../../../../Hooks/useAxiosPrivet";
 
 const DoctorReq = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
-  const axios = useAxiosPublic();
+  const axios = useAxiosPrivet();
   const [globalFilter, setGlobalFilter] = useState("");
   const { data: docReq = [] } = useQuery({
     queryKey: ["docReq"],
     queryFn: async () => {
-      const res = await axios.get("/doctors");
-      return res.data;
+      try {
+        const res = await axios.get("/doctors/admin/docReq");
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+      }
     },
   });
-  const refreshData = async () => {
-    await queryClient.invalidateQueries("docReq");
-  };
-  useEffect(() => {
-    refreshData();
-  }, []);
-
   const columns = [
     columnHelper.accessor("", {
       id: "S.No",
@@ -53,14 +52,17 @@ const DoctorReq = () => {
     columnHelper.accessor("_id", {
       cell: (info) => (
         <>
-          <Link to={`doctorProfileReview/${info.getValue()}`}>
+          <Link
+            to={`doctorProfileReview/${info.getValue()}`}
+            className="bg-blue-100 px-2 py-1 rounded-md font-semibold text-blue-950"
+          >
             View Profile
           </Link>
         </>
       ),
       header: "View profile",
     }),
-    columnHelper.accessor("role", {
+    columnHelper.accessor("status", {
       cell: (info) => (
         <span className="text-rose-600 font-semibold">{info.getValue()}</span>
       ),
