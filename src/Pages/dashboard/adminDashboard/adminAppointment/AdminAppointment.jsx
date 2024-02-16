@@ -22,6 +22,7 @@ import TableSearch from "../../../../Components/tableSearch/TableSearch";
 const AdminAppointment = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
+  const axios = useAxiosPublic();
   const [globalFilter, setGlobalFilter] = useState("");
   const axiosPublic = useAxiosPublic();
   const { data: appointments = [], refetch } = useQuery({
@@ -81,23 +82,23 @@ const AdminAppointment = () => {
 
     // delete
 
-    columnHelper.accessor("action", {
-      cell: () => {
-        return (
-          <>
-            <div className="flex gap-3 font-normal">
-              <div>
-                <div>
-                  <div>{/* <h1>{editedData.specialties}</h1> */}</div>
-                </div>
-              </div>
-              <button className="btn btn-sm btn-error">Delete</button>
-            </div>
-          </>
-        );
-      },
-      header: "description",
-    }),
+    // columnHelper.accessor("action", {
+    //   cell: () => {
+    //     return (
+    //       <>
+    //         <div className="flex gap-3 font-normal">
+    //           <div>
+    //             <div>
+    //               <div>{/* <h1>{editedData.specialties}</h1> */}</div>
+    //             </div>
+    //           </div>
+    //           <button className="btn btn-sm btn-error">Delete</button>
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    //   header: "description",
+    // }),
 
     // delete
   ];
