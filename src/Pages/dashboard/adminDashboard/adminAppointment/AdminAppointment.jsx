@@ -82,23 +82,23 @@ const AdminAppointment = () => {
 
     // delete
 
-    columnHelper.accessor("action", {
-      cell: () => {
-        return (
-          <>
-            <div className="flex gap-3 font-normal">
-              <div>
-                <div>
-                  <div>{/* <h1>{editedData.specialties}</h1> */}</div>
-                </div>
-              </div>
-              <button className="btn btn-sm btn-error">Delete</button>
-            </div>
-          </>
-        );
-      },
-      header: "description",
-    }),
+    // columnHelper.accessor("action", {
+    //   cell: () => {
+    //     return (
+    //       <>
+    //         <div className="flex gap-3 font-normal">
+    //           <div>
+    //             <div>
+    //               <div>{/* <h1>{editedData.specialties}</h1> */}</div>
+    //             </div>
+    //           </div>
+    //           <button className="btn btn-sm btn-error">Delete</button>
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    //   header: "description",
+    // }),
 
     // delete
   ];

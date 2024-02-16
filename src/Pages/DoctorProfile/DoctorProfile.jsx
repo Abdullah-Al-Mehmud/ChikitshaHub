@@ -20,9 +20,9 @@ const DoctorProfile = () => {
   const doctor = useLoaderData();
   const bookedSlots = [];
   const navigate = useNavigate();
-
-  console.log(meet);
-
+console.log(appointmentTime);
+//   console.log(meet);
+// console.log(selectedDateTime);
   const isSlotAvailable = (date) => {
     const formattedDate = date.toISOString();
     return !bookedSlots.includes(formattedDate);
@@ -159,8 +159,8 @@ const DoctorProfile = () => {
               }
             >
               <DatePicker
-                selected={selectedDateTime}
                 onChange={(date) => setSelectedDateTime(date)}
+                selected={selectedDateTime}
                 showTimeSelect
                 timeIntervals={15}
                 dateFormat="MMMM d, yyyy h:mm aa"
@@ -193,7 +193,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={appointmentTime}
+                  appointmentTime={selectedDateTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>

@@ -37,20 +37,21 @@ const UserAppointment = () => {
   useEffect(() => {
     refreshData();
   }, []);
+  console.log(appointments);
   console.log(user?.email);
   // date convert to real format
-  const [formattedTimestamp, setFormattedTimestamp] = useState('');
+  // const [formattedTimestamp, setFormattedTimestamp] = useState('');
 
-  useEffect(() => {
-    const timestampStr = (appointments[0].appointmentTime);
-    const timestampObj = new Date(timestampStr);
+  // useEffect(() => {
+  //   const timestampStr = (appointments.appointmentTime);
+  //   const timestampObj = new Date(timestampStr);
 
-    // Format the timestamp as a string
-    const formattedTimestamp = timestampObj.toLocaleString(); // You can use other formatting options as needed
+  //   // Format the timestamp as a string
+  //   const formattedTimestamp = timestampObj.toLocaleString(); // You can use other formatting options as needed
 
-    setFormattedTimestamp(formattedTimestamp);
-  }, []);
-  console.log(formattedTimestamp);
+  //   setFormattedTimestamp(formattedTimestamp);
+  // }, []);
+  // console.log(formattedTimestamp);
   // table
   const columns = [
     columnHelper.accessor("", {
@@ -85,30 +86,30 @@ const UserAppointment = () => {
       header: "Fee",
     }),
 
-    // columnHelper.accessor("appointmentTime", {
-    //   cell: (info) => (
-    //     <span>{info.getValue() ? info.getValue() : "not have any date"}</span>
-    //   ),
-    //   header: "AppointmentTime",
-    // }),
-
     columnHelper.accessor("appointmentTime", {
-      cell: () => {
-        return (
-          <>
-            <div className="flex gap-3 font-normal">
-              <div>
-                <div>
-                  <div>{/* <h1>{editedData.specialties}</h1> */}</div>
-                </div>
-              </div>
-             <span>{formattedTimestamp}</span>
-            </div>
-          </>
-        );
-      },
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have any date"}</span>
+      ),
       header: "AppointmentTime",
     }),
+
+    // columnHelper.accessor("appointmentTime", {
+    //   cell: () => {
+    //     return (
+    //       <>
+    //         <div className="flex gap-3 font-normal">
+    //           <div>
+    //             <div>
+    //               <div>{/* <h1>{editedData.specialties}</h1> */}</div>
+    //             </div>
+    //           </div>
+    //          <span>{formattedTimestamp}</span>
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    //   header: "AppointmentTime",
+    // }),
 
   ];
    // table
