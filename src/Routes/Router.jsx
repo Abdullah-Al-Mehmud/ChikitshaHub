@@ -13,7 +13,6 @@ import Readmore from "../Pages/Tips/Readmore";
 
 import Dashboard from "../Pages/dashboard/Dashboard";
 import Meet from "../Pages/Meet/Meet";
-import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
@@ -28,6 +27,8 @@ import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/Us
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import UserProfile from "../Pages/user/UserProfile";
 import Home from "../Pages/home/Home";
+import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
+import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 
 const router = createBrowserRouter([
   {
@@ -124,7 +125,7 @@ const router = createBrowserRouter([
       },
       {
         path: "sendTips",
-        element: <Emailjs></Emailjs>,
+        element: <AdminSendTips></AdminSendTips>,
       },
       {
         path: "doctorHome",
@@ -163,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/timeScedule",
         element: <DoctorTimeScedule />,
+      },
+      {
+        path: "/dashboard/prescrption",
+        element: <DoctorPrescription />,
       },
     ],
   },
