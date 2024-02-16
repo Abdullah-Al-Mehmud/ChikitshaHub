@@ -13,9 +13,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -24,29 +25,20 @@ const DoctorProfile = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
-  console.log(meet);
+  const axios = useAxiosPublic();
 
-  console.log(appointmentTime);
-  //   console.log(meet);
-  // console.log(selectedDateTime);
-  const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString();
-    return !bookedSlots.includes(formattedDate);
-  };
+  const user = useSelector((state) => state.auth.user);
+  const { displayName, email } = user || {};
 
-  const filterUnavailableDates = (date) => {
-    return isSlotAvailable(date);
-  };
+  const { data: reviews = [], refetch } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axios.get(`/doctorReview/${doctor.doctorEmail}`);
+      return res.data;
+    },
+  });
 
-  const isTimeSlotDisabled = (time) => {
-    const selectedDate = new Date(selectedDateTime);
-    const selectedTime = new Date(
-      selectedDate.setHours(time.getHours(), time.getMinutes())
-    );
-
-    return !isSlotAvailable(selectedTime);
-  };
-
+  console.log(reviews);
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -84,22 +76,20 @@ const DoctorProfile = () => {
       doctorEmail: doctor.doctorEmail,
     };
     console.log(reviewData);
-    axiosPublic.post("/doctorReview", reviewData).then((res) => {
+    axios.post("/doctorReview", reviewData).then((res) => {
       if (res.data.success) {
         Swal.fire({
           title: "Good job!",
           text: "Your Review send Successfully.",
           icon: "success",
         });
+        refetch();
       } else {
         console.error(res.error);
       }
     });
   };
   
-
-  const user = useSelector((state) => state.auth.user);
-  const { displayName, email } = user || {};
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
@@ -184,22 +174,12 @@ const DoctorProfile = () => {
               </form>
             </dialog>
 
-            <form className="relative" onSubmit={handleAppointment}>
-              <DatePicker
-                onChange={(date) => setSelectedDateTime(date)}
-                selected={selectedDateTime}
-                showTimeSelect
-                timeIntervals={15}
-                dateFormat="MMMM d, yyyy h:mm aa"
-                minDate={new Date()}
-                filterDate={filterUnavailableDates}
-                timeCaption="Time"
-                disabledTimeIntervals={[{ after: new Date() }]}
-                name="appointment"
-                shouldDisableTime={(time) => isTimeSlotDisabled(time)}
-                placeholderText="Booking Appointment"
-                className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
-              />
+            <form
+              className="relative"
+              onSubmit={handleAppointment}
+            >
+
+              <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
 
               <button
                 onClick={() =>
@@ -342,6 +322,24 @@ const DoctorProfile = () => {
           </TabPanel>
           <TabPanel>
             <div className="mt-8">
+              <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
+                {reviews?.map((review) => (
+                  <div key={review._id} className="mb-4">
+                    <h2 className="text-xl font-bold">{review.name}</h2>
+                    <Rating
+                      className="mb-1"
+                      initialRating={review.rating}
+                      emptySymbol={
+                        <AiOutlineStar className="text-orange-300 w-4 h-4" />
+                      }
+                      fullSymbol={
+                        <AiFillStar className="text-orange-300 w-4 h-4" />
+                      }
+                    ></Rating>
+                    <p>{review.comment}</p>
+                  </div>
+                ))}
+              </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                   <label
