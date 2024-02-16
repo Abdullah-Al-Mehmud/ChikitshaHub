@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 const Emailjs = () => {
   const axiosPublic = useAxiosPublic();
@@ -44,7 +43,7 @@ const Emailjs = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-xl mx-auto mt-16 flex w-full flex-col border rounded-lg bg-white p-8">
-        <h2 className="title-font mb-1 text-xl font-medium text-gray-900">{`User's Send Mail`}</h2>
+        <h2 className="title-font mb-1 text-xl font-medium text-gray-900">{`Add Tips`}</h2>
         {/* <p className="mb-5 leading-relaxed text-gray-600">If you had any issues or you liked our product, please share
                     with us!
                 </p> */}

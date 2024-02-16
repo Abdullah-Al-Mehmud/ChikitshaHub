@@ -61,7 +61,9 @@ const router = createBrowserRouter([
       {
         path: "/readmores/:id",
         element: <Readmore></Readmore>,
-        loader: () => fetch("/Tips.json"),
+
+        loader: ({ params }) =>
+          fetch(`https://chikitsha-hub-server.vercel.app/tips/${params.id}`),
       },
       {
         path: "/doctors/1/:category",
