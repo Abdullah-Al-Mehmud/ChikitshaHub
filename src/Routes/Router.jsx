@@ -25,11 +25,13 @@ import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
 import PrivateRouter from "./PrivateRouter";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
+import Error from "../Pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -110,6 +112,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    errorElement: <Error />,
     children: [
       {
         path: "home",
