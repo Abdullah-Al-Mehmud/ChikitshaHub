@@ -9,9 +9,11 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -19,8 +21,20 @@ const DoctorProfile = () => {
   const doctor = useLoaderData();
   const navigate = useNavigate();
 
+  const axios = useAxiosPublic();
 
+  const user = useSelector((state) => state.auth.user);
+  const { displayName, email } = user || {};
 
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axios.get(`/doctorReview/${doctor.doctorEmail}`);
+      return res.data;
+    },
+  });
+
+  console.log(reviews);
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -49,8 +63,7 @@ const DoctorProfile = () => {
     console.log("Submitted:", data);
   };
 
-  const user = useSelector((state) => state.auth.user);
-  const { displayName, email } = user || {};
+
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
@@ -139,7 +152,7 @@ const DoctorProfile = () => {
               className="relative"
               onSubmit={handleAppointment}
             >
-              
+
               <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
 
               <button
@@ -283,6 +296,24 @@ const DoctorProfile = () => {
           </TabPanel>
           <TabPanel>
             <div className="mt-8">
+              <div className={`${reviews.length !== 0 ? 'mb-16' : 'mb-0'}`}>
+              {
+                reviews?.map(review => <div key={review._id} className="mb-4">
+                  <h2 className="text-xl font-bold">{review.name}</h2>
+                  <Rating
+                  className="mb-1"
+                  initialRating={review.rating}
+                    emptySymbol={
+                      <AiOutlineStar className="text-orange-300 w-4 h-4" />
+                    }
+                    fullSymbol={
+                      <AiFillStar className="text-orange-300 w-4 h-4" />
+                    }
+                  ></Rating>
+                  <p>{review.comment}</p>
+                </div>)
+              }
+              </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                   <label
