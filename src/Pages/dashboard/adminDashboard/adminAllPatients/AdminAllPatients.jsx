@@ -1,8 +1,15 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import DataTable from "react-data-table-component"
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
-import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 
@@ -10,68 +17,68 @@ const AdminAllPatients = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
   const [globalFilter, setGlobalFilter] = useState("");
-    const axiosPublic =useAxiosPublic()
-       const {data : allpatients = [],refetch} = useQuery({
-        queryKey:['allpatients'],
-        queryFn: async () => {
-          const res =await axiosPublic.get('/users')
-          return res.data
-        }
-      })
-      const refreshData = async () => {
-        await queryClient.invalidateQueries("allpatients");
-      };
-      useEffect(() => {
-        refreshData();
-      }, []);
-      console.log(allpatients);
-      // table dec colum
-      const columns = [
-        columnHelper.accessor("", {
-          id: "S.No",
-          cell: (info) => <span>{info.row.index + 1}</span>,
-          header: "S.No",
-        }),
-        columnHelper.accessor("name", {
-          cell: (info) => <span>{info.getValue()}</span>,
-          header: "Name",
-        }),
-    
-        columnHelper.accessor("email", {
-          cell: (info) => (
-            <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-          ),
-          header: "Doctor Email",
-        }),
-        columnHelper.accessor("_id", {
-          cell: (info) => (
-            <>
-              <Link to={`doctorProfileReview/${info.getValue()}`}>
-                View Profile
-              </Link>
-            </>
-          ),
-          header: "View profile",
-        }),
-        columnHelper.accessor("role", {
-          cell: (info) => (
-            <span className="text-rose-600 font-semibold">{info.getValue()}</span>
-          ),
-          header: "Status",
-        }),
-      ];
+  const axiosPublic = useAxiosPublic();
+  const { data: allpatients = [], refetch } = useQuery({
+    queryKey: ["allpatients"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/users");
+      return res.data;
+    },
+  });
+  const refreshData = async () => {
+    await queryClient.invalidateQueries("allpatients");
+  };
+  useEffect(() => {
+    refreshData();
+  }, []);
+  console.log(allpatients);
+  // table dec colum
+  const columns = [
+    columnHelper.accessor("", {
+      id: "S.No",
+      cell: (info) => <span>{info.row.index + 1}</span>,
+      header: "S.No",
+    }),
+    columnHelper.accessor("name", {
+      cell: (info) => <span>{info.getValue()}</span>,
+      header: "Name",
+    }),
 
-      const table = useReactTable({
-        data: allpatients,
-        columns,
-        state: { globalFilter },
-        getFilteredRowModel: getFilteredRowModel(),
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-      });
-    return(
-        <> 
-         <div className="p-2 max-w-5xl mx-auto text-black">
+    columnHelper.accessor("email", {
+      cell: (info) => (
+        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+      ),
+      header: "Doctor Email",
+    }),
+    columnHelper.accessor("_id", {
+      cell: (info) => (
+        <>
+          <Link to={`doctorProfileReview/${info.getValue()}`}>
+            View Profile
+          </Link>
+        </>
+      ),
+      header: "View profile",
+    }),
+    columnHelper.accessor("role", {
+      cell: (info) => (
+        <span className="text-rose-600 font-semibold">{info.getValue()}</span>
+      ),
+      header: "Status",
+    }),
+  ];
+
+  const table = useReactTable({
+    data: allpatients,
+    columns,
+    state: { globalFilter },
+    getFilteredRowModel: getFilteredRowModel(),
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+  return (
+    <>
+      <div className="p-2 max-w-5xl mx-auto text-black">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch
@@ -102,8 +109,7 @@ const AdminAllPatients = () => {
               table.getRowModel().rows.map((row, i) => (
                 <tr
                   key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
-                >
+                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}>
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="px-3.5 py-2">
                       {flexRender(
@@ -125,15 +131,13 @@ const AdminAllPatients = () => {
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2"
-          >
+            className="p-1 border border-gray-300 px-2">
             {"<"}
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="p-1 border border-gray-300 px-2"
-          >
+            className="p-1 border border-gray-300 px-2">
             {">"}
           </button>
           <span className="flex items-center gap-1">
@@ -159,8 +163,7 @@ const AdminAllPatients = () => {
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="p-2 bg-transparent"
-          >
+            className="p-2 bg-transparent">
             {[10, 20, 30, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
@@ -170,5 +173,6 @@ const AdminAllPatients = () => {
         </div>
       </div>
     </>
-    )}
+  );
+};
 export default AdminAllPatients;
