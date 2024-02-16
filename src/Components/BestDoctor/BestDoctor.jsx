@@ -53,7 +53,7 @@ const BestDoctor = () => {
           <SwiperSlide className="px-6 py-10" key={doctor._id}>
             <Link to={`/doctor/${doctor._id}`}>
               <div className="border-2 rounded-xl hover:border-[#409bd4] pb-6">
-                <img className="w-full h-52 rounded-t-xl" src={doctor.img} alt="" />
+                <img className="h-60 rounded-t-xl " src={doctor.img} alt="" />
                 <div className="flex justify-between items-center px-3 mt-6">
                   <div className="">
                     <h5 className="text-xl font-medium">{doctor.name}</h5>

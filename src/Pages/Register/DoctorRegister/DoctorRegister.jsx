@@ -74,7 +74,6 @@ const DoctorRegister = () => {
       img: user?.photoURL,
       doctorEmail: user?.email,
       status: "pending",
-      // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
       rating: 0,
