@@ -95,7 +95,7 @@ const Doctors = () => {
   return (
     <div>
       <div className="grid grid-cols-12 mt-10 gap-6 max-w-7xl mx-auto px-6 py-16 lg:py-20">
-        <div className="col-span-12 md:col-span-4  rounded-lg">
+        <div className="col-span-12 md:col-span-4  rounded-lg bg-white pb-96">
           {/* <div className="flex justify-between mb-4 text-gray-600">
                         <h4 className="text-xl font-bold">Filters</h4>
                         <h4 className="text-xl font-bold">Reset</h4>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -16,11 +17,13 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
+
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const axios = useAxiosPublic();
 
@@ -60,6 +63,8 @@ const DoctorProfile = () => {
     // },
   });
 
+  
+
   const onSubmit = (data) => {
     //console.log("Submitted:", data);
 
@@ -84,6 +89,7 @@ const DoctorProfile = () => {
       }
     });
   };
+  
 
 
 
@@ -94,8 +100,8 @@ const DoctorProfile = () => {
   const handleAppointment = (e) => {
     e.preventDefault();
     const appointment = e.target.appointment.value;
-    setAppointmentTime(appointment)
-  }
+    setAppointmentTime(appointment);
+  };
 
   return (
     <div>
@@ -196,7 +202,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={appointmentTime}
+                  appointmentTime={selectedDateTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>
@@ -359,15 +365,16 @@ const DoctorProfile = () => {
                   >
                     Rating:
                   </label>
-                  <Rating
-                    emptySymbol={
-                      <AiOutlineStar className="text-orange-300 w-8 h-8" />
-                    }
-                    fullSymbol={
-                      <AiFillStar className="text-orange-300 w-8 h-8" />
-                    }
-                  ></Rating>
+                  <input
+                    type="number"
+                    id="name"
+                    {...register("rating")}
+                    max={5}
+                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                    required
+                  />
                 </div>
+
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
@@ -394,6 +401,7 @@ const DoctorProfile = () => {
                   </button>
                 </div>
               </form>
+              
             </div>
           </TabPanel>
         </Tabs>

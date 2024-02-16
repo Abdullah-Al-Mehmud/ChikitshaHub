@@ -72,8 +72,10 @@ const DoctorRegister = () => {
       specialties: data.specialties,
 
       img: user?.photoURL,
-      doctorEmail: user?.email,
       status: "pending",
+      doctorEmail: user?.email,
+      role: "pending",
+      // category: data.category,
       doctorCode: data.doctorCode,
       location: data.location,
       rating: 0,
@@ -122,8 +124,7 @@ const DoctorRegister = () => {
                 </h3>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className="px-8 pt-6 pb-8 mb-4 bg-white  rounded"
-                >
+                  className="px-8 pt-6 pb-8 mb-4 bg-white  rounded">
                   <div className="flex gap-5 w-full">
                     <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
@@ -151,8 +152,7 @@ const DoctorRegister = () => {
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
                         id="title"
-                        name="title"
-                      >
+                        name="title">
                         <option disabled defaultValue>
                           Choose Title
                         </option>
@@ -183,8 +183,7 @@ const DoctorRegister = () => {
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
                         id="Specialties"
-                        name="specialties"
-                      >
+                        name="specialties">
                         <option disabled defaultValue>
                           Choose Title
                         </option>
@@ -580,8 +579,7 @@ const DoctorRegister = () => {
                   <div className=" text-center">
                     <button
                       className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700  dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
+                      type="submit">
                       Register Account
                     </button>
                   </div>
