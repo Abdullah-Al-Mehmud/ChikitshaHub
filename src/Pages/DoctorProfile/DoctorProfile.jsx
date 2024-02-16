@@ -10,15 +10,22 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
+import Swal from "sweetalert2";
+
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+
+  console.log(meet);
+
   console.log(appointmentTime);
   //   console.log(meet);
   // console.log(selectedDateTime);
@@ -64,9 +71,32 @@ const DoctorProfile = () => {
     // },
   });
 
+  
+
   const onSubmit = (data) => {
-    console.log("Submitted:", data);
+    //console.log("Submitted:", data);
+
+    const { name, comment, rating } = data;
+    const reviewData = {
+      name,
+      comment,
+      rating,
+      doctorEmail: doctor.doctorEmail,
+    };
+    console.log(reviewData);
+    axiosPublic.post("/doctorReview", reviewData).then((res) => {
+      if (res.data.success) {
+        Swal.fire({
+          title: "Good job!",
+          text: "Your Review send Successfully.",
+          icon: "success",
+        });
+      } else {
+        console.error(res.error);
+      }
+    });
   };
+  
 
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
@@ -335,15 +365,16 @@ const DoctorProfile = () => {
                   >
                     Rating:
                   </label>
-                  <Rating
-                    emptySymbol={
-                      <AiOutlineStar className="text-orange-300 w-8 h-8" />
-                    }
-                    fullSymbol={
-                      <AiFillStar className="text-orange-300 w-8 h-8" />
-                    }
-                  ></Rating>
+                  <input
+                    type="number"
+                    id="name"
+                    {...register("rating")}
+                    max={5}
+                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                    required
+                  />
                 </div>
+
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
@@ -370,6 +401,7 @@ const DoctorProfile = () => {
                   </button>
                 </div>
               </form>
+              
             </div>
           </TabPanel>
         </Tabs>
