@@ -38,11 +38,11 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: "",
-      rating: 5,
-      comment: "",
-    },
+    // defaultValues: {
+    //   name: "",
+    //   rating: 5,
+    //   comment: "",
+    // },
   });
 
   const onSubmit = (data) => {
@@ -307,8 +307,6 @@ const DoctorProfile = () => {
                     Rating:
                   </label>
                   <Rating
-                  id="rating"
-                  {...register('rating')}
                     emptySymbol={
                       <AiOutlineStar className="text-orange-300 w-8 h-8" />
                     }
