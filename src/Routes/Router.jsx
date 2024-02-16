@@ -7,11 +7,10 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import Specialties from './../Pages/Specialties/Specialties';
+import Specialties from "./../Pages/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
-import UserProfile from "../Pages/user/userProfile";
-import Home from "../Pages/home/Home";
+
 import Dashboard from "../Pages/dashboard/Dashboard";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
@@ -27,6 +26,8 @@ import PrivateRouter from "./PrivateRouter";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
+import UserProfile from "../Pages/user/UserProfile";
+import Home from "../Pages/home/Home";
 
 const router = createBrowserRouter([
   {

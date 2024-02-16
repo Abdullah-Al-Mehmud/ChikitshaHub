@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import DataTable from "react-data-table-component";
 import { IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import {
@@ -134,14 +133,12 @@ const AdminAllDoctor = () => {
             <div className="flex gap-2">
               <button
                 onClick={() => handleUpdate(row.original._id)}
-                className="btn btn-sm btn-accent"
-              >
+                className="btn btn-sm btn-accent">
                 Update
               </button>
               <button
                 onClick={() => handleDelete(row.original._id)}
-                className="btn btn-sm btn-error"
-              >
+                className="btn btn-sm btn-error">
                 Delete
               </button>
             </div>
@@ -194,8 +191,7 @@ const AdminAllDoctor = () => {
               table.getRowModel().rows.map((row, i) => (
                 <tr
                   key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
-                >
+                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}>
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="px-3.5 py-2">
                       {flexRender(
@@ -217,15 +213,13 @@ const AdminAllDoctor = () => {
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2"
-          >
+            className="p-1 border border-gray-300 px-2">
             {"<"}
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="p-1 border border-gray-300 px-2"
-          >
+            className="p-1 border border-gray-300 px-2">
             {">"}
           </button>
           <span className="flex items-center gap-1">
@@ -251,8 +245,7 @@ const AdminAllDoctor = () => {
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="p-2 bg-transparent"
-          >
+            className="p-2 bg-transparent">
             {[10, 20, 30, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
