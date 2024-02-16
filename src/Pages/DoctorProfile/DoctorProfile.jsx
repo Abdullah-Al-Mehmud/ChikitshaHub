@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -23,22 +24,12 @@ const DoctorProfile = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
-  console.log(meet);
-
-  console.log(appointmentTime);
-  //   console.log(meet);
-  // console.log(selectedDateTime);
-  const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString();
-    return !bookedSlots.includes(formattedDate);
-  };
-
   const axios = useAxiosPublic();
 
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
 
-  const { data: reviews = [] } = useQuery({
+  const { data: reviews = [], refetch } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
       const res = await axios.get(`/doctorReview/${doctor.doctorEmail}`);
@@ -82,13 +73,14 @@ const DoctorProfile = () => {
       doctorEmail: doctor.doctorEmail,
     };
     console.log(reviewData);
-    axiosPublic.post("/doctorReview", reviewData).then((res) => {
+    axios.post("/doctorReview", reviewData).then((res) => {
       if (res.data.success) {
         Swal.fire({
           title: "Good job!",
           text: "Your Review send Successfully.",
           icon: "success",
         });
+        refetch();
       } else {
         console.error(res.error);
       }
