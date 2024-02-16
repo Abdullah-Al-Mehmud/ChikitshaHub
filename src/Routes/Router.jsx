@@ -13,8 +13,6 @@ import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
-
-import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
@@ -98,10 +96,6 @@ const router = createBrowserRouter([
       //   path: "/userProfile",
       //   element: <UserProfile></UserProfile>,
       // },
-      {
-        path: "/chats",
-        element: <Chats></Chats>,
-      },
     ],
   },
 
