@@ -13,7 +13,7 @@ const CheckoutForm = ({ fee, doctorName,doctorEmail, doctorCode, patientName, pa
     const stripe = useStripe();
     const elements = useElements();
     const axiosPrivate = useAxiosPrivet();
-
+console.log(appointmentTime);
 
     const generateMeetId = () => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -36,7 +36,7 @@ const CheckoutForm = ({ fee, doctorName,doctorEmail, doctorCode, patientName, pa
             doctorEmail,
             patientName,
             patientEmail,
-            appointmentTime: Date(appointmentTime),
+            appointmentTime: appointmentTime,
             fee,
             meetingId: randomId
         };
