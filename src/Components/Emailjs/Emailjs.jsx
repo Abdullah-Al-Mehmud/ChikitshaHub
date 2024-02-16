@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Emailjs = () => {
   const axiosPublic = useAxiosPublic();
@@ -34,7 +35,7 @@ const Emailjs = () => {
           });
         }
       });
-      axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
+      axios.post("/http://localhost:3000/sendEmail", TipsInfo).then((res) => {
         console.log(res.data);
         if (res.data.success) {
           console.log(res.data);
@@ -45,6 +46,17 @@ const Emailjs = () => {
           });
         }
       });
+      // axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
+      //   console.log(res.data);
+      //   if (res.data.success) {
+      //     console.log(res.data);
+      //     Swal.fire({
+      //       title: "Good job!",
+      //       text: "Your Tips Send!",
+      //       icon: "success",
+      //     });
+      //   }
+      // });
     };
     handleSubmit();
   };

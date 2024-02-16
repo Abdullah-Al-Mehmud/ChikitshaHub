@@ -17,6 +17,8 @@ import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
+// import Home from "../Pages/Home/Home";
+
 
 import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
@@ -85,6 +87,7 @@ const router = createBrowserRouter([
         path: "/meet/:meetId",
         element: <Meet />,
       },
+
       // {
       //   path: "/login",
       //   element: <Login></Login>,
