@@ -98,10 +98,6 @@ const router = createBrowserRouter([
         path: "/chats",
         element: <Chats></Chats>,
       },
-      {
-        path: "/prescription",
-        element: <Prescription></Prescription>,
-      },
     ],
   },
 
