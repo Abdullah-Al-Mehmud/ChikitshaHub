@@ -23,17 +23,19 @@ import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
 import PrivateRouter from "./PrivateRouter";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
+import Error from "../Pages/Error/Error";
+import Home from "../Pages/home/Home";
+import UserProfile from "../Pages/user/UserProfile";
+import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
-import UserProfile from "../Pages/user/UserProfile";
-import Home from "../Pages/home/Home";
-import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -114,6 +116,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    errorElement: <Error />,
     children: [
       {
         path: "home",
