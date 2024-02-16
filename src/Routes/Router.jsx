@@ -30,7 +30,8 @@ import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients
 
 import UserProfile from "../Pages/user/UserProfile";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
-import Home from "../Pages/home/Home";
+import Home from "../Pages/Home/Home";
+
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        // element: <Home />,
+        element: <Home />,
       },
       {
         path: "/contact",
