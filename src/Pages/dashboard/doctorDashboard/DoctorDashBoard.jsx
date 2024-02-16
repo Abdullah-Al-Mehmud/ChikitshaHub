@@ -73,7 +73,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to={"alldoctors"}
+                      to={"timeScedule"}
                     >
                       <AiOutlineSchedule className="text-lg" />
                       <span className="ml-4">Schedule Timings</span>

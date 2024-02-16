@@ -26,6 +26,7 @@ import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialiti
 import PrivateRouter from "./PrivateRouter";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
+import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +144,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/userAppointment",
         element: <UserAppointment />,
+      },
+      {
+        path: "/dashboard/timeScedule",
+        element: <DoctorTimeScedule />,
       },
     ],
   },

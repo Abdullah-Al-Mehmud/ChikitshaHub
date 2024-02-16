@@ -16,7 +16,9 @@ const Root = () => {
     <div>
       <Scroll />
       <Header></Header>
-      <Outlet></Outlet>
+      <div className="min-h-[100vh] grid grid-rows-1fr-auto">
+        <Outlet></Outlet>
+      </div>
       <Footer />
     </div>
   );
