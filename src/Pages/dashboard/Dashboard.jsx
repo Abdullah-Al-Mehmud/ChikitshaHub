@@ -8,8 +8,8 @@ import DoctorDashBoard from "./doctorDashboard/DoctorDashBoard";
 const Dashboard = () => {
   // const doctor = false;
   // const admin = false;
-  const doctor = true;
-  const admin = false;
+  const doctor = false;
+  const admin = true;
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);

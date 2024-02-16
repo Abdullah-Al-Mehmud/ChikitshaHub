@@ -1,25 +1,28 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CheckoutForm = ({
   fee,
   doctorName,
+  doctorEmail,
   doctorCode,
   patientName,
   patientEmail,
   appointmentTime,
 }) => {
-  console.log(doctorName, doctorCode, patientName, patientEmail);
+  console.log(doctorName, doctorEmail, doctorCode, patientName, patientEmail);
   const user = useSelector((state) => state.auth.user);
   const { email, displayName } = user || {};
   const [clientSecret, setClientSecret] = useState();
   const stripe = useStripe();
   const elements = useElements();
   const axiosPrivate = useAxiosPrivet();
-
+  console.log(displayName);
   const generateMeetId = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -39,9 +42,10 @@ const CheckoutForm = ({
     const appointmentDetails = {
       doctorName,
       doctorCode,
+      doctorEmail,
       patientName,
       patientEmail,
-      appointmentTime: Date(appointmentTime),
+      appointmentTime: appointmentTime,
       fee,
       meetingId: randomId,
     };
@@ -60,7 +64,7 @@ const CheckoutForm = ({
 
   useEffect(() => {
     axiosPrivate.post("/create-payment-intent", { price: fee }).then((res) => {
-      console.log(res);
+      //   console.log(res);
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosPrivate, fee]);
@@ -90,7 +94,7 @@ const CheckoutForm = ({
         timer: 4500,
       });
     } else {
-      console.log("Payment Successfull", paymentMethod);
+      //   console.log("Payment Successfull", paymentMethod);
     }
 
     // confirm payment
@@ -105,7 +109,7 @@ const CheckoutForm = ({
         },
       });
     if (confirmError) {
-      console.log("Confirm error", confirmError.message);
+      //   console.log("Confirm error", confirmError.message);
     } else {
       console.log("Payment confirm", paymentIntent);
     }
@@ -134,7 +138,8 @@ const CheckoutForm = ({
             onClick={handleAppointment}
             className="btn btn-outline btn-success my-5"
             type="submit"
-            disabled={!stripe || !clientSecret}>
+            disabled={!stripe || !clientSecret}
+          >
             Pay
           </button>
         </div>
