@@ -2,33 +2,34 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Root";
 import Contact from "./../Pages/contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
-
 import Doctors from "../Pages/Doctors/Doctors";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
 import Specialties from "./../Pages/Specialties/Specialties";
-// import MoreSpecialties from "../Components/Specialties/MoreSpecialties";
-// import Specialties from "../Components/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 
 
 
 import Dashboard from "../Pages/dashboard/Dashboard";
-
-import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
 import Emailjs from "../Components/Emailjs/Emailjs";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
 // import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
+
 import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
 import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
+import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
+import PrivateRouter from "./PrivateRouter";
 
+import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
+import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import UserProfile from "../Pages/user/UserProfile";
+
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import Home from "../Pages/Home/Home";
 
@@ -48,12 +49,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: (
+          <PrivateRouter>
+            <AboutUs />
+          </PrivateRouter>
+        ),
       },
-      // {
-      //   path: "/userRegister",
-      //   element: <UserRegistration></UserRegistration>,
-      // },
       {
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
@@ -69,7 +70,9 @@ const router = createBrowserRouter([
       {
         path: "/readmores/:id",
         element: <Readmore></Readmore>,
-        loader: () => fetch("/Tips.json"),
+
+        loader: ({ params }) =>
+          fetch(`https://chikitsha-hub-server.vercel.app/tips/${params.id}`),
       },
       {
         path: "/doctors/1/:category",
@@ -101,10 +104,6 @@ const router = createBrowserRouter([
       //   path: "/userProfile",
       //   element: <UserProfile></UserProfile>,
       // },
-      {
-        path: "/chats",
-        element: <Chats></Chats>,
-      },
     ],
   },
 
@@ -121,7 +120,7 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/dashboard",
+        path: "home",
         element: <UserProfile />,
       },
       {
@@ -145,22 +144,31 @@ const router = createBrowserRouter([
         // element:<DoctorProfileReview />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
-      },{
-        path:"/dashboard/allappointments",
-        element:<AdminAppointment></AdminAppointment>
       },
       {
-        path:"/dashboard/adminAllDoctor",
-        element:<AdminAllDoctor/>
+        path: "/dashboard/allappointments",
+        element: <AdminAppointment></AdminAppointment>,
       },
       {
-        path:"/dashboard/allpatients",
-        element:<AdminAllPatients/>
-      }
-      // {
-      //   path: "/dashboard/userProfile",
-      //   element: <UserProfile></UserProfile>,
-      // },
+        path: "/dashboard/adminAllDoctor",
+        element: <AdminAllDoctor />,
+      },
+      {
+        path: "/dashboard/allpatients",
+        element: <AdminAllPatients />,
+      },
+      {
+        path: "allspecialities",
+        element: <AdminSpecialities />,
+      },
+      {
+        path: "/dashboard/userAppointment",
+        element: <UserAppointment />,
+      },
+      {
+        path: "/dashboard/timeScedule",
+        element: <DoctorTimeScedule />,
+      },
     ],
   },
 ]);

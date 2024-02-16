@@ -10,7 +10,7 @@ const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -135,8 +135,8 @@ const Header = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex mx-auto">
-            <ul className="menu menu-horizontal">{links}</ul>
-          </div>
+          <ul className="menu menu-horizontal">{links}</ul>
+        </div>
         <div className="navbar-end">
           {user?.email ? (
             <div className="dropdown dropdown-end">
@@ -152,8 +152,8 @@ const Header = () => {
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link className="text-black w-full" to="/dashboard">
-                    <h1 className="text-center">Your Profile</h1>
+                  <Link className="text-black w-full" to="/dashboard/home">
+                    <h1 className="text-center">Dashboard</h1>
                   </Link>
                 </li>
                 <li>
