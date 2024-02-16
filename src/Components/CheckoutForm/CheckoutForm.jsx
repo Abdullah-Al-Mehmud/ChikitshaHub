@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
@@ -93,7 +94,7 @@ const CheckoutForm = ({
         timer: 4500,
       });
     } else {
-      console.log("Payment Successfull", paymentMethod);
+      //   console.log("Payment Successfull", paymentMethod);
     }
 
     // confirm payment
@@ -108,7 +109,7 @@ const CheckoutForm = ({
         },
       });
     if (confirmError) {
-      console.log("Confirm error", confirmError.message);
+      //   console.log("Confirm error", confirmError.message);
     } else {
       console.log("Payment confirm", paymentIntent);
     }
