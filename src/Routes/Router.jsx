@@ -18,7 +18,7 @@ import UserProfile from "../Pages/user/userProfile";
 import Home from "../Pages/home/Home";
 import Dashboard from "../Pages/dashboard/Dashboard";
 // import Home from "../Pages/Home/Home";
-import Prescription from "../Components/Prescription/Prescription";
+
 
 import Chats from "../Pages/Chats/Chats";
 import Meet from "../Pages/Meet/Meet";
