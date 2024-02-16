@@ -38,8 +38,8 @@ const UserAppointment = () => {
   useEffect(() => {
     refreshData();
   }, []);
-  console.log(appointments);
-  console.log(user?.email);
+  // console.log(appointments);
+  // console.log(user?.email);
   // date convert to real format
   // const [formattedTimestamp, setFormattedTimestamp] = useState('');
 

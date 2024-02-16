@@ -55,13 +55,13 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to={"/dashboard"}
+                      to={"home"}
                     >
                       <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Home</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={""}
@@ -69,7 +69,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <FaUserClock className="text-lg" />
                       <span className="ml-4">My Patients</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
@@ -79,7 +79,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">Schedule Timings</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"alldoctors"}
@@ -87,8 +87,8 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <LuMessagesSquare className="text-lg" />
                       <span className="ml-4">Messages</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"alldoctors"}
@@ -96,8 +96,8 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <BsPrescription className="text-lg" />
                       <span className="ml-4">Prescription</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"alldoctors"}
@@ -105,8 +105,8 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <BsFileEarmarkMedical className="text-lg" />
                       <span className="ml-4">Medical Records</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"alldoctors"}
@@ -114,7 +114,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <FaRegMoneyBill1 className="text-lg" />
                       <span className="ml-4">Billing</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
