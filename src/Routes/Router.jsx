@@ -3,7 +3,6 @@ import Root from "../Layout/Root";
 import Contact from "./../Pages/contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Doctors from "../Pages/Doctors/Doctors";
-import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
@@ -16,6 +15,7 @@ import Meet from "../Pages/Meet/Meet";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
 import DoctorHome from "../Pages/dashboard/doctorDashboard/doctorHome/DoctorHome";
 import DoctorReq from "../Pages/dashboard/adminDashboard/doctorReq/DoctorReq";
+// import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/DoctorProfileReview/DoctorProfileReview";
 
 import AdminAppointment from "../Pages/dashboard/adminDashboard/adminAppointment/AdminAppointment";
 import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/AdminAllDoctor";
@@ -30,6 +30,7 @@ import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/Admin
 import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
+import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 
 const router = createBrowserRouter([
   {
