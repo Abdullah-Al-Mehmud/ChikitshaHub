@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -200,7 +199,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={selectedDateTime}
+                  appointmentTime={appointmentTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>
