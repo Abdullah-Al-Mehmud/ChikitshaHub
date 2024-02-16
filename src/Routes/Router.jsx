@@ -25,6 +25,7 @@ import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
 import PrivateRouter from "./PrivateRouter";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
+import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
 
 const router = createBrowserRouter([
   {
@@ -139,10 +140,10 @@ const router = createBrowserRouter([
         path: "allspecialities",
         element: <AdminSpecialities />,
       },
-      // {
-      //   path: "/dashboard/userProfile",
-      //   element: <UserProfile></UserProfile>,
-      // },
+      {
+        path: "/dashboard/userAppointment",
+        element: <UserAppointment />,
+      },
     ],
   },
 ]);
