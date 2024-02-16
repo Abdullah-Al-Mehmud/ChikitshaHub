@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 const Emailjs = () => {
   const axiosPublic = useAxiosPublic();
@@ -23,49 +22,28 @@ const Emailjs = () => {
     };
     console.log(TipsInfo);
 
-    const handleSubmit = async () => {
-      axiosPublic.post("/tips", TipsInfo).then((res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          console.log(res.data);
-          Swal.fire({
-            title: "Good job!",
-            text: "Your Tips Send!",
-            icon: "success",
-          });
-        }
-      });
-      axios.post("/http://localhost:3000/sendEmail", TipsInfo).then((res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          console.log(res.data);
-          Swal.fire({
-            title: "Good job!",
-            text: "Your Tips Send!",
-            icon: "success",
-          });
-        }
-      });
-      // axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
-      //   console.log(res.data);
-      //   if (res.data.success) {
-      //     console.log(res.data);
-      //     Swal.fire({
-      //       title: "Good job!",
-      //       text: "Your Tips Send!",
-      //       icon: "success",
-      //     });
-      //   }
-      // });
-    };
-    handleSubmit();
+    axiosPublic.post("/tips", TipsInfo).then((res) => {
+      console.log(res.data);
+      if (res.data.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Tips added Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+    axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
+      console.log(res.data);
+    });
   };
   return (
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-xl mx-auto mt-16 flex w-full flex-col border rounded-lg bg-white p-8">
-        <h2 className="title-font mb-1 text-xl font-medium text-gray-900">{`User's Send Mail`}</h2>
+        <h2 className="title-font mb-1 text-xl font-medium text-gray-900">{`Add Tips`}</h2>
         {/* <p className="mb-5 leading-relaxed text-gray-600">If you had any issues or you liked our product, please share
                     with us!
                 </p> */}
@@ -113,7 +91,7 @@ const Emailjs = () => {
           </p>
         </div>
         <button
-          onClick={handleSubmit}
+          type="submit"
           className="rounded border-0 bg-indigo-500 py-2 px-6 text-lg text-white hover:bg-indigo-600 focus:outline-none">
           Send
         </button>

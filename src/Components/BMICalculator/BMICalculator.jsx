@@ -54,7 +54,7 @@ const BMICalculator = () => {
   return (
     <>
       <h1 className="text-4xl py-10 text-center font-bold">BMI Calculator</h1>
-      <div className="md:flex px-10  max-w-5xl mx-auto items-center gap-10 ">
+      <div className="md:flex px-10 max-w-5xl mx-auto items-center gap-10 ">
         <div className=" w-full max-w-md shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="form-control">

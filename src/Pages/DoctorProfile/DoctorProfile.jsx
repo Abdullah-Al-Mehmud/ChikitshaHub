@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -14,17 +15,15 @@ import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
 
 const DoctorProfile = () => {
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState("");
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
-  const bookedSlots = [];
   const navigate = useNavigate();
-
-  console.log(meet);
-
+  console.log(appointmentTime);
+  //   console.log(meet);
+  // console.log(selectedDateTime);
   const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString(); // Adjust the format based on your backend data
+    const formattedDate = date.toISOString();
     return !bookedSlots.includes(formattedDate);
   };
 
@@ -41,7 +40,7 @@ const DoctorProfile = () => {
     return !isSlotAvailable(selectedTime);
   };
 
-  const dateObject = new Date(doctor.joiningDate);
+  const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
@@ -58,11 +57,11 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: "",
-      rating: 5,
-      comment: "",
-    },
+    // defaultValues: {
+    //   name: "",
+    //   rating: 5,
+    //   comment: "",
+    // },
   });
 
   const onSubmit = (data) => {
@@ -74,6 +73,12 @@ const DoctorProfile = () => {
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
+  };
+
+  const handleAppointment = (e) => {
+    e.preventDefault();
+    const appointment = e.target.appointment.value;
+    setAppointmentTime(appointment);
   };
 
   return (
@@ -149,18 +154,10 @@ const DoctorProfile = () => {
               </form>
             </dialog>
 
-            <form
-              className="relative"
-              onSubmit={(e) =>
-                setAppointmentTime(
-                  e.preventDefault(),
-                  e.target.appointment.value
-                )
-              }
-            >
+            <form className="relative" onSubmit={handleAppointment}>
               <DatePicker
-                selected={selectedDateTime}
                 onChange={(date) => setSelectedDateTime(date)}
+                selected={selectedDateTime}
                 showTimeSelect
                 timeIntervals={15}
                 dateFormat="MMMM d, yyyy h:mm aa"
@@ -193,7 +190,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={appointmentTime}
+                  appointmentTime={selectedDateTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>
@@ -339,7 +336,6 @@ const DoctorProfile = () => {
                     Rating:
                   </label>
                   <Rating
-                    initialRating={0}
                     emptySymbol={
                       <AiOutlineStar className="text-orange-300 w-8 h-8" />
                     }
