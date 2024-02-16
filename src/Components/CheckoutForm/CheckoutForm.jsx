@@ -45,7 +45,7 @@ const CheckoutForm = ({
       doctorEmail,
       patientName,
       patientEmail,
-      appointmentTime: Date(appointmentTime),
+      appointmentTime: appointmentTime,
       fee,
       meetingId: randomId,
     };

@@ -1,14 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Specialties = () => {
   const axios = useAxiosPublic();
-  const dataa = useSelector((c) => c.user);
-  const { data: specialties = [], refetch } = useQuery({
+  const { data: specialties = [] } = useQuery({
     queryKey: ["specialties"],
     queryFn: async () => {
       const res = await axios.get("/specialities");

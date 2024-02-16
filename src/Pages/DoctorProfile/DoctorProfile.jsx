@@ -14,32 +14,12 @@ import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
 
 const DoctorProfile = () => {
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState("");
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
-  const bookedSlots = [];
   const navigate = useNavigate();
 
-  console.log(meet);
 
-  const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString();
-    return !bookedSlots.includes(formattedDate);
-  };
-
-  const filterUnavailableDates = (date) => {
-    return isSlotAvailable(date);
-  };
-
-  const isTimeSlotDisabled = (time) => {
-    const selectedDate = new Date(selectedDateTime);
-    const selectedTime = new Date(
-      selectedDate.setHours(time.getHours(), time.getMinutes())
-    );
-
-    return !isSlotAvailable(selectedTime);
-  };
 
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
@@ -58,11 +38,11 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: "",
-      rating: 5,
-      comment: "",
-    },
+    // defaultValues: {
+    //   name: "",
+    //   rating: 5,
+    //   comment: "",
+    // },
   });
 
   const onSubmit = (data) => {
@@ -75,6 +55,12 @@ const DoctorProfile = () => {
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
   };
+
+  const handleAppointment = (e) => {
+    e.preventDefault();
+    const appointment = e.target.appointment.value;
+    setAppointmentTime(appointment)
+  }
 
   return (
     <div>
@@ -151,28 +137,10 @@ const DoctorProfile = () => {
 
             <form
               className="relative"
-              onSubmit={(e) =>
-                setAppointmentTime(
-                  e.preventDefault(),
-                  e.target.appointment.value
-                )
-              }
+              onSubmit={handleAppointment}
             >
-              <DatePicker
-                selected={selectedDateTime}
-                onChange={(date) => setSelectedDateTime(date)}
-                showTimeSelect
-                timeIntervals={15}
-                dateFormat="MMMM d, yyyy h:mm aa"
-                minDate={new Date()}
-                filterDate={filterUnavailableDates}
-                timeCaption="Time"
-                disabledTimeIntervals={[{ after: new Date() }]}
-                name="appointment"
-                shouldDisableTime={(time) => isTimeSlotDisabled(time)}
-                placeholderText="Booking Appointment"
-                className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
-              />
+              
+              <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
 
               <button
                 onClick={() =>
@@ -339,7 +307,6 @@ const DoctorProfile = () => {
                     Rating:
                   </label>
                   <Rating
-                    initialRating={0}
                     emptySymbol={
                       <AiOutlineStar className="text-orange-300 w-8 h-8" />
                     }

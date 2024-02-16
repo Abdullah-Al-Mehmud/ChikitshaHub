@@ -7,7 +7,7 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import UserRegistration from "../Pages/Register/UserRegister/UserRegister";
 import DoctorRegister from "../Pages/Register/DoctorRegister/DoctorRegister";
 import Login from "../Login/Login";
-import Specialties from "./../Pages/Specialties/Specialties";
+import Specialties from './../Pages/Specialties/Specialties';
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
 import UserProfile from "../Pages/user/userProfile";
@@ -64,7 +64,9 @@ const router = createBrowserRouter([
       {
         path: "/readmores/:id",
         element: <Readmore></Readmore>,
-        loader: () => fetch("/Tips.json"),
+
+        loader: ({ params }) =>
+          fetch(`https://chikitsha-hub-server.vercel.app/tips/${params.id}`),
       },
       {
         path: "/doctors/1/:category",
@@ -84,6 +86,18 @@ const router = createBrowserRouter([
         path: "/meet/:meetId",
         element: <Meet />,
       },
+      // {
+      //   path: "/login",
+      //   element: <Login></Login>,
+      // },
+      // {
+      //   path: "/morespecialties",
+      //   element: <MoreSpecialties></MoreSpecialties>,
+      // },
+      // {
+      //   path: "/userProfile",
+      //   element: <UserProfile></UserProfile>,
+      // },
     ],
   },
 
