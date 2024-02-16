@@ -54,7 +54,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to={"/dashboard"}
+                      to={"home"}
                     >
                       <AiOutlineHome />
                       <span className="ml-4">Home</span>
@@ -78,7 +78,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">Appointments</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
@@ -86,8 +86,8 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <LuMessagesSquare />
                       <span className="ml-4">Messages</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
@@ -95,8 +95,8 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <BsPrescription />
                       <span className="ml-4">Prescription</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
@@ -104,8 +104,8 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <BsFileEarmarkMedical />
                       <span className="ml-4">Medical Records</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
@@ -113,7 +113,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <FaRegMoneyBill1 />
                       <span className="ml-4">Billing</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -177,7 +177,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">Appointments</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
@@ -212,7 +212,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <FaRegMoneyBill1 />
                       <span className="ml-4">Billing</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>

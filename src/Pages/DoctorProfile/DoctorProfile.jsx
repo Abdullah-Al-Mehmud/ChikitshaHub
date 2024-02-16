@@ -91,8 +91,6 @@ const DoctorProfile = () => {
   };
   
 
-
-
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
   };
@@ -324,23 +322,23 @@ const DoctorProfile = () => {
           </TabPanel>
           <TabPanel>
             <div className="mt-8">
-              <div className={`${reviews.length !== 0 ? 'mb-16' : 'mb-0'}`}>
-              {
-                reviews?.map(review => <div key={review._id} className="mb-4">
-                  <h2 className="text-xl font-bold">{review.name}</h2>
-                  <Rating
-                  className="mb-1"
-                  initialRating={review.rating}
-                    emptySymbol={
-                      <AiOutlineStar className="text-orange-300 w-4 h-4" />
-                    }
-                    fullSymbol={
-                      <AiFillStar className="text-orange-300 w-4 h-4" />
-                    }
-                  ></Rating>
-                  <p>{review.comment}</p>
-                </div>)
-              }
+              <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
+                {reviews?.map((review) => (
+                  <div key={review._id} className="mb-4">
+                    <h2 className="text-xl font-bold">{review.name}</h2>
+                    <Rating
+                      className="mb-1"
+                      initialRating={review.rating}
+                      emptySymbol={
+                        <AiOutlineStar className="text-orange-300 w-4 h-4" />
+                      }
+                      fullSymbol={
+                        <AiFillStar className="text-orange-300 w-4 h-4" />
+                      }
+                    ></Rating>
+                    <p>{review.comment}</p>
+                  </div>
+                ))}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
