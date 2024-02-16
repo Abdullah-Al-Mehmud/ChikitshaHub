@@ -1,18 +1,17 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
-import DataTable from "react-data-table-component"
+
 import { useEffect, useState } from "react"
-import { IoEyeSharp } from "react-icons/io5"
-import { MdDelete } from "react-icons/md"
+
 import Swal from "sweetalert2"
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
-import { Link } from "react-router-dom"
-import AdminAllPatients from "../adminAllPatients/AdminAllPatients"
+
 import TableSearch from "../../../../Components/tableSearch/TableSearch"
 
 const AdminAppointment = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
+  const axios = useAxiosPublic();
   const [globalFilter, setGlobalFilter] = useState("");
     const axiosPublic =useAxiosPublic()
     const {data : appointments = [],refetch} = useQuery({
@@ -30,7 +29,40 @@ const AdminAppointment = () => {
       }, []);
       console.log(appointments);
       
- 
+//  Delete
+const handleDelete = (dataId) => {
+  // console.log(dataId);
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios.delete(`/appointments/${dataId}`).then(async (res) => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch();
+          refreshData();
+        }
+      });
+    } else if (result.dismiss === "cancel") {
+      Swal.fire({
+        title: "Cancelled",
+        text: "Your donation camp is safe!",
+        icon: "info",
+      });
+    }
+  });
+};
+// Delete
       // table dec colum
       const columns = [
         columnHelper.accessor("", {
@@ -78,8 +110,7 @@ const AdminAppointment = () => {
 
         columnHelper.accessor("action", {
           cell: () => {
-          
-          
+            
             return (
               <>
                 <div className="flex gap-3 font-normal">
@@ -95,6 +126,7 @@ const AdminAppointment = () => {
                     </div>
                   </div>
                   <button
+                  onClick={() => handleDelete()}
                     className="btn btn-sm btn-error"
                   >
                     Delete
