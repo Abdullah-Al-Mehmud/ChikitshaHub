@@ -9,10 +9,6 @@ import Login from "../Login/Login";
 import Specialties from "./../Pages/Specialties/Specialties";
 import Tips from "../Pages/Tips/Tips";
 import Readmore from "../Pages/Tips/Readmore";
-<<<<<<< HEAD
-
-=======
->>>>>>> eb0f7199d15e8e38c14c27e323a3c0b3a006f8c6
 import Dashboard from "../Pages/dashboard/Dashboard";
 import Meet from "../Pages/Meet/Meet";
 import AllDoctors from "../Pages/dashboard/userDashboard/allDoctors/AllDoctors";
@@ -23,25 +19,15 @@ import AdminAllDoctor from "../Pages/dashboard/adminDashboard/adminAllDoctor/Adm
 import AdminAllPatients from "../Pages/dashboard/adminDashboard/adminAllPatients/AdminAllPatients";
 import AdminSpecialities from "../Pages/dashboard/adminDashboard/adminSpecialities/AdminSpecialities";
 import PrivateRouter from "./PrivateRouter";
-<<<<<<< HEAD
-import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
-import Error from "../Pages/Error/Error";
-import Home from "../Pages/home/Home";
-import UserProfile from "../Pages/user/UserProfile";
-=======
 import Error from "../Pages/Error/Error";
 import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/UserAppointment";
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import UserProfile from "../Pages/user/UserProfile";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import Home from "../Pages/Home/Home";
->>>>>>> eb0f7199d15e8e38c14c27e323a3c0b3a006f8c6
 import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
-<<<<<<< HEAD
-import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
-=======
->>>>>>> eb0f7199d15e8e38c14c27e323a3c0b3a006f8c6
+import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 
 const router = createBrowserRouter([
   {
@@ -93,7 +79,7 @@ const router = createBrowserRouter([
           ),
       },
       {
-        path: "/doctor/:id",
+        path: "/doctors/:id",
         element: <DoctorProfile />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),

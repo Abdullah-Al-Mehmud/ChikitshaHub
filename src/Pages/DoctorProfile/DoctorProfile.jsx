@@ -37,7 +37,7 @@ const DoctorProfile = () => {
     },
   });
 
-  console.log(reviews);
+  // console.log(reviews);
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
