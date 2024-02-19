@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
@@ -12,12 +15,15 @@ import {
 } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
+import Swal from "sweetalert2";
 
 const AdminAllPatients = () => {
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
+  const [editedData, setEditedData] = useState(null);
   const [globalFilter, setGlobalFilter] = useState("");
   const axiosPublic = useAxiosPublic();
+  const axios = useAxiosPublic();
   const { data: allpatients = [], refetch } = useQuery({
     queryKey: ["allpatients"],
     queryFn: async () => {
@@ -31,8 +37,39 @@ const AdminAllPatients = () => {
   useEffect(() => {
     refreshData();
   }, []);
-  console.log(allpatients);
+  // console.log(allpatients);
   // table dec colum
+  const handleDelete = (dataId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/users/${dataId}`).then(async (res) => {
+          // console.log(res);
+          if (res.statusText === "Created") {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your user has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      } else if (result.dismiss === "cancel") {
+        Swal.fire({
+          title: "Cancelled",
+          text: "Your user is safe!",
+          icon: "info",
+        });
+      }
+    });
+  };
   const columns = [
     columnHelper.accessor("", {
       id: "S.No",
@@ -65,6 +102,30 @@ const AdminAllPatients = () => {
         <span className="text-rose-600 font-semibold">{info.getValue()}</span>
       ),
       header: "Status",
+    }),
+    columnHelper.accessor("action", {
+      cell: (props) => {
+        const { row } = props;
+        const rowData = row.original;
+        const { _id, image, specialties, description } = editedData || {};
+        const handleEditClick = () => {
+          setEditedData(rowData);
+        };
+        return (
+          <>
+            {/* <span className="text-rose-600 font-semibold">{}</span> */}
+            <div>
+              <button
+                onClick={() => handleDelete(row.original._id)}
+                className="btn btn-sm text-white btn-error bg-rose-600"
+              >
+                Delete User
+              </button>
+            </div>
+          </>
+        );
+      },
+      header: "delete User",
     }),
   ];
 
@@ -109,7 +170,8 @@ const AdminAllPatients = () => {
               table.getRowModel().rows.map((row, i) => (
                 <tr
                   key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}>
+                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="px-3.5 py-2">
                       {flexRender(
@@ -131,13 +193,15 @@ const AdminAllPatients = () => {
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {"<"}
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {">"}
           </button>
           <span className="flex items-center gap-1">
@@ -163,7 +227,8 @@ const AdminAllPatients = () => {
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="p-2 bg-transparent">
+            className="p-2 bg-transparent"
+          >
             {[10, 20, 30, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}

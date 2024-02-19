@@ -6,7 +6,7 @@ const useDoctor = () => {
   const user = useSelector((state) => state.auth.user);
   const isLoading = useSelector((state) => state.auth.loading);
   const axios = useAxiosPrivet();
-
+  console.log(user);
   const { data: isDoctor, isPending: isDoctorLoading } = useQuery({
     queryKey: [user?.email, "isDoctor"],
     enabled: !isLoading,

@@ -29,7 +29,8 @@ const Banner = () => {
             </div>
           </div>
           <div className="w-full">
-            <img src="https://i.ibb.co/f8kmdhY/hero.png" alt="" />
+            {/* <img src="https://i.ibb.co/f8kmdhY/hero.png" alt="" /> */}
+            <img src="https://i.ibb.co/xzvTqTm/herOne.png" alt="" />
           </div>
         </div>
       </div>

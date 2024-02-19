@@ -36,7 +36,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <div>
+                {/* <div>
                   <img
                     className="hidden h-24 w-24 rounded-full sm:block object-cover mr-2 border-4 border-blue-400"
                     src={photoURL}
@@ -45,7 +45,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <p className="font-bold text-base  text-gray-700 pt-2 text-center w-24">
                     {displayName}
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className=" flex flex-col justify-between">
                 <ul className="leading-10">
@@ -250,7 +250,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 </ul>
               </div>
             </div>
-            <div className="fixed bottom-0 mb-5">
+            <div className="fixed bottom-0 mb-5 bg-white">
               <button
                 className="btn btn-sm bg-transparent border-none bg-slate-300  text-start text-blue-700"
                 onClick={logOut}

@@ -10,10 +10,11 @@ import {
   signIn,
   signInWithGoogle,
   updateUser,
+  // delete_User,
 } from "./authProbiver";
 
 import { onAuthStateChanged } from "firebase/auth";
-import useAxiosPublic from './../Hooks/useAxiosPublic';
+import useAxiosPublic from "./../Hooks/useAxiosPublic";
 // createUser;
 
 export const signUpAsync = (email, password) => async (dispatch) => {
@@ -37,6 +38,7 @@ export const signInAsync = (email, password) => {
         displayName: userCredential.user.displayName,
         email: userCredential.user.email,
         photoURL: userCredential.user.photoURL,
+        // role: "user",
       };
       dispatch({ type: "auth/setUser", payload: serializableUser });
     } catch (error) {
@@ -56,6 +58,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
       displayName: userCredential.user.displayName,
       email: userCredential.user.email,
       photoURL: userCredential.user.photoURL,
+      // role: "user",
     };
     return serializableUser;
   }
@@ -81,22 +84,37 @@ export const logOutAsync = () => async (dispatch) => {
     console.log(error);
   }
 };
+// export const delete_UserAsync = (user) => async (dispatch) => {
+//   try {
+//     await delete_User(user);
+//     dispatch(clearUser());
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// export const updateUserAsync = (name, photoUrl, role) => async (dispatch) => {
+//   try {
+//     await updateUser(name, photoUrl, role);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const updateUserAsync = (name, photoUrl) => async (dispatch) => {
   try {
     await updateUser(name, photoUrl);
   } catch (error) {
     console.log(error);
+    // Handle error if needed
   }
 };
 
 export const subscribeToAuthChanges = () => async (dispatch) => {
-
   const axios = useAxiosPublic();
 
   onAuthStateChanged(auth, (user) => {
-
-    const loggedUser = {email: user?.email}
+    const loggedUser = { email: user?.email };
 
     if (user) {
       const serializableUser = {
@@ -104,21 +122,18 @@ export const subscribeToAuthChanges = () => async (dispatch) => {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
+        // role: user.role,
       };
       dispatch(setUser(serializableUser));
 
-      
-
-      axios.post('/jwt', loggedUser)
-        .then(res => {
-          console.log(res);
-        })
+      axios.post("/jwt", loggedUser).then((res) => {
+        // console.log(res);
+      });
     } else {
       dispatch(clearUser());
-      axios.post('/logout', loggedUser)
-                    .then(res => {
-                        console.log(res);
-                    })
+      axios.post("/logout", loggedUser).then((res) => {
+        // console.log(res);
+      });
     }
   });
 };

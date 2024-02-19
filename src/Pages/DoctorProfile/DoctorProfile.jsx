@@ -71,7 +71,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
     axios.post("/doctorReview", reviewData).then((res) => {
       if (res.data.success) {
         Swal.fire({
