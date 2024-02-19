@@ -9,6 +9,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase.config";
+
+
 export const createUser = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
@@ -33,3 +35,5 @@ export const updateUser = (name, photoUrl) => {
   const user = auth.currentUser;
   return updateProfile(user, { displayName: name, photoURL: photoUrl });
 };
+
+

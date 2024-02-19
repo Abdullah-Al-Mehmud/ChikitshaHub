@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -9,39 +10,36 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Payment from "../Payment/Payment";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+
 
 const DoctorProfile = () => {
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState("");
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
-  const bookedSlots = [];
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
-  console.log(meet);
+  const axios = useAxiosPublic();
 
-  const isSlotAvailable = (date) => {
-    const formattedDate = date.toISOString(); // Adjust the format based on your backend data
-    return !bookedSlots.includes(formattedDate);
-  };
+  const user = useSelector((state) => state.auth.user);
+  const { displayName, email } = user || {};
 
-  const filterUnavailableDates = (date) => {
-    return isSlotAvailable(date);
-  };
+  const { data: reviews = [], refetch } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axios.get(`/doctorReview/${doctor.doctorEmail}`);
+      return res.data;
+    },
+  });
 
-  const isTimeSlotDisabled = (time) => {
-    const selectedDate = new Date(selectedDateTime);
-    const selectedTime = new Date(
-      selectedDate.setHours(time.getHours(), time.getMinutes())
-    );
-
-    return !isSlotAvailable(selectedTime);
-  };
-
-  const dateObject = new Date(doctor.joiningDate);
+  console.log(reviews);
+  const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
 
@@ -58,22 +56,49 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm({
-    defaultValues: {
-      name: "",
-      rating: 5,
-      comment: "",
-    },
+    // defaultValues: {
+    //   name: "",
+    //   rating: 5,
+    //   comment: "",
+    // },
   });
 
-  const onSubmit = (data) => {
-    console.log("Submitted:", data);
-  };
+  
 
-  const user = useSelector((state) => state.auth.user);
-  const { displayName, email } = user || {};
+  const onSubmit = (data) => {
+    //console.log("Submitted:", data);
+
+    const { name, comment, rating } = data;
+    const reviewData = {
+      name,
+      comment,
+      rating,
+      doctorEmail: doctor.doctorEmail,
+    };
+    console.log(reviewData);
+    axios.post("/doctorReview", reviewData).then((res) => {
+      if (res.data.success) {
+        Swal.fire({
+          title: "Good job!",
+          text: "Your Review send Successfully.",
+          icon: "success",
+        });
+        refetch();
+      } else {
+        console.error(res.error);
+      }
+    });
+  };
+  
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
+  };
+
+  const handleAppointment = (e) => {
+    e.preventDefault();
+    const appointment = e.target.appointment.value;
+    setAppointmentTime(appointment);
   };
 
   return (
@@ -151,28 +176,10 @@ const DoctorProfile = () => {
 
             <form
               className="relative"
-              onSubmit={(e) =>
-                setAppointmentTime(
-                  e.preventDefault(),
-                  e.target.appointment.value
-                )
-              }
+              onSubmit={handleAppointment}
             >
-              <DatePicker
-                selected={selectedDateTime}
-                onChange={(date) => setSelectedDateTime(date)}
-                showTimeSelect
-                timeIntervals={15}
-                dateFormat="MMMM d, yyyy h:mm aa"
-                minDate={new Date()}
-                filterDate={filterUnavailableDates}
-                timeCaption="Time"
-                disabledTimeIntervals={[{ after: new Date() }]}
-                name="appointment"
-                shouldDisableTime={(time) => isTimeSlotDisabled(time)}
-                placeholderText="Booking Appointment"
-                className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
-              />
+
+              <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
 
               <button
                 onClick={() =>
@@ -193,7 +200,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={appointmentTime}
+                  appointmentTime={selectedDateTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>
@@ -315,6 +322,24 @@ const DoctorProfile = () => {
           </TabPanel>
           <TabPanel>
             <div className="mt-8">
+              <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
+                {reviews?.map((review) => (
+                  <div key={review._id} className="mb-4">
+                    <h2 className="text-xl font-bold">{review.name}</h2>
+                    <Rating
+                      className="mb-1"
+                      initialRating={review.rating}
+                      emptySymbol={
+                        <AiOutlineStar className="text-orange-300 w-4 h-4" />
+                      }
+                      fullSymbol={
+                        <AiFillStar className="text-orange-300 w-4 h-4" />
+                      }
+                    ></Rating>
+                    <p>{review.comment}</p>
+                  </div>
+                ))}
+              </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                   <label
@@ -338,16 +363,16 @@ const DoctorProfile = () => {
                   >
                     Rating:
                   </label>
-                  <Rating
-                    initialRating={0}
-                    emptySymbol={
-                      <AiOutlineStar className="text-orange-300 w-8 h-8" />
-                    }
-                    fullSymbol={
-                      <AiFillStar className="text-orange-300 w-8 h-8" />
-                    }
-                  ></Rating>
+                  <input
+                    type="number"
+                    id="name"
+                    {...register("rating")}
+                    max={5}
+                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                    required
+                  />
                 </div>
+
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
@@ -374,6 +399,7 @@ const DoctorProfile = () => {
                   </button>
                 </div>
               </form>
+              
             </div>
           </TabPanel>
         </Tabs>
