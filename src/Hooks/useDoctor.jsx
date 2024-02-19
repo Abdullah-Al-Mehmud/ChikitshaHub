@@ -6,12 +6,14 @@ const useDoctor = () => {
   const user = useSelector((state) => state.auth.user);
   const isLoading = useSelector((state) => state.auth.loading);
   const axios = useAxiosPrivet();
-  console.log(user);
+
+  // console.log(user?.email);
+
   const { data: isDoctor, isPending: isDoctorLoading } = useQuery({
     queryKey: [user?.email, "isDoctor"],
     enabled: !isLoading,
     queryFn: async () => {
-      const res = await axios.get(`/users/doctors/${user?.email}`);
+      const res = await axios.get(`/users/doctor/${user?.email}`);
       return res?.data?.isDoctor;
     },
   });
