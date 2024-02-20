@@ -15,16 +15,21 @@ import Payment from "../Payment/Payment";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import ReactDatePicker from "react-datepicker";
 
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
-
+// console.log(appointmentTime);
   const axios = useAxiosPublic();
+
+  const handleDateTimeChange = (date) => {
+    setSelectedDateTime(date);
+  };
 
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
@@ -96,8 +101,7 @@ const DoctorProfile = () => {
 
   const handleAppointment = (e) => {
     e.preventDefault();
-    const appointment = e.target.appointment.value;
-    setAppointmentTime(appointment);
+    setAppointmentTime(selectedDateTime);
   };
 
   return (
@@ -178,14 +182,25 @@ const DoctorProfile = () => {
               onSubmit={handleAppointment}
             >
 
-              <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
+              <ReactDatePicker
+        selected={selectedDateTime}
+        onChange={handleDateTimeChange}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        timeCaption="Time"
+        dateFormat="MMMM d, yyyy h:mm aa"
+        name="appointment"
+        placeholderText="Booking Appointment"
+        className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
+      />
 
               <button
                 onClick={() =>
                   document.getElementById("my_modal_2").showModal()
                 }
                 type="submit"
-                className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0"
+                className="mt-2 bg-[#409bd4] absolute text-white px-4 py-2 rounded-full  right-2 top-0"
               >
                 <FaCalendarAlt />
               </button>
