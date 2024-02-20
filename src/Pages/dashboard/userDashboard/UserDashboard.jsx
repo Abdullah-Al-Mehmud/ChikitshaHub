@@ -38,7 +38,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   </NavLink>
                 </div>
               </div>
-              {/* <div className="flex justify-center">
+              <div className="flex justify-center">
                 <div className="flex  flex-col justify-center items-center">
                   <img
                     className="hidden h-12 w-12 rounded-full sm:block object-cover mr-2 border-2 border-blue-400"
@@ -49,7 +49,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     {displayName}
                   </p>
                 </div>
-              </div> */}
+              </div>
               <div className=" flex flex-col justify-between">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
@@ -261,7 +261,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 </p>
               </div>
             </div> */}
-            <div className="flex mx-10">
+            {/* <div className="flex mx-10">
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className=" m-1">
                   <div className="avatar">
@@ -304,7 +304,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </header>
         <main className="mt-14 scroll-smooth">

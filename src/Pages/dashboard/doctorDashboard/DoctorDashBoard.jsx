@@ -259,18 +259,18 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
             <div className="flex justify-center mt-2 mr-4 w-[80%]"></div>
           </div>
           <div>
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <div className="flex  flex-col justify-center items-center">
                 <img
                   className="hidden h-12 w-12 rounded-full sm:block object-cover mr-2 border-2 border-blue-400"
                   src={photoURL}
                   alt=""
                 />
-                {/* <p className="font-semibold text-base  text-gray-700 pt-2 text-center w-full">
+                <p className="font-semibold text-base  text-gray-700 pt-2 text-center w-full">
                   {displayName}
-                </p> */}
+                </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </header>
         <main className="mt-14 scroll-smooth">

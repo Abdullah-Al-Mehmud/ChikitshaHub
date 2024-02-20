@@ -87,19 +87,31 @@ const AdminAllPatients = () => {
       ),
       header: "Doctor Email",
     }),
-    columnHelper.accessor("_id", {
-      cell: (info) => (
-        <>
-          <Link to={`doctorProfileReview/${info.getValue()}`}>
-            View Profile
-          </Link>
-        </>
-      ),
-      header: "View profile",
-    }),
+    // columnHelper.accessor("_id", {
+    //   cell: (info) => (
+    //     <>
+    //       <Link to={`doctorProfileReview/${info.getValue()}`}>
+    //         View Profile
+    //       </Link>
+    //     </>
+    //   ),
+    //   header: "View profile",
+    // }),
     columnHelper.accessor("role", {
       cell: (info) => (
-        <span className="text-rose-600 font-semibold">{info.getValue()}</span>
+        <span
+          className={`font-semibold ${
+            info.getValue() === "admin"
+              ? "text-red-600"
+              : info.getValue() === "doctor"
+              ? "text-blue-600"
+              : info.getValue() === "user"
+              ? "text-green-400"
+              : ""
+          }`}
+        >
+          {info.getValue()}
+        </span>
       ),
       header: "Status",
     }),
@@ -119,13 +131,13 @@ const AdminAllPatients = () => {
                 onClick={() => handleDelete(row.original._id)}
                 className="btn btn-sm text-white btn-error bg-rose-600"
               >
-                Delete User
+                Delete
               </button>
             </div>
           </>
         );
       },
-      header: "delete User",
+      header: "delete",
     }),
   ];
 
