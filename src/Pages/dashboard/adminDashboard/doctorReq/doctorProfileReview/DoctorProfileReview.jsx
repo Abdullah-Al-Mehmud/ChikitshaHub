@@ -1,41 +1,83 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { FaCalendarAlt, FaVideo } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { useLoaderData } from "react-router-dom";
-const DoctorProfileReview = ({ id }) => {
+import { Navigate, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPrivet from "../../../../../Hooks/useAxiosPrivet";
+const DoctorProfileReview = () => {
   const doctor = useLoaderData();
+  const axios = useAxiosPrivet();
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+  const handleApproved = async (id) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "Approve The Doctor Request?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Approve",
+      denyButtonText: `Cancel`,
+    });
 
+    if (isConfirmed) {
+      try {
+        const response = await axios.patch(
+          `/doctors/admin/setStatus/${id}`,
+          {}
+        );
+        Swal.fire("Approved!", "Doctor request has been approved.", "success");
+        setShouldNavigate(true);
+      } catch (error) {
+        console.error("Error approving doctor request:", error);
+        Swal.fire("Error", "Failed to approve doctor request.", "error");
+      }
+    } else {
+      Swal.fire("Cancelled", "Doctor request approval was cancelled.", "info");
+    }
+  };
   return (
     <div>
-      <h1 className="p-2 text-3xl font-semibold">Welcome to ChikitshaHub</h1>
-      <div className="max-w-full mx-auto  px-6 mt-16 lg:py-20">
+      {shouldNavigate && <Navigate to="/dashboard/doctorReq" />}
+      <div className="mt-5 flex justify-center flex-col items-center gap-3">
+        <h1 className="text-center font-semibold text-2xl">
+          Review the Doctor Profile
+        </h1>
+        <button
+          onClick={() => handleApproved(doctor._id)}
+          className="btn bg-[#409bd4] text-white hover:bg-[#3485b8]"
+        >
+          Confirm Approved
+        </button>
+      </div>
+      <div className="max-w-full mx-auto px-6 lg:py-6 lg:pt-5 pt-10">
         <div className="flex flex-col  md:flex-row gap-6 items-center justify-between">
           <div className="flex items-center gap-6">
             <div className="w-60 rounded-xl">
-              <img src={doctor.img} />
+              <img src={doctor?.img} />
             </div>
             <div>
               <h4 className="text-xl font-semibold">
-                {doctor.name}{" "}
+                {doctor?.name}{" "}
                 <span className="text-sm font-semibold text-gray-600">
-                  ({doctor.degrees[0]}, {doctor.degrees[1]})
+                  ({doctor?.degrees[0]}, {doctor?.degrees[1]})
                 </span>
               </h4>
               <p className="text-sm font-semibold text-gray-600 my-2">
-                {doctor.specialties}
+                {doctor?.specialties}
               </p>
               <p className="text-sm font-medium text-gray-600 flex gap-2">
-                {doctor.specializations[0]}, {doctor.specializations[1]}
+                {doctor?.specializations?.forEach((dd) => (
+                  <p>{dd}</p>
+                ))}
               </p>
+
               <h4 className="text-lg font-medium text-gray-600 mt-2">
                 Working at{" "}
                 <span className="text-lg font-semibold text-black">
-                  {doctor.location}
+                  {doctor?.location}
                 </span>
               </h4>
             </div>
@@ -43,7 +85,7 @@ const DoctorProfileReview = ({ id }) => {
           <div className="text-center">
             <h4 className="text-xl font-bold">Consultation Fee</h4>
             <h3 className="text-2xl font-bold text-[#409bd4] my-2">
-              $ {doctor.fee}{" "}
+              $ {doctor?.fee}{" "}
               <span className="text-sm font-bold text-gray-600">
                 (incl. VAT)
               </span>
@@ -54,19 +96,19 @@ const DoctorProfileReview = ({ id }) => {
           <h4 className="text-xl font-normal text-gray-600">
             Total Experience <br />{" "}
             <span className="text-black font-semibold">
-              {doctor.experience.year} + Years
+              {doctor?.experience.year} + Years
             </span>
           </h4>
           <h4 className="text-xl font-normal text-gray-600">
             BMDC Number <br />{" "}
             <span className="text-black font-semibold">
-              {doctor.bmdcNumber}
+              {doctor?.bmdcNumber}
             </span>
           </h4>
           <h4 className="text-xl font-normal text-gray-600">
             Joined ChikitshaHub <br />{" "}
             <span className="text-black font-semibold">
-              {doctor.joiningDate}
+              {doctor?.joiningDate}
             </span>
           </h4>
         </div>
@@ -75,15 +117,14 @@ const DoctorProfileReview = ({ id }) => {
           <TabList>
             <Tab>Info</Tab>
             <Tab>Experience</Tab>
-            <Tab>Review</Tab>
           </TabList>
 
           <TabPanel>
             <div className="flex flex-col md:flex-row gap-10 mt-8">
               <div className="md:w-1/2">
-                <h2 className="text-xl font-bold">About {doctor.name}</h2>
+                <h2 className="text-xl font-bold">About {doctor?.name}</h2>
                 <p className="mt-2 font-medium text-gray-600">
-                  {doctor.aboutDoctor}
+                  {doctor?.aboutDoctor}
                 </p>
               </div>
               <div className="md:w-1/2">
@@ -94,10 +135,10 @@ const DoctorProfileReview = ({ id }) => {
                       Instant Consultation Time
                     </h6>
                     <h4 className="text-lg flex font-bold">
-                      {doctor.availability?.map((avail, index) => (
+                      {doctor?.availability?.map((avail, index) => (
                         <React.Fragment key={index}>
                           <p className="">{avail}</p>
-                          {index < doctor.availability.length - 1 && (
+                          {index < doctor?.availability.length - 1 && (
                             <span>, </span>
                           )}
                         </React.Fragment>
@@ -113,7 +154,7 @@ const DoctorProfileReview = ({ id }) => {
                         Consultation Fee
                       </h6>
                       <h4 className="text-lg font-bold">
-                        $ {doctor.fee}{" "}
+                        $ {doctor?.fee}{" "}
                         <span className="text-sm font-bold text-gray-600">
                           (Incl.VAT)
                         </span>
@@ -124,7 +165,7 @@ const DoctorProfileReview = ({ id }) => {
                         Follow-Up Fee
                       </h6>
                       <h4 className="text-lg font-bold">
-                        $ {doctor.followUpFee}{" "}
+                        $ {doctor?.followUpFee}{" "}
                         <span className="text-sm font-bold text-gray-600">
                           (Incl.VAT)
                         </span>
@@ -137,7 +178,9 @@ const DoctorProfileReview = ({ id }) => {
                       <h6 className="text-lg font-medium text-gray-600">
                         Doctor Code
                       </h6>
-                      <h4 className="text-lg font-bold">{doctor.doctorCode}</h4>
+                      <h4 className="text-lg font-bold">
+                        {doctor?.doctorCode}
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -147,15 +190,15 @@ const DoctorProfileReview = ({ id }) => {
           <TabPanel>
             <div className="mt-8">
               <h4 className="text-xl font-bold mb-2">
-                {doctor.experience.hospitalName}
+                {doctor?.experience.hospitalName}
               </h4>
               <div className="border-l-4 p-2 border-l-[#409bd4]">
                 <h6 className="text-lg font-medium text-gray-600">
-                  {doctor.experience.start} - {doctor.experience.end}
+                  {doctor?.experience.start} - {doctor?.experience.end}
                 </h6>
                 <h4 className="text-lg font-bold">
                   {" "}
-                  Experience: {doctor.experience.year} + Years
+                  Experience: {doctor?.experience.year} + Years
                 </h4>
               </div>
             </div>

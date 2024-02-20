@@ -1,11 +1,13 @@
 import DoctorHome from "../dashboard/doctorDashboard/doctorHome/DoctorHome";
 import AdminHome from "../dashboard/adminDashboard/adminHome/AdminHome";
 import UserHome from "../dashboard/userDashboard/userHome/UserHome";
+import useDoctor from "../../Hooks/useDoctor";
+import useAdmin from "../../Hooks/useAdmin";
 
 const UserProfile = () => {
-  const doctor = false;
-  const admin = true;
+  const [isDoctor] = useDoctor();
+  const [isAdmin] = useAdmin();
 
-  return <>{doctor ? <DoctorHome /> : admin ? <AdminHome /> : <UserHome />}</>;
+  return <>{isDoctor ? <DoctorHome /> : isAdmin ? <AdminHome /> : <UserHome />}</>;
 };
 export default UserProfile;
