@@ -15,7 +15,7 @@ const Meet = () => {
     const { meetId } = useParams();
     const user = useSelector((state) => state.auth.user);
     const axios = useAxiosPublic();
-    
+    const [isDoctor, isDoctorLoading] = useDoctor();
     useEffect(() => {
         axios.get(`/users/${user?.email}`)
             .then(res => setCurrentUser(res.data))
@@ -55,14 +55,23 @@ const Meet = () => {
         });
     }
     // console.log(currentUser[0]._id)
-
+    if (isDoctorLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-dots loading-lg "></span>
+            </div>
+        )
+    }
+    console.log(isDoctor)
     return (
         <div className="max-w-6xl mx-auto w-96 px-6 mt-16 lg:py-20 flex flex-col md:flex-row items-center justify-center gap-6">
             <div className="flex-1" ref={myMeeting}></div>
-            <div className="flex-1">
-            <Prescription doctorName={userInfo?.doctorName} doctorEmail={userInfo?.doctorEmail} patientEmail={userInfo?.patientEmail} />
-
-            </div>
+            {
+                isDoctor ? <div className="flex-1">
+                <Prescription doctorName={userInfo?.doctorName} doctorEmail={userInfo?.doctorEmail} patientEmail={userInfo?.patientEmail} />
+    
+                </div> : ""
+            }
             
         </div>
     );
