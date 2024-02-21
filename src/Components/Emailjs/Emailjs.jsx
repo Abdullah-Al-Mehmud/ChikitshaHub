@@ -25,9 +25,9 @@ const Emailjs = () => {
       // photoURL,
       description,
     };
-    console.log(TipsInfo);
+    // console.log(TipsInfo);
 
-    axiosPublic.post("/tips", TipsInfo).then((res) => {
+    axiosPublic.post("/tips", TipsInfo).then(async (res) => {
       console.log(res.data);
       if (res.data.success) {
         Swal.fire({
@@ -37,6 +37,7 @@ const Emailjs = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        document.getElementById("my_modal_4").close();
       }
     });
     axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
