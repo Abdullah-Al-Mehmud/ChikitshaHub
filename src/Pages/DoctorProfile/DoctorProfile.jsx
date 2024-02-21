@@ -17,7 +17,6 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
 
-
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [selectedDateTime, setSelectedDateTime] = useState(null);
@@ -42,7 +41,7 @@ const DoctorProfile = () => {
     },
   });
 
-  console.log(reviews);
+  // console.log(reviews);
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -67,8 +66,6 @@ const DoctorProfile = () => {
     // },
   });
 
-  
-
   const onSubmit = (data) => {
     //console.log("Submitted:", data);
 
@@ -79,7 +76,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
     axios.post("/doctorReview", reviewData).then((res) => {
       if (res.data.success) {
         Swal.fire({
@@ -93,7 +90,6 @@ const DoctorProfile = () => {
       }
     });
   };
-  
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
@@ -413,7 +409,6 @@ const DoctorProfile = () => {
                   </button>
                 </div>
               </form>
-              
             </div>
           </TabPanel>
         </Tabs>

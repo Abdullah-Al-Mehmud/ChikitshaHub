@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 import auth from "../../firebase.config";
 
-
 export const createUser = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
@@ -31,9 +30,18 @@ export const logOut = () => {
   return signOut(auth);
 };
 
+// export const updateUser = (name, photoUrl, role) => {
+//   const user = auth.currentUser;
+//   return updateProfile(user, {
+//     displayName: name,
+//     photoURL: photoUrl,
+//     role: role,
+//   });
+// };
 export const updateUser = (name, photoUrl) => {
   const user = auth.currentUser;
-  return updateProfile(user, { displayName: name, photoURL: photoUrl });
+  return updateProfile(user, {
+    displayName: name,
+    photoURL: photoUrl,
+  });
 };
-
-

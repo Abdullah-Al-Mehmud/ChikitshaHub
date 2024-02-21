@@ -35,7 +35,7 @@ const AdminAppointment = () => {
   useEffect(() => {
     refreshData();
   }, []);
-  console.log(appointments);
+  // console.log(appointments);
 
   // table dec colum
   const columns = [
@@ -50,31 +50,51 @@ const AdminAppointment = () => {
     }),
 
     columnHelper.accessor("doctorName", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-      ),
+      cell: (info) => <span>{info.getValue() ? info.getValue() : "Dr."}</span>,
       header: "Doctor Name",
     }),
 
     columnHelper.accessor("patientName", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-      ),
+      cell: (info) => <span>{info.getValue() ? info.getValue() : "user"}</span>,
       header: "Patient Name",
     }),
 
-    columnHelper.accessor("patientEmail", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-      ),
-      header: "Patient Email",
-    }),
+    // columnHelper.accessor("patientEmail", {
+    //   cell: (info) => (
+    //     <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+    //   ),
+    //   header: "Patient Email",
+    // }),
 
     columnHelper.accessor("appointmentTime", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
-      ),
-      header: "AppointmentTime",
+      cell: (info) => {
+        const date = info.getValue();
+        if (date) {
+          const [datePart, timePart] = date.split("T");
+          var [hours, minutes] = timePart.split(":").slice(0, 2);
+          let ampm = hours >= 12 ? "PM" : "AM";
+          hours = hours % 12;
+          hours = hours ? hours : 12;
+          return (
+            <>
+              <div className="flex gap-1">
+                <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
+                  {datePart}
+                </span>
+                <div className="flex text-slate-950 bg-opacity-30 bg-rose-200 rounded-md px-2 text-sm py-1">
+                  <span>{hours}</span>
+                  <span>:</span>
+                  <span>{minutes}</span>
+                  <span> {ampm}</span>
+                </div>
+              </div>
+            </>
+          );
+        } else {
+          return <span className="text-red-500">Wrong Appointment</span>;
+        }
+      },
+      header: "Date & Time",
     }),
 
     // delete
@@ -143,7 +163,8 @@ const AdminAppointment = () => {
               table.getRowModel().rows.map((row, i) => (
                 <tr
                   key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}>
+                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="px-3.5 py-2">
                       {flexRender(
@@ -165,13 +186,15 @@ const AdminAppointment = () => {
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {"<"}
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {">"}
           </button>
           <span className="flex items-center gap-1">
@@ -197,7 +220,8 @@ const AdminAppointment = () => {
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="p-2 bg-transparent">
+            className="p-2 bg-transparent"
+          >
             {[10, 20, 30, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
