@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Prescription from "../../Components/Prescription/Prescription";
 import { useQuery } from "@tanstack/react-query";
+import useDoctor from "../../Hooks/useDoctor";
 
 
 const Meet = () => {
@@ -14,7 +15,7 @@ const Meet = () => {
     const { meetId } = useParams();
     const user = useSelector((state) => state.auth.user);
     const axios = useAxiosPublic();
-
+    
     useEffect(() => {
         axios.get(`/users/${user?.email}`)
             .then(res => setCurrentUser(res.data))

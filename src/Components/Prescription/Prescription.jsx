@@ -11,7 +11,18 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
   const [medicineNames, setMedicineNames] = useState([]);
   const [frequencies, setFrequencies] = useState([]);
   const [days, setDays] = useState([]);
-  //   console.log(email);
+
+  //doctor data get
+  const { data: doctors = [] } = useQuery({
+    queryKey: ["doctors"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/doctors`);
+      return res.data;
+    },
+  });
+
+  const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
+
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
     setFrequencies([...frequencies, ""]);
@@ -95,8 +106,8 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
         <div className="bg-[#409bd4] flex justify-between text-white p-3">
           <div>
             <h2 className="text-xl font-bold">{doctorName}</h2>
-            <p>MBBS & FCPS surgery Department</p>
-            <p>Dhaka medical </p>
+            <p>{doctor?.degrees}</p>
+            <p>{doctor?.education?.academy} </p>
           </div>
           <img
             className="w-20"
