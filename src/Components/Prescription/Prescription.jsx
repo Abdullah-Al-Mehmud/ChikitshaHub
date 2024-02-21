@@ -67,6 +67,11 @@ const Prescription = () => {
       // Send data to the backend
       const response = await axiosPublic.post("/medicines", dataToSend);
       //   console.log(response);
+      Swal.fire({
+        title: "Good job!",
+        text: "Data added successfully",
+        icon: "success",
+      });
     } catch (error) {
       console.error("Error submitting data:", error);
     }
