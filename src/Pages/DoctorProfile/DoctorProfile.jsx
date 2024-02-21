@@ -23,7 +23,7 @@ const DoctorProfile = () => {
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
-// console.log(appointmentTime);
+  // console.log(appointmentTime);
   const axios = useAxiosPublic();
 
   const handleDateTimeChange = (date) => {
@@ -173,33 +173,41 @@ const DoctorProfile = () => {
               </form>
             </dialog>
 
-            <form
-              className="relative"
-              onSubmit={handleAppointment}
-            >
-
-              <ReactDatePicker
-        selected={selectedDateTime}
-        onChange={handleDateTimeChange}
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeIntervals={15}
-        timeCaption="Time"
-        dateFormat="MMMM d, yyyy h:mm aa"
-        name="appointment"
-        placeholderText="Booking Appointment"
-        className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
-      />
-
-              <button
-                onClick={() =>
-                  document.getElementById("my_modal_2").showModal()
-                }
-                type="submit"
-                className="mt-2 bg-[#409bd4] absolute text-white px-4 py-2 rounded-full  right-2 top-0"
-              >
-                <FaCalendarAlt />
-              </button>
+            <form className="flex gap-2 " onSubmit={handleAppointment}>
+              <div className="relative">
+                <ReactDatePicker
+                  selected={selectedDateTime}
+                  onChange={handleDateTimeChange}
+                  showIcon
+                  toggleCalendarOnIconClick
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  name="appointment"
+                  placeholderText="Booking Appointment"
+                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none flex flex-row"
+                  icon={
+                    <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
+                  }
+                ></ReactDatePicker>
+              </div>
+              {selectedDateTime ? (
+                <>
+                  <button
+                    onClick={() =>
+                      document.getElementById("my_modal_2").showModal()
+                    }
+                    type="submit"
+                    className=" bg-white border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full  right-2 top-0 group text-lg font-semibold hover:bg-[#409bd4] hover:text-white"
+                  >
+                    Pay
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </form>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="my_modal_2" className="modal">

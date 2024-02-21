@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
+import moment from "moment-timezone";
 
 const AdminAppointment = () => {
   const queryClient = useQueryClient();
@@ -69,23 +70,19 @@ const AdminAppointment = () => {
     columnHelper.accessor("appointmentTime", {
       cell: (info) => {
         const date = info.getValue();
-        if (date) {
-          const [datePart, timePart] = date.split("T");
-          var [hours, minutes] = timePart.split(":").slice(0, 2);
-          let ampm = hours >= 12 ? "PM" : "AM";
-          hours = hours % 12;
-          hours = hours ? hours : 12;
+        console.log(date);
+        const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
+        const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
+        console.log(btcTime);
+        if (btcTime && btcYear) {
           return (
             <>
               <div className="flex gap-1">
                 <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
-                  {datePart}
+                  {btcYear}
                 </span>
                 <div className="flex text-slate-950 bg-opacity-30 bg-rose-200 rounded-md px-2 text-sm py-1">
-                  <span>{hours}</span>
-                  <span>:</span>
-                  <span>{minutes}</span>
-                  <span> {ampm}</span>
+                  <span>{btcTime}</span>
                 </div>
               </div>
             </>
