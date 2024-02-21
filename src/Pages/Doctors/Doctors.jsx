@@ -36,6 +36,7 @@ const Doctors = () => {
     setDoctors(sortedDoctor);
   };
 
+
   // const handleSortByFeesHighToLow = () => {
   //   setSortByFeesHighToLow(!sortByFeesHighToLow);
   //   if (!sortByFeesHighToLow) {

@@ -253,7 +253,7 @@ const DoctorProfile = () => {
           </TabList>
 
           <TabPanel>
-            <div className="flex flex-col md:flex-row gap-10 mt-8">
+            <div className="flex flex-col md:flex-row gap-10 my-8">
               <div className="md:w-1/2">
                 <h2 className="text-xl font-bold">About {doctor.name}</h2>
                 <p className="mt-2 font-medium text-gray-600">
@@ -319,7 +319,7 @@ const DoctorProfile = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-8">
+            <div className="my-8">
               <h4 className="text-xl font-bold mb-2">
                 {doctor.experience.hospitalName}
               </h4>
@@ -335,7 +335,7 @@ const DoctorProfile = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-8">
+            <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
                 {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
