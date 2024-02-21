@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-const Prescription = () => {
+const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
@@ -47,21 +47,15 @@ const Prescription = () => {
       }));
 
       const dataToSend = {
+        doctorName,
+        doctorEmail,
+        patientEmail,
         patientName: patientName,
         address: address,
         age: age,
         date: date,
         medicines: medicines,
-        email: email,
       };
-
-      await Swal.fire({
-        title: "Data to Send",
-        html: JSON.stringify(dataToSend, null, 2),
-        icon: "info",
-        confirmButtonText: "Submit",
-        showCancelButton: true,
-      });
 
       //   console.log(dataToSend);
       // Send data to the backend
@@ -97,10 +91,10 @@ const Prescription = () => {
 
   return (
     <div>
-      <div className="bg-white shadow-lg mx-36 mt-36">
+      <div className="bg-white shadow-lg">
         <div className="bg-[#409bd4] flex justify-between text-white p-3">
           <div>
-            <h2 className="text-xl font-bold">DR. Doctor Name</h2>
+            <h2 className="text-xl font-bold">{doctorName}</h2>
             <p>MBBS & FCPS surgery Department</p>
             <p>Dhaka medical </p>
           </div>

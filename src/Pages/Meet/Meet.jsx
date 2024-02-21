@@ -3,6 +3,8 @@ import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Prescription from "../../Components/Prescription/Prescription";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Meet = () => {
@@ -12,12 +14,22 @@ const Meet = () => {
     const { meetId } = useParams();
     const user = useSelector((state) => state.auth.user);
     const axios = useAxiosPublic();
+
     useEffect(() => {
         axios.get(`/users/${user?.email}`)
             .then(res => setCurrentUser(res.data))
     }, [axios, user?.email])
 
+    const { data: appointments = [] } = useQuery({
+        queryKey: ["appointments"],
+        queryFn: async () => {
+          const res = await axios.get(`/appointments`);
+          return res.data;
+        },
+      });
 
+      const userInfo = appointments.find(data => data.meetingId === meetId)
+      console.log(userInfo);
     const userId = currentUser[0]?._id;
     const userName = currentUser[0]?.name;
 
@@ -44,8 +56,12 @@ const Meet = () => {
     // console.log(currentUser[0]._id)
 
     return (
-        <div className="max-w-6xl mx-auto px-6 mt-16 lg:py-20">
-            <div ref={myMeeting}></div>
+        <div className="max-w-6xl mx-auto w-96 px-6 mt-16 lg:py-20 flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="flex-1" ref={myMeeting}></div>
+            <div className="flex-1">
+            <Prescription doctorName={userInfo?.doctorName} doctorEmail={userInfo?.doctorEmail} patientEmail={userInfo?.patientEmail} />
+
+            </div>
             
         </div>
     );

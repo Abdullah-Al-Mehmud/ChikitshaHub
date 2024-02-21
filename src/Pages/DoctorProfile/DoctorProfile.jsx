@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaArrowRightLong } from "react-icons/fa6";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -16,16 +15,21 @@ import Payment from "../Payment/Payment";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import ReactDatePicker from "react-datepicker";
 
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
-
+// console.log(appointmentTime);
   const axios = useAxiosPublic();
+
+  const handleDateTimeChange = (date) => {
+    setSelectedDateTime(date);
+  };
 
   const user = useSelector((state) => state.auth.user);
   const { displayName, email } = user || {};
@@ -97,8 +101,7 @@ const DoctorProfile = () => {
 
   const handleAppointment = (e) => {
     e.preventDefault();
-    const appointment = e.target.appointment.value;
-    setAppointmentTime(appointment);
+    setAppointmentTime(selectedDateTime);
   };
 
   return (
@@ -179,14 +182,25 @@ const DoctorProfile = () => {
               onSubmit={handleAppointment}
             >
 
-              <input type="datetime" name="appointment" id="" placeholder="Booking Appointment" className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none" />
+              <ReactDatePicker
+        selected={selectedDateTime}
+        onChange={handleDateTimeChange}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        timeCaption="Time"
+        dateFormat="MMMM d, yyyy h:mm aa"
+        name="appointment"
+        placeholderText="Booking Appointment"
+        className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
+      />
 
               <button
                 onClick={() =>
                   document.getElementById("my_modal_2").showModal()
                 }
                 type="submit"
-                className="mt-2 bg-[#409bd4] text-white px-4 py-2 rounded-full absolute right-2 top-0"
+                className="mt-2 bg-[#409bd4] absolute text-white px-4 py-2 rounded-full  right-2 top-0"
               >
                 <FaCalendarAlt />
               </button>
@@ -200,7 +214,7 @@ const DoctorProfile = () => {
                   doctorEmail={doctor?.doctorEmail}
                   patientName={displayName}
                   patientEmail={email}
-                  appointmentTime={selectedDateTime}
+                  appointmentTime={appointmentTime}
                   fee={doctor?.fee}
                 ></Payment>
               </div>
@@ -323,7 +337,7 @@ const DoctorProfile = () => {
           <TabPanel>
             <div className="mt-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
-                {reviews?.map((review) => (
+               {/*  {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
                     <h2 className="text-xl font-bold">{review.name}</h2>
                     <Rating
@@ -338,7 +352,7 @@ const DoctorProfile = () => {
                     ></Rating>
                     <p>{review.comment}</p>
                   </div>
-                ))}
+                ))} */}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
