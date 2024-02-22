@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
+const Prescription = ({ doctorName, doctorEmail, patientEmail }) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
@@ -21,7 +21,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
     },
   });
 
-  const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
+  const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
 
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
@@ -102,8 +102,8 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
 
   return (
     <div>
-      <div className="bg-white shadow-lg">
-        <div className="bg-[#409bd4] flex justify-between text-white p-3">
+      <div className="bg-white shadow-lg p-4 rounded-lg">
+        {/* <div className="bg-[#409bd4] flex justify-between text-white p-3">
           <div>
             <h2 className="text-xl font-bold">{doctorName}</h2>
             <p>{doctor?.degrees}</p>
@@ -114,11 +114,11 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
             src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png"
             alt=""
           />
-        </div>
+        </div> */}
         <form onSubmit={handleSubmit}>
           <div className="p-3">
             <div className="flex items-center mb-5">
-              <label className=" inline-block text-right  text-lg mr-4 text-gray-500">
+              <label className=" inline-block text-right  text-base mr-4 text-gray-500">
                 Patient Name
               </label>
               <input
@@ -129,7 +129,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
                 className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
             </div>
-            <div className="flex items-center mb-10">
+            {/* <div className="flex items-center mb-10">
               <label className=" inline-block text-right mr-4  text-lg  text-gray-500">
                 Address
               </label>
@@ -140,7 +140,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
                 placeholder="Address"
                 className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
-            </div>
+            </div> */}
             <div className="flex">
               <div className="flex items-center mb-10">
                 <label className="inline-block text-right mr-4 text-lg  text-gray-500">
@@ -179,7 +179,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
                 onChange={(e) =>
                   handleMedicineNameChange(index, e.target.value)
                 }
-                placeholder="Medicine Name"
+                placeholder="Write Medicine Name"
               />
               <input
                 type="text"
@@ -217,7 +217,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
           </button>
         </form>
 
-        <div className="bg-[#409bd4] text-white mt-2">
+        {/* <div className="bg-[#409bd4] text-white mt-2">
           <div className="flex justify-between p-3">
             <h2 className="font-bold">ChikitshaHub</h2>
             <div>
@@ -231,7 +231,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
