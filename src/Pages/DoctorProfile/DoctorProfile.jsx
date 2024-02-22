@@ -17,14 +17,13 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
 
-
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
-// console.log(appointmentTime);
+  // console.log(appointmentTime);
   const axios = useAxiosPublic();
 
   const handleDateTimeChange = (date) => {
@@ -42,7 +41,7 @@ const DoctorProfile = () => {
     },
   });
 
-  console.log(reviews);
+  // console.log(reviews);
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -67,8 +66,6 @@ const DoctorProfile = () => {
     // },
   });
 
-  
-
   const onSubmit = (data) => {
     //console.log("Submitted:", data);
 
@@ -79,7 +76,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
     axios.post("/doctorReview", reviewData).then((res) => {
       if (res.data.success) {
         Swal.fire({
@@ -93,7 +90,6 @@ const DoctorProfile = () => {
       }
     });
   };
-  
 
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
@@ -177,33 +173,41 @@ const DoctorProfile = () => {
               </form>
             </dialog>
 
-            <form
-              className="relative"
-              onSubmit={handleAppointment}
-            >
-
-              <ReactDatePicker
-        selected={selectedDateTime}
-        onChange={handleDateTimeChange}
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeIntervals={15}
-        timeCaption="Time"
-        dateFormat="MMMM d, yyyy h:mm aa"
-        name="appointment"
-        placeholderText="Booking Appointment"
-        className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group text-lg font-semibold focus:outline-none"
-      />
-
-              <button
-                onClick={() =>
-                  document.getElementById("my_modal_2").showModal()
-                }
-                type="submit"
-                className="mt-2 bg-[#409bd4] absolute text-white px-4 py-2 rounded-full  right-2 top-0"
-              >
-                <FaCalendarAlt />
-              </button>
+            <form className="flex gap-2 " onSubmit={handleAppointment}>
+              <div className="relative">
+                <ReactDatePicker
+                  selected={selectedDateTime}
+                  onChange={handleDateTimeChange}
+                  showIcon
+                  toggleCalendarOnIconClick
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  name="appointment"
+                  placeholderText="Booking Appointment"
+                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none flex flex-row"
+                  icon={
+                    <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
+                  }
+                ></ReactDatePicker>
+              </div>
+              {selectedDateTime ? (
+                <>
+                  <button
+                    onClick={() =>
+                      document.getElementById("my_modal_2").showModal()
+                    }
+                    type="submit"
+                    className=" bg-white border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full  right-2 top-0 group text-lg font-semibold hover:bg-[#409bd4] hover:text-white"
+                  >
+                    Pay
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </form>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="my_modal_2" className="modal">
@@ -253,7 +257,7 @@ const DoctorProfile = () => {
           </TabList>
 
           <TabPanel>
-            <div className="flex flex-col md:flex-row gap-10 mt-8">
+            <div className="flex flex-col md:flex-row gap-10 my-8">
               <div className="md:w-1/2">
                 <h2 className="text-xl font-bold">About {doctor.name}</h2>
                 <p className="mt-2 font-medium text-gray-600">
@@ -319,7 +323,7 @@ const DoctorProfile = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-8">
+            <div className="my-8">
               <h4 className="text-xl font-bold mb-2">
                 {doctor.experience.hospitalName}
               </h4>
@@ -335,7 +339,7 @@ const DoctorProfile = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-8">
+            <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
                {/*  {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
@@ -413,7 +417,6 @@ const DoctorProfile = () => {
                   </button>
                 </div>
               </form>
-              
             </div>
           </TabPanel>
         </Tabs>

@@ -27,6 +27,8 @@ import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
 import Home from "../Pages/Home/Home";
 import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
+import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
+import PrescriptionToPDF from "../Components/prescriptionToPdf/PrescriptionToPDF";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
         element: <DoctorRegister></DoctorRegister>,
       },
       {
+        path: '/prescriptionToPdf',
+        element: <PrescriptionToPDF/>
+      },
+      {
         path: "/specialties",
         element: <Specialties />,
       },
@@ -78,7 +84,7 @@ const router = createBrowserRouter([
           ),
       },
       {
-        path: "/doctor/:id",
+        path: "/doctors/:id",
         element: <DoctorProfile />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
@@ -137,7 +143,7 @@ const router = createBrowserRouter([
       },
       {
         path: "doctorReq/doctorProfileReview/:id",
-        // element:<DoctorProfileReview />,
+        element: <DoctorProfileReview />,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },

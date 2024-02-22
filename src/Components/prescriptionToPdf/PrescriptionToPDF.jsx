@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
+import { PDFDownloadLink, Document, Page, Text, StyleSheet, View } from "@react-pdf/renderer";
 import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 
 import { useEffect, useState } from "react";
@@ -17,10 +17,89 @@ const PrescriptionToPDF = () => {
     },
   });
   console.log(prescriptionData);
+
+  const styles = StyleSheet.create({
+    page: {
+      backgroundColor: "white",
+      boxShadow: "10px 10px 5px 0px rgba(0, 0, 0, 0.5)"
+    },
+    head: {
+      backgroundColor: "#409bd4",
+      display: "flex",
+      justifyContent: "space-between",
+      color: "white",
+      padding: "12px",
+    },
+    logo: {
+      width: '80px'
+    },
+    DName: {
+      fontSize: "20px",
+      fontWeight: "bold"
+    },
+    DInfo: {
+      display: "flex",
+      flexDirection: "column"
+    },
+    footer: {
+      backgroundColor: "#409bd4",
+      color: "white",
+      marginTop: "2px"
+    },
+    footer1:{
+      display:"flex",
+      justifyContent: "space-between",
+      padding: "12px"
+    },
+    chikitshaHub:{
+      fontWeight: "bold"
+    },
+    footerInfo:{
+      display: "flex",
+      gap: "5px"
+    }
+  })
   const MyDocument = () => (
     <Document>
-      <Page>
-        <Text>Hello, World!</Text>
+      <Page size="A4">
+        <View>
+          <View style={styles.head}>
+            <View style={styles.DInfo}>
+              <Text style={styles.DName}>ddddd</Text>
+              <Text>ppppp</Text>
+              <Text>bbbbb</Text>
+            </View>
+            <img
+              style={styles.logo}
+              src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png"
+              alt=""
+            />
+          </View>
+          <View>
+            {
+              prescriptionData.map(medicine=>
+                <View key={medicine._id}>
+                  <Text>{medicine.medicineName}</Text>
+                </View>
+                )
+            }
+          </View>
+          <View style={styles.footer}>
+            <View style={styles.footer1}>
+              <Text style={styles.chikitshaHub}>ChikitshaHub</Text>
+              <View>
+                <View style={styles.footerInfo}>
+                  <Text>+5678908765432</Text>
+                  <Text>chikishahub@gmail.com</Text>
+                </View>
+                <View style={styles.footerInfo}>
+                  <Text>Mirpur-10 road-306</Text>
+                  <Text>Webpage.com</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
       </Page>
     </Document>
   );

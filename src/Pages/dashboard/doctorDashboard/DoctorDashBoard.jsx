@@ -242,7 +242,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
           </div>
         </div>
       </aside>
-      <div className="flex flex-col flex-1 w-full overflow-y-auto ">
+      <div className="flex flex-col flex-1 justify-between w-full overflow-y-auto ">
         <header className="z-40 py-5 bg-slate-50 fixed w-full top-0">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
@@ -257,6 +257,20 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               )}
             </button>
             <div className="flex justify-center mt-2 mr-4 w-[80%]"></div>
+          </div>
+          <div>
+            {/* <div className="flex justify-center">
+              <div className="flex  flex-col justify-center items-center">
+                <img
+                  className="hidden h-12 w-12 rounded-full sm:block object-cover mr-2 border-2 border-blue-400"
+                  src={photoURL}
+                  alt=""
+                />
+                <p className="font-semibold text-base  text-gray-700 pt-2 text-center w-full">
+                  {displayName}
+                </p>
+              </div>
+            </div> */}
           </div>
         </header>
         <main className="mt-14 scroll-smooth">

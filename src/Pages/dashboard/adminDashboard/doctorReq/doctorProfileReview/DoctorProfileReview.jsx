@@ -13,7 +13,9 @@ const DoctorProfileReview = () => {
   const doctor = useLoaderData();
   const axios = useAxiosPrivet();
   const [shouldNavigate, setShouldNavigate] = useState(false);
-  const handleApproved = async (id) => {
+  // const email = doctor?.doctorEmail;
+  // console.log(email);
+  const handleApproved = async (id, email) => {
     const { isConfirmed } = await Swal.fire({
       title: "Approve The Doctor Request?",
       showDenyButton: true,
@@ -21,13 +23,11 @@ const DoctorProfileReview = () => {
       confirmButtonText: "Approve",
       denyButtonText: `Cancel`,
     });
-
     if (isConfirmed) {
       try {
-        const response = await axios.patch(
-          `/doctors/admin/setStatus/${id}`,
-          {}
-        );
+        await axios.patch(`/doctors/admin/setStatus/${id}`, {});
+        const res = await axios.patch(`/users/setDocRole/${email}`, {});
+        console.log(res);
         Swal.fire("Approved!", "Doctor request has been approved.", "success");
         setShouldNavigate(true);
       } catch (error) {
@@ -38,6 +38,7 @@ const DoctorProfileReview = () => {
       Swal.fire("Cancelled", "Doctor request approval was cancelled.", "info");
     }
   };
+
   return (
     <div>
       {shouldNavigate && <Navigate to="/dashboard/doctorReq" />}
@@ -46,7 +47,7 @@ const DoctorProfileReview = () => {
           Review the Doctor Profile
         </h1>
         <button
-          onClick={() => handleApproved(doctor._id)}
+          onClick={() => handleApproved(doctor._id, doctor.doctorEmail)}
           className="btn bg-[#409bd4] text-white hover:bg-[#3485b8]"
         >
           Confirm Approved

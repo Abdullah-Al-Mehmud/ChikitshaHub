@@ -21,20 +21,28 @@ const Dashboard = () => {
     setIsSideMenuOpen(false);
   };
 
-  if(isDoctorLoading){
+  if (isDoctorLoading) {
     return (
-    <div className="flex justify-center items-center h-screen">
-    <span className="loading loading-dots loading-lg "></span>
-  </div>
-  )}
-  if(isAdminLoading){
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
+  if (isAdminLoading) {
     return (
-    <div className="flex justify-center items-center h-screen">
-    <span className="loading loading-dots loading-lg "></span>
-  </div>
-  )}
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
 
-  // console.log(isAdmin, isDoctor);
+  if (isAdminLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
   return (
     <div>
       {isDoctor ? (
