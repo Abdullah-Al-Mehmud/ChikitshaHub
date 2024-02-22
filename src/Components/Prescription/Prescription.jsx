@@ -4,14 +4,25 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-const Prescription = () => {
+const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
   const [medicineNames, setMedicineNames] = useState([]);
   const [frequencies, setFrequencies] = useState([]);
   const [days, setDays] = useState([]);
-  //   console.log(email);
+
+  //doctor data get
+  const { data: doctors = [] } = useQuery({
+    queryKey: ["doctors"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/doctors`);
+      return res.data;
+    },
+  });
+
+  const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
+
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
     setFrequencies([...frequencies, ""]);
@@ -47,26 +58,25 @@ const Prescription = () => {
       }));
 
       const dataToSend = {
+        doctorName,
+        doctorEmail,
+        patientEmail,
         patientName: patientName,
         address: address,
         age: age,
         date: date,
         medicines: medicines,
-        email: email,
       };
-
-      await Swal.fire({
-        title: "Data to Send",
-        html: JSON.stringify(dataToSend, null, 2),
-        icon: "info",
-        confirmButtonText: "Submit",
-        showCancelButton: true,
-      });
 
       //   console.log(dataToSend);
       // Send data to the backend
       const response = await axiosPublic.post("/medicines", dataToSend);
       //   console.log(response);
+      Swal.fire({
+        title: "Good job!",
+        text: "Data added successfully",
+        icon: "success",
+      });
     } catch (error) {
       console.error("Error submitting data:", error);
     }
@@ -92,12 +102,12 @@ const Prescription = () => {
 
   return (
     <div>
-      <div className="bg-white shadow-lg mx-36 mt-36">
+      <div className="bg-white shadow-lg">
         <div className="bg-[#409bd4] flex justify-between text-white p-3">
           <div>
-            <h2 className="text-xl font-bold">DR. Doctor Name</h2>
-            <p>MBBS & FCPS surgery Department</p>
-            <p>Dhaka medical </p>
+            <h2 className="text-xl font-bold">{doctorName}</h2>
+            <p>{doctor?.degrees}</p>
+            <p>{doctor?.education?.academy} </p>
           </div>
           <img
             className="w-20"
