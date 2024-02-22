@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Page,
   Text,
@@ -6,6 +7,8 @@ import {
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const styles = StyleSheet.create({
   page: {
@@ -38,8 +41,16 @@ const styles = StyleSheet.create({
   },
 });
 const PrescriptionToPDF = () => {
+  const axios = useAxiosPublic();
   const x = "hello world pdf";
-
+  const { data: medicine = [], refetch } = useQuery({
+    queryKey: ["medicineAll"],
+    queryFn: async () => {
+      const res = await axios.get("/medicines");
+      return res.data;
+    },
+  });
+  console.log(medicine);
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">

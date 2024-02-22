@@ -4,6 +4,7 @@ import React from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment-timezone";
 import {
   createColumnHelper,
   flexRender,
@@ -14,11 +15,15 @@ import {
 } from "@tanstack/react-table";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
+import { FaVideo } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 const DoctorTimeScedule = () => {
   const columnHelper = createColumnHelper();
+  const [meet, setMeet] = useState("");
   const [globalFilter, setGlobalFilter] = useState("");
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
+  const navigate = useNavigate();
   const axios = useAxiosPublic();
   const { data: appointmentsDoc = [], refetch } = useQuery({
     queryKey: ["appointmentsDoc"],
@@ -27,6 +32,9 @@ const DoctorTimeScedule = () => {
       return res.data;
     },
   });
+  const handleMeetId = () => {
+    navigate(`/meet/${meet}`);
+  };
   const columns = [
     columnHelper.accessor("", {
       id: "S.No",
@@ -51,6 +59,50 @@ const DoctorTimeScedule = () => {
       ),
       header: "Meting ID",
     }),
+    columnHelper.accessor("meetingId", {
+      cell: (info) => (
+        <>
+          <div>
+            <button
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+              // onClick={handleMeetId}
+              className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"
+            >
+              <span>See Doctor Now</span>
+              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
+                <FaVideo className="h-10" />
+              </span>
+            </button>
+            <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+                <input
+                  onChange={(e) => setMeet(e.target.value)}
+                  type="text"
+                  name="meetId"
+                  id=""
+                  placeholder="Enter your meet id"
+                  className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800"
+                />
+                <button
+                  type="submit"
+                  onClick={handleMeetId}
+                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
+                >
+                  <span>Join</span>
+                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaVideo className="h-10" />
+                  </span>
+                </button>
+              </div>
+              <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+        </>
+      ),
+      header: "Meting ID",
+    }),
     columnHelper.accessor("fee", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
@@ -59,10 +111,30 @@ const DoctorTimeScedule = () => {
     }),
 
     columnHelper.accessor("appointmentTime", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have any date"}</span>
-      ),
-      header: "AppointmentTime",
+      cell: (info) => {
+        const date = info.getValue();
+        console.log(date);
+        const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
+        const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
+        console.log(btcTime);
+        if (btcTime && btcYear) {
+          return (
+            <>
+              <div className="flex gap-1">
+                <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
+                  {btcYear}
+                </span>
+                <div className="flex text-slate-950 bg-opacity-30 bg-rose-200 rounded-md px-2 text-sm py-1">
+                  <span>{btcTime}</span>
+                </div>
+              </div>
+            </>
+          );
+        } else {
+          return <span className="text-red-500">Wrong Appointment</span>;
+        }
+      },
+      header: "Date & Time",
     }),
 
     // columnHelper.accessor("appointmentTime", {
