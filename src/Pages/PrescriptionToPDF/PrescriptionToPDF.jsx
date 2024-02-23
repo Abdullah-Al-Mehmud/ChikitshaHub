@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     height: "100vh",
   },
 });
-const PrescriptionToPDF = () => {
+const PrescriptionToPDF = ({ meetingId }) => {
   const axios = useAxiosPublic();
   const x = "hello world pdf";
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
-      const res = await axios.get("/medicines");
+      const res = await axios.get(`/medicines/${meetingId}`);
       return res.data;
     },
   });
@@ -84,7 +84,7 @@ const PrescriptionToPDF = () => {
   );
   return (
     <div>
-      <div className="h-[100vh] flex flex-col justify-center items-center my-10 space-y-5">
+      <div className="">
         <PDFDownloadLink
           className="mx-4 my-7 text-center"
           document={<MyDocument />}

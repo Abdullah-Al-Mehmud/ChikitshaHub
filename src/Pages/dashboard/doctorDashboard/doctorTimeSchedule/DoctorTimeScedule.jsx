@@ -41,16 +41,16 @@ const DoctorTimeScedule = () => {
       cell: (info) => <span>{info.row.index + 1}</span>,
       header: "S.No",
     }),
-    columnHelper.accessor("doctorCode", {
-      cell: (info) => <span>{info.getValue()}</span>,
-      header: "DoctorCode",
-    }),
+    // columnHelper.accessor("doctorCode", {
+    //   cell: (info) => <span>{info.getValue()}</span>,
+    //   header: "DoctorCode",
+    // }),
 
-    columnHelper.accessor("doctorName", {
+    columnHelper.accessor("patientName", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Doctor Name",
+      header: "Patient Name",
     }),
 
     columnHelper.accessor("meetingId", {
@@ -59,18 +59,18 @@ const DoctorTimeScedule = () => {
       ),
       header: "Meting ID",
     }),
-    columnHelper.accessor("meetingId", {
+    columnHelper.accessor("", {
       cell: (info) => (
         <>
           <div>
             <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
-              className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"
+              className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4"
             >
-              <span>See Doctor Now</span>
-              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-white rounded-full">
-                <FaVideo className="h-10" />
+              <span>Join meeting</span>
+              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
+                <FaVideo className="h-6" />
               </span>
             </button>
             <dialog id="my_modal_3" className="modal">
@@ -81,12 +81,12 @@ const DoctorTimeScedule = () => {
                   name="meetId"
                   id=""
                   placeholder="Enter your meet id"
-                  className="input input-bordered border-green-800 text-green-800 focus:outline-none focus:border-green-800"
+                  className="input input-bordered w-full border-blue-500 text-blue-500 focus:outline-none focus:border-blue-500"
                 />
                 <button
                   type="submit"
                   onClick={handleMeetId}
-                  className="flex items-center relative w-24 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
+                  className="flex items-center relative w-24 mx-auto border-2 border-blue-500 text-blue-500 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
                 >
                   <span>Join</span>
                   <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
@@ -101,7 +101,7 @@ const DoctorTimeScedule = () => {
           </div>
         </>
       ),
-      header: "Meting ID",
+      header: "Join Meeting",
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
@@ -113,7 +113,7 @@ const DoctorTimeScedule = () => {
     columnHelper.accessor("appointmentTime", {
       cell: (info) => {
         const date = info.getValue();
-        console.log(date);
+        // console.log(date);
         const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
         const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
         console.log(btcTime);
@@ -165,7 +165,7 @@ const DoctorTimeScedule = () => {
   });
   return (
     <div>
-      <div className="p-2 max-w-5xl mx-auto text-black">
+      <div className="p-2 max-w-5xl mx-auto text-black overflow-y-scroll">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch

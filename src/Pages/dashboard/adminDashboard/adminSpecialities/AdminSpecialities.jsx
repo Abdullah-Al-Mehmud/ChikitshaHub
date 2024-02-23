@@ -212,7 +212,7 @@ const AdminSpecialities = () => {
   };
   return (
     <>
-      <div className="p-2 mt-5 max-w-5xl mx-auto text-black">
+      <div className="p-2 mt-5 max-w-5xl mx-auto text-black ">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch
@@ -244,8 +244,8 @@ const AdminSpecialities = () => {
             </dialog>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="border border-gray-50 w-full text-left overflow-scroll table-auto">
+        <div className="overflow-y-scroll overflow-scroll">
+          <table className="border border-gray-50 w-full text-left overflow-y-scroll table-auto">
             <thead className="bg-indigo-100 table-header-group">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>

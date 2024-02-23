@@ -4,7 +4,13 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-const Prescription = ({ doctorName, doctorEmail, patientEmail }) => {
+const Prescription = ({
+  doctorName,
+  doctorEmail,
+  patientEmail,
+  meetId,
+  patientNameDef,
+}) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
@@ -47,7 +53,7 @@ const Prescription = ({ doctorName, doctorEmail, patientEmail }) => {
     event.preventDefault();
     try {
       const patientName = document.getElementById("patientName").value;
-      const address = document.getElementById("address").value;
+      // const address = document.getElementById("address").value;
       const age = document.getElementById("age").value;
       const date = document.getElementById("date").value;
 
@@ -62,10 +68,11 @@ const Prescription = ({ doctorName, doctorEmail, patientEmail }) => {
         doctorEmail,
         patientEmail,
         patientName: patientName,
-        address: address,
+        // address: address,
         age: age,
         date: date,
         medicines: medicines,
+        meetingId: meetId,
       };
 
       //   console.log(dataToSend);
@@ -125,6 +132,7 @@ const Prescription = ({ doctorName, doctorEmail, patientEmail }) => {
                 name="patientName"
                 id="patientName"
                 type="text"
+                defaultValue={patientNameDef}
                 placeholder="Your name"
                 className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
