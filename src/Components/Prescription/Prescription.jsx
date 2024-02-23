@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
-const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
+const Prescription = ({doctorName, doctorEmail, patientEmail, meetingId}) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
@@ -66,6 +66,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail}) => {
         age: age,
         date: date,
         medicines: medicines,
+        meetingId
       };
 
       //   console.log(dataToSend);

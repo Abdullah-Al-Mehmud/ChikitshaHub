@@ -68,7 +68,7 @@ const Meet = () => {
             <div className="flex-1" ref={myMeeting}></div>
             {
                 isDoctor ? <div className="flex-1">
-                <Prescription doctorName={userInfo?.doctorName} doctorEmail={userInfo?.doctorEmail} patientEmail={userInfo?.patientEmail} />
+                <Prescription doctorName={userInfo?.doctorName} doctorEmail={userInfo?.doctorEmail} patientEmail={userInfo?.patientEmail} meetingId={meetId}/>
     
                 </div> : ""
             }

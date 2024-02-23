@@ -5,14 +5,36 @@ import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const PrescriptionToPDF = () => {
   const user = useSelector((state) => state.auth.user);
   const { photoURL, email, displayName } = user || {};
   const axios = useAxiosPrivet();
-  const { data: prescriptionData = [], refetch } = useQuery({
+
+  //doctor data get
+ /*  const { data: doctors = [] } = useQuery({
+    queryKey: ["doctors"],
+    queryFn: async () => {
+      const res = await useAxiosPublic.get(`/doctors`);
+      return res.data;
+    },
+  });
+
+  const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
+ */
+  /* const { data: prescriptionData = [], refetch } = useQuery({
     queryKey: ["prescriptionData"],
     queryFn: async () => {
       const res = await axios.get(`/medicines/${user.email}`);
+      return res.data;
+    },
+  }); */
+
+  const { data: prescriptionData = [], refetch } = useQuery({
+    queryKey: ["prescriptionData", user?.email], // Include user.email in the query key
+    queryFn: async ({ queryKey }) => {
+      const [, userEmail] = queryKey;
+      const res = await axios.get(`/medicines/${userEmail}`);
       return res.data;
     },
   });
@@ -44,10 +66,11 @@ const PrescriptionToPDF = () => {
     footer: {
       backgroundColor: "#409bd4",
       color: "white",
-      marginTop: "2px"
+      marginTop: "30px"
     },
     footer1:{
       display:"flex",
+      flexDirection: "row",
       justifyContent: "space-between",
       padding: "12px"
     },
@@ -56,8 +79,9 @@ const PrescriptionToPDF = () => {
     },
     footerInfo:{
       display: "flex",
-      gap: "5px"
-    }
+      gap: "5px",
+      flexDirection: "row"
+    },
   })
   const MyDocument = () => (
     <Document>
@@ -65,7 +89,7 @@ const PrescriptionToPDF = () => {
         <View>
           <View style={styles.head}>
             <View style={styles.DInfo}>
-              <Text style={styles.DName}>ddddd</Text>
+              <Text style={styles.DName}>Doctor</Text>
               <Text>ppppp</Text>
               <Text>bbbbb</Text>
             </View>
@@ -76,13 +100,13 @@ const PrescriptionToPDF = () => {
             />
           </View>
           <View>
-            {
+           {/*  {
               prescriptionData.map(medicine=>
                 <View key={medicine._id}>
                   <Text>{medicine.medicineName}</Text>
                 </View>
                 )
-            }
+            } */}
           </View>
           <View style={styles.footer}>
             <View style={styles.footer1}>
