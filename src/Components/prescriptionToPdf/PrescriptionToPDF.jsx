@@ -22,22 +22,14 @@ const PrescriptionToPDF = () => {
 
   const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
  */
-  /* const { data: prescriptionData = [], refetch } = useQuery({
+  const { data: prescriptionData = [], refetch } = useQuery({
     queryKey: ["prescriptionData"],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/${user.email}`);
-      return res.data;
-    },
-  }); */
-
-  const { data: prescriptionData = [], refetch } = useQuery({
-    queryKey: ["prescriptionData", user?.email], // Include user.email in the query key
-    queryFn: async ({ queryKey }) => {
-      const [, userEmail] = queryKey;
-      const res = await axios.get(`/medicines/${userEmail}`);
+      const res = await axios.get(`/medicines/:meetingId`);
       return res.data;
     },
   });
+
   console.log(prescriptionData);
 
   const styles = StyleSheet.create({

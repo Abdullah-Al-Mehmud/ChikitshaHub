@@ -62,7 +62,7 @@ const Prescription = ({doctorName, doctorEmail, patientEmail, meetingId}) => {
         doctorEmail,
         patientEmail,
         patientName: patientName,
-        address: address,
+        //address: address,
         age: age,
         date: date,
         medicines: medicines,
