@@ -28,7 +28,7 @@ import Home from "../Pages/Home/Home";
 import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
-import PrescriptionToPDF from "../Components/prescriptionToPdf/PrescriptionToPDF";
+import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
   {

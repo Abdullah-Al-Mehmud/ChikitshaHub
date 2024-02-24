@@ -6,6 +6,7 @@ import {
   Document,
   StyleSheet,
   PDFDownloadLink,
+  Image,
 } from "@react-pdf/renderer";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -24,11 +25,11 @@ const styles = StyleSheet.create({
   section: {
     margin: 30,
     padding: 20,
-    fontWeight: 700,
     fontSize: 20,
   },
   text: {
     textAlign: "center",
+    fontWeight: 700,
   },
   textNew: {
     textAlign: "center",
@@ -38,6 +39,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100vh",
+  },
+  imageContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 60, // Set the width of the image
+    height: 60, // Set the height of the image
   },
 });
 const PrescriptionToPDF = ({ meetingId }) => {
@@ -57,25 +66,35 @@ const PrescriptionToPDF = ({ meetingId }) => {
         <view style={styles.main}>
           <View style={styles.page}>
             <View>
-              <Text style={styles.text}>{x}</Text>
-              <Text style={styles.text}>{x} world new pdf</Text>
+              <Text style={styles.text}>{medicine.doctorName}</Text>
+              <Text style={styles.text}></Text>
             </View>
-            <View>
-              <Text style={styles.text}>{x}</Text>
-              <Text style={styles.text}>{x} world new pdf</Text>
+            <View style={styles.imageContainer}>
+              <Image src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" style={styles.image} />
             </View>
           </View>
+          <View>
+            <Text>{medicine.patientName}</Text>
+            <Text>{medicine.age}</Text>
+            <Text>{medicine.date}</Text>
+          </View>
           <view>
-            <Text style={styles.textNew}>{x}</Text>
+            <Text>RX</Text>
+            <Text style={styles.textNew}>
+              {
+                medicine.map(medicineData=><Text key={medicineData._id}>{medicineData.medicines}</Text>)
+              }
+            </Text>
           </view>
           <View style={styles.page}>
             <View>
-              <Text style={styles.text}>{x}</Text>
-              <Text style={styles.text}>{x} world new pdf</Text>
+              <Text style={styles.text}>ChikitshaHub</Text>
+              <Text style={styles}>chikishahub@gmail.com</Text>
             </View>
             <View>
-              <Text style={styles.text}>{x}</Text>
-              <Text style={styles.text}>{x} world new pdf</Text>
+              <Text style={styles}>+5678908765432</Text>
+              <Text style={styles}>Mirpur-10 road-306</Text>
+              <Text>Webpage.com</Text>
             </View>
           </View>
         </view>

@@ -85,6 +85,9 @@ const PrescriptionToPDF = () => {
               <Text>ppppp</Text>
               <Text>bbbbb</Text>
             </View>
+            <View >
+        
+      </View>
             <img
               style={styles.logo}
               src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png"
