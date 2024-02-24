@@ -10,6 +10,8 @@ const Prescription = ({
   patientEmail,
   meetId,
   patientNameDef,
+  specialties,
+  degrees
 }) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
@@ -73,6 +75,8 @@ const Prescription = ({
         date: date,
         medicines: medicines,
         meetingId: meetId,
+        degrees,
+        specialties
       };
 
       //   console.log(dataToSend);

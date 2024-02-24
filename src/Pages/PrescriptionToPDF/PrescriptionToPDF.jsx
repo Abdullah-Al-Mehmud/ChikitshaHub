@@ -55,18 +55,20 @@ const PrescriptionToPDF = ({ meetingId }) => {
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/${meetingId}`);
+      const res = await axios.get(`/medicines/1/${meetingId}`);
       return res.data;
     },
   });
-  console.log(medicine);
+  const [medicineData] = medicine || [];
+  console.log(medicineData.medicines);
+  console.log(medicineData)
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
         <view style={styles.main}>
           <View style={styles.page}>
             <View>
-              <Text style={styles.text}>{medicine.doctorName}</Text>
+              <Text style={styles.text}>{medicineData?.doctorName}</Text>
               <Text style={styles.text}></Text>
             </View>
             <View style={styles.imageContainer}>
@@ -74,17 +76,21 @@ const PrescriptionToPDF = ({ meetingId }) => {
             </View>
           </View>
           <View>
-            <Text>{medicine.patientName}</Text>
-            <Text>{medicine.age}</Text>
-            <Text>{medicine.date}</Text>
+            <Text>{medicineData?.patientName}</Text>
+            <Text>{medicineData?.age}</Text>
+            <Text>{medicineData?.date}</Text>
           </View>
           <view>
             <Text>RX</Text>
-            <Text style={styles.textNew}>
+            <View style={styles.textNew}>
               {
-                medicine.map(medicineData=><Text key={medicineData._id}>{medicineData.medicines}</Text>)
+                medicineData?.medicines?.map((isMedicine, index)=><View key={index}>
+                  <Text >{isMedicine?.medicineName}</Text>
+                  <Text >{isMedicine?.frequency}</Text>
+                  <Text >{isMedicine?.days}</Text>
+                </View>)
               }
-            </Text>
+            </View>
           </view>
           <View style={styles.page}>
             <View>

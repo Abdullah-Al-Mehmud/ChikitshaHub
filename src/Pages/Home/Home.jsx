@@ -5,7 +5,6 @@ import Partners from "../../Components/Partners/Partners";
 import Faq from "../../Components/Faq/Faq";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import BMICalculator from "../../Components/BMICalculator/BMICalculator";
-import PrescriptionToPDF from "../PrescriptionToPDF/PrescriptionToPDF";
 
 const Home = () => {
   return (
@@ -13,7 +12,6 @@ const Home = () => {
       <Banner />
       {/* <Specialties /> */}
       <BestDoctor />
-      <PrescriptionToPDF />
       <Testimonials />
       <Faq />
       <Partners />
