@@ -12,16 +12,16 @@ const PrescriptionToPDF = () => {
   const axios = useAxiosPrivet();
 
   //doctor data get
- /*  const { data: doctors = [] } = useQuery({
-    queryKey: ["doctors"],
-    queryFn: async () => {
-      const res = await useAxiosPublic.get(`/doctors`);
-      return res.data;
-    },
-  });
-
-  const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
- */
+  /*  const { data: doctors = [] } = useQuery({
+     queryKey: ["doctors"],
+     queryFn: async () => {
+       const res = await useAxiosPublic.get(`/doctors`);
+       return res.data;
+     },
+   });
+ 
+   const doctor = doctors.find(data=> data.doctorEmail === doctorEmail )
+  */
   const { data: prescriptionData = [], refetch } = useQuery({
     queryKey: ["prescriptionData"],
     queryFn: async () => {
@@ -60,16 +60,16 @@ const PrescriptionToPDF = () => {
       color: "white",
       marginTop: "30px"
     },
-    footer1:{
-      display:"flex",
+    footer1: {
+      display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
       padding: "12px"
     },
-    chikitshaHub:{
+    chikitshaHub: {
       fontWeight: "bold"
     },
-    footerInfo:{
+    footerInfo: {
       display: "flex",
       gap: "5px",
       flexDirection: "row"
@@ -86,8 +86,8 @@ const PrescriptionToPDF = () => {
               <Text>bbbbb</Text>
             </View>
             <View >
-        
-      </View>
+
+            </View>
             <img
               style={styles.logo}
               src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png"
@@ -95,7 +95,7 @@ const PrescriptionToPDF = () => {
             />
           </View>
           <View>
-           {/*  {
+            {/*  {
               prescriptionData.map(medicine=>
                 <View key={medicine._id}>
                   <Text>{medicine.medicineName}</Text>

@@ -21,24 +21,40 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // rowGap: 20,
     gap: 10,
+    padding: 20
   },
   section: {
     margin: 30,
-    padding: 20,
+    // padding: 20,
     fontSize: 20,
   },
+  textHeader: {
+    fontWeight: "bold",
+    fontSize: 20
+  },
+  textRx: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#409bd4"
+  },
   text: {
-    textAlign: "center",
-    fontWeight: 700,
+    fontSize: 16,
+    // textAlign: "center",
+    // fontWeight: 700,
   },
   textNew: {
-    textAlign: "center",
+    // textAlign: "center",
     color: "#00000",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
   },
   main: {
-    flexDirection: "column",
-    justifyContent: "space-between",
+    // flexDirection: "column",
+    // justifyContent: "space-between",
     height: "100vh",
+    // fontFamily: "poppins"
   },
   imageContainer: {
     alignItems: 'center',
@@ -48,10 +64,21 @@ const styles = StyleSheet.create({
     width: 60, // Set the width of the image
     height: 60, // Set the height of the image
   },
+  footer:{
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100vh",
+    marginTop: 10,
+    lineHeight: 2
+  },
+  paddings:{
+    padding: 15,
+    marginTop: 5,
+    lineHeight: 3,
+  }
 });
 const PrescriptionToPDF = ({ meetingId }) => {
   const axios = useAxiosPublic();
-  const x = "hello world pdf";
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
@@ -60,47 +87,51 @@ const PrescriptionToPDF = ({ meetingId }) => {
     },
   });
   const [medicineData] = medicine || [];
-  console.log(medicineData.medicines);
+  console.log(medicineData?.medicines);
   console.log(medicineData)
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
         <view style={styles.main}>
           <View style={styles.page}>
-            <View>
-              <Text style={styles.text}>{medicineData?.doctorName}</Text>
-              <Text style={styles.text}></Text>
+            <View style={styles.paddings}>
+              <Text style={styles.textHeader}>{medicineData?.doctorName}</Text>
+              <Text style={styles.text}>{medicineData?.degrees[0]}</Text>
+              <Text style={styles.text}>{medicineData?.specialties}</Text>
+              <Text style={styles.text}>{medicineData?.doctorEmail}</Text>
             </View>
             <View style={styles.imageContainer}>
               <Image src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" style={styles.image} />
             </View>
           </View>
-          <View>
-            <Text>{medicineData?.patientName}</Text>
-            <Text>{medicineData?.age}</Text>
-            <Text>{medicineData?.date}</Text>
+          <View style={styles.paddings}>
+            <Text >Patient Name: {medicineData?.patientName}</Text>
+            <Text >Patient Age: {medicineData?.age}</Text>
+            <Text >Patient Date: {medicineData?.date}</Text>
           </View>
-          <view>
-            <Text>RX</Text>
-            <View style={styles.textNew}>
-              {
-                medicineData?.medicines?.map((isMedicine, index)=><View key={index}>
-                  <Text >{isMedicine?.medicineName}</Text>
-                  <Text >{isMedicine?.frequency}</Text>
-                  <Text >{isMedicine?.days}</Text>
-                </View>)
-              }
-            </View>
-          </view>
-          <View style={styles.page}>
-            <View>
-              <Text style={styles.text}>ChikitshaHub</Text>
-              <Text style={styles}>chikishahub@gmail.com</Text>
-            </View>
-            <View>
-              <Text style={styles}>+5678908765432</Text>
-              <Text style={styles}>Mirpur-10 road-306</Text>
-              <Text>Webpage.com</Text>
+          <View style={styles.footer}>
+            <view style={styles.paddings}>
+              <Text style={styles.textRx}>RX</Text>
+              <View>
+                {
+                  medicineData?.medicines?.map((isMedicine, index) => <View style={styles.textNew} key={index}>
+                    <Text style={styles.medicineInfo}>{isMedicine?.medicineName}</Text>
+                    <Text >{isMedicine?.frequency}</Text>
+                    <Text >{isMedicine?.days}</Text>
+                  </View>)
+                }
+              </View>
+            </view>
+            <View style={styles.page}>
+              <View>
+                <Text style={styles.text}>ChikitshaHub</Text>
+                <Text style={styles.text}>chikishahub@gmail.com</Text>
+              </View>
+              <View>
+                <Text style={styles.text}>+5678908765432</Text>
+                <Text style={styles.text}>Mirpur-10 road-306</Text>
+                <Text>Webpage.com</Text>
+              </View>
             </View>
           </View>
         </view>
