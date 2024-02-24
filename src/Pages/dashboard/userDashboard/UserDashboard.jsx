@@ -7,7 +7,7 @@ import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { MdLogout } from "react-icons/md";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineSchedule } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineCollectionsBookmark } from "react-icons/md";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -79,6 +79,16 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">Appointments</span>
                     </NavLink>
                   </li>
+
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
+                      to={"prescrption"}
+                    >
+                      <AiOutlineSchedule className="text-lg" />
+                      <span className="ml-4">Prescription</span>
+                    </NavLink>
+                  </li>  
                   {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
