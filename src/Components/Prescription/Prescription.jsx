@@ -136,7 +136,7 @@ console.log(doctor)
                 type="text"
                 defaultValue={patientNameDef}
                 placeholder="Your name"
-                className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
             </div>
             {/* <div className="flex items-center mb-10">
@@ -161,7 +161,7 @@ console.log(doctor)
                   name="age"
                   id="age"
                   placeholder="Patient Age"
-                  className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                  className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
                 />
               </div>
               <div className="flex items-center mb-10">
@@ -173,7 +173,7 @@ console.log(doctor)
                   name="date"
                   id="date"
                   placeholder="Appointment Date"
-                  className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                  className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
                 />
               </div>
             </div>
@@ -190,18 +190,21 @@ console.log(doctor)
                   handleMedicineNameChange(index, e.target.value)
                 }
                 placeholder="Write Medicine Name"
+                className="text-black"
               />
               <input
                 type="text"
                 value={frequencies[index]}
                 onChange={(e) => handleFrequencyChange(index, e.target.value)}
                 placeholder="1+1+0"
+                className="text-black"
               />
               <input
                 type="text"
                 value={days[index]}
                 onChange={(e) => handleDayChange(index, e.target.value)}
                 placeholder="Day"
+                className="text-black"
               />
               <button
                 type="button"
