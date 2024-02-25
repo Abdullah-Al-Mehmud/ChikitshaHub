@@ -41,10 +41,7 @@ const DoctorProfile = () => {
     },
   });
 
-
-
-
-
+  // console.log(reviews);
 
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
@@ -110,6 +107,39 @@ const DoctorProfile = () => {
   const handleAppointment = (e) => {
     e.preventDefault();
     setAppointmentTime(selectedDateTime);
+  };
+
+  const handleDeleteReview = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/doctorReview/${id}`).then(async (res) => {
+            console.log(res);
+          if (res.statusText === "OK") {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your review has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      } else if (result.dismiss === "cancel") {
+        Swal.fire({
+          title: "Cancelled",
+          text: "Your user is safe!",
+          icon: "info",
+        });
+      }
+    });
   };
 
   return (
@@ -353,9 +383,10 @@ const DoctorProfile = () => {
           <TabPanel>
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
-               {/*  {reviews?.map((review) => (
+                {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
                     <h2 className="text-xl font-bold">{review.name}</h2>
+                    <div className="flex items-center gap-4">
                     <Rating
                       className="mb-1"
                       initialRating={review.rating}
@@ -366,9 +397,11 @@ const DoctorProfile = () => {
                         <AiFillStar className="text-orange-300 w-4 h-4" />
                       }
                     ></Rating>
+                    <button onClick={() => handleDeleteReview(review._id)}>delete</button>
+                    </div>
                     <p>{review.comment}</p>
                   </div>
-                ))} */}
+                ))}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
