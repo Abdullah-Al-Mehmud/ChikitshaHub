@@ -96,7 +96,7 @@ const Doctors = () => {
   return (
     <div>
       <div className="grid grid-cols-12 mt-10 gap-6 max-w-7xl mx-auto px-6 py-16 lg:py-20">
-        <div className="col-span-12 md:col-span-4  rounded-lg bg-white pb-96">
+        <div className="col-span-12 md:col-span-4 rounded-lg bg-white">
           {/* <div className="flex justify-between mb-4 text-gray-600">
                         <h4 className="text-xl font-bold">Filters</h4>
                         <h4 className="text-xl font-bold">Reset</h4>
@@ -129,9 +129,9 @@ const Doctors = () => {
                             <label className="text-xl font-medium text-gray-700">Female doctors only</label>
                         </div>
                     </div> */}
-          <div className="fixed bg-slate-50 lg:bg-transparent">
-            <h2 className="text-2xl font-bold  mb-4 text-black ">Sort By</h2>
-            <div className="mt-6 lg:flex-col grid grid-cols-4 lg:grid-cols-1 text-sm">
+          <div className=" bg-slate-50 p-6 rounded-xl h-fit">
+            <h2 className="text-2xl font-bold  mb-4 text-black">Sort By</h2>
+            <div className="mt-6 flex flex-col text-sm">
               <div className="flex gap-4 items-center mb-2">
                 <input
                   onChange={handleSortByRating}
@@ -185,7 +185,7 @@ const Doctors = () => {
                   Experience
                 </label>
               </div>
-              <div className="flex justify-between items-center text-lg w-full">
+              <div className="flex gap-2 items-center text-lg w-full">
                 <div>
                   <h1>Sort by:</h1>
                 </div>

@@ -41,7 +41,11 @@ const DoctorProfile = () => {
     },
   });
 
-  // console.log(reviews);
+
+
+
+
+
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -58,17 +62,9 @@ const DoctorProfile = () => {
     doctor.experience.end = formattedDateEnd;
   }
 
-  const { register, handleSubmit } = useForm({
-    // defaultValues: {
-    //   name: "",
-    //   rating: 5,
-    //   comment: "",
-    // },
-  });
-
-  const onSubmit = (data) => {
-    //console.log("Submitted:", data);
-
+  const { register, handleSubmit } = useForm();
+  
+  const onSubmit = async (data) => {
     const { name, comment, rating } = data;
     const reviewData = {
       name,
@@ -76,19 +72,35 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    // console.log(reviewData);
-    axios.post("/doctorReview", reviewData).then((res) => {
-      if (res.data.success) {
+  
+    try {
+      const postResponse = await axios.post("/doctorReview", reviewData);
+      if (postResponse.data.success) {
         Swal.fire({
           title: "Good job!",
           text: "Your Review send Successfully.",
           icon: "success",
         });
-        refetch();
+  
+        // Refetch reviews data and wait for it to complete
+        await refetch();
+  
+        // Access the updated reviews data after refetching
+        const { data: updatedReviews } = await refetch();
+  
+        // Calculate average rating from the updated reviews data
+        const averageRating = updatedReviews.reduce((total, review) => total + review.rating, 0) / updatedReviews.length;
+        const fixedAverageRating = averageRating.toFixed(1);
+  
+        // Update doctor's post with the new average rating
+        const patchResponse = await axios.patch(`/doctors/${doctor.doctorEmail}`, { fixedAverageRating });
+        console.log(patchResponse.data); // Log the response from the patch request
       } else {
-        console.error(res.error);
+        console.error(postResponse.error);
       }
-    });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // const handleMeetId = () => {

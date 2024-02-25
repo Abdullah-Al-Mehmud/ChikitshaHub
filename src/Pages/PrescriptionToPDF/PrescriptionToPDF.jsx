@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     // borderColor: "black",
     // paddingVertical: 5,
-    paddingTop: 10,
+    // paddingTop: 10,
+    padding: 10
   },
   headerCell: {
     flex: 1,
