@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // rowGap: 20,
     gap: 10,
-    padding: 20
+    padding: 20,
   },
   section: {
     margin: 30,
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
   textRx: {
     fontWeight: "bold",
     fontSize: 20,
-    color: "#409bd4"
+    color: "#409bd4",
   },
   text: {
     fontSize: 16,
@@ -57,25 +57,66 @@ const styles = StyleSheet.create({
     // fontFamily: "poppins"
   },
   imageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     width: 60, // Set the width of the image
     height: 60, // Set the height of the image
   },
-  footer:{
+  footer: {
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100vh",
     marginTop: 10,
-    lineHeight: 2
+    lineHeight: 2,
   },
-  paddings:{
+  paddings: {
     padding: 15,
     marginTop: 5,
     lineHeight: 3,
-  }
+  },
+  pateientText: {
+    fontSize: 14,
+  },
+  table: {
+    flex: 1,
+    flexDirection: "column",
+    // borderWidth: 1,
+    // borderColor: "black",
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 16,
+    padding: 10,
+  },
+  headerRow: {
+    flexDirection: "row",
+    // borderBottomWidth: 1,
+    // borderColor: "black",
+    // backgroundColor: "#f2f2f2",
+    marginBottom: 10,
+    padding: 10,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    // borderColor: "black",
+    // paddingVertical: 5,
+    // paddingTop: 10,
+    padding: 10
+  },
+  headerCell: {
+    flex: 1,
+    textAlign: "center",
+    fontWeight: "bold",
+    padding: 10,
+  },
+  cell: {
+    flex: 1,
+    textAlign: "center",
+    padding: 10,
+  },
 });
 const PrescriptionToPDF = ({ meetingId }) => {
   const axios = useAxiosPublic();
@@ -87,8 +128,8 @@ const PrescriptionToPDF = ({ meetingId }) => {
     },
   });
   const [medicineData] = medicine || [];
-  console.log(medicineData?.medicines);
-  console.log(medicineData)
+  // console.log(medicineData?.medicines);
+  // console.log(medicineData);
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
@@ -96,42 +137,60 @@ const PrescriptionToPDF = ({ meetingId }) => {
           <View style={styles.page}>
             <View style={styles.paddings}>
               <Text style={styles.textHeader}>{medicineData?.doctorName}</Text>
-              <Text style={styles.text}>{medicineData?.degrees[0]}</Text>
+              <View style={styles.text}>
+                {medicineData?.degrees?.map((dd, index) => (
+                  <Text key={index}>{dd}</Text>
+                ))}
+              </View>
               <Text style={styles.text}>{medicineData?.specialties}</Text>
               <Text style={styles.text}>{medicineData?.doctorEmail}</Text>
             </View>
             <View style={styles.imageContainer}>
-              <Image src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png" style={styles.image} />
+              <Image
+                src="https://i.ibb.co/V2NKtfr/chikitsha-Hub-logo.png"
+                style={styles.image}
+              />
             </View>
           </View>
           <View style={styles.paddings}>
-            <Text >Patient Name: {medicineData?.patientName}</Text>
-            <Text >Patient Age: {medicineData?.age}</Text>
-            <Text >Patient Date: {medicineData?.date}</Text>
+            <Text style={styles.pateientText}>
+              Patient Name: {medicineData?.patientName}
+            </Text>
+            <Text style={styles.pateientText}>
+              Patient Age: {medicineData?.age}
+            </Text>
+            <Text style={styles.pateientText}>
+              Appoinment Date: {medicineData?.date}
+            </Text>
           </View>
           <View style={styles.footer}>
             <view style={styles.paddings}>
               <Text style={styles.textRx}>RX</Text>
-              <View>
-                {
-                  medicineData?.medicines?.map((isMedicine, index) => <View style={styles.textNew} key={index}>
-                    <Text style={styles.medicineInfo}>{isMedicine?.medicineName}</Text>
-                    <Text >{isMedicine?.frequency}</Text>
-                    <Text >{isMedicine?.days}</Text>
-                  </View>)
-                }
+              <View style={styles.table}>
+                <View style={styles.headerRow}>
+                  <Text style={styles.headerCell}>Medicine Name</Text>
+                  <Text style={styles.headerCell}>Daily Dose</Text>
+                  <Text style={styles.headerCell}>Day</Text>
+                </View>
+                {medicineData?.medicines?.map((isMedicine, index) => (
+                  <View style={styles.row} key={index}>
+                    <Text style={styles.cell}>{isMedicine?.medicineName}</Text>
+                    <Text style={styles.cell}>{isMedicine?.frequency}</Text>
+                    <Text style={styles.cell}>{isMedicine?.days}</Text>
+                  </View>
+                ))}
               </View>
             </view>
             <View style={styles.page}>
               <View>
                 <Text style={styles.text}>ChikitshaHub</Text>
-                <Text style={styles.text}>chikishahub@gmail.com</Text>
+                <Text style={styles.text}>ChikishaHub@gmail.com</Text>
               </View>
-              <View>
+              {/* <View>
                 <Text style={styles.text}>+5678908765432</Text>
                 <Text style={styles.text}>Mirpur-10 road-306</Text>
                 <Text>Webpage.com</Text>
-              </View>
+              </View> */}
             </View>
           </View>
         </view>
@@ -150,7 +209,9 @@ const PrescriptionToPDF = ({ meetingId }) => {
             loading ? (
               "Loading document...."
             ) : (
-              <button className="btn btn-accent">Download Prescription</button>
+              <button className="btn btn-accent btn-sm">
+                Download Prescription
+              </button>
             )
           }
         </PDFDownloadLink>

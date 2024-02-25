@@ -24,11 +24,13 @@ import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/Us
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import UserProfile from "../Pages/user/UserProfile";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
-import Home from "../Pages/home/Home";
+import Home from "../Pages/Home/Home";
 import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
-import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
+import AdminAllReview from "../Pages/dashboard/adminDashboard/adminAllReview/AdminAllReview";
+import PrescriptionUser from "../Pages/dashboard/userDashboard/PrescriptionUser/PrescriptionUser";
+// import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
   {
@@ -56,10 +58,10 @@ const router = createBrowserRouter([
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
       },
-      {
-        path: '/prescriptionToPdf',
-        element: <PrescriptionToPDF/>
-      },
+      // {
+      //   path: "/prescriptionToPdf",
+      //   element: <PrescriptionToPDF />,
+      // },
       {
         path: "/specialties",
         element: <Specialties />,
@@ -174,6 +176,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/prescrption",
         element: <DoctorPrescription />,
+      },
+      {
+        path: "/dashboard/userPrescrption",
+        element: <PrescriptionUser />,
+      },
+      {
+        path: "/dashboard/allreviews",
+        element: <AdminAllReview />,
       },
     ],
   },
