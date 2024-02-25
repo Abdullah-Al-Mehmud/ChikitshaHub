@@ -109,38 +109,38 @@ const DoctorProfile = () => {
     setAppointmentTime(selectedDateTime);
   };
 
-  const handleDeleteReview = (id) => {
-    console.log(id);
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.delete(`/doctorReview/${id}`).then(async (res) => {
-            console.log(res);
-          if (res.statusText === "OK") {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your review has been deleted.",
-              icon: "success",
-            });
-            refetch();
-          }
-        });
-      } else if (result.dismiss === "cancel") {
-        Swal.fire({
-          title: "Cancelled",
-          text: "Your user is safe!",
-          icon: "info",
-        });
-      }
-    });
-  };
+  // const handleDeleteReview = (id) => {
+  //   console.log(id);
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       axios.delete(`/doctorReview/${id}`).then(async (res) => {
+  //           console.log(res);
+  //         if (res.statusText === "OK") {
+  //           Swal.fire({
+  //             title: "Deleted!",
+  //             text: "Your review has been deleted.",
+  //             icon: "success",
+  //           });
+  //           refetch();
+  //         }
+  //       });
+  //     } else if (result.dismiss === "cancel") {
+  //       Swal.fire({
+  //         title: "Cancelled",
+  //         text: "Your user is safe!",
+  //         icon: "info",
+  //       });
+  //     }
+  //   });
+  // };
 
   return (
     <div>
@@ -397,7 +397,7 @@ const DoctorProfile = () => {
                         <AiFillStar className="text-orange-300 w-4 h-4" />
                       }
                     ></Rating>
-                    <button onClick={() => handleDeleteReview(review._id)}>delete</button>
+                    {/* <button onClick={() => handleDeleteReview(review._id)}>delete</button> */}
                     </div>
                     <p>{review.comment}</p>
                   </div>
