@@ -1,82 +1,98 @@
 [
-    {
-      "id": 1,
-      "name": "General Practitioners",
-      "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png"
-    },
-    {
-      "id": 2,
-      "name": "Cardiologists",
-      "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png"
-    },
-    {
-      "id": 3,
-      "name": "Dermatologists",
-      "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png"
-    },
-    {
-      "id": 4,
-      "name": "Pediatricians",
-      "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png"
-    },
-    {
-      "id": 5,
-      "name": "Orthopedic Surgeons",
-      "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png"
-    },
-    {
-      "id": 6,
-      "name": "Psychiatrists",
-      "img": "https://i.ibb.co/f947g02/Psychiatrists.png"
-    },
-    {
-      "id": 7,
-      "name": "Gynecologists",
-      "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png"
-    },
-    {
-      "id": 8,
-      "name": "Endocrinologists",
-      "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png"
-    },
-    {
-      "id": 9,
-      "name": "Ophthalmologists",
-      "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png"
-    },
-    {
-      "id": 10,
-      "name": "Urologists",
-      "img": "https://i.ibb.co/MpJG3Y8/Urologists.png"
-    },
-    {
-      "id": 11,
-      "name": "ENT Specialists",
-      "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png"
-    },
-    {
-      "id": 12,
-      "name": "Gastroenterologists",
-      "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png"
-    },
-    {
-      "id": 13,
-      "name": "Neurologists",
-      "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png"
-    },
-    {
-      "id": 14,
-      "name": "Allergists/Immunologists",
-      "img": "https://i.ibb.co/KXv5YnB/allergist.png"
-    },
-    {
-      "id": 15,
-      "name": "Infectious Disease Specialists",
-      "img": "https://i.ibb.co/bLLjrPM/Infectious.png"
-    },
-    {
-      "id": 16,
-      "name": "Emergency Medicine Physicians",
-      "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "General Practitioners",
+    "img": "https://i.ibb.co/C5V3Dhx/General-Practitioners.png",
+    "description": "Primary care for all ages, emphasizing preventive care and routine check-ups."
+  },
+  {
+    "id": 2,
+    "name": "Cardiologists",
+    "img": "https://i.ibb.co/K6VQgWR/Cardiologists.png",
+    "description": "Heart health experts for diagnosis and treatment of cardiovascular conditions."
+  },
+  {
+    "id": 3,
+    "name": "Dermatologists",
+    "img": "https://i.ibb.co/HGtYTrq/Dermatologists.png",
+    "description": "Skilled skincare specialists, diagnosing and treating various skin conditions with care."
+  },
+  {
+    "id": 4,
+    "name": "Pediatricians",
+    "img": "https://i.ibb.co/jGPjKFH/Pediatricians.png",
+    "description": "Compassionate care for infants, children, and adolescents, focusing on preventive health."
+  },
+  {
+    "id": 5,
+    "name": "Orthopedic Surgeons",
+    "img": "https://i.ibb.co/1MVsL1R/Orthopedic-Surgeons.png",
+    "description": "Renowned experts in musculoskeletal issues, promoting optimal mobility and function."
+  },
+  {
+    "id": 6,
+    "name": "Psychiatrists",
+    "img": "https://i.ibb.co/f947g02/Psychiatrists.png",
+    "description": "Compassionate mental health support through therapy, counseling, and medication management."
+  },
+  {
+    "id": 7,
+    "name": "Gynecologists",
+    "img": "https://i.ibb.co/fHrCbRd/Gynecologists.png",
+    "description": "Specialists in women's health, offering comprehensive care and sensitivity."
+  },
+  {
+    "id": 8,
+    "name": "Endocrinologists",
+    "img": "https://i.ibb.co/LCVMJjF/Endocrinologists.png",
+    "description": "Experts in hormonal health, diagnosing and treating diabetes, thyroid disorders, and imbalances."
+  },
+  {
+    "id": 9,
+    "name": "Ophthalmologists",
+    "img": "https://i.ibb.co/8cZcm1r/Ophthalmologists.png",
+    "description": "Dedicated eye health professionals, providing comprehensive exams and vision care."
+  },
+  {
+    "id": 10,
+    "name": "Urologists",
+    "img": "https://i.ibb.co/MpJG3Y8/Urologists.png",
+    "description": "Specialists in urinary tract and male reproductive system conditions, ensuring optimal health."
+  },
+  {
+    "id": 11,
+    "name": "ENT Specialists",
+    "img": "https://i.ibb.co/z4LJH39/ENT-Specialists.png",
+    "description": "Focus on ear, nose, and throat health, offering expert diagnosis and treatment."
+  },
+  {
+    "id": 12,
+    "name": "Gastroenterologists",
+    "img": "https://i.ibb.co/kJP7gFq/Gastroenterologists.png",
+    "description": "Experts in digestive system conditions, ensuring digestive health with personalized care."
+  },
+  {
+    "id": 13,
+    "name": "Neurologists",
+    "img": "https://i.ibb.co/1Jd7YRS/Neurologists.png",
+    "description": "Specialists in neurological conditions, prioritizing brain and nervous system health."
+  },
+  {
+    "id": 14,
+    "name": "Allergists",
+    "img": "https://i.ibb.co/KXv5YnB/allergist.png",
+    "description": "Experts in allergies and immune system disorders, offering personalized care."
+  },
+  {
+    "id": 15,
+    "name": "Infectious Disease Specialists",
+    "img": "https://i.ibb.co/bLLjrPM/Infectious.png",
+    "description": "Specialists in the diagnosis and treatment of infectious diseases, prioritizing health."
+  },
+  {
+    "id": 16,
+    "name": "Emergency Medicine Physicians",
+    "img": "https://i.ibb.co/Wgsg9LJ/Emergency-Medicine-Physicians.png",
+    "description": "Acute care specialists for emergencies, ensuring timely and expert medical attention."
+  }
+]
