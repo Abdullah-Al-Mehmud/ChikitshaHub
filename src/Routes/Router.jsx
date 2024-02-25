@@ -29,6 +29,7 @@ import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/Admin
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 import AdminAllReview from "../Pages/dashboard/adminDashboard/adminAllReview/AdminAllReview";
+// import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         path: "/doctorRegister",
         element: <DoctorRegister></DoctorRegister>,
       },
+      // {
+      //   path: "/prescriptionToPdf",
+      //   element: <PrescriptionToPDF />,
+      // },
       {
         path: "/specialties",
         element: <Specialties />,

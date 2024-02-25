@@ -28,7 +28,7 @@ const Prescription = ({
   });
 
   const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
-
+console.log(doctor)
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
     setFrequencies([...frequencies, ""]);
@@ -73,9 +73,11 @@ const Prescription = ({
         date: date,
         medicines: medicines,
         meetingId: meetId,
+        degrees:doctor.degrees,
+        specialties: doctor.specialties
       };
 
-      //   console.log(dataToSend);
+      console.log(dataToSend);
       // Send data to the backend
       const response = await axiosPublic.post("/medicines", dataToSend);
       //   console.log(response);
@@ -134,7 +136,7 @@ const Prescription = ({
                 type="text"
                 defaultValue={patientNameDef}
                 placeholder="Your name"
-                className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
             </div>
             {/* <div className="flex items-center mb-10">
@@ -159,7 +161,7 @@ const Prescription = ({
                   name="age"
                   id="age"
                   placeholder="Patient Age"
-                  className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                  className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
                 />
               </div>
               <div className="flex items-center mb-10">
@@ -171,7 +173,7 @@ const Prescription = ({
                   name="date"
                   id="date"
                   placeholder="Appointment Date"
-                  className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
+                  className="border-b-2 border-gray-400 text-black flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
                 />
               </div>
             </div>
@@ -188,18 +190,21 @@ const Prescription = ({
                   handleMedicineNameChange(index, e.target.value)
                 }
                 placeholder="Write Medicine Name"
+                className="text-black"
               />
               <input
                 type="text"
                 value={frequencies[index]}
                 onChange={(e) => handleFrequencyChange(index, e.target.value)}
                 placeholder="1+1+0"
+                className="text-black"
               />
               <input
                 type="text"
                 value={days[index]}
                 onChange={(e) => handleDayChange(index, e.target.value)}
                 placeholder="Day"
+                className="text-black"
               />
               <button
                 type="button"
