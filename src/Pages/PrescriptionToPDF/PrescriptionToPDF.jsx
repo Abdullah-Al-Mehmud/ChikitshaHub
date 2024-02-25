@@ -46,7 +46,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/${meetingId}`);
+      const res = await axios.get(`/medicines/1/${meetingId}`);
       return res.data;
     },
   });
