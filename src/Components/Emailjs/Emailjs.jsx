@@ -8,6 +8,7 @@ const Emailjs = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -32,10 +33,12 @@ const Emailjs = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset();
       }
     });
     axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
+      reset();
     });
   };
   return (
