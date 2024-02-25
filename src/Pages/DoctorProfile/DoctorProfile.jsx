@@ -20,7 +20,7 @@ import ReactDatePicker from "react-datepicker";
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-  const [meet, setMeet] = useState("");
+  // const [meet, setMeet] = useState("");
   const doctor = useLoaderData();
   const navigate = useNavigate();
   // console.log(appointmentTime);
@@ -103,9 +103,9 @@ const DoctorProfile = () => {
     }
   };
 
-  const handleMeetId = () => {
-    navigate(`/meet/${meet}`);
-  };
+  // const handleMeetId = () => {
+  //   navigate(`/meet/${meet}`);
+  // };
 
   const handleAppointment = (e) => {
     e.preventDefault();
@@ -149,7 +149,7 @@ const DoctorProfile = () => {
                 (incl. VAT)
               </span>
             </h3>
-            <button
+            {/* <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
               className="flex items-center relative w-52 mx-auto border-2 border-green-800 text-green-800 px-4 py-2 rounded-full group mt-4 text-lg font-semibold mb-4"
@@ -183,7 +183,7 @@ const DoctorProfile = () => {
               <form method="dialog" className="modal-backdrop">
                 <button>close</button>
               </form>
-            </dialog>
+            </dialog> */}
 
             <form className="flex gap-2 " onSubmit={handleAppointment}>
               <div className="relative">
@@ -353,7 +353,7 @@ const DoctorProfile = () => {
           <TabPanel>
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
-                {reviews?.map((review) => (
+               {/*  {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
                     <h2 className="text-xl font-bold">{review.name}</h2>
                     <Rating
@@ -368,7 +368,7 @@ const DoctorProfile = () => {
                     ></Rating>
                     <p>{review.comment}</p>
                   </div>
-                ))}
+                ))} */}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
