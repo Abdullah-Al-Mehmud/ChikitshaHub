@@ -35,6 +35,7 @@ const CheckoutForm = ({
 
     return randomId;
   };
+  // console.log(Date(appointmentTime));
 
   const randomId = generateMeetId();
 
@@ -149,3 +150,4 @@ const CheckoutForm = ({
 };
 
 export default CheckoutForm;
+

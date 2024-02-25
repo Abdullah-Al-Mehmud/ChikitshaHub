@@ -10,7 +10,7 @@ const Specialties = () => {
       return res.data;
     },
   });
-  console.log(specialties);
+  // console.log(specialties);
   return (
     <div className="py-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto py-16 lg:py-20">

@@ -2,10 +2,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Poppins", sans-serif;
   color: #180018f3;
 }
 .active{
   @apply bg-blue-50  text-[#409bd4] py-2 px-4 rounded-md;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1cb; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8888889d; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5555558a; 
 }

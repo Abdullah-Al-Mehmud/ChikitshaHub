@@ -41,7 +41,7 @@ const Login = () => {
       }
     };
     handleLogIn();
-    console.log(email, password);
+    // console.log(email, password);
   };
 
   const handleSignInWithGoogle = () => {
@@ -53,7 +53,7 @@ const Login = () => {
         photoUrl: result?.payload?.photoURL,
         role: "user",
       };
-      console.log(googleLoginUser);
+      // console.log(googleLoginUser);
       axiosPrivate.post("/users", googleLoginUser);
       Swal.fire({
         position: "center",
@@ -103,7 +103,8 @@ const Login = () => {
           <div className="w-full p-8 lg:w-1/2">
             <button
               onClick={() => handleSignInWithGoogle()}
-              className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full">
+              className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full"
+            >
               <div className="px-4 py-3">
                 <svg className="h-6 w-6" viewBox="0 0 40 40">
                   <path
@@ -142,7 +143,8 @@ const Login = () => {
               <span className="border-b w-1/5 lg:w-1/4"></span>
               <a
                 href="#"
-                className="text-xs text-center text-gray-500 uppercase">
+                className="text-xs text-center text-gray-500 uppercase"
+              >
                 or login with email
               </a>
               <span className="border-b w-1/5 lg:w-1/4"></span>
@@ -193,7 +195,8 @@ const Login = () => {
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10">
+                    className="absolute inset-y-0 right-5 px-3 flex items-center focus:outline-none h-10"
+                  >
                     {showPassword ? (
                       <FaEyeSlash className="text-gray-500" />
                     ) : (
@@ -215,7 +218,8 @@ const Login = () => {
               <span className="border-b w-1/5 md:w-1/4"></span>
               <Link
                 to={"/userRegister"}
-                className="text-xs font-bold uppercase">
+                className="text-xs font-bold uppercase"
+              >
                 or sign up
               </Link>
               <span className="border-b w-1/5 md:w-1/4"></span>

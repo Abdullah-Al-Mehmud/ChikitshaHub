@@ -10,8 +10,8 @@ import useAdmin from "../../Hooks/useAdmin";
 const Dashboard = () => {
   // const doctor = false;
   // const admin = false;
-  const [isDoctor] = useDoctor();
-  const [isAdmin] = useAdmin();
+  const [isDoctor, isDoctorLoading] = useDoctor();
+  const [isAdmin, isAdminLoading] = useAdmin();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   // console.log(isAdmin);
   const toggleSideMenu = () => {
@@ -21,7 +21,28 @@ const Dashboard = () => {
     setIsSideMenuOpen(false);
   };
 
-  // console.log(isAdmin, isDoctor);
+  if (isDoctorLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
+  if (isAdminLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
+
+  if (isAdminLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg "></span>
+      </div>
+    );
+  }
   return (
     <div>
       {isDoctor ? (

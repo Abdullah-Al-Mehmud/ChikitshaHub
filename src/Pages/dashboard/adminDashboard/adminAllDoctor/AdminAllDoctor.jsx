@@ -107,20 +107,18 @@ const AdminAllDoctor = () => {
       header: "Name",
     }),
 
-    // columnHelper.accessor("_id", {
-    //   cell: (info) => (
-    //     <>
-    //       <Link to={`doctorProfileReview/${info.getValue()}`}>
-    //         View Profile
-    //       </Link>
-    //     </>
-    //   ),
-    //   header: "View profile",
-    // }),
+    columnHelper.accessor("doctorEmail", {
+      cell: (info) => (
+        <>
+          <span>{info.getValue()}</span>
+        </>
+      ),
+      header: "Email",
+    }),
     columnHelper.accessor("status", {
       cell: (info) => (
         <>
-          <span className="text-rose-600 font-semibold">{info.getValue()}</span>
+          <span className="text-blue-600 font-semibold">{info.getValue()}</span>
         </>
       ),
       header: "Status",
@@ -130,13 +128,7 @@ const AdminAllDoctor = () => {
         const { row } = props || {};
         return (
           <>
-            <div className="flex gap-2">
-              <button
-                onClick={() => handleUpdate(row.original._id)}
-                className="btn btn-sm btn-accent"
-              >
-                Update
-              </button>
+            <div className="">
               <button
                 onClick={() => handleDelete(row.original._id)}
                 className="btn btn-sm btn-error"
@@ -147,7 +139,7 @@ const AdminAllDoctor = () => {
           </>
         );
       },
-      header: "update/delete",
+      header: "Delete",
     }),
   ];
 
