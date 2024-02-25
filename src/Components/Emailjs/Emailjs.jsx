@@ -37,7 +37,7 @@ const Emailjs = () => {
       }
     });
     axiosPublic.post("/sendEmail", TipsInfo).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       reset();
     });
   };
