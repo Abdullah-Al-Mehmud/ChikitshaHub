@@ -86,7 +86,7 @@ const AllDoctors = () => {
         <div className="z-40 mt-5 px-5">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 md:gap-3 gap-2">
             {doctors?.map((doctor) => (
-              <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
+              <Link to={`/doctors/${doctor._id}`} key={doctor._id}>
                 <div className=" p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl h-[300px] bg-white">
                   <div className="flex items-center gap-2 flex-row">
                     <div>
