@@ -66,10 +66,10 @@ const DoctorTimeScedule = () => {
             <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
-              className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4"
+              className="flex items-center relative mx-auto border-2 w-24 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4"
             >
-              <span>Join meeting</span>
-              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
+              <span>Join</span>
+              <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
                 <FaVideo className="h-6" />
               </span>
             </button>

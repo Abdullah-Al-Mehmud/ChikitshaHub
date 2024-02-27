@@ -10,6 +10,7 @@ const Prescription = ({
   patientEmail,
   meetId,
   patientNameDef,
+  fee
 }) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
@@ -28,7 +29,7 @@ const Prescription = ({
   });
 
   const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
-console.log(doctor)
+// console.log(doctor)
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
     setFrequencies([...frequencies, ""]);
@@ -69,12 +70,11 @@ console.log(doctor)
         patientEmail,
         patientName: patientName,
         // address: address,
+        fee,
         age: age,
         date: date,
         medicines: medicines,
         meetingId: meetId,
-        degrees:doctor.degrees,
-        specialties: doctor.specialties
       };
 
       console.log(dataToSend);
