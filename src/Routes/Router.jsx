@@ -29,6 +29,7 @@ import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/Admin
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 import AdminAllReview from "../Pages/dashboard/adminDashboard/adminAllReview/AdminAllReview";
+import PrescriptionUser from "../Pages/dashboard/userDashboard/PrescriptionUser/PrescriptionUser";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
@@ -175,6 +176,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/prescrption",
         element: <DoctorPrescription />,
+      },
+      {
+        path: "/dashboard/userPrescrption",
+        element: <PrescriptionUser />,
       },
       {
         path: "/dashboard/allreviews",
