@@ -35,6 +35,7 @@ const DoctorPrescription = () => {
       return res.data;
     },
   });
+
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
   };
