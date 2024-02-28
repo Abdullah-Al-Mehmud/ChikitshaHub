@@ -354,7 +354,7 @@ const DoctorProfile = () => {
           <TabPanel>
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
-                {/*  {reviews?.map((review) => (
+                 {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
                     <h2 className="text-xl font-bold">{review.name}</h2>
                     <Rating
@@ -369,7 +369,7 @@ const DoctorProfile = () => {
                     ></Rating>
                     <p>{review.comment}</p>
                   </div>
-                ))} */}
+                ))}
               </div>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
@@ -388,7 +388,6 @@ const DoctorProfile = () => {
                   />
                 </div>
                 <div className="mb-4 ">
-                 
                   <label
                     htmlFor="rating"
                     className=" block text-sm font-medium text-gray-600 mr-2"
