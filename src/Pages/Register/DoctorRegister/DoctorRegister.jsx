@@ -57,6 +57,22 @@ const DoctorRegister = () => {
     },
   ];
 
+  const generateDoctorId = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let randomId = "CHD";
+
+    for (let i = 0; i < 6; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomId += characters.charAt(randomIndex);
+    }
+
+    return randomId;
+  };
+  // console.log(Date(appointmentTime));
+
+  const randomId = generateDoctorId();
+
   const {
     register,
     handleSubmit,
@@ -65,7 +81,7 @@ const DoctorRegister = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const newDoctor = {
       name: displayName,
@@ -77,8 +93,10 @@ const DoctorRegister = () => {
       doctorEmail: email,
       // role: "pending",
       // category: data.category,
-      doctorCode: data.doctorCode,
+      doctorCode: randomId,
+      gender: data.gender,
       location: data.location,
+      doctorType: data.doctorType,
       rating: 0,
       fee: data.fee,
       followUpFee: data.followUpFee,
@@ -98,7 +116,7 @@ const DoctorRegister = () => {
       },
       aboutDoctor: data.aboutDoctor,
     };
-    // console.log(newDoctor);
+    console.log(newDoctor);
     axiosPrivate.post("/doctors", newDoctor).then((result) => {
       if (result.data.success) {
         Swal.fire({
@@ -112,22 +130,6 @@ const DoctorRegister = () => {
       }
     });
   };
-
-  const generateDoctorId = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let randomId = "";
-
-    for (let i = 0; i < 6; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      randomId += characters.charAt(randomIndex);
-    }
-
-    return randomId;
-  };
-  // console.log(Date(appointmentTime));
-
-  const randomId = generateDoctorId();
 
   return (
     <>
@@ -262,23 +264,31 @@ const DoctorRegister = () => {
                       )}
                     </div>
                   </div>
+
                   <div className="flex gap-5 w-full">
-                    <div className="w-1/2 mb-4">
+                    {/* doctor code */}
+                    <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Doctor Code
+                        Doctor Type
                       </label>
-                      <input
-                        type="text"
-                        {...register("doctorCode", { required: true })}
-                        name="doctorCode"
-                        placeholder="Doctor Code"
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        readOnly
-                        value={`CHD${randomId}`}
-                      />
-                      {errors.doctorCode && (
+
+                      <select
+                        {...register("doctorType", { required: true })}
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
+                        required
+                        id="doctorType"
+                        name="doctorType">
+                        <option disabled defaultValue>
+                          Choose Title
+                        </option>
+                        <option value="Human Doctor">Human Doctor</option>
+                        <option value="Veterinary Doctor">
+                          Veterinary Doctor{" "}
+                        </option>
+                      </select>
+                      {errors.doctorType && (
                         <span className="text-red-600">
-                          Doctor Code is required
+                          Photo Url is required
                         </span>
                       )}
                     </div>
@@ -515,6 +525,43 @@ const DoctorRegister = () => {
                         </span>
                       )}
                     </div>
+                  </div>
+
+                  <div className="font-bold mt-2 mb-2 text-2xl">
+                    Select Your Gender{" "}
+                  </div>
+                  <div className="flex gap-2 mb-2">
+                    <label className="flex gap-1 font-bold ">
+                      <input
+                        type="radio"
+                        value="male"
+                        {...register("gender")}
+                      />
+                      Male
+                    </label>
+                    <br />
+                    <label className="flex gap-1 font-bold ">
+                      <input
+                        type="radio"
+                        value="female"
+                        {...register("gender")}
+                      />
+                      Female
+                    </label>
+                    <br />
+                    <label className="flex gap-1 font-bold ">
+                      <input
+                        type="radio"
+                        value="other"
+                        {...register("gender")}
+                      />
+                      Other
+                    </label>
+
+                    {errors.gender && (
+                      <span className="text-red-600">gender is required</span>
+                    )}
+                    {/* <p>You selected: {selectedGender}</p> */}
                   </div>
                   {/* about doctor */}
                   <div className="mb-4 w-full">
