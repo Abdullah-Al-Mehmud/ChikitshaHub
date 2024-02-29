@@ -94,34 +94,43 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     // borderColor: "black",
     // backgroundColor: "#f2f2f2",
-    marginBottom: 10,
+    marginBottom: 5,
     padding: 10,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     // borderColor: "black",
     // paddingVertical: 5,
     // paddingTop: 10,
-    padding: 10
+    // padding: 10
   },
   headerCell: {
-    flex: 1,
+    // flex: 1,
     textAlign: "center",
     fontWeight: "bold",
     padding: 10,
   },
   cell: {
-    flex: 1,
+    // flex: 1,
     textAlign: "center",
-    padding: 10,
+    padding: 2,
   },
   investigation: {
     display: "flex",
+    flexDirection: "row"
   },
-  left:{
-    backgroundColor: "bg-orange-300"
+  left: {
+    backgroundColor: "#EBF8FF",
+    width: "150px",
+    height: "100vh"
+  },
+  flex:{
+    display: "flex",
+    flexDirection: "row",
+    gap: "10",
+    // borderBottom: "2px" 
   }
 });
 const PrescriptionToPDF = ({ meetingId }) => {
@@ -129,7 +138,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/1/${meetingId}`);
+      const res = await axios.get(`/medicines/meeting/${meetingId}`);
       return res.data;
     },
   });
@@ -159,15 +168,17 @@ const PrescriptionToPDF = ({ meetingId }) => {
             </View>
           </View>
           <View style={styles.paddings}>
-            <Text style={styles.pateientText}>
-              Patient Name: {medicineData?.patientName}
-            </Text>
-            <Text style={styles.pateientText}>
-              Patient Age: {medicineData?.age}
-            </Text>
-            <Text style={styles.pateientText}>
-              Appoinment Date: {medicineData?.date}
-            </Text>
+            <View style={styles.flex}>
+              <Text style={styles.pateientText}>
+                Patient Name: {medicineData?.patientName}
+              </Text>
+              <Text style={styles.pateientText}>
+                Patient Age: {medicineData?.age}
+              </Text>
+              <Text style={styles.pateientText}>
+                Appoinment Date: {medicineData?.date}
+              </Text>
+            </View>
           </View>
           <View style={styles.footer}>
             <View style={styles.investigation}>
@@ -179,7 +190,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
                   <Text style={styles.textRx}>O/E</Text>
                   {medicineData?.investigations?.map((isInvestigation, index) => (
                     <View key={index}>
-                      <Text>{isInvestigation.investigation}</Text>
+                      <Text>{isInvestigation?.investigation}</Text>
                     </View>
                   ))}
                 </View>
