@@ -117,6 +117,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
   },
+  investigation: {
+    display: "flex",
+  },
+  left:{
+    backgroundColor: "bg-orange-300"
+  }
 });
 const PrescriptionToPDF = ({ meetingId }) => {
   const axios = useAxiosPublic();
@@ -164,23 +170,39 @@ const PrescriptionToPDF = ({ meetingId }) => {
             </Text>
           </View>
           <View style={styles.footer}>
-            <view style={styles.paddings}>
-              <Text style={styles.textRx}>RX</Text>
-              <View style={styles.table}>
-                <View style={styles.headerRow}>
-                  <Text style={styles.headerCell}>Medicine Name</Text>
-                  <Text style={styles.headerCell}>Daily Dose</Text>
-                  <Text style={styles.headerCell}>Day</Text>
+            <View style={styles.investigation}>
+              <View style={styles.left}>
+                <View>
+                  <Text style={styles.textRx}>C/C</Text>
                 </View>
-                {medicineData?.medicines?.map((isMedicine, index) => (
-                  <View style={styles.row} key={index}>
-                    <Text style={styles.cell}>{isMedicine?.medicineName}</Text>
-                    <Text style={styles.cell}>{isMedicine?.frequency}</Text>
-                    <Text style={styles.cell}>{isMedicine?.days}</Text>
-                  </View>
-                ))}
+                <View>
+                  <Text style={styles.textRx}>O/E</Text>
+                  {medicineData?.investigations?.map((isInvestigation, index) => (
+                    <View key={index}>
+                      <Text>{isInvestigation.investigation}</Text>
+                    </View>
+                  ))}
+                </View>
               </View>
-            </view>
+              <view style={styles.paddings}>
+                <Text style={styles.textRx}>Rx.</Text>
+                <View style={styles.table}>
+                  <View style={styles.headerRow}>
+                    <Text style={styles.headerCell}>Medicine Name</Text>
+                    <Text style={styles.headerCell}>Daily Dose</Text>
+                    <Text style={styles.headerCell}>Day</Text>
+                  </View>
+                  {medicineData?.medicines?.map((isMedicine, index) => (
+                    <View style={styles.row} key={index}>
+                      <Text style={styles.cell}>{isMedicine?.medicineName}</Text>
+                      <Text style={styles.cell}>{isMedicine?.frequency}</Text>
+                      <Text style={styles.cell}>{isMedicine?.days}</Text>
+                    </View>
+                  ))}
+                </View>
+              </view>
+            </View>
+            <View></View>
             <View style={styles.page}>
               <View>
                 <Text style={styles.text}>ChikitshaHub</Text>
