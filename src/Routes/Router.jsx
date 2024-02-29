@@ -31,6 +31,8 @@ import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doc
 import AdminAllReview from "../Pages/dashboard/adminDashboard/adminAllReview/AdminAllReview";
 import PrescriptionUser from "../Pages/dashboard/userDashboard/PrescriptionUser/PrescriptionUser";
 import BodyFat from "../Pages/calculator/BodyFat";
+import Calorie from "../Pages/calculator/Calorie";
+import Bmr from "../Pages/calculator/Bmr";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
       {
         path: "/bodyfat",
         element: <BodyFat></BodyFat>,
+      },
+      {
+        path: "/calories",
+        element: <Calorie></Calorie>,
+      },
+      {
+        path: "/bmr",
+        element: <Bmr></Bmr>,
       },
       {
         path: "/tips",
