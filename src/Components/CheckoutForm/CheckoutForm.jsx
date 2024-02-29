@@ -60,7 +60,8 @@ const CheckoutForm = ({
       }
     });
 
-    console.log(appointmentDetails);
+    // console.log(appointmentDetails);
+    document.getElementById('my_modal_2').close();
   };
 
   useEffect(() => {

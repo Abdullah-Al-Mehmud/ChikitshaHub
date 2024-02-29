@@ -29,6 +29,7 @@ const UserRegistration = () => {
     const password = data.password;
     const role = "user";
     const img_url = await imageUpload(photoUrl);
+    // console.log(name, img_url.data.display_url);
     const userInfo = {
       name,
       email,
@@ -38,7 +39,8 @@ const UserRegistration = () => {
     const handleRegistration = async () => {
       try {
         const signUpResult = await dispatch(signUpAsync(email, password));
-        await dispatch(updateUserAsync(name, photoUrl));
+        await dispatch(updateUserAsync(name, img_url.data.display_url));
+        
         const userData = await axiosPrivate.post("/users", userInfo);
         console.log(userData);
         if (userData.data.success) {

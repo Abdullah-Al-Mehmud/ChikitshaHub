@@ -36,6 +36,15 @@ const SpecialitiesForm = ({ handleUploadImage, handleSubmit }) => {
             </div>
           </div>
           <div>
+          <div className="w-full flex flex-col mt-8">
+              <label className="font-semibold leading-none text-gray-900">
+                Type
+              </label>
+              <select name="type" className="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 border-0 bg-gray-100 rounded">
+                <option value="human">Human</option>
+                <option value="veterinary">Veterinary</option>
+              </select>
+            </div>
             <div className="w-full flex flex-col mt-8">
               <label className="font-semibold leading-none text-gray-900">
                 Description
