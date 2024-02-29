@@ -111,7 +111,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
           </View>
           <View style={styles.footer}>
             <view style={styles.paddings}>
-              <Text style={styles.textRx}>RX</Text>
+              <Text style={styles.textRx}>Rx.</Text>
               <View>
                 {
                   medicineData?.medicines?.map((isMedicine, index) => <View style={styles.textNew} key={index}>
