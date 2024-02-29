@@ -121,7 +121,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">All Reviews</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
                       to={"allreports"}
@@ -129,8 +129,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <TbFileReport className="text-lg" />
                       <span className="ml-4">All Reports</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
                       to={"alltransactions"}
@@ -138,7 +138,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <GrTransaction className="text-lg" />
                       <span className="ml-4">All Transactions</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -229,7 +229,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">All Reviews</span>
                     </NavLink>
                   </li>
-                  <li className="relative px-2 py-1 ">
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
                       to="allreports"
@@ -237,8 +237,8 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <TbFileReport className="text-lg" />
                       <span className="ml-4">All Reports</span>
                     </NavLink>
-                  </li>
-                  <li className="relative px-2 py-1 ">
+                  </li> */}
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
                       to="alltransactions"
@@ -246,7 +246,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <GrTransaction className="text-lg" />
                       <span className="ml-4">All Transactions</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>

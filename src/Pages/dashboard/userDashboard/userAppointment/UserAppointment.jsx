@@ -16,14 +16,18 @@ import {
 
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 import { useSelector } from "react-redux";
+import { FaVideo } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const UserAppointment = () => {
   const user = useSelector((state) => state.auth.user);
+  const [meet, setMeet] = useState("");
   const queryClient = useQueryClient();
   const columnHelper = createColumnHelper();
   const axios = useAxiosPublic();
   const [globalFilter, setGlobalFilter] = useState("");
   const axiosPublic = useAxiosPublic();
+ const navigate = useNavigate();
   const { data: appointments = [], refetch } = useQuery({
     queryKey: ["appointments"],
     queryFn: async () => {
@@ -33,6 +37,9 @@ const UserAppointment = () => {
   });
   const refreshData = async () => {
     await queryClient.invalidateQueries("appointments");
+  };
+  const handleMeetId = () => {
+    navigate(`/meet/${meet}`);
   };
   useEffect(() => {
     refreshData();
@@ -76,6 +83,50 @@ const UserAppointment = () => {
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
       header: "Meting ID",
+    }),
+    columnHelper.accessor("", {
+      cell: (info) => (
+        <>
+          <div>
+            <button
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+              // onClick={handleMeetId}
+              className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4"
+            >
+              <span>Join meeting</span>
+              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
+                <FaVideo className="h-6" />
+              </span>
+            </button>
+            <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+                <input
+                  onChange={(e) => setMeet(e.target.value)}
+                  type="text"
+                  name="meetId"
+                  id=""
+                  placeholder="Enter your meet id"
+                  className="input input-bordered w-full border-blue-500 text-blue-500 focus:outline-none focus:border-blue-500"
+                />
+                <button
+                  type="submit"
+                  onClick={handleMeetId}
+                  className="flex items-center relative w-24 mx-auto border-2 border-blue-500 text-blue-500 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
+                >
+                  <span>Join</span>
+                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <FaVideo className="h-10" />
+                  </span>
+                </button>
+              </div>
+              <form method="dialog" className="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+        </>
+      ),
+      header: "Join Meeting",
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
