@@ -24,7 +24,7 @@ import UserAppointment from "../Pages/dashboard/userDashboard/userAppointment/Us
 import DoctorTimeScedule from "../Pages/dashboard/doctorDashboard/doctorTimeSchedule/DoctorTimeScedule";
 import UserProfile from "../Pages/user/UserProfile";
 import DoctorProfile from "../Pages/DoctorProfile/DoctorProfile";
-import Home from "../Pages/Home/Home";
+import Home from "../Pages/home/Home";
 import AdminSendTips from "../Pages/dashboard/adminDashboard/adminSendTips/AdminSendTips";
 import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescrition/DoctorPrescription";
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
