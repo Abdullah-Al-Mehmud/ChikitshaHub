@@ -17,6 +17,7 @@ const Prescription = ({
   const [medicineNames, setMedicineNames] = useState([]);
   const [frequencies, setFrequencies] = useState([]);
   const [days, setDays] = useState([]);
+  const [investigationNames, setInvestigationNames] = useState([]);
 
   //doctor data get
   const { data: doctors = [] } = useQuery({
@@ -28,13 +29,21 @@ const Prescription = ({
   });
 
   const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
-console.log(doctor)
+  console.log(doctor)
+  const addInvestigation = () => {
+    setInvestigationNames([...investigationNames, '']);
+  };
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
     setFrequencies([...frequencies, ""]);
     setDays([...days, ""]);
   };
 
+  const removeInvestigation = (index) => {
+    const newInvestigationNames = [...investigationNames];
+    newInvestigationNames.splice(index, 1);
+    setInvestigationNames(newInvestigationNames);
+  }
   const removeField = (index) => {
     const newMedicineNames = [...medicineNames];
     const newFrequencies = [...frequencies];
@@ -56,6 +65,11 @@ console.log(doctor)
       // const address = document.getElementById("address").value;
       const age = document.getElementById("age").value;
       const date = document.getElementById("date").value;
+      const feedback = document.getElementById("feedback").value;
+
+      const investigations = investigationNames.map((investigationName, index) => ({
+        investigationName,
+      }));
 
       const medicines = medicineNames.map((medicineName, index) => ({
         medicineName,
@@ -71,10 +85,12 @@ console.log(doctor)
         // address: address,
         age: age,
         date: date,
+        investigations: investigations,
         medicines: medicines,
         meetingId: meetId,
-        degrees:doctor.degrees,
-        specialties: doctor.specialties
+        degrees: doctor.degrees,
+        specialties: doctor.specialties,
+        feedback: feedback,
       };
 
       console.log(dataToSend);
@@ -89,6 +105,12 @@ console.log(doctor)
     } catch (error) {
       console.error("Error submitting data:", error);
     }
+  };
+
+  const handleInvestigationNameChange = (index, value) => {
+    const newInvestigationNames = [...investigationNames];
+    newInvestigationNames[index] = value;
+    setInvestigationNames(newInvestigationNames);
   };
 
   const handleMedicineNameChange = (index, value) => {
@@ -178,8 +200,40 @@ console.log(doctor)
               </div>
             </div>
           </div>
+          <div className="">
+            <div>
+              {investigationNames.map((investigationName, index) => (
+                <div key={index} className="mb-5">
+                  <input
+                    type="text"
+                    value={investigationName}
+                    onChange={(e) =>
+                      handleInvestigationNameChange(index, e.target.value)
+                    }
+                    placeholder="Investigation Name"
+                    className="text-black"
+                  />
+                  <button
+                    type="button"
+                    className="text-red-600 ml-2"
+                    onClick={() => removeInvestigation(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                className="text-[#409bd4]"
+                onClick={addInvestigation}
+              >
+                Click Add to Investigation
+              </button>
+            </div>
+
+          </div>
           <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3  mb-10">
-            RX
+            Rx.
           </h2>
           {medicineNames.map((medicineName, index) => (
             <div key={index} className="mb-5">
@@ -222,9 +276,21 @@ console.log(doctor)
           >
             Click Add to medicine
           </button>
+          <div className="my-10">
+            <label className="inline-block mr-4 text-right text-lg  text-gray-500">
+              Feedback
+            </label>
+            <input
+              type="text"
+              name="feedback"
+              id="feedback"
+              placeholder="Type Feedback"
+              className="border-b-2 border-gray-400 text-black py-2 placeholder-gray-300 outline-none focus:border-green-400"
+            />
+          </div>
           <button
             type="submit"
-            className="ml-3 text-[#409bd4] px-6 py-2 border-2 rounded-full border-[#409bd4] hover:text-white hover:bg-[#409bd4]"
+            className="text-[#409bd4] px-6 py-2 border-2 rounded-full border-[#409bd4] hover:text-white hover:bg-[#409bd4]"
           >
             Submit
           </button>
