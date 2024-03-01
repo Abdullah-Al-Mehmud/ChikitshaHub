@@ -135,7 +135,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
   });
   const [medicineData] = medicine || [];
   // console.log(medicineData?.medicines);
-  // console.log(medicineData);
+  console.log(medicineData);
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
