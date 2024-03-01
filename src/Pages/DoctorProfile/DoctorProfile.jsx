@@ -384,8 +384,6 @@ const DoctorProfile = () => {
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
                 {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
-                    <h2 className="text-xl font-bold">{review.name}</h2>
-                    <div className="flex items-center gap-4">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-bold">{review.name}</h2>
                       <button
@@ -409,7 +407,6 @@ const DoctorProfile = () => {
                       }
                     ></Rating>
                     {/* <button onClick={() => handleDeleteReview(review._id)}>delete</button> */}
-                    </div>
                     <p>{review.comment}</p>
                   </div>
                 ))}
