@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
 const Bmr = () => {
   const user = useSelector((state) => state.auth.user);
   const { email} = user || {};
   //   console.log(user);
   const axiosPublic = useAxiosPublic();
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [age, setAge] = useState('');
+  const [weight, setWeight] = useState(null);
+  const [height, setHeight] = useState(null);
+  const [age, setAge] = useState(null);
   const [gender, setGender] = useState('male');
   const [bmr, setBmr] = useState(null);
 
@@ -27,7 +28,7 @@ const Bmr = () => {
           text: "Your Calories is Added!",
           icon: "success",
         });
-        setBmr("");
+        // setBmr("");
       
       }
     });
@@ -70,13 +71,7 @@ const Bmr = () => {
          <option value={"male"}>Male</option>
         <option value={"female"}>Female</option>
        </select>
-       <label className="label">
-                <span className="label-text">
-                  Select Activity Level{" "}
-                </span>
-              </label>
-       
-            <div className="form-control">
+         <div className="form-control">
               <label className="label">
                 <span className="label-text">
                   Weight{" "}
