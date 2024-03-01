@@ -119,15 +119,15 @@ const styles = StyleSheet.create({
   },
   investigation: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   left: {
     backgroundColor: "#EBF8FF",
     width: "150px",
     height: "100vh",
-    padding: 8
+    padding: 8,
   },
-  flex:{
+  flex: {
     display: "flex",
     flexDirection: "row",
     gap: 20,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 20,
     borderColor: "#1C3FAA",
-  }
+  },
 });
 const PrescriptionToPDF = ({ meetingId }) => {
   const axios = useAxiosPublic();
@@ -148,7 +148,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
   });
   const [medicineData] = medicine || [];
   // console.log(medicineData?.medicines);
-  // console.log(medicineData);
+  console.log(medicineData);
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
@@ -171,7 +171,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
               />
             </View>
           </View>
-          <View >
+          <View>
             <View style={styles.flex}>
               <Text style={styles.pateientText}>
                 Patient Name: {medicineData?.patientName}
@@ -192,11 +192,13 @@ const PrescriptionToPDF = ({ meetingId }) => {
                 </View>
                 <View>
                   <Text style={styles.textRx}>O/E</Text>
-                  {medicineData?.investigations?.map((isInvestigation, index) => (
-                    <View key={index}>
-                      <Text>{isInvestigation?.investigation}</Text>
-                    </View>
-                  ))}
+                  {medicineData?.investigations?.map(
+                    (isInvestigation, index) => (
+                      <View key={index}>
+                        <Text>{isInvestigation?.investigation}</Text>
+                      </View>
+                    )
+                  )}
                 </View>
               </View>
               <view style={styles.paddings}>
@@ -209,7 +211,9 @@ const PrescriptionToPDF = ({ meetingId }) => {
                   </View>
                   {medicineData?.medicines?.map((isMedicine, index) => (
                     <View style={styles.row} key={index}>
-                      <Text style={styles.cell}>{isMedicine?.medicineName}</Text>
+                      <Text style={styles.cell}>
+                        {isMedicine?.medicineName}
+                      </Text>
                       <Text style={styles.cell}>{isMedicine?.frequency}</Text>
                       <Text style={styles.cell}>{isMedicine?.days}</Text>
                     </View>

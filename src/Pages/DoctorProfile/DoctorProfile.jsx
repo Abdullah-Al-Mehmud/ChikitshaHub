@@ -19,7 +19,6 @@ import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
 
-
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
   const [selectedDateTime, setSelectedDateTime] = useState(null);
@@ -123,22 +122,21 @@ const DoctorProfile = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/doctorReview/${id}`)
-          .then(res => {
-            // console.log(res.data);
-            refetch()
-          })
+        axios.delete(`/doctorReview/${id}`).then((res) => {
+          // console.log(res.data);
+          refetch();
+        });
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
-          icon: "success"
+          icon: "success",
         });
       }
     });
-  }
+  };
 
   return (
     <div>
@@ -223,11 +221,12 @@ const DoctorProfile = () => {
                   showTimeSelect
                   timeFormat="HH:mm"
                   timeIntervals={15}
+                  minDate={new Date()}
                   timeCaption="Time"
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
                   placeholderText="Booking Appointment"
-                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none flex flex-row"
+                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none w-[330px]"
                   icon={
                     <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
                   }
@@ -385,7 +384,10 @@ const DoctorProfile = () => {
                   <div key={review._id} className="mb-4">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-bold">{review.name}</h2>
-                      <button onClick={() => handleDelete(review._id)} className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-[1px] border-[#FF0000] text-[#FF0000] px-4 py-1 rounded-full group text-sm font-medium">
+                      <button
+                        onClick={() => handleDelete(review._id)}
+                        className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-[1px] border-[#FF0000] text-[#FF0000] px-4 py-1 rounded-full group text-sm font-medium"
+                      >
                         <span>Delete</span>
                         <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
                           <MdDelete className="h-4" />
