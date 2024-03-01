@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { FaCalendarAlt, FaStar, FaVideo } from "react-icons/fa";
-
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -70,6 +71,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
+    console.log(reviewData);
     try {
       const postResponse = await axios.post("/doctorReview", reviewData);
       if (postResponse.data.success) {
