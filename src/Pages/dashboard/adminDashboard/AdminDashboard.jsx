@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
@@ -58,6 +59,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <span className="ml-4">Home</span>
                     </NavLink>
                   </li>
+
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
@@ -65,6 +67,15 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     >
                       <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Send Tips</span>
+                    </NavLink>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
+                      to="alldoctorlive"
+                    >
+                      <FaUserDoctor className="text-lg" />
+                      <span className="ml-4">Doctor's Live</span>
                     </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
@@ -166,14 +177,14 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         md:hidden`}
       >
         <div className="text-blue-950">
-          <div className="flex flex-col justify-between p-2 bg-white">
+          <div className="flex flex-col justify-start p-2 bg-white">
             <div>
-              <div className="flex py-3 px-2 items-center">
+              <div className="md:flex py-3 px-2 items-center hidden">
                 <h2 className="hidden md:block md:text-3xl text-xl font-semibold">
                   Chikitsha<span className="text-[#409bd4]">Hub</span>
                 </h2>
               </div>
-              <div className="flex flex-col justify-between">
+              <div className="flex flex-col justify-start">
                 <ul className="mt-6 leading-10">
                   <li className="relative px-2 py-1 ">
                     <NavLink
@@ -182,6 +193,15 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                     >
                       <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Home</span>
+                    </NavLink>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4 "
+                      to="alldoctorlive"
+                    >
+                      <FaUserDoctor className="text-lg" />
+                      <span className="ml-4">Doctor's Live</span>
                     </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">

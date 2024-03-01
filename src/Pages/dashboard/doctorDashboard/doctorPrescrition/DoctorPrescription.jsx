@@ -31,10 +31,11 @@ const DoctorPrescription = () => {
   const { data: appointmentsDoc = [], refetch } = useQuery({
     queryKey: ["appointmentsDoc"],
     queryFn: async () => {
-      const res = await axios.get(`medicines/doctor/${user.email}`);
+      const res = await axios.get(`/medicines/doctor/${user.email}`);
       return res.data;
     },
   });
+  console.log(appointmentsDoc);
   const handleMeetId = () => {
     navigate(`/meet/${meet}`);
   };

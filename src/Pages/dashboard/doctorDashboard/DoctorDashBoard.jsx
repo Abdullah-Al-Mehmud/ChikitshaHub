@@ -9,6 +9,8 @@ import { MdLogout } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineCollectionsBookmark } from "react-icons/md";
+import { FaFilePrescription } from "react-icons/fa";
+import { GiVideoConference } from "react-icons/gi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { FaUserClock } from "react-icons/fa6";
 import { LuMessagesSquare } from "react-icons/lu";
@@ -73,6 +75,15 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
+                      to={"doctorlive"}
+                    >
+                      <GiVideoConference className="text-lg" />
+                      <span className="ml-4">Go Live</span>
+                    </NavLink>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"timeScedule"}
                     >
                       <AiOutlineSchedule className="text-lg" />
@@ -84,10 +95,11 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"prescrption"}
                     >
-                      <AiOutlineSchedule className="text-lg" />
+                      <FaFilePrescription className="text-lg" />
                       <span className="ml-4">Prescription</span>
                     </NavLink>
                   </li>
+
                   {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
@@ -163,7 +175,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to={"/dashboard"}
+                      to={"home"}
                     >
                       <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Home</span>
@@ -172,7 +184,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to="alldoctors"
+                      to="timeScedule"
                     >
                       <FaUserClock className="text-lg" />
                       <span className="ml-4">My Patients</span>
@@ -181,13 +193,23 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
-                      to="alldoctors"
+                      to="prescrption"
                     >
                       <AiOutlineSchedule className="text-lg" />
                       <span className="ml-4">Schedule Timings</span>
                     </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
+                      to="doctorlive"
+                    >
+                      <GiVideoConference className="text-lg" />
+                      <span className="ml-4">Go Live</span>
+                    </NavLink>
+                  </li>
+
+                  {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to="alldoctors"
@@ -222,7 +244,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <FaRegMoneyBill1 className="text-lg" />
                       <span className="ml-4">Billing</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
