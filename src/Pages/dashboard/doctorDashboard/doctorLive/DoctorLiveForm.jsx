@@ -37,7 +37,7 @@ const DoctorLiveForm = ({ setOpenModal }) => {
   const generateExcludeTimes = () => {
     const bookedTimesForCurrentDate = doctorLive.map((booking) => {
       const bookingDate = new Date(booking.dateTime);
-      console.log(bookingDate);
+      // console.log(bookingDate);
       return bookingDate;
     });
     if (startDate) {
