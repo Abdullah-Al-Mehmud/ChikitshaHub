@@ -31,7 +31,7 @@ const AdminSpecialities = () => {
   const { data: specialties = [], refetch } = useQuery({
     queryKey: ["specialties"],
     queryFn: async () => {
-      const res = await axios.get("/specialities");
+      const res = await axios.get("/specialties");
       return res.data;
     },
   });
@@ -53,7 +53,7 @@ const AdminSpecialities = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/specialities/${dataId}`).then(async (res) => {
+        axios.delete(`/specialties/${dataId}`).then(async (res) => {
           // console.log(res.statusText);
           if (res.statusText === "OK") {
             Swal.fire({
@@ -105,7 +105,7 @@ const AdminSpecialities = () => {
       cell: (props) => {
         const { row } = props;
         const rowData = row.original;
-        const { _id, image, specialties, description } = editedData || {};
+        const { _id, image, specialties, description, type } = editedData || {};
         const handleEditClick = () => {
           setOpenModal(true);
           setEditedData(rowData);
@@ -143,6 +143,8 @@ const AdminSpecialities = () => {
                       dataDes={description}
                       dataId={_id}
                       dataImg={image}
+                      type={type}
+                      setOpenModal={setOpenModal}
                       handleUploadImage={handleUploadImage}
                       handleSubmit={handleSubmit}
                       refetch={refetch}
@@ -179,6 +181,7 @@ const AdminSpecialities = () => {
     event.preventDefault();
     const form = event.target;
     const image = form.image.files[0];
+    const type = form.type.value;
     const specialties = form.specialties.value;
     const description = form.description.value;
     const img_url = await imageUpload(image);
@@ -186,10 +189,11 @@ const AdminSpecialities = () => {
       image: img_url?.data?.display_url,
       specialties,
       description,
+      type
     };
     try {
-      const res = await axios.post("/specialities", specialitiesData);
-      console.log(res.statusText);
+      const res = await axios.post("/specialties", specialitiesData);
+      // console.log(res);
       if (res.statusText === "Created") {
         setOpenModal(false);
         setUploadImageName("Uploaded!");
@@ -199,6 +203,7 @@ const AdminSpecialities = () => {
           text: "Your request accepted.",
           icon: "success",
         });
+        document.getElementById('my_modal_4').close();
       }
     } catch (err) {
       console.log(err);
