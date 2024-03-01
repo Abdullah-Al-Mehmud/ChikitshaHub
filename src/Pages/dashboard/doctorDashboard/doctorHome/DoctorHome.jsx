@@ -18,7 +18,7 @@ const DoctorHome = () => {
   });
   return (
     <div>
-      <div className="mt-5 grid grid-cols-3 gap-1">
+      <div className="mt-5 grid lg:grid-cols-3 grid-cols-2 gap-1">
         {/* <div className="bg-blue-500 rounded-md p-5 m-2 text-white text-lg">
           <span className="flex justify-between">
             <span>

@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-
+import moment from "moment-timezone";
 import { useEffect, useState } from "react";
 
 import {
@@ -91,10 +91,10 @@ const UserAppointment = () => {
             <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
-              className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4"
+              className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4 w-24"
             >
-              <span>Join meeting</span>
-              <span className="absolute w-1/6 right-3 group-hover:w-11/12 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
+              <span>Join</span>
+              <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-slate-100 rounded-full">
                 <FaVideo className="h-6" />
               </span>
             </button>
@@ -136,10 +136,30 @@ const UserAppointment = () => {
     }),
 
     columnHelper.accessor("appointmentTime", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have any date"}</span>
-      ),
-      header: "AppointmentTime",
+      cell: (info) => {
+        const date = info.getValue();
+        // console.log(date);
+        const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
+        const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
+        // console.log(btcTime);
+        if (btcTime && btcYear) {
+          return (
+            <>
+              <div className="flex gap-1">
+                <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
+                  {btcYear}
+                </span>
+                <div className="flex text-slate-950 bg-opacity-30 bg-rose-200 rounded-md px-2 text-sm py-1">
+                  <span>{btcTime}</span>
+                </div>
+              </div>
+            </>
+          );
+        } else {
+          return <span className="text-red-500">Wrong Appointment</span>;
+        }
+      },
+      header: "Date & Time",
     }),
 
     // columnHelper.accessor("appointmentTime", {
