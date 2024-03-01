@@ -43,11 +43,6 @@ const DoctorProfile = () => {
     },
   });
 
-
-
-
-
-
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -91,11 +86,16 @@ const DoctorProfile = () => {
         const { data: updatedReviews } = await refetch();
 
         // Calculate average rating from the updated reviews data
-        const averageRating = updatedReviews.reduce((total, review) => total + review.rating, 0) / updatedReviews.length;
+        const averageRating =
+          updatedReviews.reduce((total, review) => total + review.rating, 0) /
+          updatedReviews.length;
         const fixedAverageRating = averageRating.toFixed(1);
 
         // Update doctor's post with the new average rating
-        const patchResponse = await axios.patch(`/doctors/${doctor.doctorEmail}`, { fixedAverageRating });
+        const patchResponse = await axios.patch(
+          `/doctors/${doctor.doctorEmail}`,
+          { fixedAverageRating }
+        );
         console.log(patchResponse.data); // Log the response from the patch request
       } else {
         console.error(postResponse.error);
@@ -226,7 +226,7 @@ const DoctorProfile = () => {
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
                   placeholderText="Booking Appointment"
-                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none flex flex-row"
+                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none w-[330px]"
                   icon={
                     <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
                   }
@@ -380,7 +380,7 @@ const DoctorProfile = () => {
           <TabPanel>
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
-                {reviews?.map((review) => (
+                  {reviews?.map((review) => (
                   <div key={review._id} className="mb-4">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-bold">{review.name}</h2>

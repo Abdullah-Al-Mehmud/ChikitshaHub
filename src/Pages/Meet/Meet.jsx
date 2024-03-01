@@ -43,6 +43,7 @@ const Meet = () => {
       userId,
       userName
     );
+    console.log(kitToken);
     const zc = ZegoUIKitPrebuilt.create(kitToken);
 
     zc.joinRoom({
