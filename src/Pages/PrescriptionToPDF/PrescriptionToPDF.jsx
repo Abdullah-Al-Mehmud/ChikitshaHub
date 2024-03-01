@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100vh",
-    marginTop: 10,
+    // marginTop: 10,
     lineHeight: 2,
   },
   paddings: {
@@ -124,13 +124,17 @@ const styles = StyleSheet.create({
   left: {
     backgroundColor: "#EBF8FF",
     width: "150px",
-    height: "100vh"
+    height: "100vh",
+    padding: 8
   },
   flex:{
     display: "flex",
     flexDirection: "row",
-    gap: "10",
-    // borderBottom: "2px" 
+    gap: 20,
+    border: 2,
+    padding: 10,
+    paddingBottom: 20,
+    borderColor: "#1C3FAA",
   }
 });
 const PrescriptionToPDF = ({ meetingId }) => {
@@ -167,7 +171,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
               />
             </View>
           </View>
-          <View style={styles.paddings}>
+          <View >
             <View style={styles.flex}>
               <Text style={styles.pateientText}>
                 Patient Name: {medicineData?.patientName}
@@ -213,7 +217,7 @@ const PrescriptionToPDF = ({ meetingId }) => {
                 </View>
               </view>
             </View>
-            <View></View>
+            <View style={styles.paddings}>{medicineData?.feedback}</View>
             <View style={styles.page}>
               <View>
                 <Text style={styles.text}>ChikitshaHub</Text>
