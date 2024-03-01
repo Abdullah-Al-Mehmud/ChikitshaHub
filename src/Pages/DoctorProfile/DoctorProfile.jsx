@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaStar, FaVideo } from "react-icons/fa";
+
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -59,6 +60,7 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm();
+  const [ratings, setRatings] = useState(null);
 
   const onSubmit = async (data) => {
     const { name, comment, rating } = data;
@@ -68,7 +70,6 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-
     try {
       const postResponse = await axios.post("/doctorReview", reviewData);
       if (postResponse.data.success) {
@@ -423,21 +424,39 @@ const DoctorProfile = () => {
                     required
                   />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 ">
                   <label
                     htmlFor="rating"
-                    className="block text-sm font-medium text-gray-600"
+                    className=" block text-sm font-medium text-gray-600 mr-2"
                   >
-                    Rating:
+                    Your Rating:
                   </label>
-                  <input
-                    type="number"
-                    id="name"
-                    {...register("rating")}
-                    max={5}
-                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                    required
-                  />
+                  <div className="flex flex-row">
+                    {[...Array(5)].map((star, index) => {
+                      const currentRating = index + 1;
+                      return (
+                        <label key={index}>
+                          <input
+                            className="hidden "
+                            type="radio"
+                            id="rating"
+                            value={currentRating}
+                            onClick={() => setRatings(currentRating)}
+                            {...register("rating")}
+                            required
+                          />
+                          <FaStar
+                            color={
+                              currentRating <= ratings ? "#ffc107" : "#808080"
+                            }
+                            className="flex cursor-pointer"
+                            title={`Your Rating: ${currentRating}`}
+                            size={30}
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="mb-4">
