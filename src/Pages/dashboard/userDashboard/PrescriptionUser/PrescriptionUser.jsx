@@ -21,7 +21,7 @@ const PrescriptionUser = () => {
     const { data: appointmentsDoc = [], refetch } = useQuery({
       queryKey: ["appointmentsDoc"],
       queryFn: async () => {
-        const res = await axios.get(`/medicines/patient/${email}`);
+        const res = await axios.get(`medicines/patient/${user.email}`);
         return res.data;
       },
     });

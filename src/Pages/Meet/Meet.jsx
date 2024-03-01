@@ -43,6 +43,7 @@ const Meet = () => {
       userId,
       userName
     );
+    console.log(kitToken);
     const zc = ZegoUIKitPrebuilt.create(kitToken);
 
     zc.joinRoom({
@@ -69,7 +70,7 @@ const Meet = () => {
       ></div>
       {isDoctor ? (
         <div className="absolute right-5 -mt-14">
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end z-50">
             <div tabIndex={0} role="button" className="btn btn-info text-white">
               Make Prescription
             </div>

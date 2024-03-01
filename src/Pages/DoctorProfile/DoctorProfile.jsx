@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { FaCalendarAlt, FaVideo } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -16,6 +18,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
+import { MdDelete } from "react-icons/md";
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -41,8 +44,6 @@ const DoctorProfile = () => {
     },
   });
 
-  // console.log(reviews);
-
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -60,7 +61,8 @@ const DoctorProfile = () => {
   }
 
   const { register, handleSubmit } = useForm();
-  
+  const [ratings, setRatings] = useState(null);
+
   const onSubmit = async (data) => {
     const { name, comment, rating } = data;
     const reviewData = {
@@ -69,7 +71,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-  
+    console.log(reviewData);
     try {
       const postResponse = await axios.post("/doctorReview", reviewData);
       if (postResponse.data.success) {
@@ -78,19 +80,24 @@ const DoctorProfile = () => {
           text: "Your Review send Successfully.",
           icon: "success",
         });
-  
+
         // Refetch reviews data and wait for it to complete
         await refetch();
-  
+
         // Access the updated reviews data after refetching
         const { data: updatedReviews } = await refetch();
-  
+
         // Calculate average rating from the updated reviews data
-        const averageRating = updatedReviews.reduce((total, review) => total + review.rating, 0) / updatedReviews.length;
+        const averageRating =
+          updatedReviews.reduce((total, review) => total + review.rating, 0) /
+          updatedReviews.length;
         const fixedAverageRating = averageRating.toFixed(1);
-  
+
         // Update doctor's post with the new average rating
-        const patchResponse = await axios.patch(`/doctors/${doctor.doctorEmail}`, { fixedAverageRating });
+        const patchResponse = await axios.patch(
+          `/doctors/${doctor.doctorEmail}`,
+          { fixedAverageRating }
+        );
         console.log(patchResponse.data); // Log the response from the patch request
       } else {
         console.error(postResponse.error);
@@ -109,38 +116,29 @@ const DoctorProfile = () => {
     setAppointmentTime(selectedDateTime);
   };
 
-  // const handleDeleteReview = (id) => {
-  //   console.log(id);
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       axios.delete(`/doctorReview/${id}`).then(async (res) => {
-  //           console.log(res);
-  //         if (res.statusText === "OK") {
-  //           Swal.fire({
-  //             title: "Deleted!",
-  //             text: "Your review has been deleted.",
-  //             icon: "success",
-  //           });
-  //           refetch();
-  //         }
-  //       });
-  //     } else if (result.dismiss === "cancel") {
-  //       Swal.fire({
-  //         title: "Cancelled",
-  //         text: "Your user is safe!",
-  //         icon: "info",
-  //       });
-  //     }
-  //   });
-  // };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/doctorReview/${id}`).then((res) => {
+          // console.log(res.data);
+          refetch();
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -225,11 +223,12 @@ const DoctorProfile = () => {
                   showTimeSelect
                   timeFormat="HH:mm"
                   timeIntervals={15}
+                  minDate={new Date()}
                   timeCaption="Time"
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
                   placeholderText="Booking Appointment"
-                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none flex flex-row"
+                  className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none w-[330px]"
                   icon={
                     <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
                   }
@@ -387,6 +386,18 @@ const DoctorProfile = () => {
                   <div key={review._id} className="mb-4">
                     <h2 className="text-xl font-bold">{review.name}</h2>
                     <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between">
+                      <h2 className="text-xl font-bold">{review.name}</h2>
+                      <button
+                        onClick={() => handleDelete(review._id)}
+                        className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-[1px] border-[#FF0000] text-[#FF0000] px-4 py-1 rounded-full group text-sm font-medium"
+                      >
+                        <span>Delete</span>
+                        <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                          <MdDelete className="h-4" />
+                        </span>
+                      </button>
+                    </div>
                     <Rating
                       className="mb-1"
                       initialRating={review.rating}
@@ -419,21 +430,39 @@ const DoctorProfile = () => {
                     required
                   />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 ">
                   <label
                     htmlFor="rating"
-                    className="block text-sm font-medium text-gray-600"
+                    className=" block text-sm font-medium text-gray-600 mr-2"
                   >
-                    Rating:
+                    Your Rating:
                   </label>
-                  <input
-                    type="number"
-                    id="name"
-                    {...register("rating")}
-                    max={5}
-                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                    required
-                  />
+                  <div className="flex flex-row">
+                    {[...Array(5)].map((star, index) => {
+                      const currentRating = index + 1;
+                      return (
+                        <label key={index}>
+                          <input
+                            className="hidden "
+                            type="radio"
+                            id="rating"
+                            value={currentRating}
+                            onClick={() => setRatings(currentRating)}
+                            {...register("rating")}
+                            required
+                          />
+                          <FaStar
+                            color={
+                              currentRating <= ratings ? "#ffc107" : "#808080"
+                            }
+                            className="flex cursor-pointer"
+                            title={`Your Rating: ${currentRating}`}
+                            size={30}
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="mb-4">

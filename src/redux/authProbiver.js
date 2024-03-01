@@ -39,6 +39,7 @@ export const logOut = () => {
 //   });
 // };
 export const updateUser = (name, photoUrl) => {
+  // console.log(name, photoUrl);
   const user = auth.currentUser;
   return updateProfile(user, {
     displayName: name,

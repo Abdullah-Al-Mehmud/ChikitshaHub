@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -5,12 +6,14 @@ import { LuLogIn } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/authProbiver";
+import JoinButton from "../../Components/Button/JoinButton";
 const Header = () => {
   const [show, setShow] = useState(false);
 
   const [isScrolled, setIsScrolled] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  // console.log(user);
+  
+  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -54,6 +57,21 @@ const Header = () => {
         }
       >
         Tips
+      </NavLink>
+      <NavLink
+        to="/joinlive"
+        // className={({ isActive }) =>
+        //   isActive
+        //     ? "mr-6 text-[#409bd4] text-base font-semibold"
+        //     : "mr-6 text-base font-semibold"
+        // }
+        className={({ isActive }) =>
+          isActive
+            ? "mr-6 text-[#409bd4] text-base font-semibold lg:block hidden"
+            : "mr-6 text-base font-semibold lg:block hidden"
+        }
+      >
+        <JoinButton btnName={"Join Live"} />
       </NavLink>
       <NavLink
         to="/about"
@@ -120,7 +138,10 @@ const Header = () => {
               ""
             )}
           </div>
-
+          {/* http://localhost:5173/live/8G8kwP/host?roomID=8G8kwP&role=Audience */}
+          <div className="lg:hidden block">
+            <JoinButton btnName={"Join Live"} />
+          </div>
           <Link to="/">
             <div className="flex items-center md:gap-4 gap-2">
               <img
@@ -134,8 +155,8 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex mx-auto">
-          <ul className="menu menu-horizontal">{links}</ul>
+        <div className="navbar-center hidden lg:flex mx-auto lg:ml-16">
+          <ul className="menu menu-horizontal items-center">{links}</ul>
         </div>
         <div className="navbar-end">
           {user?.email ? (
