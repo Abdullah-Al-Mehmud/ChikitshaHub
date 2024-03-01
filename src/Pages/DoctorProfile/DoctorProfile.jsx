@@ -195,6 +195,7 @@ const DoctorProfile = () => {
                   showTimeSelect
                   timeFormat="HH:mm"
                   timeIntervals={15}
+                  minDate={new Date()}
                   timeCaption="Time"
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
