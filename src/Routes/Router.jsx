@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         element: <Specialties />,
       },
       {
-        path: "/bodyfat",
+        path: "/bodyfit",
         element: <BodyFat></BodyFat>,
       },
       {

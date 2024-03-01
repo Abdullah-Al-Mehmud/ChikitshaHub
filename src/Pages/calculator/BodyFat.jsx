@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const BodyFat = () => {
     const user = useSelector((state) => state.auth.user);
-    const { email, displayName } = user || {};
+    const { email } = user || {} ;
     //   console.log(user);
     const axiosPublic = useAxiosPublic("");
   const [gender, setGender] = useState("");
@@ -17,7 +17,7 @@ const BodyFat = () => {
   const [status, setStatus] = useState("");
  // handleSubmit
  const handleSubmit = () => {
-    const BodyfitData = { result, status, height, weight, email, displayName };
+    const BodyfitData = { result, status, height, weight, email };
     console.log(BodyfitData);
     // const BmiData = { bmiResult, status, height, weight };
     axiosPublic.post("/bodyfit", BodyfitData).then((res) => {
@@ -26,7 +26,7 @@ const BodyFat = () => {
         console.log(res.data);
         Swal.fire({
           title: "Good job!",
-          text: "Your BMI is Added!",
+          text: "Your Body Fit is Added!",
           icon: "success",
         });
         setStatus("");

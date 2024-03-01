@@ -74,7 +74,7 @@ const BMICalculator = () => {
                 placeholder="Weight"
                 className="input input-bordered"
                 required
-              />
+              /> 
             </div>
             <div className="form-control">
               <label className="label">
