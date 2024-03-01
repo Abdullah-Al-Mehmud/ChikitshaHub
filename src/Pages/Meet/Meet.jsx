@@ -85,6 +85,7 @@ const Meet = () => {
                   patientEmail={userInfo?.patientEmail}
                   patientNameDef={userInfo?.patientName}
                   meetId={meetId}
+                  fee={userInfo?.fee}
                 />
               </div>
             </div>

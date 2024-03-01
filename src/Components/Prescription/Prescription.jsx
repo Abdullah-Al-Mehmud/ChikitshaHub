@@ -9,6 +9,7 @@ const Prescription = ({
   doctorEmail,
   patientEmail,
   meetId,
+  fee,
   patientNameDef,
 }) => {
   const axiosPublic = useAxiosPublic();
@@ -83,6 +84,7 @@ const Prescription = ({
         patientEmail,
         patientName: patientName,
         // address: address,
+        fee,
         age: age,
         date: date,
         investigations: investigations,
