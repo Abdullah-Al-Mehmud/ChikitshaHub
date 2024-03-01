@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100vh",
-    // marginTop: 10,
+    marginTop: 10,
     lineHeight: 2,
   },
   paddings: {
@@ -94,47 +94,28 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     // borderColor: "black",
     // backgroundColor: "#f2f2f2",
-    marginBottom: 5,
+    marginBottom: 10,
     padding: 10,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    // borderBottomWidth: 1,
+    borderBottomWidth: 1,
     // borderColor: "black",
     // paddingVertical: 5,
     // paddingTop: 10,
-    // padding: 10
+    padding: 10
   },
   headerCell: {
-    // flex: 1,
+    flex: 1,
     textAlign: "center",
     fontWeight: "bold",
     padding: 10,
   },
   cell: {
-    // flex: 1,
+    flex: 1,
     textAlign: "center",
-    padding: 2,
-  },
-  investigation: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  left: {
-    backgroundColor: "#EBF8FF",
-    width: "150px",
-    height: "100vh",
-    padding: 8,
-  },
-  flex: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 20,
-    border: 2,
     padding: 10,
-    paddingBottom: 20,
-    borderColor: "#1C3FAA",
   },
 });
 const PrescriptionToPDF = ({ meetingId }) => {
@@ -142,13 +123,13 @@ const PrescriptionToPDF = ({ meetingId }) => {
   const { data: medicine = [], refetch } = useQuery({
     queryKey: ["medicineAll"],
     queryFn: async () => {
-      const res = await axios.get(`/medicines/meeting/${meetingId}`);
+      const res = await axios.get(`/medicines/1/${meetingId}`);
       return res.data;
     },
   });
   const [medicineData] = medicine || [];
   // console.log(medicineData?.medicines);
-  console.log(medicineData);
+  // console.log(medicineData);
   const MyDocument = () => (
     <Document style={styles.section}>
       <Page size="A4">
@@ -171,57 +152,35 @@ const PrescriptionToPDF = ({ meetingId }) => {
               />
             </View>
           </View>
-          <View>
-            <View style={styles.flex}>
-              <Text style={styles.pateientText}>
-                Patient Name: {medicineData?.patientName}
-              </Text>
-              <Text style={styles.pateientText}>
-                Patient Age: {medicineData?.age}
-              </Text>
-              <Text style={styles.pateientText}>
-                Appoinment Date: {medicineData?.date}
-              </Text>
-            </View>
+          <View style={styles.paddings}>
+            <Text style={styles.pateientText}>
+              Patient Name: {medicineData?.patientName}
+            </Text>
+            <Text style={styles.pateientText}>
+              Patient Age: {medicineData?.age}
+            </Text>
+            <Text style={styles.pateientText}>
+              Appoinment Date: {medicineData?.date}
+            </Text>
           </View>
           <View style={styles.footer}>
-            <View style={styles.investigation}>
-              <View style={styles.left}>
-                <View>
-                  <Text style={styles.textRx}>C/C</Text>
+            <view style={styles.paddings}>
+              <Text style={styles.textRx}>RX</Text>
+              <View style={styles.table}>
+                <View style={styles.headerRow}>
+                  <Text style={styles.headerCell}>Medicine Name</Text>
+                  <Text style={styles.headerCell}>Daily Dose</Text>
+                  <Text style={styles.headerCell}>Day</Text>
                 </View>
-                <View>
-                  <Text style={styles.textRx}>O/E</Text>
-                  {medicineData?.investigations?.map(
-                    (isInvestigation, index) => (
-                      <View key={index}>
-                        <Text>{isInvestigation?.investigation}</Text>
-                      </View>
-                    )
-                  )}
-                </View>
-              </View>
-              <view style={styles.paddings}>
-                <Text style={styles.textRx}>Rx.</Text>
-                <View style={styles.table}>
-                  <View style={styles.headerRow}>
-                    <Text style={styles.headerCell}>Medicine Name</Text>
-                    <Text style={styles.headerCell}>Daily Dose</Text>
-                    <Text style={styles.headerCell}>Day</Text>
+                {medicineData?.medicines?.map((isMedicine, index) => (
+                  <View style={styles.row} key={index}>
+                    <Text style={styles.cell}>{isMedicine?.medicineName}</Text>
+                    <Text style={styles.cell}>{isMedicine?.frequency}</Text>
+                    <Text style={styles.cell}>{isMedicine?.days}</Text>
                   </View>
-                  {medicineData?.medicines?.map((isMedicine, index) => (
-                    <View style={styles.row} key={index}>
-                      <Text style={styles.cell}>
-                        {isMedicine?.medicineName}
-                      </Text>
-                      <Text style={styles.cell}>{isMedicine?.frequency}</Text>
-                      <Text style={styles.cell}>{isMedicine?.days}</Text>
-                    </View>
-                  ))}
-                </View>
-              </view>
-            </View>
-            <View style={styles.paddings}>{medicineData?.feedback}</View>
+                ))}
+              </View>
+            </view>
             <View style={styles.page}>
               <View>
                 <Text style={styles.text}>ChikitshaHub</Text>
