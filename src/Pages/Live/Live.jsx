@@ -81,9 +81,9 @@ const Live = () => {
   };
   return (
     <div
-      className="myCallContainer"
+      className="myCallContainer mt-20"
       ref={myLiveStream}
-      style={{ width: "100vw", height: "100vh" }}
+      style={{ width: "100vw", height: "90vh" }}
     ></div>
   );
 };

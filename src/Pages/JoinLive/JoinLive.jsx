@@ -19,22 +19,25 @@ const JoinLive = () => {
       return res.data;
     },
   });
-  console.log(liveStrem);
+  //   console.log(liveStrem);
   return (
     <div>
       <div className="w-[90%] mx-auto lg:mt-24 mt-10">
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-2 m-2">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-2 m-2">
           {liveStrem?.map((dd) => (
             <div key={dd._id} className="bg-blue-500 w-full  rounded-md">
               <div className="p-2 text-white flex justify-between">
                 <div>
-                  <h1 className="text-xl">{dd.tagline}</h1>
-                  <h1>
+                  <h1 className="text-xl">Dr. {dd.doctorName}</h1>
+                  <h1 className="text-lg">Topic: {dd.tagline}</h1>
+                  <h1 className="text-base">Description: {dd.description}</h1>
+                  {/* <h1>
                     {dd.status === "approved"
-                      ? dd.liveId
+                      ? "Event Request Approved"
                       : "Event Request Pending"}
-                  </h1>
-                  <div className="flex gap-2">
+                  </h1> */}
+                  <div className="flex gap-2 text-base">
+                    {/* <h1>Event Date and Time</h1> */}
                     <span>
                       {(() => {
                         const btcYear = moment

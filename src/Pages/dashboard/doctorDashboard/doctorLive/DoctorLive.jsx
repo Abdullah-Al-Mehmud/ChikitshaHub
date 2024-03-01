@@ -81,7 +81,7 @@ const DoctorLive = () => {
                 <h1 className="text-xl">{dd.tagline}</h1>
                 <h1>
                   {dd.status === "approved"
-                    ? dd.liveId
+                    ? "Event Request Approved"
                     : "Event Request Pending"}
                 </h1>
                 <div className="flex gap-2">
