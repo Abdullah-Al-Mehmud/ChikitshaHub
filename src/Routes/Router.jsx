@@ -30,6 +30,10 @@ import DoctorPrescription from "../Pages/dashboard/doctorDashboard/doctorPrescri
 import DoctorProfileReview from "../Pages/dashboard/adminDashboard/doctorReq/doctorProfileReview/DoctorProfileReview";
 import AdminAllReview from "../Pages/dashboard/adminDashboard/adminAllReview/AdminAllReview";
 import PrescriptionUser from "../Pages/dashboard/userDashboard/PrescriptionUser/PrescriptionUser";
+import DoctorLive from "../Pages/dashboard/doctorDashboard/doctorLive/DoctorLive";
+import AdminAllLive from "../Pages/dashboard/adminDashboard/adminAllLive/AdminAllLive";
+import Live from "../Pages/Live/Live";
+import JoinLive from "../Pages/JoinLive/JoinLive";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
@@ -71,6 +75,10 @@ const router = createBrowserRouter([
         element: <Tips></Tips>,
       },
       {
+        path: "/joinlive",
+        element: <JoinLive></JoinLive>,
+      },
+      {
         path: "/readmores/:id",
         element: <Readmore></Readmore>,
 
@@ -94,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/meet/:meetId",
         element: <Meet />,
+      },
+      {
+        path: "/live/:liveId/host",
+        element: <Live />,
       },
       // {
       //   path: "/login",
@@ -184,6 +196,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allreviews",
         element: <AdminAllReview />,
+      },
+      {
+        path: "/dashboard/doctorlive",
+        element: <DoctorLive />,
+      },
+      {
+        path: "/dashboard/alldoctorlive",
+        element: <AdminAllLive />,
       },
     ],
   },

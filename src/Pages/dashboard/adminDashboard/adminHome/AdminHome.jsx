@@ -36,7 +36,7 @@ const AdminHome = () => {
   // console.log("pateints", pateints);
   return (
     <div>
-      <div className="mt-5 grid grid-cols-4 gap-1">
+      <div className="mt-5 grid lg:grid-cols-4 grid-cols-2 gap-1">
         <div className="bg-blue-500 rounded-md p-5 m-2 text-white text-lg">
           <span className="flex justify-between">
             <span>
