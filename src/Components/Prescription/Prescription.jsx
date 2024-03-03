@@ -10,8 +10,7 @@ const Prescription = ({
   patientEmail,
   meetId,
   fee,
-  patientNameDef,
-  fee
+  patientNameDef
 }) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
