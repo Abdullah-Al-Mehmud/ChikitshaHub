@@ -19,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
+import { flexRender } from '@tanstack/react-table';
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -241,7 +242,7 @@ const DoctorProfile = () => {
               </form>
             </dialog> */}
 
-            <form className="flex gap-2 " onSubmit={handleAppointment}>
+            <form className="flex gap-2 flex-col lg:flex-row" onSubmit={handleAppointment}>
               <div className="relative">
                 <ReactDatePicker
                   selected={selectedDateTime}
