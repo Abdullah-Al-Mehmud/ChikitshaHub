@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-
+import moment from "moment-timezone";
 import { useEffect, useState } from "react";
 
 import {
@@ -136,10 +136,30 @@ const UserAppointment = () => {
     }),
 
     columnHelper.accessor("appointmentTime", {
-      cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have any date"}</span>
-      ),
-      header: "AppointmentTime",
+      cell: (info) => {
+        const date = info.getValue();
+        // console.log(date);
+        const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
+        const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
+        // console.log(btcTime);
+        if (btcTime && btcYear) {
+          return (
+            <>
+              <div className="flex gap-1">
+                <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
+                  {btcYear}
+                </span>
+                <div className="flex text-slate-950 bg-opacity-30 bg-rose-200 rounded-md px-2 text-sm py-1">
+                  <span>{btcTime}</span>
+                </div>
+              </div>
+            </>
+          );
+        } else {
+          return <span className="text-red-500">Wrong Appointment</span>;
+        }
+      },
+      header: "Date & Time",
     }),
 
     // columnHelper.accessor("appointmentTime", {
