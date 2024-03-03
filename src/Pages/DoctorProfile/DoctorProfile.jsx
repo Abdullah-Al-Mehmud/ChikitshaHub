@@ -383,7 +383,7 @@ const DoctorProfile = () => {
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
                 {reviews?.map((review) => (
-                  <div key={review._id} className="mb-4">
+                  <div key={review._id} className="mb-4 p-6 bg-base-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-bold">{review.name}</h2>
                       <button
@@ -411,11 +411,13 @@ const DoctorProfile = () => {
                   </div>
                 ))}
               </div>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-base-200 rounded-lg">
+                <h2 className="block text-2xl font-bold text-gray-600 mb-10">Add Review</h2>
+                <div className="flex gap-6 items-center">
+                <div className="mb-4 w-1/2">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-600"
+                    className="block text-sm font-bold text-gray-600"
                   >
                     Your Name:
                   </label>
@@ -430,7 +432,7 @@ const DoctorProfile = () => {
                 <div className="mb-4 ">
                   <label
                     htmlFor="rating"
-                    className=" block text-sm font-medium text-gray-600 mr-2"
+                    className=" block text-sm font-bold text-gray-600 mr-2"
                   >
                     Your Rating:
                   </label>
@@ -452,7 +454,7 @@ const DoctorProfile = () => {
                             color={
                               currentRating <= ratings ? "#ffc107" : "#808080"
                             }
-                            className="flex cursor-pointer"
+                            className="flex cursor-pointer mr-2"
                             title={`Your Rating: ${currentRating}`}
                             size={30}
                           />
@@ -461,11 +463,12 @@ const DoctorProfile = () => {
                     })}
                   </div>
                 </div>
+                </div>
 
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
-                    className="block text-sm font-medium text-gray-600"
+                    className="block text-sm font-bold text-gray-600"
                   >
                     Your Review:
                   </label>
@@ -479,10 +482,10 @@ const DoctorProfile = () => {
                 <div>
                   <button
                     type="submit"
-                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"
+                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4 font-semibold"
                   >
                     <span>Review</span>
-                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-base-200 rounded-full">
                       <FaArrowRightLong className="h-10" />
                     </span>
                   </button>
