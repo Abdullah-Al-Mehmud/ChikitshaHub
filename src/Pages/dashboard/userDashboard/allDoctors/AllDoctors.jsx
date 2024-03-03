@@ -46,7 +46,16 @@ const AllDoctors = () => {
     }
     fetchDoctors();
   }, [axios, page, searchTerm, location, limit]);
-
+  const handlePrevious = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+  const handleNext = () => {
+    if (page < totalPage) {
+      setPage(page + 1);
+    }
+  };
   return (
     <div>
       <div className="fixed top-0 z-50 w-[60%] mx-auto right-2">
@@ -168,6 +177,36 @@ const AllDoctors = () => {
           </div>
         </div>
       )}
+      <div className="join flex gap-1 max-w-sm mx-auto text-white justify-center items-center mb-5">
+        <button
+          onClick={handlePrevious}
+          className="bg-blue-600 px-4 py-2 text-xl rounded-full"
+        >
+          {"<"}
+        </button>
+        {Array.from({ length: totalPage }).map((_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <button
+              key={pageNumber}
+              onClick={() => setPage(pageNumber)}
+              className={`${
+                pageNumber === page
+                  ? "bg-blue-700 px-5 py-2 text-xl text-white rounded-full"
+                  : " bg-indigo-100 px-5 py-2 text-xl text-blue-950 rounded-full"
+              }`}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+        <button
+          onClick={handleNext}
+          className="bg-blue-600 px-4 py-2 text-xl rounded-full"
+        >
+          {">"}
+        </button>
+      </div>
     </div>
   );
 };

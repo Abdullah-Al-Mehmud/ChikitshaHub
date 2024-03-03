@@ -189,7 +189,7 @@ const AdminSpecialities = () => {
       image: img_url?.data?.display_url,
       specialties,
       description,
-      type
+      type,
     };
     try {
       const res = await axios.post("/specialties", specialitiesData);
@@ -203,7 +203,7 @@ const AdminSpecialities = () => {
           text: "Your request accepted.",
           icon: "success",
         });
-        document.getElementById('my_modal_4').close();
+        document.getElementById("my_modal_4").close();
       }
     } catch (err) {
       console.log(err);

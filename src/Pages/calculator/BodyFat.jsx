@@ -1,62 +1,97 @@
-import { useState } from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Swal from "sweetalert2";
+// BodyFatCalculator.js
+import React, { useState } from 'react';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
-import { useSelector } from "react-redux";
-
-const BMICalculator = () => {
-  const user = useSelector((state) => state.auth.user);
-  const { email, displayName } = user || {};
-  //   console.log(user);
-  const axiosPublic = useAxiosPublic("");
-  const [height, setHeight] = useState(null);
+const BodyFat = () => {
+    const user = useSelector((state) => state.auth.user);
+    const { email } = user || {} ;
+    //   console.log(user);
+    const axiosPublic = useAxiosPublic("");
+  const [gender, setGender] = useState("");
   const [weight, setWeight] = useState(null);
-  const [bmiResult, setBmiResult] = useState(null);
+  const [height, setHeight] = useState(null);
+  const [result, setResult] = useState("");
   const [status, setStatus] = useState("");
-  // handleSubmit
-  const handleSubmit = () => {
-    const BmiData = { bmiResult, status, height, weight, email, displayName };
+ // handleSubmit
+ const handleSubmit = () => {
+    const BodyfitData = { result, status, height, weight, email };
+    console.log(BodyfitData);
     // const BmiData = { bmiResult, status, height, weight };
-    axiosPublic.post("/bmi", BmiData).then((res) => {
+    axiosPublic.post("/bodyfit", BodyfitData).then((res) => {
       console.log(res.data);
       if (res.data.success) {
         console.log(res.data);
         Swal.fire({
           title: "Good job!",
-          text: "Your BMI is Added!",
+          text: "Your Body Fit is Added!",
           icon: "success",
         });
         setStatus("");
-        setBmiResult(null);
+        setResult(null);
       }
     });
     // console.log(BmiData);
     setWeight("");
     setHeight("");
   };
-  function calculateBMI() {
-    let bmi = Number(weight / (height / 100) ** 2).toFixed(2);
-    setBmiResult(bmi);
-    let bmiStatus = getStatus(bmi);
-    setStatus(bmiStatus);
-  }
+  const calculateBodyFat = () => {
+    // Convert height to meters
+    const heightInMeters = height / 100;
 
-  function getStatus(bmi) {
-    if (bmi < 18.5) {
-      return "underweight";
-    } else if (bmi >= 18.5 && bmi < 24.9) {
-      return "Normal";
-    } else if (bmi >= 25 && bmi < 29.9) {
-      return "Overweight";
-    } else return "Obese";
-  }
+    // Calculate BMI (Body Mass Index)
+    const bmi = weight / (heightInMeters * heightInMeters);
+
+    // Calculate body fat percentage based on gender
+    let bodyFatPercentage;
+    if (gender === 'male') {
+      bodyFatPercentage = (0.29288 * bmi - 0.0005 * bmi * bmi + 0.00005 * bmi * bmi * bmi - 0.0000015 * bmi * bmi * bmi * bmi + 0.18).toFixed(2);
+    } else if (gender === 'female') {
+      bodyFatPercentage = (0.29669 * bmi - 0.00043 * bmi * bmi + 0.0000027 * bmi * bmi * bmi - 0.0000039 * bmi * bmi * bmi * bmi + 0.28).toFixed(2);
+    } else {
+      // Handle other gender options here or set a default value
+      return;
+    }
+
+    // Determine body fat status based on common classifications
+    let bodyFatStatus;
+    if (gender === 'male') {
+      if (bodyFatPercentage < 6) {
+        bodyFatStatus = 'Essential Fat';
+      } else if (bodyFatPercentage < 24) {
+        bodyFatStatus = 'Fitness';
+      } else {
+        bodyFatStatus = 'Obese';
+      }
+    } else if (gender === 'female') {
+      if (bodyFatPercentage < 16) {
+        bodyFatStatus = 'Essential Fat';
+      } else if (bodyFatPercentage < 30) {
+        bodyFatStatus = 'Fitness';
+      } else {
+        bodyFatStatus = 'Obese';
+      }
+    }
+
+    setResult(` ${bodyFatPercentage}%`);
+    setStatus(` ${bodyFatStatus}`);
+  };
+
   return (
-    <>
-      <h1 className="text-4xl py-10 text-center font-bold">BMI Calculator</h1>
+   
+    <div className='my-20'>
+        <>
+      <h1 className="text-4xl py-10 text-center font-bold">Body Fit Calculator</h1>
+    
       <div className="md:flex px-10 max-w-5xl mx-auto items-center gap-10 ">
         <div className=" w-full max-w-md shadow-2xl bg-base-100">
           <div className="card-body">
+          <select value={gender} onChange={(e) => setGender(e.target.value)} className="select select-bordered w-full ">
+         <option value={"male"}>Male</option>
+        <option value={"female"}>Female</option>
+       </select>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">
@@ -74,7 +109,7 @@ const BMICalculator = () => {
                 placeholder="Weight"
                 className="input input-bordered"
                 required
-              /> 
+              />
             </div>
             <div className="form-control">
               <label className="label">
@@ -95,11 +130,11 @@ const BMICalculator = () => {
                 required
               />
             </div>
-            {bmiResult ? (
+            {result ? (
               <div>
                 <h1 className="text-[#409bd4] font-bold">Result:</h1>
                 <p>Currently status: {status}</p>
-                <p>Your BMI is: {bmiResult}</p>
+                <p>Your Body Fit is: {result}</p>
                 <button
                   onClick={handleSubmit}
                   className="flex items-center relative w-28  border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4">
@@ -114,7 +149,7 @@ const BMICalculator = () => {
             )}
             <div className="form-control mt-6">
               <button
-                onClick={calculateBMI}
+                onClick={calculateBodyFat}
                 className="btn bg-[#409bd4] text-white">
                 BMI Calculate
               </button>
@@ -123,13 +158,14 @@ const BMICalculator = () => {
         </div>
         <div className="w-full md:mt-0 mt-10">
           <img
-            src="https://i.ibb.co/RYJfcyf/2202-i402-007-F-m004-c9-FP-keto-diet-flat-background-removebg-preview.png"
+            src="https://i.ibb.co/fSVPjbw/Wavy-Bus-09-Single-06.jpg"
             alt=""
           />
         </div>
       </div>
     </>
+    </div>
   );
 };
 
-export default BMICalculator;
+export default BodyFat;

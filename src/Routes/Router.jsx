@@ -34,6 +34,9 @@ import DoctorLive from "../Pages/dashboard/doctorDashboard/doctorLive/DoctorLive
 import AdminAllLive from "../Pages/dashboard/adminDashboard/adminAllLive/AdminAllLive";
 import Live from "../Pages/Live/Live";
 import JoinLive from "../Pages/JoinLive/JoinLive";
+import BodyFat from "../Pages/calculator/BodyFat";
+import Calorie from "../Pages/calculator/Calorie";
+import Bmr from "../Pages/calculator/Bmr";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
@@ -69,6 +72,18 @@ const router = createBrowserRouter([
       {
         path: "/specialties",
         element: <Specialties />,
+      },
+      {
+        path: "/bodyfit",
+        element: <BodyFat></BodyFat>,
+      },
+      {
+        path: "/calories",
+        element: <Calorie></Calorie>,
+      },
+      {
+        path: "/bmr",
+        element: <Bmr></Bmr>,
       },
       {
         path: "/tips",
@@ -132,7 +147,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRouter><Dashboard /></PrivateRouter>,
+    element: (
+      <PrivateRouter>
+        <Dashboard />
+      </PrivateRouter>
+    ),
     errorElement: <Error />,
     children: [
       {
