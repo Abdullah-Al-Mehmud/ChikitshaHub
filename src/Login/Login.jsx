@@ -26,16 +26,8 @@ const Login = () => {
     const password = data.password;
     const handleLogIn = async () => {
       try {
-        const logInResult = await dispatch(signInAsync(email, password));
-
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "LogIn Successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
+        const logInResult = await dispatch(signInAsync(email, password, navigate));  
+        
       } catch (error) {
         console.log(error);
       }

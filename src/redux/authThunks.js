@@ -15,6 +15,7 @@ import {
 
 import { onAuthStateChanged } from "firebase/auth";
 import useAxiosPublic from "./../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 // createUser;
 
 export const signUpAsync = (email, password) => async (dispatch) => {
@@ -28,11 +29,29 @@ export const signUpAsync = (email, password) => async (dispatch) => {
   }
 };
 
-export const signInAsync = (email, password) => {
+export const signInAsync = (email, password, navigate) => {
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
-      const userCredential = await signIn(email, password);
+      const userCredential = await signIn(email, password).then(res => {
+        console.log(res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "LogIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(location?.state ? location.state : "/");
+      }).catch(err => {
+        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: `${err.message}`,
+          showConfirmButton: false,
+          timer: 2500
+        })
+      });
       const serializableUser = {
         uid: userCredential.user.uid,
         displayName: userCredential.user.displayName,
