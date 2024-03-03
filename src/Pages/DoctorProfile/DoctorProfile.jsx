@@ -44,6 +44,15 @@ const DoctorProfile = () => {
     },
   });
 
+  const { data: appointmentData = [] } = useQuery({
+    queryKey: ["appointmentData"],
+    queryFn: async () => {
+      const res = await axios.get(`/appointments/doctors/${doctor.doctorEmail}`);
+      return res.data;
+    },
+  });
+  console.log(appointmentData);
+
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
   doctor.joiningDate = formattedDate;
@@ -106,6 +115,25 @@ const DoctorProfile = () => {
       console.error(error);
     }
   };
+
+  const availableDays = doctor?.availability;
+
+  const filterAvailableDates = (date) => {
+    const selectedDayName = date.toLocaleDateString('en-US', { weekday: 'long' });
+    return availableDays.some(slot => slot === selectedDayName);
+  };
+
+  const filterTimes = (time) => {
+    const timeToCheck = new Date(time).toLocaleString('en-US', {
+      timeZone: 'Asia/Dhaka',
+    });
+    const timeToCheckInUTC = new Date(timeToCheck);
+    return !appointmentData.some(appointment => {
+      const appointmentTime = new Date(appointment.appointmentTime);
+      return appointmentTime.getTime() === timeToCheckInUTC.getTime();
+    });
+  };
+
 
   // const handleMeetId = () => {
   //   navigate(`/meet/${meet}`);
@@ -221,13 +249,17 @@ const DoctorProfile = () => {
                   showIcon
                   toggleCalendarOnIconClick
                   showTimeSelect
-                  timeFormat="HH:mm"
+                  timeFormat="HH:mm aa"
                   timeIntervals={15}
                   minDate={new Date()}
+                  maxTime={new Date().setHours(17, 0)}
+                  minTime={new Date().setHours(10, 0)}
                   timeCaption="Time"
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
                   placeholderText="Booking Appointment"
+                  filterDate={filterAvailableDates}
+                  filterTime={filterTimes}
                   className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none w-[330px]"
                   icon={
                     <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
@@ -414,55 +446,55 @@ const DoctorProfile = () => {
               <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-base-200 rounded-lg">
                 <h2 className="block text-2xl font-bold text-gray-600 mb-10">Add Review</h2>
                 <div className="flex gap-6 items-center">
-                <div className="mb-4 w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-bold text-gray-600"
-                  >
-                    Your Name:
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    {...register("name")}
-                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="mb-4 ">
-                  <label
-                    htmlFor="rating"
-                    className=" block text-sm font-bold text-gray-600 mr-2"
-                  >
-                    Your Rating:
-                  </label>
-                  <div className="flex flex-row">
-                    {[...Array(5)].map((star, index) => {
-                      const currentRating = index + 1;
-                      return (
-                        <label key={index}>
-                          <input
-                            className="hidden "
-                            type="radio"
-                            id="rating"
-                            value={currentRating}
-                            onClick={() => setRatings(currentRating)}
-                            {...register("rating")}
-                            required
-                          />
-                          <FaStar
-                            color={
-                              currentRating <= ratings ? "#ffc107" : "#808080"
-                            }
-                            className="flex cursor-pointer mr-2"
-                            title={`Your Rating: ${currentRating}`}
-                            size={30}
-                          />
-                        </label>
-                      );
-                    })}
+                  <div className="mb-4 w-1/2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-bold text-gray-600"
+                    >
+                      Your Name:
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      {...register("name")}
+                      className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                      required
+                    />
                   </div>
-                </div>
+                  <div className="mb-4 ">
+                    <label
+                      htmlFor="rating"
+                      className=" block text-sm font-bold text-gray-600 mr-2"
+                    >
+                      Your Rating:
+                    </label>
+                    <div className="flex flex-row">
+                      {[...Array(5)].map((star, index) => {
+                        const currentRating = index + 1;
+                        return (
+                          <label key={index}>
+                            <input
+                              className="hidden "
+                              type="radio"
+                              id="rating"
+                              value={currentRating}
+                              onClick={() => setRatings(currentRating)}
+                              {...register("rating")}
+                              required
+                            />
+                            <FaStar
+                              color={
+                                currentRating <= ratings ? "#ffc107" : "#808080"
+                              }
+                              className="flex cursor-pointer mr-2"
+                              title={`Your Rating: ${currentRating}`}
+                              size={30}
+                            />
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mb-4">
