@@ -58,7 +58,8 @@ const Header = () => {
       >
         Tips
       </NavLink>
-      <NavLink
+      {
+        user && <NavLink
         to="/joinlive"
         // className={({ isActive }) =>
         //   isActive
@@ -73,6 +74,7 @@ const Header = () => {
       >
         <JoinButton btnName={"Join Live"} />
       </NavLink>
+      }
       <NavLink
         to="/about"
         className={({ isActive }) =>
