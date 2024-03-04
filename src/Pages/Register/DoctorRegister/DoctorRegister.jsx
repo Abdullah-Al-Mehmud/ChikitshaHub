@@ -6,6 +6,7 @@ import Select from "react-select";
 import useAxiosPrivet from "../../../Hooks/useAxiosPrivet";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 //import registerImg from "../../../assets/images/register.png"
 
@@ -14,6 +15,8 @@ const DoctorRegister = () => {
   const user = useSelector((state) => state.auth.user);
   // console.log(user);
   const { photoURL, email, displayName } = user || {};
+
+  const [doctorType1, setDoctorType1] = useState("");
 
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
@@ -73,6 +76,11 @@ const DoctorRegister = () => {
 
   const randomId = generateDoctorId();
 
+  const handleDoctorType = (e) => {
+    setDoctorType1(e.target.value);
+    // console.log(e.target.value);
+  };
+
   const {
     register,
     handleSubmit,
@@ -96,7 +104,8 @@ const DoctorRegister = () => {
       doctorCode: randomId,
       gender: data.gender,
       location: data.location,
-      doctorType: data.doctorType,
+      doctorType: doctorType1,
+      // doctorType: data.doctorType,
       rating: 0,
       fee: data.fee,
       followUpFee: data.followUpFee,
@@ -117,6 +126,7 @@ const DoctorRegister = () => {
       aboutDoctor: data.aboutDoctor,
     };
     console.log(newDoctor);
+
     axiosPrivate.post("/doctors", newDoctor).then((result) => {
       if (result.data.success) {
         Swal.fire({
@@ -130,6 +140,8 @@ const DoctorRegister = () => {
       }
     });
   };
+
+  console.log(doctorType1);
 
   return (
     <>
@@ -193,59 +205,34 @@ const DoctorRegister = () => {
                     </div>
                   </div>
                   <div className="flex gap-5 w-full">
-                    <div className="w-1/2 mb-4">
+                    <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Specialties
+                        Doctor Type
                       </label>
 
                       <select
-                        {...register("specialties", { required: true })}
+                        // {...register("doctorType", { required: true })}
+                        // value={doctorType}
+                        onChange={handleDoctorType}
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
-                        id="Specialties"
-                        name="specialties">
+                        id="doctorType"
+                        name="doctorType">
                         <option disabled defaultValue>
                           Choose Title
                         </option>
-                        <option value="General Practitioners">
-                          General Practitioners
-                        </option>
-                        <option value="Cardiologists">Cardiologists</option>
-                        <option value="Dermatologists">Dermatologists</option>
-                        <option value="Pediatricians">Pediatricians</option>
-                        <option value="Orthopedic Surgeons">
-                          Orthopedic Surgeons
-                        </option>
-                        <option value="Psychiatrists">Psychiatrists</option>
-                        <option value="Gynecologists">Gynecologists</option>
-                        <option value="Endocrinologists">
-                          Endocrinologists
-                        </option>
-                        <option value="Ophthalmologists">
-                          Ophthalmologists
-                        </option>
-                        <option value="Urologists">Urologists</option>
-                        <option value="ENT Specialists">ENT Specialists</option>
-                        <option value="Gastroenterologists">
-                          Gastroenterologists
-                        </option>
-                        <option value="Neurologists">Neurologists</option>
-                        <option value="Allergists/Immunologists">
-                          Allergists/Immunologists
-                        </option>
-                        <option value="Infectious Disease Specialists">
-                          Infectious Disease Specialists
-                        </option>
-                        <option value="Emergency Medicine Physicians">
-                          Emergency Medicine Physicians
+                        <option value="Human Doctor">Human Doctor</option>
+                        <option value="Veterinary Doctor">
+                          Veterinary Doctor{" "}
                         </option>
                       </select>
-                      {errors.specialties && (
+                      {errors.doctorType && (
                         <span className="text-red-600">
-                          Specialties is required
+                          Photo Url is required
                         </span>
                       )}
                     </div>
+
                     <div className="mb-4 w-1/2">
                       <label className="block mb-2 text-sm font-bold  ">
                         BMDC Number
@@ -266,29 +253,107 @@ const DoctorRegister = () => {
                   </div>
 
                   <div className="flex gap-5 w-full">
-                    {/* doctor code */}
-                    <div className="mb-4 w-1/2">
+                    {/* doctor specialties */}
+
+                    <div className="w-1/2 mb-4">
                       <label className="block mb-2 text-sm font-bold  ">
-                        Doctor Type
+                        Specialties
                       </label>
 
-                      <select
-                        {...register("doctorType", { required: true })}
-                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
-                        required
-                        id="doctorType"
-                        name="doctorType">
-                        <option disabled defaultValue>
-                          Choose Title
-                        </option>
-                        <option value="Human Doctor">Human Doctor</option>
-                        <option value="Veterinary Doctor">
-                          Veterinary Doctor{" "}
-                        </option>
-                      </select>
-                      {errors.doctorType && (
+                      {doctorType1 === "Veterinary Doctor" ? (
+                        <div>
+                          {/* vetenary */}
+                          <select
+                            {...register("specialties", { required: true })}
+                            className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
+                            required
+                            id="Specialties"
+                            name="specialties">
+                            <option disabled defaultValue>
+                              Choose Title
+                            </option>
+                            <option value="Internal Medicine">
+                              Internal Medicine
+                            </option>
+                            <option value="Surgery">Surgery</option>
+                            <option value="Dermatologists">
+                              Dermatologists
+                            </option>
+                            <option value="Diagnostic Imaging">
+                              Diagnostic Imaging
+                            </option>
+                            <option value="Emergency and Critical Care">
+                              Emergency and Critical Care
+                            </option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Preventive Medicine and Public Health">
+                              Preventive Medicine and Public Health
+                            </option>
+                            <option value="Dentistry">Dentistry</option>
+                            <option value="Anesthesiology and Pain Management">
+                              Anesthesiology and Pain Management
+                            </option>
+                            <option value="Behavioral Medicine">
+                              Behavioral Medicine
+                            </option>
+                            <option value="Nutrition">Nutrition</option>
+                          </select>
+                        </div>
+                      ) : (
+                        <div>
+                          {/* doctor */}
+                          <select
+                            {...register("specialties", { required: true })}
+                            className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
+                            required
+                            id="Specialties"
+                            name="specialties">
+                            <option disabled defaultValue>
+                              Choose Title
+                            </option>
+                            <option value="General Practitioners">
+                              General Practitioners
+                            </option>
+                            <option value="Cardiologists">Cardiologists</option>
+                            <option value="Dermatologists">
+                              Dermatologists
+                            </option>
+                            <option value="Pediatricians">Pediatricians</option>
+                            <option value="Orthopedic Surgeons">
+                              Orthopedic Surgeons
+                            </option>
+                            <option value="Psychiatrists">Psychiatrists</option>
+                            <option value="Gynecologists">Gynecologists</option>
+                            <option value="Endocrinologists">
+                              Endocrinologists
+                            </option>
+                            <option value="Ophthalmologists">
+                              Ophthalmologists
+                            </option>
+                            <option value="Urologists">Urologists</option>
+                            <option value="ENT Specialists">
+                              ENT Specialists
+                            </option>
+                            <option value="Gastroenterologists">
+                              Gastroenterologists
+                            </option>
+                            <option value="Neurologists">Neurologists</option>
+                            <option value="Allergists/Immunologists">
+                              Allergists/Immunologists
+                            </option>
+                            <option value="Infectious Disease Specialists">
+                              Infectious Disease Specialists
+                            </option>
+                            <option value="Emergency Medicine Physicians">
+                              Emergency Medicine Physicians
+                            </option>
+                          </select>
+                        </div>
+                      )}
+
+                      {errors.specialties && (
                         <span className="text-red-600">
-                          Photo Url is required
+                          Specialties is required
                         </span>
                       )}
                     </div>
