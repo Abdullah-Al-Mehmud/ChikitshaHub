@@ -37,6 +37,9 @@ import JoinLive from "../Pages/JoinLive/JoinLive";
 import BodyFat from "../Pages/calculator/BodyFat";
 import Calorie from "../Pages/calculator/Calorie";
 import Bmr from "../Pages/calculator/Bmr";
+import DoctorMyProfile from "../Pages/dashboard/doctorDashboard/doctorMyProfile/DoctorMyProfile";
+import DoctorMyProfileEdit from "../Pages/dashboard/doctorDashboard/doctorMyProfile/DoctorMyProfileEdit";
+import UserMyProflie from "../Pages/dashboard/userDashboard/userMyProfile/UserMyProflie";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
 
 const router = createBrowserRouter([
@@ -223,6 +226,30 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/alldoctorlive",
         element: <AdminAllLive />,
+      },
+      {
+        path: "/dashboard/doctorMyProfile",
+        element: <DoctorMyProfile />,
+      },
+      {
+        path: "/dashboard/userMyProfile",
+        element: <UserMyProflie />,
+      },
+      {
+        path: "/dashboard/doctorMyProfile/update",
+        element: <DoctorMyProfileEdit />,
+      },
+      {
+        path: "/dashboard/specialties",
+        element: <Specialties />,
+      },
+      {
+        path: "/dashboard/specialties/:category",
+        element: <Doctors />,
+        loader: ({ params }) =>
+          fetch(
+            `https://chikitsha-hub-server.vercel.app/doctors/1/${params.category}`
+          ),
       },
     ],
   },
