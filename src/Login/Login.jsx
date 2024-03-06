@@ -54,7 +54,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/");
+      navigate("/dashboard/home");
     });
     // axiosPrivate.post("/users", googleLoginUser).then((result) => {
     //   console.log(result);
@@ -74,7 +74,7 @@ const Login = () => {
     //   // }
     // });
 
-    navigate("/");
+    // navigate("/");
   };
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -121,7 +121,7 @@ const Login = () => {
                 Sign in with Google
               </h1>
             </button>
-            <button className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full">
+            {/* <button className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100 w-full">
               <div className="px-4 py-3">
                 <span className="text-sky-500 text-2xl">
                   <FaFacebook />
@@ -130,7 +130,7 @@ const Login = () => {
               <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">
                 Sign in with Facebook
               </h1>
-            </button>
+            </button> */}
             <div className="mt-4 flex items-center justify-between">
               <span className="border-b w-1/5 lg:w-1/4"></span>
               <a
@@ -201,7 +201,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="mt-8">
-                <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                <button type="submit" className="w-full relative rounded-full pl-5 py-2 font-bold border-2 bg-[#409ad4] text-white outline-none">
                   Login
                 </button>
               </div>
