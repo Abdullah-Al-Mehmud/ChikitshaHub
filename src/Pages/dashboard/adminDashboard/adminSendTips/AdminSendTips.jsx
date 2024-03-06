@@ -203,7 +203,7 @@ const AdminSendTips = () => {
             </dialog>
           </div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-y-scroll overflow-scroll">
           <table className="border border-gray-50 w-full text-left overflow-scroll table-auto">
             <thead className="bg-indigo-100 table-header-group">
               {table.getHeaderGroups().map((headerGroup) => (

@@ -140,6 +140,7 @@ const AdminAppointment = () => {
             />
           </div>
         </div>
+        <div className="overflow-y-scroll overflow-scroll"> 
         <table className="border border-gray-50 w-full text-left">
           <thead className="bg-indigo-100">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -179,6 +180,7 @@ const AdminAppointment = () => {
             )}
           </tbody>
         </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}

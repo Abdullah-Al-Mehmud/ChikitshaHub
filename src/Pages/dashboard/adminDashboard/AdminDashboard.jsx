@@ -321,7 +321,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <header className="z-40 py-5 fixed top-0">
+        <header className="z-40 py-5 bg-white fixed top-0 w-[1030px]">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
               className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
@@ -335,7 +335,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
               )}
             </button>
             <div className="mt-2 mr-4 w-fit mx-auto">
-              <h1 className="text-xl text-[#409bd4] fixed left-1/2">{currentHeading}</h1>
+              <h1 className="text-xl text-[#409bd4] fixed left-1/3 md:left-1/2">{currentHeading}</h1>
             </div>
           </div>
         </header>

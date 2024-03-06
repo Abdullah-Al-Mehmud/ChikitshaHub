@@ -6,6 +6,10 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import BMICalculator from "../../../../Components/BMICalculator/BMICalculator";
+import Bmr from "../../../calculator/Bmr";
+import BodyFat from "../../../calculator/BodyFat";
+import Calorie from "../../../calculator/Calorie";
 
 const UserHome = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -89,17 +93,15 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModal(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModal ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModal ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModal
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModal
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">BMI Status</h1>
                   {/* bmiResult */}
@@ -169,17 +171,15 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalt(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalt ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalt ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalt
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalt
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
                   {/* bmiResult */}
@@ -239,17 +239,15 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalc(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalc ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalc ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalc
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalc
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
                   {/* bmiResult */}
@@ -307,17 +305,15 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalb(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalb ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalb ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalb
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalb
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">Body BMR</h1>
                   {/* bmiResult */}
@@ -378,7 +374,10 @@ const UserHome = () => {
             </div> */}
         </div>
         <div>
-          
+          <BMICalculator />
+          <Bmr />
+          <BodyFat />
+          <Calorie />
         </div>
       </div>
     </>
