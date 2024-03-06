@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
@@ -28,13 +28,14 @@ const Bmr = () => {
           text: "Your Calories is Added!",
           icon: "success",
         });
-        // setBmr("");
-      
+        setBmr("");
+        setWeight("");
+        setHeight("");
+        setAge("")
       }
     });
     // console.log(BmiData);
-    // setWeight(null);
-    // setHeight(null);
+    
   };
 
 
@@ -54,12 +55,12 @@ const Bmr = () => {
     setBmr(baseBmr.toFixed(2));
   };
     return(
-        <div className='my-20'>
+        <div className=''>
         <>
       <h1 className="text-4xl py-10 text-center font-bold">BMR Calculator</h1>
     
-      <div className="md:flex px-10 max-w-5xl mx-auto items-center gap-10 ">
-        <div className=" w-full max-w-md shadow-2xl bg-base-100">
+      <div className="px-10 w-full mx-auto">
+        <div className=" w-full max-w-md shadow-2xl mx-auto bg-base-100">
           <div className="card-body">
           <label className="label">
                 <span className="label-text">
@@ -154,12 +155,6 @@ const Bmr = () => {
               </button>
             </div>
           </div>
-        </div>
-        <div className="w-full md:mt-0 mt-10">
-          <img
-            src="https://i.ibb.co/fSVPjbw/Wavy-Bus-09-Single-06.jpg"
-            alt=""
-          />
         </div>
       </div>
     </>

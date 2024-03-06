@@ -52,10 +52,10 @@ const BMICalculator = () => {
     } else return "Obese";
   }
   return (
-    <>
+    <div className="">
       <h1 className="text-4xl py-10 text-center font-bold">BMI Calculator</h1>
-      <div className="md:flex px-10 max-w-5xl mx-auto items-center gap-10 ">
-        <div className=" w-full max-w-md shadow-2xl bg-base-100">
+      <div className="px-10 w-full mx-auto">
+        <div className=" w-full max-w-md shadow-2xl mx-auto bg-base-100">
           <div className="card-body">
             <div className="form-control">
               <label className="label">
@@ -121,14 +121,8 @@ const BMICalculator = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:mt-0 mt-10">
-          <img
-            src="https://i.ibb.co/RYJfcyf/2202-i402-007-F-m004-c9-FP-keto-diet-flat-background-removebg-preview.png"
-            alt=""
-          />
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 

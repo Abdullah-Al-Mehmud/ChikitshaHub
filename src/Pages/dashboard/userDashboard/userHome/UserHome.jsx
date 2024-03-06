@@ -65,8 +65,8 @@ const UserHome = () => {
 
   // setBodyFitResult(bodyFitResults);
   return (
-    <>
-      <div className="lg:mt-20 mt-16 h-screen">
+    <div className="mb-16">
+      <div className="lg:mt-20 mt-16 min-h-screen">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-[90%] rounded-lg mx-auto gap-5 ">
           <div className="overflow-hidden w-full py-6 sm:py-12 rounded-lg">
             <div>
@@ -106,15 +106,15 @@ const UserHome = () => {
                   <h1 className="p-2 text-3xl font-semibold">BMI Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {Array.isArray(bodyFitResults) &&
-                      bodyFitResults?.map((result, index) => (
+                    {Array.isArray(bmiResult) &&
+                      bmiResult?.map((result, index) => (
                         <div key={result._id}>
                           <h1>
                             {moment().format("MMM Do YY")} : BMI result :
                             {result?.bmiResult}{" "}
                           </h1>
                         </div>
-                      ))} */}
+                      ))}
                     <div>
                       <div>
                         {/* {bodyFitResults?.map((result, index) => (
@@ -162,7 +162,7 @@ const UserHome = () => {
                       </span>
                       <div className="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
                         <p className="text-xl whitespace-nowrap font-bold text-left">
-                          BodyFit Status
+                          BodyFat Status
                         </p>
                       </div>
                     </div>
@@ -181,17 +181,17 @@ const UserHome = () => {
                     : "scale-0 opacity-0 duration-150"
                     }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
+                  <h1 className="p-2 text-3xl font-semibold">Body Fat</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bodyFitResults?.map((dd) => (
+                    {bodyFitResults?.map((dd) => (
                       <div key={dd?._id}>
                         <h1>
-                          {moment().format("MMM Do YY")} : Body Fit result :
+                          {moment().format("MMM Do YY")} : Body Fat result :
                           {dd?.result}{" "}
                         </h1>
                       </div>
-                    ))} */}
+                    ))}
                   </div>
                   <button
                     onClick={() => setOpenModalt(false)}
@@ -249,17 +249,17 @@ const UserHome = () => {
                     : "scale-0 opacity-0 duration-150"
                     }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
+                  <h1 className="p-2 text-3xl font-semibold">Calories Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bodyCaloriesResults?.map((dd) => (
+                    {bodyCaloriesResults?.map((dd) => (
                       <div key={dd._id}>
                         <h1>
                           {moment().format("MMM Do YY")} : Calories result :
                           {dd.calories}{" "}
                         </h1>
                       </div>
-                    ))} */}
+                    ))}
                   </div>
                   <button
                     onClick={() => setOpenModalc(false)}
@@ -315,17 +315,19 @@ const UserHome = () => {
                     : "scale-0 opacity-0 duration-150"
                     }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body BMR</h1>
+                  <h1 className="p-2 text-3xl font-semibold">BMR Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bmrResults?.map((dd) => (
-                      <div key={dd._id}>
-                        <h1>
-                          {moment().format("MMM Do YY")} : BMR result :{dd.bmr}{" "}
-                        </h1>
-                      </div>
-                    ))} */}
-                  </div>
+                    {Array.isArray(bmrResults) &&
+                      bmrResults?.map((result, index) => (
+                        <div key={result._id}>
+                          <h1>
+                            {moment().format("MMM Do YY")} : BMR result :
+                            {result?.bmr}{" "}
+                          </h1>
+                        </div>
+                      ))}
+                    </div>
                   <button
                     onClick={() => setOpenModalb(false)}
                     className="text-white me-2 bg-[#16c55c] px-6 py-2 rounded-full"
@@ -373,14 +375,18 @@ const UserHome = () => {
               </div>
             </div> */}
         </div>
-        <div>
+        <div className="">
+        <div className="flex flex-col lg:flex-row items-center justify-center">
           <BMICalculator />
-          <Bmr />
           <BodyFat />
+          </div>
+          <div className="flex flex-col lg:flex-row items-center justify-center">
           <Calorie />
+          <Bmr />
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
