@@ -49,7 +49,7 @@ const AllDoctors = () => {
 
   return (
     <div>
-      <div className="fixed top-0 z-50 w-[60%] mx-auto right-2">
+      <div className="fixed top-2 ml-5 z-50 mx-auto ">
         <div className="relative flex flex-wrap items-stretch mb-3 mt-2">
           <input
             type="search"

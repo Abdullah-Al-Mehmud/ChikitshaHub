@@ -265,7 +265,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 justify-between w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-slate-50 fixed w-full top-0">
+        <header className="z-40 py-5 bg-slate-50 fixed top-0">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
               className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"

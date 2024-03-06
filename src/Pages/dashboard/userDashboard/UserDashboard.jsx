@@ -244,7 +244,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-white fixed top-0 w-[83%]">
+        <header className="z-40 py-5 bg-white fixed top-0 w-fit">
           <div className="flex justify-between">
             <div className="flex items-center justify-between h-8 px-6">
               <button

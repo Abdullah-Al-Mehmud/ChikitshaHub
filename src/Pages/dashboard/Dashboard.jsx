@@ -39,7 +39,7 @@ const Dashboard = () => {
   console.log(isDoctor);
   console.log(isAdmin);
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {isDoctor ? (
         <DoctorDashBoard
           isSideMenuOpen={isSideMenuOpen}
