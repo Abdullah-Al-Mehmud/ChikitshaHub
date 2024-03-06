@@ -54,6 +54,7 @@ const Testimonials = () => {
 
         await refetch(); 
         e.target.reset();
+        setRatings(0)
       }
     } catch (error) {
       console.error(error);
