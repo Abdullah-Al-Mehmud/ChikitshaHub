@@ -23,8 +23,8 @@ Health tips include contributions from guest healthcare professionals, expanding
 BMI results are presented in interactive reports that include visual aids and actionable insights.
 ### Patient Feedback:
 Users can share positive feedback on social media directly from the ChikitshaHub platform, amplifying positive experiences.
-### Virtual HealthCamp: 
-Users can sync their fitness trackers and wearables, allowing the platform to adapt boot camp programs based on real-time health data.
+### Virtual Health Camp: 
+A doctor can create a live Health Camp and user can joining a doctor with this Health Camp. It's totally free for a user.
 ### Veterinarian:
 Users can schedule video consultations with certified veterinarians for non-emergency pet health concerns, eliminating the need for stressful visits to the clinic.
 
