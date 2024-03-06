@@ -18,7 +18,8 @@ const DoctorMyProfile = () => {
       return res.data;
     },
   });
-  //   console.log(doctor);
+  // console.log(email);
+  // console.log("doctor", doctor);
   // const [shouldNavigate, setShouldNavigate] = useState(false);
   return (
     <div>

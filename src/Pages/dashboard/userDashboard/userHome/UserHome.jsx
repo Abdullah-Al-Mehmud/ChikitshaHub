@@ -39,6 +39,7 @@ const UserHome = () => {
       return res.data;
     },
   });
+  console.log("bodyFitResults", bodyFitResults);
   // bodyCalorie
   const { data: bodyCaloriesResults = [] } = useQuery({
     queryKey: ["bodyCaloriesResults"],
@@ -47,7 +48,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  // console.log(bodyCaloriesResults);
+  console.log("bodyCaloriesResults", bodyCaloriesResults);
   // BMR
   const { data: bmrResults = [] } = useQuery({
     queryKey: ["bmrResults"],
@@ -56,7 +57,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  // console.log(bmrResults);
+  console.log("bmrResults", bmrResults);
 
   // setBodyFitResult(bodyFitResults);
   return (
@@ -103,7 +104,7 @@ const UserHome = () => {
                   <h1 className="p-2 text-3xl font-semibold">BMI Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {Array.isArray(bodyFitResults) &&
+                    {/* {Array.isArray(bodyFitResults) &&
                       bodyFitResults?.map((result, index) => (
                         <div key={result._id}>
                           <h1>
@@ -111,7 +112,19 @@ const UserHome = () => {
                             {result?.bmiResult}{" "}
                           </h1>
                         </div>
-                      ))}
+                      ))} */}
+                    <div>
+                      <div>
+                        {/* {bodyFitResults?.map((result, index) => (
+                          <div key={result._id}>
+                            <h1>
+                              {moment().format("MMM Do YY")} : BMI result :{" "}
+                              {result?.bmiResult}{" "}
+                            </h1>
+                          </div>
+                        ))} */}
+                      </div>
+                    </div>
                   </div>
                   <button
                     onClick={() => setOpenModal(false)}
@@ -171,14 +184,14 @@ const UserHome = () => {
                   <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
                   {/* bmiResult */}
                   <div>
-                    {bodyFitResults?.map((dd) => (
+                    {/* {bodyFitResults?.map((dd) => (
                       <div key={dd?._id}>
                         <h1>
                           {moment().format("MMM Do YY")} : Body Fit result :
                           {dd?.result}{" "}
                         </h1>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
                   <button
                     onClick={() => setOpenModalt(false)}
@@ -241,14 +254,14 @@ const UserHome = () => {
                   <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
                   {/* bmiResult */}
                   <div>
-                    {bodyCaloriesResults?.map((dd) => (
+                    {/* {bodyCaloriesResults?.map((dd) => (
                       <div key={dd._id}>
                         <h1>
                           {moment().format("MMM Do YY")} : Calories result :
                           {dd.calories}{" "}
                         </h1>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
                   <button
                     onClick={() => setOpenModalc(false)}
@@ -309,13 +322,13 @@ const UserHome = () => {
                   <h1 className="p-2 text-3xl font-semibold">Body BMR</h1>
                   {/* bmiResult */}
                   <div>
-                    {bmrResults?.map((dd) => (
+                    {/* {bmrResults?.map((dd) => (
                       <div key={dd._id}>
                         <h1>
                           {moment().format("MMM Do YY")} : BMR result :{dd.bmr}{" "}
                         </h1>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
                   <button
                     onClick={() => setOpenModalb(false)}

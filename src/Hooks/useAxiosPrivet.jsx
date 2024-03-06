@@ -3,8 +3,8 @@ import { signOut } from "firebase/auth";
 import auth from "../../firebase.config";
 
 const instance = axios.create({
-  baseURL: 'https://chikitsha-hub-server.vercel.app',
-  // baseURL: "http://localhost:3000",
+  // baseURL: "https://chikitsha-hub-server.vercel.app",
+  baseURL: "http://localhost:3000",
   withCredentials: true,
 });
 

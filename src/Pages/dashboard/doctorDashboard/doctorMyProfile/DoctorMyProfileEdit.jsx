@@ -1,13 +1,27 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import useAxiosPrivet from "../../../../Hooks/useAxiosPrivet";
-const DoctorMyProfileEdit = ({ data }) => {
-  console.log(data);
+import { useQuery } from "@tanstack/react-query";
+const DoctorMyProfileEdit = () => {
+  // console.log(data);
+  const [doctorType1, setDoctorType1] = useState("");
+  const user = useSelector((state) => state.auth.user);
+  const axios = useAxiosPrivet();
+  // console.log(user);
+  const { data: doctorUpdate = [], refetch } = useQuery({
+    queryKey: ["doctorUpdate"],
+    queryFn: async () => {
+      const res = await axios.get(`/doctors/1/${email}`);
+      return res.data;
+    },
+  });
+  const { photoURL, email, displayName } = user || {};
   const {
+    _id,
     name,
     title,
     img,
@@ -20,23 +34,22 @@ const DoctorMyProfileEdit = ({ data }) => {
     location,
     gender,
     fee,
+    doctorType,
     followUpFee,
     availability,
     aboutDoctor,
     rating,
+    session,
+    academy,
+    courseName,
     education,
     experience,
     hospitalName,
-    start,
-    end,
-    year,
+    startDate,
+    endDate,
+    years,
     joiningDate,
-  } = data || {};
-  const user = useSelector((state) => state.auth.user);
-  const axiosPrivate = useAxiosPrivet();
-  // console.log(user);
-  const { photoURL, email, displayName } = user || {};
-
+  } = doctorUpdate || {};
   const weekDays = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -121,13 +134,14 @@ const DoctorMyProfileEdit = ({ data }) => {
       },
       aboutDoctor: data.aboutDoctor,
     };
-    console.log(updateDoctor);
-    axiosPrivate.put(`/doctors/${email}`, updateDoctor).then((result) => {
-      if (result.data.success) {
+    // console.log(updateDoctor);
+    axios.put(`/doctors/${_id}`, updateDoctor).then((result) => {
+      // console.log(result);
+      if (result.statusText === "OK") {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Registration Successful!!",
+          title: "Account Update Successful!!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -135,7 +149,10 @@ const DoctorMyProfileEdit = ({ data }) => {
       }
     });
   };
-
+  const handleDoctorType = (e) => {
+    setDoctorType1(e.target.value);
+    // console.log(e.target.value);
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -155,11 +172,7 @@ const DoctorMyProfileEdit = ({ data }) => {
                     // placeholder="Name"
                     defaultValue={displayName}
                     className="w-full px-3 py-[10px] text-sm leading-tight  border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.name && (
-                    <span className="text-red-600">Name is required</span>
-                  )}
                 </div>
                 <div className="mb-2">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -167,11 +180,11 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
 
                   <select
-                    {...register("title", { required: true })}
+                    {...register("title", { required: false })}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
-                    required
                     id="title"
                     name="title"
+                    defaultValue={title}
                   >
                     <option disabled defaultValue>
                       Choose Title
@@ -181,88 +194,32 @@ const DoctorMyProfileEdit = ({ data }) => {
                     <option value=" Assoc. Prof. Dr.">Assoc. Prof. Dr.</option>
                     <option value=" Asst. Prof. Dr.">Asst. Prof. Dr.</option>
                   </select>
-                  {errors.title && (
-                    <span className="text-red-600">Photo Url is required</span>
-                  )}
                 </div>
-                <div className="mb-2">
-                  <label className="block mb-2 text-sm font-bold  ">
-                    Specialties
-                  </label>
-
-                  <select
-                    {...register("specialties", { required: true })}
-                    className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
-                    required
-                    id="Specialties"
-                    name="specialties"
-                  >
-                    <option disabled defaultValue>
-                      Choose Title
-                    </option>
-                    <option value="General Practitioners">
-                      General Practitioners
-                    </option>
-                    <option value="Cardiologists">Cardiologists</option>
-                    <option value="Dermatologists">Dermatologists</option>
-                    <option value="Pediatricians">Pediatricians</option>
-                    <option value="Orthopedic Surgeons">
-                      Orthopedic Surgeons
-                    </option>
-                    <option value="Psychiatrists">Psychiatrists</option>
-                    <option value="Gynecologists">Gynecologists</option>
-                    <option value="Endocrinologists">Endocrinologists</option>
-                    <option value="Ophthalmologists">Ophthalmologists</option>
-                    <option value="Urologists">Urologists</option>
-                    <option value="ENT Specialists">ENT Specialists</option>
-                    <option value="Gastroenterologists">
-                      Gastroenterologists
-                    </option>
-                    <option value="Neurologists">Neurologists</option>
-                    <option value="Allergists/Immunologists">
-                      Allergists/Immunologists
-                    </option>
-                    <option value="Infectious Disease Specialists">
-                      Infectious Disease Specialists
-                    </option>
-                    <option value="Emergency Medicine Physicians">
-                      Emergency Medicine Physicians
-                    </option>
-                  </select>
-                  {errors.specialties && (
-                    <span className="text-red-600">
-                      Specialties is required
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="grid lg:grid-cols-3 grid-cols-1 gap-2">
                 <div className="mb-4">
                   <label className="block mb-2 text-sm font-bold  ">
                     BMDC Number
                   </label>
                   <input
                     type="text"
-                    {...register("bmdc", { required: true })}
+                    defaultValue={bmdcNumber}
+                    {...register("bmdc", { required: false })}
                     placeholder="bmdc"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.bmdc && (
-                    <span className="text-red-600">Category is required</span>
-                  )}
                 </div>
-                <div className="mb-4">
+              </div>
+              <div className="grid lg:grid-cols-3 grid-cols-1 gap-2">
+                <div className="mb-4 w-full">
                   <label className="block mb-2 text-sm font-bold  ">
                     Doctor Type
                   </label>
 
                   <select
-                    {...register("doctorType", { required: true })}
+                    onChange={handleDoctorType}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
-                    required
                     id="doctorType"
                     name="doctorType"
+                    defaultValue={doctorType}
                   >
                     <option disabled defaultValue>
                       Choose Title
@@ -272,41 +229,123 @@ const DoctorMyProfileEdit = ({ data }) => {
                       Veterinary Doctor{" "}
                     </option>
                   </select>
-                  {errors.doctorType && (
-                    <span className="text-red-600">Photo Url is required</span>
+                </div>
+                <div className="w-full mb-4">
+                  <label className="block mb-2 text-sm font-bold  ">
+                    Specialties
+                  </label>
+
+                  {doctorType1 === "Veterinary Doctor" ? (
+                    <div>
+                      {/* vetenary */}
+                      <select
+                        {...register("specialties", { required: false })}
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
+                        id="Specialties"
+                        name="specialties"
+                        defaultValue={specialties}
+                      >
+                        <option disabled defaultValue>
+                          Choose Title
+                        </option>
+                        <option value="Internal Medicine">
+                          Internal Medicine
+                        </option>
+                        <option value="Surgery">Surgery</option>
+                        <option value="Dermatologists">Dermatologists</option>
+                        <option value="Diagnostic Imaging">
+                          Diagnostic Imaging
+                        </option>
+                        <option value="Emergency and Critical Care">
+                          Emergency and Critical Care
+                        </option>
+                        <option value="Dermatology">Dermatology</option>
+                        <option value="Preventive Medicine and Public Health">
+                          Preventive Medicine and Public Health
+                        </option>
+                        <option value="Dentistry">Dentistry</option>
+                        <option value="Anesthesiology and Pain Management">
+                          Anesthesiology and Pain Management
+                        </option>
+                        <option value="Behavioral Medicine">
+                          Behavioral Medicine
+                        </option>
+                        <option value="Nutrition">Nutrition</option>
+                      </select>
+                    </div>
+                  ) : (
+                    <div>
+                      {/* doctor */}
+                      <select
+                        {...register("specialties", { required: false })}
+                        className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
+                        id="Specialties"
+                        name="specialties"
+                        defaultValue={specialties}
+                      >
+                        <option disabled defaultValue>
+                          Choose Title
+                        </option>
+                        <option value="General Practitioners">
+                          General Practitioners
+                        </option>
+                        <option value="Cardiologists">Cardiologists</option>
+                        <option value="Dermatologists">Dermatologists</option>
+                        <option value="Pediatricians">Pediatricians</option>
+                        <option value="Orthopedic Surgeons">
+                          Orthopedic Surgeons
+                        </option>
+                        <option value="Psychiatrists">Psychiatrists</option>
+                        <option value="Gynecologists">Gynecologists</option>
+                        <option value="Endocrinologists">
+                          Endocrinologists
+                        </option>
+                        <option value="Ophthalmologists">
+                          Ophthalmologists
+                        </option>
+                        <option value="Urologists">Urologists</option>
+                        <option value="ENT Specialists">ENT Specialists</option>
+                        <option value="Gastroenterologists">
+                          Gastroenterologists
+                        </option>
+                        <option value="Neurologists">Neurologists</option>
+                        <option value="Allergists/Immunologists">
+                          Allergists/Immunologists
+                        </option>
+                        <option value="Infectious Disease Specialists">
+                          Infectious Disease Specialists
+                        </option>
+                        <option value="Emergency Medicine Physicians">
+                          Emergency Medicine Physicians
+                        </option>
+                      </select>
+                    </div>
                   )}
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 w-full">
                   <label className="block mb-2 text-sm font-bold  ">
                     Location
                   </label>
                   <input
                     type="text"
-                    {...register("location", { required: true })}
+                    {...register("location", { required: false })}
                     placeholder="Location"
+                    defaultValue={location}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.location && (
-                    <span className="text-red-600">Location is required</span>
-                  )}
                 </div>
               </div>
-              <div className="flex gap-5 w-full">{/* doctor code */}</div>
               <div className="flex gap-5 w-full">
                 <div className="w-1/2 mb-4">
                   <label className="block mb-2 text-sm font-bold  ">Fee</label>
                   <input
                     type="number"
-                    {...register("fee", { required: true })}
+                    {...register("fee", { required: false })}
                     name="fee"
                     placeholder="Doctor Fee"
+                    defaultValue={fee}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.fee && (
-                    <span className="text-red-600">Fee is required</span>
-                  )}
                 </div>
                 <div className="mb-4 w-1/2">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -314,21 +353,14 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="number"
-                    {...register("followUpFee", { required: true })}
+                    {...register("followUpFee", { required: false })}
+                    defaultValue={followUpFee}
                     name="followUpFee"
                     placeholder="Follow Up Fee"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.followUpFee && (
-                    <span className="text-red-600">
-                      Follow Up Fee is required
-                    </span>
-                  )}
                 </div>
               </div>
-
-              {/* availability  */}
               <div className="flex gap-5 w-full">
                 <div className="w-1/2 mb-4">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -336,8 +368,9 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
 
                   <Select
-                    {...register("availability", { required: true })}
+                    {...register("availability", { required: false })}
                     // defaultValue={[weekDays[4], weekDays[7]]}
+                    defaultValue={availability}
                     isMulti
                     onChange={(selectedOptions) => {
                       setValue("availability", selectedOptions);
@@ -345,13 +378,7 @@ const DoctorMyProfileEdit = ({ data }) => {
                     options={weekDays}
                     className=" border-2  border-main-blue-300 rounded-lg"
                     classNamePrefix="select"
-                    required
                   />
-                  {errors.availability && (
-                    <span className="text-red-600">
-                      Availability is required
-                    </span>
-                  )}
                 </div>
 
                 <div className="w-1/2 mb-4">
@@ -359,25 +386,18 @@ const DoctorMyProfileEdit = ({ data }) => {
                     {`Degrees`}
                   </label>
                   <Select
-                    {...register("degrees", { required: true })}
-                    // defaultValue={[weekDays[4], weekDays[7]]}
+                    {...register("degrees", { required: false })}
+                    defaultValue={degrees}
                     isMulti
                     onChange={(selectedOptions) => {
                       setValue("degrees", selectedOptions);
                     }}
-                    options={degrees}
+                    options={Alldegrees}
                     className=" border-2  border-main-blue-300 rounded-lg"
                     classNamePrefix="select"
-                    required
                   />
-                  {errors.degrees && (
-                    <span className="text-red-600">
-                      {`Doctor's Title is required`}
-                    </span>
-                  )}
                 </div>
               </div>
-
               <div className="font-bold mt-2 text-2xl">Education : </div>
               <div className="flex mt-4 gap-5 w-full">
                 <div className="mb-4 w-1/2">
@@ -386,17 +406,12 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("academy", { required: true })}
+                    {...register("academy", { required: false })}
+                    defaultValue={academy}
                     name="academy"
                     placeholder="Academy"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.academy && (
-                    <span className="text-red-600">
-                      Follow Up Fee is required
-                    </span>
-                  )}
                 </div>
                 <div className="w-1/2 mb-4">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -404,17 +419,12 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("courseName", { required: true })}
+                    {...register("courseName", { required: false })}
                     name="courseName"
+                    defaultValue={courseName}
                     placeholder="Course Name"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.courseName && (
-                    <span className="text-red-600">
-                      Course Name is required
-                    </span>
-                  )}
                 </div>
                 <div className="mb-4 w-1/2">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -422,17 +432,12 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("session", { required: true })}
+                    {...register("session", { required: false })}
                     name="session"
+                    defaultValue={session}
                     placeholder="Session"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.academy && (
-                    <span className="text-red-600">
-                      Session Fee is required
-                    </span>
-                  )}
                 </div>
               </div>
               {/* experience */}
@@ -444,15 +449,12 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("hospitalName", { required: true })}
+                    {...register("hospitalName", { required: false })}
                     name="hospitalName"
+                    defaultValue={hospitalName}
                     placeholder="hospitalName"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.hospitalName && (
-                    <span className="text-red-600">Fee is required</span>
-                  )}
                 </div>
                 <div className="mb-4 w-1/2">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -460,14 +462,11 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="date"
-                    {...register("startDate", { required: true })}
+                    {...register("startDate", { required: false })}
                     name="startDate"
+                    defaultValue={startDate}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.startDate && (
-                    <span className="text-red-600">Start Date is required</span>
-                  )}
                 </div>
               </div>
               <div className="flex gap-5 mt-4 w-full">
@@ -477,15 +476,12 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="text"
-                    {...register("endDate", { required: true })}
+                    {...register("endDate", { required: false })}
                     name="endDate"
+                    defaultValue={endDate}
                     placeholder="endDate"
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.endDate && (
-                    <span className="text-red-600">Fee is required</span>
-                  )}
                 </div>
                 <div className="mb-4 w-1/2">
                   <label className="block mb-2 text-sm font-bold  ">
@@ -493,16 +489,11 @@ const DoctorMyProfileEdit = ({ data }) => {
                   </label>
                   <input
                     type="number"
-                    {...register("years", { required: true })}
+                    {...register("years", { required: false })}
                     name="years"
+                    defaultValue={years}
                     className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    required
                   />
-                  {errors.years && (
-                    <span className="text-red-600">
-                      Follow Up Fee is required
-                    </span>
-                  )}
                 </div>
               </div>
 
@@ -511,7 +502,12 @@ const DoctorMyProfileEdit = ({ data }) => {
               </div>
               <div className="flex gap-2 mb-2">
                 <label className="flex gap-1 font-bold ">
-                  <input type="radio" value="male" {...register("gender")} />
+                  <input
+                    type="radio"
+                    value="male"
+                    defaultValue={gender}
+                    {...register("gender")}
+                  />
                   Male
                 </label>
                 <br />
@@ -524,11 +520,6 @@ const DoctorMyProfileEdit = ({ data }) => {
                   <input type="radio" value="other" {...register("gender")} />
                   Other
                 </label>
-
-                {errors.gender && (
-                  <span className="text-red-600">gender is required</span>
-                )}
-                {/* <p>You selected: {selectedGender}</p> */}
               </div>
               {/* about doctor */}
               <div className="mb-4 w-full">
@@ -537,98 +528,21 @@ const DoctorMyProfileEdit = ({ data }) => {
                 </label>
                 <textarea
                   type="text"
-                  {...register("aboutDoctor", { required: true })}
+                  {...register("aboutDoctor", { required: false })}
+                  defaultValue={aboutDoctor}
                   placeholder="About Doctor"
                   className="w-full px-3 py-2 text-sm leading-tight h-44  border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                  required
                 />
-                {errors.aboutDoctor && (
-                  <span className="text-red-600">About Doctor is required</span>
-                )}
               </div>
-              {/* email and pass */}
-              {/* <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold  ">
-                Email
-              </label>
-              <input
-                type="email"
-                {...register("email", {
-                  required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                })}
-                name="email"
-                placeholder="Email"
-                className=" w-full px-3 py-2 mb-3 text-sm leading-tight   border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                required
-              />
-              {errors.email && errors.email.type === "required" && (
-                <span className="text-red-600">Email is required</span>
-              )}
-              {errors.email && errors.email.type === "pattern" && (
-                <span className="text-red-600">Invalid email format</span>
-              )}
-            </div>
-            <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold  ">
-                Password
-              </label>
-              <input
-                type="password"
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 20,
-                  pattern:
-                    /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-                })}
-                name="password"
-                placeholder="password"
-                className="w-full px-3 py-2 mb-3 text-sm leading-tight   rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                required
-              />
-              {errors.password?.type === "required" && (
-                <p className="text-red-600">Password is required</p>
-              )}
-              {errors.password?.type === "minLength" && (
-                <p className="text-red-600">
-                  Password must be 6 character
-                </p>
-              )}
-              {errors.password?.type === "maxLength" && (
-                <p className="text-red-600">
-                  Password must be less than 20 character
-                </p>
-              )}
-              {errors.password?.type === "pattern" && (
-                <p className="text-red-600">
-                  Password must have one uppercase one lowercase, one
-                  number and one special character{" "}
-                </p>
-              )}
-            </div> */}
+
               <div className=" text-center">
                 <button
                   className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700  dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
                   type="submit"
                 >
-                  Register Account
+                  Update Your Account
                 </button>
               </div>
-              {/* <hr className="mb-6 border-t" /> */}
-              {/* forgot password */}
-              {/* <div className="text-center">
-              <a
-                className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800"
-                href="#">
-                Forgot Password?
-              </a>
-            </div> */}
-              {/* <div className="text-center">
-              <p className="inline-block cursor-pointer text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800">
-                Already have an account? <Link to="/login">Log In</Link>
-              </p>
-            </div> */}
             </form>
           </div>
         </div>

@@ -11,7 +11,6 @@ const Prescription = ({
   meetId,
   fee,
   patientNameDef,
-  fee
 }) => {
   const axiosPublic = useAxiosPublic();
   const user = useSelector((state) => state.auth.user);
@@ -31,9 +30,9 @@ const Prescription = ({
   });
 
   const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
-  console.log(doctor)
+  console.log(doctor);
   const addInvestigation = () => {
-    setInvestigationNames([...investigationNames, '']);
+    setInvestigationNames([...investigationNames, ""]);
   };
   const addMedicine = () => {
     setMedicineNames([...medicineNames, ""]);
@@ -45,7 +44,7 @@ const Prescription = ({
     const newInvestigationNames = [...investigationNames];
     newInvestigationNames.splice(index, 1);
     setInvestigationNames(newInvestigationNames);
-  }
+  };
   const removeField = (index) => {
     const newMedicineNames = [...medicineNames];
     const newFrequencies = [...frequencies];
@@ -69,9 +68,11 @@ const Prescription = ({
       const date = document.getElementById("date").value;
       const feedback = document.getElementById("feedback").value;
 
-      const investigations = investigationNames.map((investigationName, index) => ({
-        investigationName,
-      }));
+      const investigations = investigationNames.map(
+        (investigationName, index) => ({
+          investigationName,
+        })
+      );
 
       const medicines = medicineNames.map((medicineName, index) => ({
         medicineName,
@@ -233,7 +234,6 @@ const Prescription = ({
                 Click Add to Investigation
               </button>
             </div>
-
           </div>
           <h2 className="mt-10 font-bold text-[#409bd4] text-xl pl-3  mb-10">
             Rx.
