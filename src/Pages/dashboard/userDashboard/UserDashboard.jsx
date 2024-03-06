@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { MdLogout } from "react-icons/md";
 import { AiOutlineHome, AiOutlineSchedule } from "react-icons/ai";
@@ -20,7 +20,31 @@ import { logOut } from "../../../redux/authProbiver";
 const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
   const user = useSelector((state) => state.auth.user);
   const { photoURL, displayName } = user || {};
+  const location = useLocation();
   // console.log(user);
+  const getHeading = (pathname) => {
+    const parts = pathname.split("/");
+    // console.log(parts);
+    const lastPart = parts[parts.length - 1];
+    switch (lastPart) {
+      case "home":
+        return "Home";
+      case "specialties":
+        return "Specialties";
+      case "alldoctors":
+        return "All Doctors";
+      case "userAppointment":
+        return "Appointments";
+      case "userPrescrption":
+        return "Prescription";
+      default:
+        return "ChikitshaHub";
+    }
+  };
+
+  const currentUserHeading = getHeading(location.pathname);
+
+  // console.log(location.pathname);
   return (
     <div
       className={`flex h-screen bg-white ${
@@ -267,7 +291,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-white fixed top-0 w-fit">
+        <header className="z-40 py-5 fixed top-0 w-fit">
           <div className="flex justify-between">
             <div className="flex items-center justify-between h-8 px-6">
               <button
@@ -281,6 +305,9 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <FaBarsStaggered className="w-6 h-6" />
                 )}
               </button>
+            </div>
+            <div className="mt-2 mr-4 w-fit mx-auto">
+              <h1 className="text-xl text-[#409bd4] fixed left-1/2">{currentUserHeading}</h1>
             </div>
             {/* <div className=" flex justify-end mx-10">
               <div className="flex flex-col justify-center items-center ">

@@ -23,7 +23,7 @@ const UserHome = () => {
     // console.log(res.data);
     setBmiResult(res?.data);
     if (res.data.success) {
-      console.log(res.data);
+      // console.log(res.data);
       Swal.fire({
         title: "Good job!",
         text: "Your BMI is Added!",
@@ -39,7 +39,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bodyFitResults", bodyFitResults);
+  // console.log("bodyFitResults", bodyFitResults);
   // bodyCalorie
   const { data: bodyCaloriesResults = [] } = useQuery({
     queryKey: ["bodyCaloriesResults"],
@@ -48,7 +48,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bodyCaloriesResults", bodyCaloriesResults);
+  // console.log("bodyCaloriesResults", bodyCaloriesResults);
   // BMR
   const { data: bmrResults = [] } = useQuery({
     queryKey: ["bmrResults"],
@@ -57,12 +57,12 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bmrResults", bmrResults);
+  // console.log("bmrResults", bmrResults);
 
   // setBodyFitResult(bodyFitResults);
   return (
     <>
-      <div className="flex-1 lg:mt-20 mt-16 h-screen">
+      <div className="lg:mt-20 mt-16 h-screen">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-[90%] rounded-lg mx-auto gap-5 ">
           <div className="overflow-hidden w-full py-6 sm:py-12 rounded-lg">
             <div>
@@ -376,6 +376,9 @@ const UserHome = () => {
                 </div>
               </div>
             </div> */}
+        </div>
+        <div>
+          
         </div>
       </div>
     </>

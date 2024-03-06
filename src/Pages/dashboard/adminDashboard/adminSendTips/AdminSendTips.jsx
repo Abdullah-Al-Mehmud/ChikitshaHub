@@ -151,7 +151,7 @@ const AdminSendTips = () => {
               </div>
               <button
                 onClick={() => handleDelete(row.original._id)}
-                className="btn btn-sm btn-error"
+                className="btn btn-sm text-white btn-error bg-rose-600"
               >
                 Delete
               </button>

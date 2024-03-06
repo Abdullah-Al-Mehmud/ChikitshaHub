@@ -71,7 +71,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <p className="font-bold text-base  text-gray-700 pt-2 text-center w-auto">
                     {displayName}
                   </p>
-                  <Link to="doctorMyProfile">
+                  <Link to="/dashboard/doctorMyProfile">
                     <button className="btn btn-sm">View Profile</button>
                   </Link>
                 </div>
@@ -289,7 +289,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 justify-between w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-slate-50 fixed top-0">
+        <header className="z-40 py-5 fixed top-0">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
               className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
@@ -302,8 +302,8 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 <FaBarsStaggered className="w-6 h-6" />
               )}
             </button>
-            <div className="flex justify-center mt-2 mr-4 w-[80%]">
-              <h1 className="text-xl text-[#409bd4]">{currentHeading}</h1>
+            <div className="mt-2 mr-4 w-fit mx-auto">
+              <h1 className="text-xl text-[#409bd4] fixed left-1/2">{currentHeading}</h1>
             </div>
           </div>
 
