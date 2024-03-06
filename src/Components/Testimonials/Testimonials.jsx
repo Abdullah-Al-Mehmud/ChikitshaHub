@@ -34,7 +34,7 @@ const Testimonials = () => {
 
   const axios = useAxiosPublic();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data, e) => {
     const { name, details, rating } = data;
     const newReview = {
       name,
@@ -52,7 +52,8 @@ const Testimonials = () => {
           icon: "success",
         });
 
-        await refetch();
+        await refetch(); 
+        e.target.reset();
       }
     } catch (error) {
       console.error(error);
