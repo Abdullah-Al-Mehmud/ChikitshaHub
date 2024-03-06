@@ -18,6 +18,7 @@ const AllDoctors = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalDoctors, setTotalDoctors] = useState(0);
   const [loading, setLoading] = useState(true);
+  const defaultImg = "https://i.ibb.co/FBdRkGZ/doctor-9722572.png";
   const handleOnClick = () => {
     setPage(1);
     const combinedSearchTerm =
@@ -35,9 +36,9 @@ const AllDoctors = () => {
             searchTerm: searchTerm,
           },
         });
-        setDoctors(response.data.data);
-        setTotalPages(response.data.totalPages);
-        setTotalDoctors(response.data.totalDoctors);
+        setDoctors(response?.data?.data);
+        setTotalPages(response?.data?.totalPages);
+        setTotalDoctors(response?.data?.totalDoctors);
         setLoading(false);
       } catch (error) {
         console.error("Error while fetching doctors:", error);
@@ -46,7 +47,17 @@ const AllDoctors = () => {
     }
     fetchDoctors();
   }, [axios, page, searchTerm, location, limit]);
-
+  const handlePrevious = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+  const handleNext = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+  // console.log(doctors);
   return (
     <div>
       <div className="fixed top-2 ml-5 z-50 mx-auto ">
@@ -83,82 +94,88 @@ const AllDoctors = () => {
         </div>
       )}
       {!loading && (
-        <div className="z-40 mt-5 px-5">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 md:gap-3 gap-2">
+        <div className="z-40 mt-20 px-5">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-5 md:gap-3 gap-2 ">
             {doctors?.map((doctor) => (
-              <Link to={`/doctors/${doctor._id}`} key={doctor._id}>
-                <div className=" p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl h-[300px] bg-white">
+              <Link to={`/doctors/${doctor?._id}`} key={doctor?._id}>
+                <div className=" p-6 border rounded-lg mb-6 shadow-xl hover:border-[#409bd4] hover:shadow-2xl h-[230px] bg-white">
                   <div className="flex items-center gap-2 flex-row">
                     <div>
                       <div className="flex items-center gap-6">
                         <div className="avatar">
                           <div className="w-20 rounded-xl">
-                            <img src={doctor.img} />
+                            {doctor.img ? (
+                              <img src={doctor?.img} />
+                            ) : (
+                              <span>
+                                <img src={defaultImg} alt="" />
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div>
                           <h4 className="text-lg font-semibold">
-                            {doctor.name}
+                            {doctor?.name}
                           </h4>
                           <p className="text-sm font-semibold text-gray-600">
-                            {doctor.specialties}
+                            {doctor?.specialties}
                           </p>
                         </div>
                       </div>
-                      <div className="mt-6">
-                        <h4 className="text-lg font-medium text-gray-600">
+                      <div className="mt-2">
+                        {/* <h4 className="text-sm font-medium text-gray-600">
                           Working on:{" "}
-                          <span className="text-lg font-semibold text-black">
-                            {doctor.location}
+                          <span className="text-sm font-medium text-black">
+                            {doctor?.location}
                           </span>
-                        </h4>
+                        </h4> */}
                         {/* <div className="flex md: flex-col lg:flex-row lg:items-center gap-4 mt-2">
                         <h4 className="text-lg font-medium text-gray-600">
                           Experience:{" "}
                           <span className="text-lg font-semibold text-black">
-                            {doctor.experience?.year} + Years
+                            {doctor?.experience?.year} + Years
                           </span>
                         </h4>
                       </div> */}
                         <div className="flex gap-1 items-center">
-                          <h4 className="text-lg font-medium text-gray-600 flex items-center gap-2">
+                          <h4 className="text-sm font-medium text-gray-600 flex items-center gap-2">
                             Rating:{" "}
                             <Rating
-                              initialRating={doctor.rating}
+                              initialRating={doctor?.rating}
                               emptySymbol={
-                                <AiOutlineStar className="text-orange-300 w-6 h-6" />
+                                <AiOutlineStar className="text-orange-300 w-5 h-5 mt-2" />
                               }
                               fullSymbol={
-                                <AiFillStar className="text-orange-300 w-6 h-6" />
+                                <AiFillStar className="text-orange-300 w-5 h-5 mt-2" />
                               }
                             ></Rating>
                           </h4>
-                          <p className="text-lg font-medium text-gray-600">
-                            ({doctor.rating})
+                          <p className="text-sm font-medium text-gray-600">
+                            ({doctor?.rating})
                           </p>
                         </div>
                         <div className="flex flex-col">
                           <h4 className="text-2xl font-bold">
-                            $ {doctor.fee}{" "}
+                            $ {doctor?.fee}{" "}
                             <span className="text-sm font-normal text-gray-600">
                               per consultation
                             </span>
                           </h4>
                           <p className="text-sm font-normal text-gray-600 mt-2">
-                            Follow Up: $ {doctor.followUpFee}
+                            Follow Up: $ {doctor?.followUpFee}
                           </p>
                         </div>
                       </div>
                     </div>
                     {/* <div className="bg-base-200 px-10 py-16 text-center w-full rounded-lg md:w-fit">
                     <h4 className="text-2xl font-bold">
-                      $ {doctor.fee}{" "}
+                      $ {doctor?.fee}{" "}
                       <span className="text-sm font-normal text-gray-600">
                         per <br /> consultation
                       </span>
                     </h4>
                     <p className="text-sm font-normal text-gray-600 mt-4">
-                      Follow Up: $ {doctor.followUpFee}
+                      Follow Up: $ {doctor?.followUpFee}
                     </p>
                   </div> */}
                   </div>
@@ -168,6 +185,53 @@ const AllDoctors = () => {
           </div>
         </div>
       )}
+      <div className="join flex gap-1 max-w-sm mx-auto text-white justify-center items-center mb-5">
+        <button
+          onClick={handlePrevious}
+          className="bg-blue-600 px-4 py-2 text-xl rounded-full"
+        >
+          {"<"}
+        </button>
+        {/* {Array.from({ length: totalPage }).map((_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <button
+              key={pageNumber}
+              onClick={() => setPage(pageNumber)}
+              className={`${
+                pageNumber === page
+                  ? "bg-blue-700 px-5 py-2 text-xl text-white rounded-full"
+                  : " bg-indigo-100 px-5 py-2 text-xl text-blue-950 rounded-full"
+              }`}
+            >
+              {pageNumber}
+            </button>
+          );
+        })} */}
+        {Array.from({ length: totalPages }).map((_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <button
+              key={pageNumber}
+              onClick={() => setPage(pageNumber)}
+              className={`${
+                pageNumber === page
+                  ? "bg-blue-700 px-5 py-2 text-xl text-white rounded-full"
+                  : " bg-indigo-100 px-5 py-2 text-xl text-blue-950 rounded-full"
+              }`}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+
+        <button
+          onClick={handleNext}
+          className="bg-blue-600 px-4 py-2 text-xl rounded-full"
+        >
+          {">"}
+        </button>
+      </div>
     </div>
   );
 };
