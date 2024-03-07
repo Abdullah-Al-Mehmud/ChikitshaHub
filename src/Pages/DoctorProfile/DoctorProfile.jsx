@@ -424,7 +424,7 @@ const DoctorProfile = () => {
                         className="flex items-center relative w-24 md:mx-auto lg:mx-0 border-[1px] border-[#FF0000] text-[#FF0000] px-4 py-1 rounded-full group text-sm font-medium"
                       >
                         <span>Delete</span>
-                        <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                        <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-base-200 rounded-full">
                           <MdDelete className="h-4" />
                         </span>
                       </button>
