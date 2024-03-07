@@ -51,8 +51,8 @@ const AdminAllPatients = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/users/${dataId}`).then(async (res) => {
-          // console.log(res);
-          if (res.statusText === "Created") {
+          console.log(res);
+          if (res.data.success === true) {
             Swal.fire({
               title: "Deleted!",
               text: "Your user has been deleted.",

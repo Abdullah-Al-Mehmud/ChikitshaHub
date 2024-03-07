@@ -49,7 +49,7 @@ const AdminAllReview = () => {
       if (result.isConfirmed) {
         axios.delete(`/doctorReview/${dataId}`).then(async (res) => {
           //   console.log(res);
-          if (res.statusText === "OK") {
+          if (res.status === 200) {
             Swal.fire({
               title: "Deleted!",
               text: "Your user has been deleted.",

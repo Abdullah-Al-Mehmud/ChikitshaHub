@@ -17,7 +17,7 @@ import {
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 import { useSelector } from "react-redux";
 import { FaVideo } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserAppointment = () => {
   const user = useSelector((state) => state.auth.user);
@@ -84,13 +84,12 @@ const UserAppointment = () => {
       ),
       header: <h1 className="w-24">Meeting Id</h1>,
     }),
-    columnHelper.accessor("", {
+    columnHelper.accessor("meetingId", {
       cell: (info) => (
         <>
           <div className="w-28">
+            <Link to={`/meet/${info.getValue()}`}>
             <button
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-              // onClick={handleMeetId}
               className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4 w-24"
             >
               <span>Join</span>
@@ -98,31 +97,7 @@ const UserAppointment = () => {
                 <FaVideo className="h-6" />
               </span>
             </button>
-            <dialog id="my_modal_3" className="modal">
-              <div className="modal-box">
-                <input
-                  onChange={(e) => setMeet(e.target.value)}
-                  type="text"
-                  name="meetId"
-                  id=""
-                  placeholder="Enter your meet id"
-                  className="input input-bordered w-full border-blue-500 text-blue-500 focus:outline-none focus:border-blue-500"
-                />
-                <button
-                  type="submit"
-                  onClick={handleMeetId}
-                  className="flex items-center relative w-24 mx-auto border-2 border-blue-500 text-blue-500 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
-                >
-                  <span>Join</span>
-                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                    <FaVideo className="h-10" />
-                  </span>
-                </button>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+            </Link>
           </div>
         </>
       ),

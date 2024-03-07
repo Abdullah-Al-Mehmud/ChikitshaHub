@@ -42,7 +42,7 @@ export const signInAsync = (email, password, navigate) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(location?.state ? location.state : "/dashboard/home");
+        navigate(location?.state ? location.state : "/");
       }).catch(err => {
         // console.log(err);
         Swal.fire({

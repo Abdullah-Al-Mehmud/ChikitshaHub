@@ -8,7 +8,8 @@ import { Link, useLoaderData } from "react-router-dom";
 const Doctors = () => {
   // const [range, setRange] = useState([0, 1000]);
   const doctorList = useLoaderData();
-  const [doctors, setDoctors] = useState(doctorList);
+  const [doctors, setDoctors] = useState(doctorList || []);
+  console.log(doctorList);
   // const [sortByFeesHighToLow, setSortByFeesHighToLow] = useState(false);
   // const [sortByFeesLowToHigh, setSortByFeesLowToHigh] = useState(false);
   const [sortBy, setSortBy] = useState("");

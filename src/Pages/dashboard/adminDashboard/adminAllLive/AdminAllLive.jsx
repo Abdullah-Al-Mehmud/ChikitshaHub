@@ -39,8 +39,8 @@ const AdminAllLive = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/doctorlive/${dataId}`).then(async (res) => {
-          //   console.log(res);
-          if (res.statusText === "OK") {
+            // console.log(res.status);
+          if (res.status === 200) {
             Swal.fire({
               title: "Deleted!",
               text: "Your user has been deleted.",
@@ -71,7 +71,7 @@ const AdminAllLive = () => {
       if (result.isConfirmed) {
         axios.patch(`/doctorlive/LiveStatus/${id}`).then(async (res) => {
           // console.log(res);
-          if (res.statusText === "OK") {
+          if (res.data.modifiedCount === 1) {
             Swal.fire({
               title: "Updated!",
               text: "Your user has been deleted.",

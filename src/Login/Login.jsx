@@ -54,7 +54,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/dashboard/home");
+      navigate("/");
     });
     // axiosPrivate.post("/users", googleLoginUser).then((result) => {
     //   console.log(result);

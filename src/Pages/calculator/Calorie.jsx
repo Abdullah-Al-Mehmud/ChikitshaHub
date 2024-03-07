@@ -14,8 +14,8 @@ const Calorie = () => {
   const [height, setHeight] = useState(null);
   const [age, setAge] = useState(null);
   const [gender, setGender] = useState('male');
-  const [activityLevel, setActivityLevel] = useState('Activity Level');
-  const [calories, setCalories] = useState(null);
+  const [activityLevel, setActivityLevel] = useState('sedentary');
+  const [calories, setCalories] = useState("");
   const [healthStatus, setHealthStatus] = useState("");
 
 
@@ -36,7 +36,9 @@ const Calorie = () => {
         setHealthStatus("");
         setWeight("");
         setHeight("");
-        setAge("")
+        setAge("");
+        setCalories("");
+        
       }
     });
     // console.log(BmiData);
@@ -115,7 +117,7 @@ const Calorie = () => {
                   Select Activity Level{" "}
                 </span>
               </label>
-              <select value={gender} onChange={(e) => setActivityLevel(e.target.value)} className="select select-bordered w-full ">
+              <select value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)} className="select select-bordered w-full ">
                 <option value="sedentary">Sedentary</option>
                 <option value="lightlyActive">Lightly Active</option>
                 <option value="moderatelyActive">Moderately Active</option>

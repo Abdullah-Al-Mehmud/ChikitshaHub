@@ -14,7 +14,7 @@ const DoctorMyProfile = () => {
   const { data: doctor = [], refetch } = useQuery({
     queryKey: ["doctor"],
     queryFn: async () => {
-      const res = await axios.get(`/doctors/1/${email}`);
+      const res = await axios.get(`/doctors/2/${email}`);
       return res.data;
     },
   });

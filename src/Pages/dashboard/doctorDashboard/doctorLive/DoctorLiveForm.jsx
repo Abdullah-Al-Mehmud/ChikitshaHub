@@ -73,7 +73,8 @@ const DoctorLiveForm = ({ setOpenModal }) => {
     // console.log(Data);
     try {
       const res = await axios.post("/doctorlive", Data);
-      if (res.statusText === "Created") {
+console.log(res);
+      if (res.status === 201) {
         // refetchTime();
         setUploadImageName("Uploaded!");
         Swal.fire({
@@ -161,7 +162,7 @@ const DoctorLiveForm = ({ setOpenModal }) => {
             </div>
           </div>
           <div className="flex items-center justify-center w-full">
-            <button className="mt-9 font-semibold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+            <button type="submit" className="mt-9 font-semibold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
               Send for review
             </button>
           </div>

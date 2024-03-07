@@ -46,13 +46,14 @@ const AdminSendTips = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/tips/all/${dataId}`).then(async (res) => {
-          // console.log(res.statusText);
-          if (res.statusText === "OK") {
+          // console.log(res);
+          if (res.data.deletedCount === 1) {
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
+            refetch();
           }
         });
       } else if (result.dismiss === "cancel") {

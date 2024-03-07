@@ -54,7 +54,7 @@ const UserRegistration = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/dashboard/home");
+          navigate("/");
         } else {
           Swal.fire({
             position: "center",

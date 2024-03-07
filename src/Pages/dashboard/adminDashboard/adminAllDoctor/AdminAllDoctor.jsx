@@ -77,8 +77,8 @@ const AdminAllDoctor = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/doctors/admin/docDelete/${dataId}`).then(async (res) => {
-          // console.log(res.statusText);
-          if (res.statusText === "OK") {
+          // console.log(res);
+          if (res.status === 200) {
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",

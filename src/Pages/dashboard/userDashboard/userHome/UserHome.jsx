@@ -20,6 +20,7 @@ const UserHome = () => {
   const [bmiResult, setBmiResult] = useState();
   // const [bodyFitResult, setBodyFitResult] =useState("");
   const user = useSelector((state) => state.auth.user);
+  const isLoading = useSelector((state) => state.auth.loading);
   const { email } = user || {};
   const url = `/bmi?email=${email}`;
   // const fitUrl = `/bodyfit?email=${email}`;
@@ -64,6 +65,13 @@ const UserHome = () => {
   // console.log("bmrResults", bmrResults);
 
   // setBodyFitResult(bodyFitResults);
+  if (isLoading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <span className="loading loading-dots loading-lg "></span>
+        </div>
+    )
+}
   return (
     <div className="mb-16">
       <div className="lg:mt-20 mt-16 min-h-screen">
