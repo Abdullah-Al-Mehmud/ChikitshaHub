@@ -25,7 +25,7 @@ export const signUpAsync = (email, password) => async (dispatch) => {
     const userCredential = await createUser(email, password);
     dispatch(setUser(userCredential.user));
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -34,7 +34,7 @@ export const signInAsync = (email, password, navigate) => {
     dispatch(setLoading(true));
     try {
       const userCredential = await signIn(email, password).then(res => {
-        console.log(res.user);
+        // console.log(res.user);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -44,7 +44,7 @@ export const signInAsync = (email, password, navigate) => {
         });
         navigate(location?.state ? location.state : "/dashboard/home");
       }).catch(err => {
-        console.log(err);
+        // console.log(err);
         Swal.fire({
           icon: 'error',
           title: `${err.message}`,
@@ -89,7 +89,7 @@ export const resetPasswordAsync = (email) => async (dispatch) => {
   try {
     await resetPassword(email);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -100,7 +100,7 @@ export const logOutAsync = () => async (dispatch) => {
     await logOut();
     dispatch(clearUser());
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 // export const delete_UserAsync = (user) => async (dispatch) => {
@@ -124,7 +124,7 @@ export const updateUserAsync = (name, photoUrl) => async (dispatch) => {
   try {
     await updateUser(name, photoUrl);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     // Handle error if needed
   }
 };

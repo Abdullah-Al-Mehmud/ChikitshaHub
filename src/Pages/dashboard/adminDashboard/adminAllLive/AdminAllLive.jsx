@@ -70,7 +70,7 @@ const AdminAllLive = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.patch(`/doctorlive/LiveStatus/${id}`).then(async (res) => {
-          console.log(res);
+          // console.log(res);
           if (res.statusText === "OK") {
             Swal.fire({
               title: "Updated!",

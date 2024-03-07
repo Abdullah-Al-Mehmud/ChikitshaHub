@@ -22,12 +22,12 @@ const Calorie = () => {
   // handleSubmit
   const handleSubmit = () => {
     const CaloriesData = { calories, healthStatus, age, height, weight, email };
-    console.log(CaloriesData);
+    // console.log(CaloriesData);
     // const BmiData = { bmiResult, status, height, weight };
     axiosPublic.post("/calories", CaloriesData).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.success) {
-        console.log(res.data);
+        // console.log(res.data);
         Swal.fire({
           title: "Good job!",
           text: "Your Calories is Added!",

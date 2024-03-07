@@ -27,7 +27,7 @@ const Meet = () => {
   });
 
   const userInfo = appointments.find((data) => data.meetingId === meetId);
-  console.log(userInfo);
+  // console.log(userInfo);
   const userId = currentUser[0]?._id;
   const userName = currentUser[0]?.name;
 
@@ -43,7 +43,7 @@ const Meet = () => {
       userId,
       userName
     );
-    console.log(kitToken);
+    // console.log(kitToken);
     const zc = ZegoUIKitPrebuilt.create(kitToken);
 
     zc.joinRoom({

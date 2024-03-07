@@ -17,12 +17,12 @@ const Bmr = () => {
 
   const handleSubmit = () => {
     const BmrData = { bmr, age, height, weight, email};
-    console.log(BmrData);
+    // console.log(BmrData);
     // const BmiData = { bmiResult, status, height, weight };
     axiosPublic.post("/bmr", BmrData).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.success) {
-        console.log(res.data);
+        // console.log(res.data);
         Swal.fire({
           title: "Good job!",
           text: "Your Calories is Added!",

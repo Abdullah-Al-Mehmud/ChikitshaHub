@@ -23,10 +23,10 @@ const UserMyProfileEdit = ({ data, setOpenModal, refetch }) => {
       phoneNumber,
     };
 
-    console.log(dataToUpdate);
+    // console.log(dataToUpdate);
     try {
       const res = await axios.patch(`/users/${_id}`, dataToUpdate);
-      console.log(res);
+      // console.log(res);
       setUploadImageName("Uploaded!");
       if (res.statusText === "OK") {
         Swal.fire({
@@ -38,7 +38,7 @@ const UserMyProfileEdit = ({ data, setOpenModal, refetch }) => {
       }
       refetch();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       //   setLoading(false);
     }

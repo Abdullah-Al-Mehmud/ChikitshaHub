@@ -29,7 +29,7 @@ const Login = () => {
         const logInResult = await dispatch(signInAsync(email, password, navigate));  
         
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     handleLogIn();
@@ -83,7 +83,7 @@ const Login = () => {
     setShowPassword((prevState) => !prevState);
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>

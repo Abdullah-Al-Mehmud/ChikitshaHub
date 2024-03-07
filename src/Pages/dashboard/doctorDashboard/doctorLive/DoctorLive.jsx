@@ -23,7 +23,7 @@ const DoctorLive = () => {
       return res.data;
     },
   });
-  console.log(liveStrem);
+  // console.log(liveStrem);
   return (
     <div>
       <div className="mt-5">

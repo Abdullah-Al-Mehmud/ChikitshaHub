@@ -24,19 +24,19 @@ const Contact = () => {
       form.current,
       'tuObuX9QTV2i18MsU')
       .then((result) => {
-        console.log(result.text);
+        // console.log(result.text);
         Swal.fire({
           title: "Good job!",
           text: "Your Email is send!",
           icon: "success"
         });
       }, (error) => {
-        console.log(error.text);
+        // console.log(error.text);
       });
   };
   // email js
   const onSubmit = data => {
-    console.log(data)
+    // console.log(data)
   }
   return (
 

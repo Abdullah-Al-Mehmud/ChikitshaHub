@@ -33,7 +33,7 @@ const AdminSendTips = () => {
       return res.data.allTips;
     },
   });
-  console.log(allTipsData);
+  // console.log(allTipsData);
   const handleDelete = (dataId) => {
     Swal.fire({
       title: "Are you sure?",

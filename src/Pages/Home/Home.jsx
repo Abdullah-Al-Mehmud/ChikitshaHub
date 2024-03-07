@@ -4,7 +4,7 @@ import BestDoctor from "../../Components/BestDoctor/BestDoctor";
 import Partners from "../../Components/Partners/Partners";
 import Faq from "../../Components/Faq/Faq";
 import Testimonials from "../../Components/Testimonials/Testimonials";
-import BMICalculator from "../../Components/BMICalculator/BMICalculator";
+// import BMICalculator from "../../Components/BMICalculator/BMICalculator";
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
       <Testimonials />
       <Faq />
       <Partners />
-      <BMICalculator />
+      {/* <BMICalculator /> */}
     </>
   );
 };

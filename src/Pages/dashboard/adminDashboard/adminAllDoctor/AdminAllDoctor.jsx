@@ -36,7 +36,7 @@ const AdminAllDoctor = () => {
   // }, []);
   // console.log(appointments);
   // table dec colum
-  console.log(Alldoctors);
+  // console.log(Alldoctors);
   const handleUpdate = async (id) => {
     const { isConfirmed } = await Swal.fire({
       title: "sure to update?",
@@ -77,7 +77,7 @@ const AdminAllDoctor = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/doctors/admin/docDelete/${dataId}`).then(async (res) => {
-          console.log(res.statusText);
+          // console.log(res.statusText);
           if (res.statusText === "OK") {
             Swal.fire({
               title: "Deleted!",

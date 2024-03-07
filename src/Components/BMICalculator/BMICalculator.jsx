@@ -19,9 +19,9 @@ const BMICalculator = () => {
     const BmiData = { bmiResult, status, height, weight, email, displayName };
     // const BmiData = { bmiResult, status, height, weight };
     axiosPublic.post("/bmi", BmiData).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.success) {
-        console.log(res.data);
+        // console.log(res.data);
         Swal.fire({
           title: "Good job!",
           text: "Your BMI is Added!",

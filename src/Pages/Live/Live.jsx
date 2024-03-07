@@ -15,16 +15,16 @@ const Live = () => {
   // console.log(userId);
   // console.log(userName);
   let role_str = getUrlParams(window.location.href).get("role") || "Host";
-  console.log(role_str);
+  // console.log(role_str);
   const roomID = liveId;
-  console.log(roomID);
+  // console.log(roomID);
   const role =
     role_str === "Host"
       ? ZegoUIKitPrebuilt.Host
       : role_str === "Cohost"
       ? ZegoUIKitPrebuilt.Cohost
       : ZegoUIKitPrebuilt.Audience;
-  console.log(role);
+  // console.log(role);
   let sharedLinks = [];
   if (role === ZegoUIKitPrebuilt.Host || role === ZegoUIKitPrebuilt.Cohost) {
     sharedLinks.push({
@@ -66,7 +66,7 @@ const Live = () => {
     // console.log(serverSecret);
     // console.log(kitToken);
     const zp = ZegoUIKitPrebuilt.create(kitToken);
-    console.log(zp);
+    // console.log(zp);
     zp.joinRoom({
       container: element,
       maxUsers: 100,

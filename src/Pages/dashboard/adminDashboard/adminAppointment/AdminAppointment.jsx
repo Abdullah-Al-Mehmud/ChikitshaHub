@@ -70,10 +70,10 @@ const AdminAppointment = () => {
     columnHelper.accessor("appointmentTime", {
       cell: (info) => {
         const date = info.getValue();
-        console.log(date);
+        // console.log(date);
         const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
         const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
-        console.log(btcTime);
+        // console.log(btcTime);
         if (btcTime && btcYear) {
           return (
             <>

@@ -52,7 +52,7 @@ const DoctorProfile = () => {
       return res.data;
     },
   });
-  console.log(appointmentData);
+  // console.log(appointmentData);
 
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
@@ -81,7 +81,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
     try {
       const postResponse = await axios.post("/doctorReview", reviewData);
       if (postResponse.data.success) {
@@ -108,7 +108,7 @@ const DoctorProfile = () => {
           `/doctors/${doctor.doctorEmail}`,
           { fixedAverageRating }
         );
-        console.log(patchResponse.data); // Log the response from the patch request
+        // console.log(patchResponse.data); // Log the response from the patch request
       } else {
         console.error(postResponse.error);
       }

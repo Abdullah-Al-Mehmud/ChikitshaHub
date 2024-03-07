@@ -70,7 +70,7 @@ const DoctorLiveForm = ({ setOpenModal }) => {
       liveId: liveIdRandom[0],
       status: "pending",
     };
-    console.log(Data);
+    // console.log(Data);
     try {
       const res = await axios.post("/doctorlive", Data);
       if (res.statusText === "Created") {
@@ -84,7 +84,7 @@ const DoctorLiveForm = ({ setOpenModal }) => {
         setOpenModal(false);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       //   setLoading(false);
     }

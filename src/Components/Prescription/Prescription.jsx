@@ -30,7 +30,7 @@ const Prescription = ({
   });
 
   const doctor = doctors.find((data) => data.doctorEmail === doctorEmail);
-  console.log(doctor);
+  // console.log(doctor);
   const addInvestigation = () => {
     setInvestigationNames([...investigationNames, ""]);
   };
@@ -97,7 +97,7 @@ const Prescription = ({
         feedback: feedback,
       };
 
-      console.log(dataToSend);
+      // console.log(dataToSend);
       // Send data to the backend
       const response = await axiosPublic.post("/medicines", dataToSend);
       //   console.log(response);
