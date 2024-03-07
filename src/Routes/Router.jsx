@@ -34,9 +34,6 @@ import DoctorLive from "../Pages/dashboard/doctorDashboard/doctorLive/DoctorLive
 import AdminAllLive from "../Pages/dashboard/adminDashboard/adminAllLive/AdminAllLive";
 import Live from "../Pages/Live/Live";
 import JoinLive from "../Pages/JoinLive/JoinLive";
-import BodyFat from "../Pages/calculator/BodyFat";
-import Calorie from "../Pages/calculator/Calorie";
-import Bmr from "../Pages/calculator/Bmr";
 import DoctorMyProfile from "../Pages/dashboard/doctorDashboard/doctorMyProfile/DoctorMyProfile";
 import DoctorMyProfileEdit from "../Pages/dashboard/doctorDashboard/doctorMyProfile/DoctorMyProfileEdit";
 import UserMyProflie from "../Pages/dashboard/userDashboard/userMyProfile/UserMyProflie";
@@ -73,18 +70,6 @@ const router = createBrowserRouter([
       {
         path: "/specialties",
         element: <Specialties />,
-      },
-      {
-        path: "/bodyfit",
-        element: <BodyFat></BodyFat>,
-      },
-      {
-        path: "/calories",
-        element: <Calorie></Calorie>,
-      },
-      {
-        path: "/bmr",
-        element: <Bmr></Bmr>,
       },
       {
         path: "/tips",
