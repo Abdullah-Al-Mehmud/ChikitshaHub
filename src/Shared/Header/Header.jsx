@@ -158,7 +158,9 @@ const axios = useAxiosPublic();
           </div>
           {/* http://localhost:5173/live/8G8kwP/host?roomID=8G8kwP&role=Audience */}
           <div className="lg:hidden block">
-            <JoinButton btnName={"Join Live"} />
+            {
+              user && <JoinButton btnName={"Join Live"} />
+            }
           </div>
           <Link to="/">
             <div className="flex items-center md:gap-4 gap-2">
