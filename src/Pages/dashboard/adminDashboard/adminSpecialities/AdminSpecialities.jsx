@@ -55,7 +55,7 @@ const AdminSpecialities = () => {
       if (result.isConfirmed) {
         axios.delete(`/specialties/${dataId}`).then(async (res) => {
           // console.log(res.statusText);
-          if (res.statusText === "OK") {
+          if (res.status === 200) {
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
@@ -189,12 +189,12 @@ const AdminSpecialities = () => {
       image: img_url?.data?.display_url,
       specialties,
       description,
-      type
+      type,
     };
     try {
       const res = await axios.post("/specialties", specialitiesData);
       // console.log(res);
-      if (res.statusText === "Created") {
+      if (res.status === 201) {
         setOpenModal(false);
         setUploadImageName("Uploaded!");
         refetch();
@@ -203,10 +203,10 @@ const AdminSpecialities = () => {
           text: "Your request accepted.",
           icon: "success",
         });
-        document.getElementById('my_modal_4').close();
+        document.getElementById("my_modal_4").close();
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       //   setLoading(false);
     }

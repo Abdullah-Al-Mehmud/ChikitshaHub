@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { MdLogout } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
@@ -20,7 +20,28 @@ import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { logOut } from "../../../redux/authProbiver";
 const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
   const user = useSelector((state) => state.auth.user);
-  const { photoURL, displayName } = user || {};
+  const location = useLocation();
+  const { photoURL, displayName, email } = user || {};
+  const getHeadingFromPath = (pathname) => {
+    const parts = pathname.split("/");
+    const lastPart = parts[parts.length - 1];
+    switch (lastPart) {
+      case "home":
+        return "Home";
+      case "timeScedule":
+        return "Schedule Timings";
+      case "prescrption":
+        return "Prescription";
+      case "doctorlive":
+        return "Go Live";
+      case "update":
+        return "Edit Your Profile";
+      default:
+        return "ChikitshaHub";
+    }
+  };
+
+  const currentHeading = getHeadingFromPath(location.pathname);
   return (
     <div
       className={`flex h-screen bg-white ${
@@ -41,15 +62,18 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <div>
+                <div className="flex flex-col gap-2 justify-center items-center">
                   <img
-                    className="hidden h-12 w-12 rounded-full sm:block object-cover mx-auto border-4 border-blue-400"
+                    className="hidden h-14 w-14 rounded-full sm:block object-cover mx-auto"
                     src={photoURL}
                     alt=""
                   />
                   <p className="font-bold text-base  text-gray-700 pt-2 text-center w-auto">
                     {displayName}
                   </p>
+                  <Link to="/dashboard/doctorMyProfile">
+                    <button className="btn btn-sm">View Profile</button>
+                  </Link>
                 </div>
               </div>
               <div className=" flex flex-col justify-between">
@@ -265,7 +289,7 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 justify-between w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-slate-50 fixed w-full top-0">
+        <header className="z-40 py-5 bg-white fixed top-0 w-[1030px]">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
               className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
@@ -278,8 +302,11 @@ const DoctorDashBoard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 <FaBarsStaggered className="w-6 h-6" />
               )}
             </button>
-            <div className="flex justify-center mt-2 mr-4 w-[80%]"></div>
+            <div className="mt-2 mr-4 w-fit mx-auto">
+              <h1 className="text-xl text-[#409bd4] fixed left-1/3 md:left-1/2">{currentHeading}</h1>
+            </div>
           </div>
+
           <div>
             {/* <div className="flex justify-center">
               <div className="flex  flex-col justify-center items-center">

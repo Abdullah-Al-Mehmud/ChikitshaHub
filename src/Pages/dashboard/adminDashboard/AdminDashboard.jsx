@@ -4,7 +4,7 @@
 import React from "react";
 import { FaBarsStaggered, FaUserClock, FaXmark } from "react-icons/fa6";
 import { MdOutlineReviews } from "react-icons/md";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdLogout } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
@@ -17,6 +17,40 @@ import { logOut } from "../../../redux/authProbiver";
 const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
   const user = useSelector((state) => state.auth.user);
   const { photoURL, displayName } = user || {};
+
+ const location = useLocation();
+
+  const getHeadingFromPath = (pathname) => {
+    const parts = pathname.split("/");
+    const lastPart = parts[parts.length - 1];
+    switch (lastPart) {
+      case "home":
+        return "Home";
+      case "sendTips":
+        return "Send Tips";
+      case "alldoctorlive":
+        return "Doctor's Live";
+      case "adminAllDoctor":
+        return "All Doctors";
+      case "doctorReq":
+        return "All Doctors Request";
+      case "allpatients":
+        return "All Patients";
+      case "allappointments":
+        return "All Appointments";
+      case "allspecialities":
+        return "All Specialities";
+      case "allreviews":
+        return "All Reviews";
+      default:
+        return "ChikitshaHub";
+    }
+  };
+
+  const currentHeading = getHeadingFromPath(location.pathname);
+
+
+
   return (
     <div
       className={`flex h-screen bg-white ${
@@ -287,7 +321,7 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-white fixed w-full top-0">
+        <header className="z-40 py-5 bg-white fixed top-0 w-[1030px]">
           <div className="flex items-center justify-between h-8 px-6 mx-auto">
             <button
               className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
@@ -300,7 +334,9 @@ const AdminDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                 <FaBarsStaggered className="w-6 h-6" />
               )}
             </button>
-            <div className="flex justify-center mt-2 mr-4 w-[80%]"></div>
+            <div className="mt-2 mr-4 w-fit mx-auto">
+              <h1 className="text-xl text-[#409bd4] fixed left-1/3 md:left-1/2">{currentHeading}</h1>
+            </div>
           </div>
         </header>
         <main className="mt-14 scroll-smooth bg-slate-50">

@@ -4,21 +4,47 @@
 import React, { useState } from "react";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { MdLogout } from "react-icons/md";
 import { AiOutlineHome, AiOutlineSchedule } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineCollectionsBookmark } from "react-icons/md";
-import { LuMessagesSquare } from "react-icons/lu";
-import { BsPrescription } from "react-icons/bs";
-import { BsFileEarmarkMedical } from "react-icons/bs";
-import { FaRegMoneyBill1 } from "react-icons/fa6";
+// import { LuMessagesSquare } from "react-icons/lu";
+// import { BsPrescription } from "react-icons/bs";
+// import { BsFileEarmarkMedical } from "react-icons/bs";
+// import { FaRegMoneyBill1 } from "react-icons/fa6";
+// import { WiMoonWaningCrescent5 } from "react-icons/wi";
+import { RiMentalHealthLine } from "react-icons/ri";
 import { logOut } from "../../../redux/authProbiver";
 const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
   const user = useSelector((state) => state.auth.user);
   const { photoURL, displayName } = user || {};
-  console.log(user);
+  const location = useLocation();
+  // console.log(user);
+  const getHeading = (pathname) => {
+    const parts = pathname.split("/");
+    // console.log(parts);
+    const lastPart = parts[parts.length - 1];
+    switch (lastPart) {
+      case "home":
+        return "Home";
+      case "specialties":
+        return "Specialties";
+      case "alldoctors":
+        return "All Doctors";
+      case "userAppointment":
+        return "Appointments";
+      case "userPrescrption":
+        return "Prescription";
+      default:
+        return "ChikitshaHub";
+    }
+  };
+
+  const currentUserHeading = getHeading(location.pathname);
+
+  // console.log(location.pathname);
   return (
     <div
       className={`flex h-screen bg-white ${
@@ -48,6 +74,9 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <p className="font-semibold text-base  text-gray-700 pt-2 text-center w-full">
                     {displayName}
                   </p>
+                  <Link to="userMyProfile">
+                    <button className="btn btn-sm">View Profile</button>
+                  </Link>
                 </div>
               </div>
               <div className=" flex flex-col justify-between">
@@ -57,8 +86,17 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
                       to={"home"}
                     >
-                      <AiOutlineHome />
+                      <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Home</span>
+                    </NavLink>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600 py-2 px-4"
+                      to={"specialties"}
+                    >
+                      <RiMentalHealthLine className="text-lg" />
+                      <span className="ml-4">Specialties</span>
                     </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
@@ -66,7 +104,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
-                      <FaUserDoctor />
+                      <FaUserDoctor className="text-lg" />
                       <span className="ml-4">All Doctors</span>
                     </NavLink>
                   </li>
@@ -75,7 +113,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"userAppointment"}
                     >
-                      <MdOutlineCollectionsBookmark />
+                      <MdOutlineCollectionsBookmark className="text-lg" />
                       <span className="ml-4">Appointments</span>
                     </NavLink>
                   </li>
@@ -88,13 +126,13 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       <AiOutlineSchedule className="text-lg" />
                       <span className="ml-4">Prescription</span>
                     </NavLink>
-                  </li>  
+                  </li>
                   {/* <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
-                      <LuMessagesSquare />
+                      <LuMessagesSquare className="text-lg"/>
                       <span className="ml-4">Messages</span>
                     </NavLink>
                   </li> */}
@@ -103,7 +141,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
-                      <BsPrescription />
+                      <BsPrescription className="text-lg"/>
                       <span className="ml-4">Prescription</span>
                     </NavLink>
                   </li> */}
@@ -112,7 +150,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
-                      <BsFileEarmarkMedical />
+                      <BsFileEarmarkMedical className="text-lg"/>
                       <span className="ml-4">Medical Records</span>
                     </NavLink>
                   </li> */}
@@ -121,7 +159,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to={"alldoctors"}
                     >
-                      <FaRegMoneyBill1 />
+                      <FaRegMoneyBill1 className="text-lg"/>
                       <span className="ml-4">Billing</span>
                     </NavLink>
                   </li> */}
@@ -164,10 +202,19 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <li className="relative px-2 py-1 ">
                     <NavLink
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
-                      to={"/dashboard"}
+                      to={"home"}
                     >
-                      <AiOutlineHome />
+                      <AiOutlineHome className="text-lg" />
                       <span className="ml-4">Home</span>
+                    </NavLink>
+                  </li>
+                  <li className="relative px-2 py-1 ">
+                    <NavLink
+                      className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
+                      to={"/specialties"}
+                    >
+                      <RiMentalHealthLine className="text-lg" />
+                      <span className="ml-4">Specialties</span>
                     </NavLink>
                   </li>
                   <li className="relative px-2 py-1 ">
@@ -175,7 +222,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
-                      <FaUserDoctor />
+                      <FaUserDoctor className="text-lg" />
                       <span className="ml-4">All Doctors</span>
                     </NavLink>
                   </li>
@@ -184,7 +231,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="userAppointment"
                     >
-                      <MdOutlineCollectionsBookmark />
+                      <MdOutlineCollectionsBookmark className="text-lg" />
                       <span className="ml-4">Appointments</span>
                     </NavLink>
                   </li>
@@ -193,7 +240,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
-                      <LuMessagesSquare />
+                      <LuMessagesSquare className="text-lg"/>
                       <span className="ml-4">Messages</span>
                     </NavLink>
                   </li>
@@ -202,7 +249,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
-                      <BsPrescription />
+                      <BsPrescription className="text-lg"/>
                       <span className="ml-4">Prescription</span>
                     </NavLink>
                   </li>
@@ -211,7 +258,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
-                      <BsFileEarmarkMedical />
+                      <BsFileEarmarkMedical className="text-lg"/>
                       <span className="ml-4">Medical Records</span>
                     </NavLink>
                   </li>
@@ -220,7 +267,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                       className="inline-flex items-center w-full text-sm font-semibold text-blue-950 transition-colors duration-150 cursor-pointer hover:text-blue-600py-2 px-4"
                       to="alldoctors"
                     >
-                      <FaRegMoneyBill1 />
+                      <FaRegMoneyBill1 className="text-lg"/>
                       <span className="ml-4">Billing</span>
                     </NavLink>
                   </li> */}
@@ -244,7 +291,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
         </div>
       </aside>
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <header className="z-40 py-5 bg-white fixed top-0 w-[83%]">
+        <header className="z-40 py-5 bg-white fixed top-0 w-[1030px]">
           <div className="flex justify-between">
             <div className="flex items-center justify-between h-8 px-6">
               <button
@@ -258,6 +305,9 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
                   <FaBarsStaggered className="w-6 h-6" />
                 )}
               </button>
+            </div>
+            <div className="mt-2 mr-4 w-fit mx-auto">
+              <h1 className="text-xl text-[#409bd4] fixed left-1/3 md:left-1/2">{currentUserHeading}</h1>
             </div>
             {/* <div className=" flex justify-end mx-10">
               <div className="flex flex-col justify-center items-center ">
@@ -317,7 +367,7 @@ const UserDashboard = ({ isSideMenuOpen, toggleSideMenu, closeSideMenu }) => {
             </div> */}
           </div>
         </header>
-        <main className="mt-14 scroll-smooth">
+        <main className="scroll-smooth bg-slate-50 h-auto">
           <Outlet></Outlet>
         </main>
       </div>

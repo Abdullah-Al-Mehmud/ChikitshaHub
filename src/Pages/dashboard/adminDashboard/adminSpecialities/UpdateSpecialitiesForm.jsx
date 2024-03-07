@@ -39,7 +39,7 @@ const UpdateSpecialitiesForm = ({
       );
         // console.log(res);
       setUploadImageName("Uploaded!");
-      if(res.statusText === 'OK'){
+      if(res.status === 200){
         Swal.fire({
           title: "Specialist Update!",
           text: "Your request accepted.",
@@ -50,7 +50,7 @@ const UpdateSpecialitiesForm = ({
       //   console.log("update done");
       refetch();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       //   setLoading(false);
     }
@@ -73,7 +73,6 @@ const UpdateSpecialitiesForm = ({
                 type="file"
                 onChange={(e) => handleUploadImage(e.target.files[0])}
                 name="image"
-                required
                 className="leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 border-0 bg-gray-100 rounded"
               />
             </div>

@@ -15,14 +15,14 @@ const CheckoutForm = ({
   patientEmail,
   appointmentTime,
 }) => {
-  console.log(doctorName, doctorEmail, doctorCode, patientName, patientEmail);
+  // console.log(doctorName, doctorEmail, doctorCode, patientName, patientEmail);
   const user = useSelector((state) => state.auth.user);
   const { email, displayName } = user || {};
   const [clientSecret, setClientSecret] = useState();
   const stripe = useStripe();
   const elements = useElements();
   const axiosPrivate = useAxiosPrivet();
-  console.log(displayName);
+  // console.log(displayName);
   const generateMeetId = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -87,7 +87,7 @@ const CheckoutForm = ({
     });
 
     if (error) {
-      console.log("Payment Error", error);
+      // console.log("Payment Error", error);
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -113,7 +113,7 @@ const CheckoutForm = ({
     if (confirmError) {
       //   console.log("Confirm error", confirmError.message);
     } else {
-      console.log("Payment confirm", paymentIntent);
+      // console.log("Payment confirm", paymentIntent);
     }
   };
   return (

@@ -54,14 +54,14 @@ const DoctorPrescription = () => {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Patient Name",
+      header: <h1 className="w-40">Patient Name</h1>,
     }),
 
     columnHelper.accessor("meetingId", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Meting ID",
+      header: <h1 className="w-28">Meeting ID</h1>
     }),
     columnHelper.accessor("meetingId", {
       cell: (info) => (
@@ -71,13 +71,13 @@ const DoctorPrescription = () => {
           </div>
         </>
       ),
-      header: "View Prescription",
+      header: <h1 className="w-40">View Prescription</h1>
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Fee",
+      header: <h1 className="w-20">Fee</h1>,
     }),
 
     columnHelper.accessor("appointmentTime", {
@@ -104,7 +104,7 @@ const DoctorPrescription = () => {
           return <span className="text-red-500">Wrong Appointment</span>;
         }
       },
-      header: "Date & Time",
+      header: <h1 className="w-48">Date & Time</h1>,
     }),
 
     // columnHelper.accessor("appointmentTime", {

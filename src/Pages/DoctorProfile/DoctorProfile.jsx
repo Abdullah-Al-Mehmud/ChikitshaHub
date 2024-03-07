@@ -19,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ReactDatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
+import { flexRender } from '@tanstack/react-table';
 
 const DoctorProfile = () => {
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -43,6 +44,15 @@ const DoctorProfile = () => {
       return res.data;
     },
   });
+
+  const { data: appointmentData = [] } = useQuery({
+    queryKey: ["appointmentData"],
+    queryFn: async () => {
+      const res = await axios.get(`/appointments/doctors/${doctor.doctorEmail}`);
+      return res.data;
+    },
+  });
+  // console.log(appointmentData);
 
   const dateObject = new Date(doctor?.joiningDate);
   const formattedDate = dateObject.toLocaleDateString();
@@ -71,7 +81,7 @@ const DoctorProfile = () => {
       rating,
       doctorEmail: doctor.doctorEmail,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
     try {
       const postResponse = await axios.post("/doctorReview", reviewData);
       if (postResponse.data.success) {
@@ -98,7 +108,7 @@ const DoctorProfile = () => {
           `/doctors/${doctor.doctorEmail}`,
           { fixedAverageRating }
         );
-        console.log(patchResponse.data); // Log the response from the patch request
+        // console.log(patchResponse.data); // Log the response from the patch request
       } else {
         console.error(postResponse.error);
       }
@@ -106,6 +116,25 @@ const DoctorProfile = () => {
       console.error(error);
     }
   };
+
+  const availableDays = doctor?.availability;
+
+  const filterAvailableDates = (date) => {
+    const selectedDayName = date.toLocaleDateString('en-US', { weekday: 'long' });
+    return availableDays.some(slot => slot === selectedDayName);
+  };
+
+  const filterTimes = (time) => {
+    const timeToCheck = new Date(time).toLocaleString('en-US', {
+      timeZone: 'Asia/Dhaka',
+    });
+    const timeToCheckInUTC = new Date(timeToCheck);
+    return !appointmentData.some(appointment => {
+      const appointmentTime = new Date(appointment.appointmentTime);
+      return appointmentTime.getTime() === timeToCheckInUTC.getTime();
+    });
+  };
+
 
   // const handleMeetId = () => {
   //   navigate(`/meet/${meet}`);
@@ -213,7 +242,7 @@ const DoctorProfile = () => {
               </form>
             </dialog> */}
 
-            <form className="flex gap-2 " onSubmit={handleAppointment}>
+            <form className="flex gap-2 flex-col lg:flex-row" onSubmit={handleAppointment}>
               <div className="relative">
                 <ReactDatePicker
                   selected={selectedDateTime}
@@ -221,13 +250,17 @@ const DoctorProfile = () => {
                   showIcon
                   toggleCalendarOnIconClick
                   showTimeSelect
-                  timeFormat="HH:mm"
+                  timeFormat="HH:mm aa"
                   timeIntervals={15}
                   minDate={new Date()}
+                  maxTime={new Date().setHours(17, 0)}
+                  minTime={new Date().setHours(10, 0)}
                   timeCaption="Time"
                   dateFormat="MMMM d, yyyy h:mm aa"
                   name="appointment"
                   placeholderText="Booking Appointment"
+                  filterDate={filterAvailableDates}
+                  filterTime={filterTimes}
                   className="border-2 border-[#409bd4] text-[#409bd4] px-4 py-1 rounded-full group text-lg font-semibold focus:outline-none w-[330px]"
                   icon={
                     <FaCalendarAlt className=" text-[#409bd4] mt-1 text-base" />
@@ -383,7 +416,7 @@ const DoctorProfile = () => {
             <div className="my-8">
               <div className={`${reviews.length !== 0 ? "mb-16" : "mb-0"}`}>
                 {reviews?.map((review) => (
-                  <div key={review._id} className="mb-4">
+                  <div key={review._id} className="mb-4 p-6 bg-base-200 rounded-lg">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-bold">{review.name}</h2>
                       <button
@@ -411,61 +444,64 @@ const DoctorProfile = () => {
                   </div>
                 ))}
               </div>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-4">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-600"
-                  >
-                    Your Name:
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    {...register("name")}
-                    className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="mb-4 ">
-                  <label
-                    htmlFor="rating"
-                    className=" block text-sm font-medium text-gray-600 mr-2"
-                  >
-                    Your Rating:
-                  </label>
-                  <div className="flex flex-row">
-                    {[...Array(5)].map((star, index) => {
-                      const currentRating = index + 1;
-                      return (
-                        <label key={index}>
-                          <input
-                            className="hidden "
-                            type="radio"
-                            id="rating"
-                            value={currentRating}
-                            onClick={() => setRatings(currentRating)}
-                            {...register("rating")}
-                            required
-                          />
-                          <FaStar
-                            color={
-                              currentRating <= ratings ? "#ffc107" : "#808080"
-                            }
-                            className="flex cursor-pointer"
-                            title={`Your Rating: ${currentRating}`}
-                            size={30}
-                          />
-                        </label>
-                      );
-                    })}
+              <form onSubmit={handleSubmit(onSubmit)} className="p-6 bg-base-200 rounded-lg">
+                <h2 className="block text-2xl font-bold text-gray-600 mb-10">Add Review</h2>
+                <div className="flex gap-6 items-center">
+                  <div className="mb-4 w-1/2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-bold text-gray-600"
+                    >
+                      Your Name:
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      {...register("name")}
+                      className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 ">
+                    <label
+                      htmlFor="rating"
+                      className=" block text-sm font-bold text-gray-600 mr-2"
+                    >
+                      Your Rating:
+                    </label>
+                    <div className="flex flex-row">
+                      {[...Array(5)].map((star, index) => {
+                        const currentRating = index + 1;
+                        return (
+                          <label key={index}>
+                            <input
+                              className="hidden "
+                              type="radio"
+                              id="rating"
+                              value={currentRating}
+                              onClick={() => setRatings(currentRating)}
+                              {...register("rating")}
+                              required
+                            />
+                            <FaStar
+                              color={
+                                currentRating <= ratings ? "#ffc107" : "#808080"
+                              }
+                              className="flex cursor-pointer mr-2"
+                              title={`Your Rating: ${currentRating}`}
+                              size={30}
+                            />
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 
                 <div className="mb-4">
                   <label
                     htmlFor="comment"
-                    className="block text-sm font-medium text-gray-600"
+                    className="block text-sm font-bold text-gray-600"
                   >
                     Your Review:
                   </label>
@@ -479,10 +515,10 @@ const DoctorProfile = () => {
                 <div>
                   <button
                     type="submit"
-                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4"
+                    className="flex items-center relative w-28 border-2 border-[#409bd4] text-[#409bd4] px-4 py-2 rounded-full group mt-4 font-semibold"
                   >
                     <span>Review</span>
-                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
+                    <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-base-200 rounded-full">
                       <FaArrowRightLong className="h-10" />
                     </span>
                   </button>

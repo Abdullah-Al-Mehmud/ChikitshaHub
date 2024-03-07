@@ -7,6 +7,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 const DoctorHome = () => {
   const user = useSelector((state) => state.auth.user);
+  const isLoading = useSelector((state) => state.auth.loading);
   const { photoURL, email, displayName } = user || {};
   const axios = useAxiosPublic();
   const { data: DocprofileData = [], refetch } = useQuery({
@@ -16,6 +17,15 @@ const DoctorHome = () => {
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <span className="loading loading-dots loading-lg "></span>
+        </div>
+    )
+}
+
   return (
     <div>
       <div className="mt-5 grid lg:grid-cols-3 grid-cols-2 gap-1">

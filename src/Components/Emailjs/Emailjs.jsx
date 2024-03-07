@@ -29,7 +29,7 @@ const Emailjs = () => {
     // console.log(TipsInfo);
 
     axiosPublic.post("/tips", TipsInfo).then(async (res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.success) {
         Swal.fire({
           position: "center",

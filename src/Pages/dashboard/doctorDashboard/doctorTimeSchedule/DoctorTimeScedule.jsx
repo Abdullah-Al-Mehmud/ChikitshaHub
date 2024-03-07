@@ -16,7 +16,7 @@ import {
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 import { FaVideo } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const DoctorTimeScedule = () => {
   const columnHelper = createColumnHelper();
   const [meet, setMeet] = useState("");
@@ -50,22 +50,21 @@ const DoctorTimeScedule = () => {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Patient Name",
+      header: <h1 className="w-40">Patient Name</h1>,
     }),
 
     columnHelper.accessor("meetingId", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Meting ID",
+      header: <h1 className="w-24">Meting ID</h1>,
     }),
-    columnHelper.accessor("", {
+    columnHelper.accessor("meetingId", {
       cell: (info) => (
         <>
-          <div>
+          <div className="w-28">
+            <Link to={`/meet/${info.getValue()}`}>
             <button
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-              // onClick={handleMeetId}
               className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4 w-24"
             >
               <span>Join</span>
@@ -73,31 +72,7 @@ const DoctorTimeScedule = () => {
                 <FaVideo className="h-6" />
               </span>
             </button>
-            <dialog id="my_modal_3" className="modal">
-              <div className="modal-box">
-                <input
-                  onChange={(e) => setMeet(e.target.value)}
-                  type="text"
-                  name="meetId"
-                  id=""
-                  placeholder="Enter your meet id"
-                  className="input input-bordered w-full border-blue-500 text-blue-500 focus:outline-none focus:border-blue-500"
-                />
-                <button
-                  type="submit"
-                  onClick={handleMeetId}
-                  className="flex items-center relative w-24 mx-auto border-2 border-blue-500 text-blue-500 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
-                >
-                  <span>Join</span>
-                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                    <FaVideo className="h-10" />
-                  </span>
-                </button>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+            </Link>
           </div>
         </>
       ),
@@ -105,7 +80,7 @@ const DoctorTimeScedule = () => {
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+        <span className="w-20">{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
       header: "Fee",
     }),
@@ -120,7 +95,7 @@ const DoctorTimeScedule = () => {
         if (btcTime && btcYear) {
           return (
             <>
-              <div className="flex gap-1">
+              <div className="flex gap-1 w-48">
                 <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
                   {btcYear}
                 </span>

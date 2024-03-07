@@ -15,6 +15,7 @@ import {
 
 import { onAuthStateChanged } from "firebase/auth";
 import useAxiosPublic from "./../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 // createUser;
 
 export const signUpAsync = (email, password) => async (dispatch) => {
@@ -24,15 +25,33 @@ export const signUpAsync = (email, password) => async (dispatch) => {
     const userCredential = await createUser(email, password);
     dispatch(setUser(userCredential.user));
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
-export const signInAsync = (email, password) => {
+export const signInAsync = (email, password, navigate) => {
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
-      const userCredential = await signIn(email, password);
+      const userCredential = await signIn(email, password).then(res => {
+        // console.log(res.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "LogIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(location?.state ? location.state : "/");
+      }).catch(err => {
+        // console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: `${err.message}`,
+          showConfirmButton: false,
+          timer: 2500
+        })
+      });
       const serializableUser = {
         uid: userCredential.user.uid,
         displayName: userCredential.user.displayName,
@@ -70,7 +89,7 @@ export const resetPasswordAsync = (email) => async (dispatch) => {
   try {
     await resetPassword(email);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -81,7 +100,7 @@ export const logOutAsync = () => async (dispatch) => {
     await logOut();
     dispatch(clearUser());
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 // export const delete_UserAsync = (user) => async (dispatch) => {
@@ -105,7 +124,7 @@ export const updateUserAsync = (name, photoUrl) => async (dispatch) => {
   try {
     await updateUser(name, photoUrl);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     // Handle error if needed
   }
 };

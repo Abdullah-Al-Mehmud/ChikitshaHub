@@ -23,6 +23,7 @@ const DoctorLive = () => {
       return res.data;
     },
   });
+  // console.log(liveStrem);
   return (
     <div>
       <div className="mt-5">
@@ -74,52 +75,60 @@ const DoctorLive = () => {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-2 m-2">
-        {liveStrem?.map((dd) => (
-          <div key={dd._id} className="bg-blue-500 w-full  rounded-md">
-            <div className="p-2 text-white flex justify-between">
-              <div>
-                <h1 className="text-xl">{dd.tagline}</h1>
-                <h1>
-                  {dd.status === "approved"
-                    ? "Event Request Approved"
-                    : "Event Request Pending"}
-                </h1>
-                <div className="flex gap-2">
-                  <span>
-                    {(() => {
-                      const btcYear = moment
-                        .utc(dd.dateTime)
-                        .tz("Asia/Dhaka")
-                        .format("YYYY-MM-DD");
-                      return btcYear;
-                    })()}
-                  </span>
-                  <span>
-                    {(() => {
-                      const btcTime = moment
-                        .utc(dd.dateTime)
-                        .tz("Asia/Dhaka")
-                        .format("h:mm A");
-                      return btcTime;
-                    })()}
-                  </span>
+        {liveStrem?.map((dd) =>
+          dd.status === "approved" ? (
+            <div key={dd._id} className="bg-blue-500 w-full  rounded-md">
+              <div className="p-2 text-white flex justify-between">
+                <div className="flex">
+                  {dd.image ? (
+                    <img
+                      src={dd.image}
+                      className="w-28 h-28 cover-fill"
+                      alt=""
+                    />
+                  ) : (
+                    ""
+                  )}
+                  <div className="p-4">
+                    <h1 className="text-xl">{dd.tagline}</h1>
+                    <h1 className="text-xl">{dd.description}</h1>
+                    <div className="flex gap-2">
+                      <span>
+                        {(() => {
+                          const btcYear = moment
+                            .utc(dd.dateTime)
+                            .tz("Asia/Dhaka")
+                            .format("YYYY-MM-DD");
+                          return btcYear;
+                        })()}
+                      </span>
+                      <span>
+                        {(() => {
+                          const btcTime = moment
+                            .utc(dd.dateTime)
+                            .tz("Asia/Dhaka")
+                            .format("h:mm A");
+                          return btcTime;
+                        })()}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="  flex flex-col justify-center">
-                {dd.status === "approved" ? (
+
+                <div className="  flex flex-col justify-center">
                   <Link to={`/live/${dd.liveId}/host`}>
                     <button className="flex items-center justify-center p-2 bg-white rounded-md btn text-blue-500">
                       <MdOutlineVideoChat className="text-xl" />
                       Streaming Now
                     </button>
                   </Link>
-                ) : (
-                  <span className="text-white">Request Pending</span>
-                )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ) : (
+            ""
+          )
+        )}
       </div>
     </div>
   );

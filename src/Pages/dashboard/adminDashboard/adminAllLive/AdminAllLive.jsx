@@ -39,8 +39,8 @@ const AdminAllLive = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`/doctorlive/${dataId}`).then(async (res) => {
-          //   console.log(res);
-          if (res.statusText === "OK") {
+            // console.log(res.status);
+          if (res.status === 200) {
             Swal.fire({
               title: "Deleted!",
               text: "Your user has been deleted.",
@@ -70,8 +70,8 @@ const AdminAllLive = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.patch(`/doctorlive/LiveStatus/${id}`).then(async (res) => {
-          console.log(res);
-          if (res.statusText === "OK") {
+          // console.log(res);
+          if (res.data.modifiedCount === 1) {
             Swal.fire({
               title: "Updated!",
               text: "Your user has been deleted.",
@@ -182,6 +182,8 @@ const AdminAllLive = () => {
           />
         </div>
       </div>
+      
+      <div className="overflow-y-scroll overflow-scroll">
       <table className="border border-gray-50 w-full text-left">
         <thead className="bg-indigo-100">
           {table.getHeaderGroups().map((headerGroup) => (
@@ -218,6 +220,7 @@ const AdminAllLive = () => {
           )}
         </tbody>
       </table>
+      </div>
       <div className="flex items-center justify-end mt-2 gap-2">
         <button
           onClick={() => table.previousPage()}

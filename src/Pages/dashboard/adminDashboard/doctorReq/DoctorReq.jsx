@@ -91,45 +91,47 @@ const DoctorReq = () => {
             />
           </div>
         </div>
-        <table className="border border-gray-50 w-full text-left">
-          <thead className="bg-indigo-100">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="capitalize px-3.5 py-2">
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row, i) => (
-                <tr
-                  key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-3.5 py-2">
+        <div className="overflow-y-scroll overflow-scroll">
+          <table className="border border-gray-50 w-full text-left">
+            <thead className="bg-indigo-100">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id} className="capitalize px-3.5 py-2">
                       {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
+                        header.column.columnDef.header,
+                        header.getContext()
                       )}
-                    </td>
+                    </th>
                   ))}
                 </tr>
-              ))
-            ) : (
-              <tr className="text-center h-32">
-                <td colSpan={12}>No Record Found!</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.length ? (
+                table.getRowModel().rows.map((row, i) => (
+                  <tr
+                    key={row.id}
+                    className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id} className="px-3.5 py-2">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : (
+                <tr className="text-center h-32">
+                  <td colSpan={12}>No Record Found!</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}

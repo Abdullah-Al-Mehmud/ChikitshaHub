@@ -6,8 +6,11 @@ import { useQuery } from "@tanstack/react-query";
 import { BsFillFileEarmarkMedicalFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 const AdminHome = () => {
   const axios = useAxiosPublic();
+  const isLoading = useSelector((state) => state.auth.loading);
+
   const { data: doctors = [], refetch: docFatch } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
@@ -34,9 +37,18 @@ const AdminHome = () => {
   // console.log(pateints);
   // console.log(appointments);
   // console.log("pateints", pateints);
+
+  if (isLoading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <span className="loading loading-dots loading-lg "></span>
+        </div>
+    )
+}
+
   return (
     <div>
-      <div className="mt-5 grid lg:grid-cols-4 grid-cols-2 gap-1">
+      <div className="my-5 grid lg:grid-cols-4 grid-cols-2 gap-1">
         <div className="bg-blue-500 rounded-md p-5 m-2 text-white text-lg">
           <span className="flex justify-between">
             <span>

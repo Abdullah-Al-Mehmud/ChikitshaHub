@@ -17,7 +17,7 @@ import {
 import TableSearch from "../../../../Components/tableSearch/TableSearch";
 import { useSelector } from "react-redux";
 import { FaVideo } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserAppointment = () => {
   const user = useSelector((state) => state.auth.user);
@@ -27,7 +27,7 @@ const UserAppointment = () => {
   const axios = useAxiosPublic();
   const [globalFilter, setGlobalFilter] = useState("");
   const axiosPublic = useAxiosPublic();
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const { data: appointments = [], refetch } = useQuery({
     queryKey: ["appointments"],
     queryFn: async () => {
@@ -68,29 +68,28 @@ const UserAppointment = () => {
     }),
     columnHelper.accessor("doctorCode", {
       cell: (info) => <span>{info.getValue()}</span>,
-      header: "DoctorCode",
+      header: <h1 className="w-24">DoctorCode</h1>,
     }),
 
     columnHelper.accessor("doctorName", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Doctor Name",
+      header: <h1 className="w-40">Doctor Name</h1>,
     }),
 
     columnHelper.accessor("meetingId", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Meting ID",
+      header: <h1 className="w-24">Meeting Id</h1>,
     }),
-    columnHelper.accessor("", {
+    columnHelper.accessor("meetingId", {
       cell: (info) => (
         <>
-          <div>
+          <div className="w-28">
+            <Link to={`/meet/${info.getValue()}`}>
             <button
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-              // onClick={handleMeetId}
               className="flex items-center relative mx-auto border-2 border-blue-500 text-blue-500 px-4 py-1 rounded-full group mt-4 lg:text-lg text-sm font-semibold mb-4 w-24"
             >
               <span>Join</span>
@@ -98,31 +97,7 @@ const UserAppointment = () => {
                 <FaVideo className="h-6" />
               </span>
             </button>
-            <dialog id="my_modal_3" className="modal">
-              <div className="modal-box">
-                <input
-                  onChange={(e) => setMeet(e.target.value)}
-                  type="text"
-                  name="meetId"
-                  id=""
-                  placeholder="Enter your meet id"
-                  className="input input-bordered w-full border-blue-500 text-blue-500 focus:outline-none focus:border-blue-500"
-                />
-                <button
-                  type="submit"
-                  onClick={handleMeetId}
-                  className="flex items-center relative w-24 mx-auto border-2 border-blue-500 text-blue-500 px-4 py-2 rounded-full group mt-4 text-lg font-semibold"
-                >
-                  <span>Join</span>
-                  <span className="absolute w-1/6 right-3 group-hover:w-5/6 box-content duration-300 flex justify-center bg-white rounded-full">
-                    <FaVideo className="h-10" />
-                  </span>
-                </button>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+            </Link>
           </div>
         </>
       ),
@@ -132,7 +107,7 @@ const UserAppointment = () => {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Fee",
+      header: <h1 className="w-20">Fee</h1>,
     }),
 
     columnHelper.accessor("appointmentTime", {
@@ -159,7 +134,7 @@ const UserAppointment = () => {
           return <span className="text-red-500">Wrong Appointment</span>;
         }
       },
-      header: "Date & Time",
+      header: <h1 className="w-44">Date & Time</h1>,
     }),
 
     // columnHelper.accessor("appointmentTime", {
@@ -191,7 +166,7 @@ const UserAppointment = () => {
   });
   return (
     <>
-      <div className="p-2 max-w-5xl mx-auto text-black">
+      <div className="p-2 max-w-5xl mx-auto text-black mt-20 h-screen bg-white">
         <div className="flex justify-between mb-2">
           <div className="w-full flex items-center gap-1">
             <TableSearch
@@ -202,6 +177,7 @@ const UserAppointment = () => {
             />
           </div>
         </div>
+        <div className="overflow-y-scroll overflow-scroll">
         <table className="border border-gray-50 w-full text-left">
           <thead className="bg-indigo-100">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -222,7 +198,8 @@ const UserAppointment = () => {
               table.getRowModel().rows.map((row, i) => (
                 <tr
                   key={row.id}
-                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}>
+                  className={`${i % 2 === 0 ? "bg-gray-100" : "bg-gray-50"}`}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id} className="px-3.5 py-2">
                       {flexRender(
@@ -240,17 +217,20 @@ const UserAppointment = () => {
             )}
           </tbody>
         </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {"<"}
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="p-1 border border-gray-300 px-2">
+            className="p-1 border border-gray-300 px-2"
+          >
             {">"}
           </button>
           <span className="flex items-center gap-1">
@@ -260,7 +240,7 @@ const UserAppointment = () => {
               {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1">
+          {/* <span className="flex items-center gap-1">
             | Go to page:
             <input
               type="number"
@@ -272,11 +252,12 @@ const UserAppointment = () => {
               }
               className="border p-1 rounded w-16 bg-transparent"
             />
-          </span>
+          </span> */}
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="p-2 bg-transparent">
+            className="p-2 bg-transparent"
+          >
             {[10, 20, 30, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
