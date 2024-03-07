@@ -117,8 +117,7 @@ const DoctorLive = () => {
 
                 <div className="  flex flex-col justify-center">
                   <Link to={`/live/${dd.liveId}/host`}>
-                    <button className="flex items-center justify-center p-2 bg-white rounded-md btn text-blue-500">
-                      <MdOutlineVideoChat className="text-xl" />
+                    <button className="flex whitespace-nowrap items-center justify-center p-2 bg-white rounded-md btn text-blue-500">
                       Streaming Now
                     </button>
                   </Link>

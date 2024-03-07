@@ -1,7 +1,4 @@
-# ChikitshaHub: The Ultimate Health Hub
-
-## Live Link
-Click here for the live link: https://hilarious-wisp-3febc2.netlify.app
+# ChikitshaHub: The Ultimate Health Hub ([Visit Now](https://hilarious-wisp-3febc2.netlify.app))
 
 ## Primary Goal:
 The primary goal of ChikitshaHub is to create a comprehensive and user-friendly platform that revolutionizes the healthcare industry by providing seamless access to medical services. The project aims to enhance the overall healthcare experience for both patients and healthcare professionals through the integration of advanced features.
