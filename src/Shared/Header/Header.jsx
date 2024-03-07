@@ -197,7 +197,7 @@ const axios = useAxiosPublic();
                 </li>
                 <li>
                   {
-                    currentUser?.role !== 'doctor' && <Link className="text-black w-full" to="/doctorRegister">
+                    currentUser?.role === 'user' && <Link className="text-black w-full" to="/doctorRegister">
                     <h1 className="text-center">Join as a Doctor</h1>
                   </Link>
                   }
