@@ -376,11 +376,11 @@ const UserHome = () => {
             </div> */}
         </div>
         <div className="">
-        <div className="flex flex-col lg:flex-row items-center justify-center">
+        <div className="flex flex-col lg:flex-row items-start justify-center mb-6">
           <BMICalculator />
           <BodyFat />
           </div>
-          <div className="flex flex-col lg:flex-row items-center justify-center">
+          <div className="flex flex-col lg:flex-row items-start justify-center">
           <Calorie />
           <Bmr />
           </div>
