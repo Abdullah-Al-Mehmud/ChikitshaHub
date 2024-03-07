@@ -211,8 +211,6 @@ const DoctorRegister = () => {
                       </label>
 
                       <select
-                        // {...register("doctorType", { required: true })}
-                        // value={doctorType}
                         onChange={handleDoctorType}
                         className="w-full px-3 py-2 text-sm leading-tight   border rounded shadow  focus:outline-none focus:shadow-outline"
                         required
