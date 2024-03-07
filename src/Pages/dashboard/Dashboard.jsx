@@ -43,8 +43,8 @@ const Dashboard = () => {
       </div>
     );
   }
-  console.log(isDoctor);
-  console.log(isAdmin);
+  // console.log(isDoctor);
+  // console.log(isAdmin);
   return (
     <div>
       {isDoctor ? (

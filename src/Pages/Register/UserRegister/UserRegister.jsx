@@ -33,6 +33,9 @@ const UserRegistration = () => {
     const userInfo = {
       name,
       email,
+      age: null,
+      bloodGroup: "null",
+      gender: "null",
       photoUrl: img_url?.data?.display_url,
       role,
     };
@@ -40,9 +43,9 @@ const UserRegistration = () => {
       try {
         const signUpResult = await dispatch(signUpAsync(email, password));
         await dispatch(updateUserAsync(name, img_url.data.display_url));
-        
+
         const userData = await axiosPrivate.post("/users", userInfo);
-        console.log(userData);
+        // console.log(userData);
         if (userData.data.success) {
           Swal.fire({
             position: "center",
