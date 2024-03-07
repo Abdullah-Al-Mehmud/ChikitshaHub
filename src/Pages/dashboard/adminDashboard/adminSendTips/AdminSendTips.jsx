@@ -33,7 +33,7 @@ const AdminSendTips = () => {
       return res.data.allTips;
     },
   });
-  console.log(allTipsData);
+  // console.log(allTipsData);
   const handleDelete = (dataId) => {
     Swal.fire({
       title: "Are you sure?",
@@ -151,7 +151,7 @@ const AdminSendTips = () => {
               </div>
               <button
                 onClick={() => handleDelete(row.original._id)}
-                className="btn btn-sm btn-error"
+                className="btn btn-sm text-white btn-error bg-rose-600"
               >
                 Delete
               </button>
@@ -203,7 +203,7 @@ const AdminSendTips = () => {
             </dialog>
           </div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-y-scroll overflow-scroll">
           <table className="border border-gray-50 w-full text-left overflow-scroll table-auto">
             <thead className="bg-indigo-100 table-header-group">
               {table.getHeaderGroups().map((headerGroup) => (

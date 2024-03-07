@@ -50,7 +50,7 @@ const UpdateSpecialitiesForm = ({
       //   console.log("update done");
       refetch();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       //   setLoading(false);
     }

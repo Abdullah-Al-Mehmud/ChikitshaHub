@@ -29,7 +29,7 @@ const AdminAllReview = () => {
       return res.data;
     },
   });
-  console.log(allReview);
+  // console.log(allReview);
   const refreshData = async () => {
     await queryClient.invalidateQueries("allpatients");
   };

@@ -70,10 +70,10 @@ const AdminAppointment = () => {
     columnHelper.accessor("appointmentTime", {
       cell: (info) => {
         const date = info.getValue();
-        console.log(date);
+        // console.log(date);
         const btcYear = moment.utc(date).tz("Asia/Dhaka").format("YYYY-MM-DD");
         const btcTime = moment.utc(date).tz("Asia/Dhaka").format("h:mm A");
-        console.log(btcTime);
+        // console.log(btcTime);
         if (btcTime && btcYear) {
           return (
             <>
@@ -140,6 +140,7 @@ const AdminAppointment = () => {
             />
           </div>
         </div>
+        <div className="overflow-y-scroll overflow-scroll"> 
         <table className="border border-gray-50 w-full text-left">
           <thead className="bg-indigo-100">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -179,6 +180,7 @@ const AdminAppointment = () => {
             )}
           </tbody>
         </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}

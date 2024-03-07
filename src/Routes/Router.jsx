@@ -41,6 +41,8 @@ import DoctorMyProfile from "../Pages/dashboard/doctorDashboard/doctorMyProfile/
 import DoctorMyProfileEdit from "../Pages/dashboard/doctorDashboard/doctorMyProfile/DoctorMyProfileEdit";
 import UserMyProflie from "../Pages/dashboard/userDashboard/userMyProfile/UserMyProflie";
 // import PrescriptionToPDF from "../Pages/PrescriptionToPDF/PrescriptionToPDF";
+import AdminRouter from './AdminRouter';
+import DoctorRouter from './DoctorRouter';
 
 const router = createBrowserRouter([
   {
@@ -58,15 +60,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: (
-          <PrivateRouter>
-            <AboutUs />
-          </PrivateRouter>
-        ),
+        element: <AboutUs />
       },
       {
         path: "/doctorRegister",
-        element: <DoctorRegister></DoctorRegister>,
+        element: <PrivateRouter><DoctorRegister></DoctorRegister></PrivateRouter>,
       },
       // {
       //   path: "/prescriptionToPdf",
@@ -94,11 +92,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/joinlive",
-        element: <JoinLive></JoinLive>,
+        element: <PrivateRouter><JoinLive></JoinLive></PrivateRouter>,
       },
       {
         path: "/readmores/:id",
-        element: <Readmore></Readmore>,
+        element: <PrivateRouter><Readmore></Readmore></PrivateRouter>,
 
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/tips/${params.id}`),
@@ -113,17 +111,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/doctors/:id",
-        element: <DoctorProfile />,
+        element: <PrivateRouter><DoctorProfile /></PrivateRouter>,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },
       {
         path: "/meet/:meetId",
-        element: <Meet />,
+        element: <PrivateRouter><Meet /></PrivateRouter>,
       },
       {
         path: "/live/:liveId/host",
-        element: <Live />,
+        element: <PrivateRouter><Live /></PrivateRouter>,
       },
       // {
       //   path: "/login",
@@ -159,73 +157,73 @@ const router = createBrowserRouter([
     children: [
       {
         path: "home",
-        element: <UserProfile />,
+        element: <PrivateRouter><UserProfile /></PrivateRouter>,
       },
       {
         path: "alldoctors",
-        element: <AllDoctors />,
+        element: <PrivateRouter><AllDoctors /></PrivateRouter>,
       },
       {
         path: "sendTips",
-        element: <AdminSendTips></AdminSendTips>,
+        element: <PrivateRouter><AdminRouter><AdminSendTips></AdminSendTips></AdminRouter></PrivateRouter>,
       },
       {
         path: "doctorHome",
-        element: <DoctorHome />,
+        element: <PrivateRouter><DoctorRouter><DoctorHome /></DoctorRouter></PrivateRouter>,
       },
       {
         path: "doctorReq",
-        element: <DoctorReq />,
+        element: <PrivateRouter><AdminRouter><DoctorReq /></AdminRouter></PrivateRouter>,
       },
       {
         path: "doctorReq/doctorProfileReview/:id",
-        element: <DoctorProfileReview />,
+        element: <PrivateRouter><AdminRouter><DoctorProfileReview /></AdminRouter></PrivateRouter>,
         loader: ({ params }) =>
           fetch(`https://chikitsha-hub-server.vercel.app/doctors/${params.id}`),
       },
       {
         path: "/dashboard/allappointments",
-        element: <AdminAppointment></AdminAppointment>,
+        element: <PrivateRouter><AdminRouter><AdminAppointment></AdminAppointment></AdminRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/adminAllDoctor",
-        element: <AdminAllDoctor />,
+        element: <PrivateRouter><AdminRouter><AdminAllDoctor /></AdminRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/allpatients",
-        element: <AdminAllPatients />,
+        element: <PrivateRouter><AdminRouter><AdminAllPatients /></AdminRouter></PrivateRouter>,
       },
       {
         path: "allspecialities",
-        element: <AdminSpecialities />,
+        element: <PrivateRouter><AdminRouter><AdminSpecialities /></AdminRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/userAppointment",
-        element: <UserAppointment />,
+        element: <PrivateRouter><UserAppointment /></PrivateRouter>,
       },
       {
         path: "/dashboard/timeScedule",
-        element: <DoctorTimeScedule />,
+        element: <PrivateRouter><DoctorRouter><DoctorTimeScedule /></DoctorRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/prescrption",
-        element: <DoctorPrescription />,
+        element: <PrivateRouter><DoctorRouter><DoctorPrescription /></DoctorRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/userPrescrption",
-        element: <PrescriptionUser />,
+        element: <PrivateRouter><PrescriptionUser /></PrivateRouter>,
       },
       {
         path: "/dashboard/allreviews",
-        element: <AdminAllReview />,
+        element: <PrivateRouter><AdminRouter><AdminAllReview /></AdminRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/doctorlive",
-        element: <DoctorLive />,
+        element: <PrivateRouter><DoctorRouter><DoctorLive /></DoctorRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/alldoctorlive",
-        element: <AdminAllLive />,
+        element: <PrivateRouter><AdminRouter><AdminAllLive /></AdminRouter></PrivateRouter>,
       },
       {
         path: "/dashboard/doctorMyProfile",

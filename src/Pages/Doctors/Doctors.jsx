@@ -13,6 +13,7 @@ const Doctors = () => {
   // const [sortByFeesLowToHigh, setSortByFeesLowToHigh] = useState(false);
   const [sortBy, setSortBy] = useState("");
   const [sortByExperience, setSortByExperience] = useState(false);
+  const [sortByMale, setSortByMale] = useState(false);
   const [sortByRating, setSortByRating] = useState(false);
 
   const priceHighToLow = () => {
@@ -27,6 +28,14 @@ const Doctors = () => {
     const sortedDoctor = doctorList.sort((a, b) =>
       a?.experience?.year < b?.experience?.year ? 1 : -1
     );
+    setDoctors(sortedDoctor);
+  };
+  const genderMale = () => {
+    const sortedDoctor = doctorList.filter(list => list.gender === 'male');
+    setDoctors(sortedDoctor);
+  };
+  const genderFemale = () => {
+    const sortedDoctor = doctorList.filter(list => list.gender === 'female');
     setDoctors(sortedDoctor);
   };
   const rating = () => {
@@ -75,6 +84,22 @@ const Doctors = () => {
         a?.experience?.year > b?.experience?.year ? 1 : -1
       );
       setDoctors(sortedDoctor);
+    }
+  };
+  const handleSortByMale = () => {
+    setSortByMale(!sortByMale);
+    if (!sortByMale) {
+      genderMale();
+    } else {
+      setDoctors(doctorList);
+    }
+  };
+  const handleSortByFemale = () => {
+    setSortByMale(!sortByMale);
+    if (!sortByMale) {
+      genderFemale();
+    } else {
+      setDoctors(doctorList);
     }
   };
   const handleSortByRating = () => {
@@ -183,6 +208,32 @@ const Doctors = () => {
                 />
                 <label className="lg:text-xl text-sm font-medium text-gray-700">
                   Experience
+                </label>
+              </div>
+              <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByMale}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-6 h-6"
+                  value="Male"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Male
+                </label>
+              </div>
+              <div className="flex gap-4 items-center mb-2">
+                <input
+                  onChange={handleSortByFemale}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  className="w-6 h-6"
+                  value="Female"
+                />
+                <label className="lg:text-xl text-sm font-medium text-gray-700">
+                  Female
                 </label>
               </div>
               <div className="flex gap-2 items-center text-lg w-full">

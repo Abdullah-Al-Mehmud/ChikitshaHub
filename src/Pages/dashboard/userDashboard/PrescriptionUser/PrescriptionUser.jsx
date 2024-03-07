@@ -49,14 +49,14 @@ const PrescriptionUser = () => {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Doctor Name",
+      header: <h1 className="w-36">Doctor Name</h1>,
     }),
 
     columnHelper.accessor("meetingId", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Meting ID",
+      header: <h1 className="w-24">Meeting ID</h1>,
     }),
     columnHelper.accessor("meetingId", {
       cell: (info) => (
@@ -66,13 +66,13 @@ const PrescriptionUser = () => {
           </div>
         </>
       ),
-      header: "View Prescription",
+      header: <h1 className="w-48 text-center">View Prescription</h1>,
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Fee",
+      header: <h1 className="w-20">Fee</h1>,
     }),
 
     columnHelper.accessor("appointmentTime", {
@@ -99,7 +99,7 @@ const PrescriptionUser = () => {
           return <span className="text-red-500">Wrong Appointment</span>;
         }
       },
-      header: "Date & Time",
+      header: <h1 className="w-44">Date & Time</h1>,
     }),
 
     // columnHelper.accessor("appointmentTime", {
@@ -141,6 +141,7 @@ const PrescriptionUser = () => {
             />
           </div>
         </div>
+        <div className="overflow-y-scroll overflow-scroll">
         <table className="border border-gray-50 w-full text-left">
           <thead className="bg-indigo-100">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -180,6 +181,7 @@ const PrescriptionUser = () => {
             )}
           </tbody>
         </table>
+        </div>
         <div className="flex items-center justify-end mt-2 gap-2">
           <button
             onClick={() => table.previousPage()}
@@ -202,7 +204,7 @@ const PrescriptionUser = () => {
               {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1">
+          {/* <span className="flex items-center gap-1">
             | Go to page:
             <input
               type="number"
@@ -214,7 +216,7 @@ const PrescriptionUser = () => {
               }
               className="border p-1 rounded w-16 bg-transparent"
             />
-          </span>
+          </span> */}
           <select
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}

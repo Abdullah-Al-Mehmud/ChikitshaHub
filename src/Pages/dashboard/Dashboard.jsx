@@ -36,17 +36,8 @@ const Dashboard = () => {
     );
   }
 
-  if (isAdminLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-dots loading-lg "></span>
-      </div>
-    );
-  }
-  // console.log(isDoctor);
-  // console.log(isAdmin);
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {isDoctor ? (
         <DoctorDashBoard
           isSideMenuOpen={isSideMenuOpen}

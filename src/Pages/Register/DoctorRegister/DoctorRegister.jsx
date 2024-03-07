@@ -125,7 +125,7 @@ const DoctorRegister = () => {
       },
       aboutDoctor: data.aboutDoctor,
     };
-    console.log(newDoctor);
+    // console.log(newDoctor);
 
     axiosPrivate.post("/doctors", newDoctor).then((result) => {
       if (result.data.success) {
@@ -141,7 +141,7 @@ const DoctorRegister = () => {
     });
   };
 
-  console.log(doctorType1);
+  // console.log(doctorType1);
 
   return (
     <>

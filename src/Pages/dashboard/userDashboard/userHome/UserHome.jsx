@@ -6,6 +6,10 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import BMICalculator from "../../../../Components/BMICalculator/BMICalculator";
+import Bmr from "../../../calculator/Bmr";
+import BodyFat from "../../../calculator/BodyFat";
+import Calorie from "../../../calculator/Calorie";
 
 const UserHome = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -23,7 +27,7 @@ const UserHome = () => {
     // console.log(res.data);
     setBmiResult(res?.data);
     if (res.data.success) {
-      console.log(res.data);
+      // console.log(res.data);
       Swal.fire({
         title: "Good job!",
         text: "Your BMI is Added!",
@@ -39,7 +43,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bodyFitResults", bodyFitResults);
+  // console.log("bodyFitResults", bodyFitResults);
   // bodyCalorie
   const { data: bodyCaloriesResults = [] } = useQuery({
     queryKey: ["bodyCaloriesResults"],
@@ -48,7 +52,7 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bodyCaloriesResults", bodyCaloriesResults);
+  // console.log("bodyCaloriesResults", bodyCaloriesResults);
   // BMR
   const { data: bmrResults = [] } = useQuery({
     queryKey: ["bmrResults"],
@@ -57,12 +61,12 @@ const UserHome = () => {
       return res.data;
     },
   });
-  console.log("bmrResults", bmrResults);
+  // console.log("bmrResults", bmrResults);
 
   // setBodyFitResult(bodyFitResults);
   return (
-    <>
-      <div className="flex-1 lg:mt-20 mt-16 h-screen">
+    <div className="mb-16">
+      <div className="lg:mt-20 mt-16 min-h-screen">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-[90%] rounded-lg mx-auto gap-5 ">
           <div className="overflow-hidden w-full py-6 sm:py-12 rounded-lg">
             <div>
@@ -89,30 +93,28 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModal(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModal ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModal ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModal
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModal
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
                   <h1 className="p-2 text-3xl font-semibold">BMI Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {Array.isArray(bodyFitResults) &&
-                      bodyFitResults?.map((result, index) => (
+                    {Array.isArray(bmiResult) &&
+                      bmiResult?.map((result, index) => (
                         <div key={result._id}>
                           <h1>
                             {moment().format("MMM Do YY")} : BMI result :
                             {result?.bmiResult}{" "}
                           </h1>
                         </div>
-                      ))} */}
+                      ))}
                     <div>
                       <div>
                         {/* {bodyFitResults?.map((result, index) => (
@@ -160,7 +162,7 @@ const UserHome = () => {
                       </span>
                       <div className="space-y-6 pt-5 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
                         <p className="text-xl whitespace-nowrap font-bold text-left">
-                          BodyFit Status
+                          BodyFat Status
                         </p>
                       </div>
                     </div>
@@ -169,29 +171,27 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalt(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalt ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalt ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalt
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalt
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
+                  <h1 className="p-2 text-3xl font-semibold">Body Fat</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bodyFitResults?.map((dd) => (
+                    {bodyFitResults?.map((dd) => (
                       <div key={dd?._id}>
                         <h1>
-                          {moment().format("MMM Do YY")} : Body Fit result :
+                          {moment().format("MMM Do YY")} : Body Fat result :
                           {dd?.result}{" "}
                         </h1>
                       </div>
-                    ))} */}
+                    ))}
                   </div>
                   <button
                     onClick={() => setOpenModalt(false)}
@@ -239,29 +239,27 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalc(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalc ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalc ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalc
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalc
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body Fit</h1>
+                  <h1 className="p-2 text-3xl font-semibold">Calories Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bodyCaloriesResults?.map((dd) => (
+                    {bodyCaloriesResults?.map((dd) => (
                       <div key={dd._id}>
                         <h1>
                           {moment().format("MMM Do YY")} : Calories result :
                           {dd.calories}{" "}
                         </h1>
                       </div>
-                    ))} */}
+                    ))}
                   </div>
                   <button
                     onClick={() => setOpenModalc(false)}
@@ -307,29 +305,29 @@ const UserHome = () => {
               </button>
               <div
                 onClick={() => setOpenModalb(false)}
-                className={`fixed flex justify-center items-center z-[100] ${
-                  openModalb ? "visible opacity-1" : "invisible opacity-0"
-                } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
+                className={`fixed flex justify-center items-center z-[100] ${openModalb ? "visible opacity-1" : "invisible opacity-0"
+                  } inset-0 w-full h-full backdrop-blur-sm bg-black/20 duration-100`}
               >
                 <div
                   onClick={(e_) => e_.stopPropagation()}
-                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${
-                    openModalb
-                      ? "scale-1 opacity-1 duration-300"
-                      : "scale-0 opacity-0 duration-150"
-                  }`}
+                  className={`absolute max-w-md p-4 text-center bg-white drop-shadow-2xl rounded-lg ${openModalb
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                    }`}
                 >
-                  <h1 className="p-2 text-3xl font-semibold">Body BMR</h1>
+                  <h1 className="p-2 text-3xl font-semibold">BMR Status</h1>
                   {/* bmiResult */}
                   <div>
-                    {/* {bmrResults?.map((dd) => (
-                      <div key={dd._id}>
-                        <h1>
-                          {moment().format("MMM Do YY")} : BMR result :{dd.bmr}{" "}
-                        </h1>
-                      </div>
-                    ))} */}
-                  </div>
+                    {Array.isArray(bmrResults) &&
+                      bmrResults?.map((result, index) => (
+                        <div key={result._id}>
+                          <h1>
+                            {moment().format("MMM Do YY")} : BMR result :
+                            {result?.bmr}{" "}
+                          </h1>
+                        </div>
+                      ))}
+                    </div>
                   <button
                     onClick={() => setOpenModalb(false)}
                     className="text-white me-2 bg-[#16c55c] px-6 py-2 rounded-full"
@@ -377,8 +375,18 @@ const UserHome = () => {
               </div>
             </div> */}
         </div>
+        <div className="">
+        <div className="flex flex-col lg:flex-row items-start justify-center mb-6">
+          <BMICalculator />
+          <BodyFat />
+          </div>
+          <div className="flex flex-col lg:flex-row items-start justify-center">
+          <Calorie />
+          <Bmr />
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -50,19 +50,19 @@ const DoctorTimeScedule = () => {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Patient Name",
+      header: <h1 className="w-40">Patient Name</h1>,
     }),
 
     columnHelper.accessor("meetingId", {
       cell: (info) => (
         <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
-      header: "Meting ID",
+      header: <h1 className="w-24">Meting ID</h1>,
     }),
     columnHelper.accessor("", {
       cell: (info) => (
         <>
-          <div>
+          <div className="w-28">
             <button
               onClick={() => document.getElementById("my_modal_3").showModal()}
               // onClick={handleMeetId}
@@ -105,7 +105,7 @@ const DoctorTimeScedule = () => {
     }),
     columnHelper.accessor("fee", {
       cell: (info) => (
-        <span>{info.getValue() ? info.getValue() : "not have an email"}</span>
+        <span className="w-20">{info.getValue() ? info.getValue() : "not have an email"}</span>
       ),
       header: "Fee",
     }),
@@ -120,7 +120,7 @@ const DoctorTimeScedule = () => {
         if (btcTime && btcYear) {
           return (
             <>
-              <div className="flex gap-1">
+              <div className="flex gap-1 w-48">
                 <span className="text-slate-950 bg-opacity-30 bg-blue-200 rounded-md px-2 text-sm py-1">
                   {btcYear}
                 </span>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPrivet from "../../../../Hooks/useAxiosPrivet";
-import UserMyProfileEdit from "./userMyProfileEdit";
+import UserMyProfileEdit from "./UserMyProfileEdit";
 
 const UserMyProflie = () => {
   const [openModal, setOpenModal] = useState(false);

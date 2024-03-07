@@ -42,7 +42,7 @@ const UpdateEmailjs = ({ dataDes, dataId, dataImg, dataHeader, refetch }) => {
       }
     });
     axiosPublic.put(`/tips/all/${dataId}`, TipsInfo).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
   const handleUploadImage = (image) => {

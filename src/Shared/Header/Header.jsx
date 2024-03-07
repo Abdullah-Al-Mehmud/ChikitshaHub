@@ -7,13 +7,29 @@ import { MdLogout } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/authProbiver";
 import JoinButton from "../../Components/Button/JoinButton";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Header = () => {
   const [show, setShow] = useState(false);
 
   const [isScrolled, setIsScrolled] = useState(false);
   const user = useSelector((state) => state.auth.user);
   
-  console.log(user);
+  // console.log(user);
+
+const axios = useAxiosPublic();
+
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axios.get(`/users`);
+      return res.data;
+    },
+  });
+
+  const currentUser = users.find(person => person?.email === user?.email)
+  // console.log(currentUser);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -58,7 +74,8 @@ const Header = () => {
       >
         Tips
       </NavLink>
-      <NavLink
+      {
+        user && <NavLink
         to="/joinlive"
         // className={({ isActive }) =>
         //   isActive
@@ -73,6 +90,7 @@ const Header = () => {
       >
         <JoinButton btnName={"Join Live"} />
       </NavLink>
+      }
       <NavLink
         to="/about"
         className={({ isActive }) =>
@@ -178,9 +196,11 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="text-black w-full" to="/doctorRegister">
+                  {
+                    currentUser?.role !== 'doctor' && <Link className="text-black w-full" to="/doctorRegister">
                     <h1 className="text-center">Join as a Doctor</h1>
                   </Link>
+                  }
                 </li>
                 <li>
                   <button

@@ -27,7 +27,7 @@ const DoctorProfileReview = () => {
       try {
         await axios.patch(`/doctors/admin/setStatus/${id}`, {});
         const res = await axios.patch(`/users/setDocRole/${email}`, {});
-        console.log(res);
+        // console.log(res);
         Swal.fire("Approved!", "Doctor request has been approved.", "success");
         setShouldNavigate(true);
       } catch (error) {
