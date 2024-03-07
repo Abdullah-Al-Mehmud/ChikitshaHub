@@ -2,6 +2,7 @@
 // import React from 'react';
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitch } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -47,60 +48,58 @@ const Footer = () => {
                     </span>
                     <ul className="list-unstyled">
                       <li>
-                        <a
-                          className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://www.creative-tim.com/presentation?ref=njs-profile">
+                        <Link to='/about'
+                          className="text-[#fcefefd8] font-semibold block pb-2 text-sm">
                           About Us
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://blog.creative-tim.com?ref=njs-profile">
+                        <Link to='Contact'
+                          className="text-[#fcefefd8] font-semibold block pb-2 text-sm">
                           Contact Us
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        <Link to='/tips'
                           className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://www.github.com/creativetimofficial?ref=njs-profile">
-                          Blogs
-                        </a>
+                          >
+                          Tips
+                        </Link>
                       </li>
                       <li>
-                        <a
+                        {/* <a
                           className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
                           href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile">
                           Faq
-                        </a>
+                        </a> */}
                       </li>
                     </ul>
                   </div>
                   <div className="w-full lg:w-4/12 px-4">
-                    <span className="block uppercase text-white text-base font-semibold mb-4">
+                    {/* <span className="block uppercase text-white text-base font-semibold mb-4">
                       Other Resources
-                    </span>
+                    </span> */}
                     <ul className="list-unstyled">
                       <li>
-                        <a
+                        {/* <a
                           className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">
+                          >
                           Help & Support
-                        </a>
+                        </a> */}
                       </li>
                       <li>
-                        <a
+                        {/* <a
                           className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://creative-tim.com/terms?ref=njs-profile">
+                          >
                           Terms &amp; Conditions
-                        </a>
+                        </a> */}
                       </li>
                       <li>
-                        <a
+                        {/* <a
                           className="text-[#fcefefd8] font-semibold block pb-2 text-sm"
-                          href="https://creative-tim.com/privacy?ref=njs-profile">
+                          >
                           Privacy Policy
-                        </a>
+                        </a> */}
                       </li>
                     </ul>
                   </div>
